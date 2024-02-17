@@ -1,0 +1,5 @@
+/* Add CSS styles below. */
+.example-class {
+  /* You can even apply Tailwind classes here. */
+  @apply bg-red-500 text-white;
+}
