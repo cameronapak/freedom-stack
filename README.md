@@ -1,4 +1,4 @@
-# WIP: Astwoah Stack
+# WIP: Astwoah Stack - Starter Kit Template
 
 An approachable and simple web stack, based on Astro. (Very similar to the [AHA stack](https://ahastack.dev/).)
 
@@ -19,6 +19,14 @@ An approachable and simple web stack, based on Astro. (Very similar to the [AHA 
 ### Backend Data Layer
 
 After deliberation, I have chosen [Pocketbase](https://pocketbase.io/). This is immensely easy to set up using [PocketHost](https://pockethost.io/) in a few minutes.
+
+## How To Use
+
+To create your own instance of this codebase, run:
+
+```sh
+git clone --single-branch --branch main git@github.com:cameronapak/astwoah-stack.git
+```
 
 ## Vision
 
