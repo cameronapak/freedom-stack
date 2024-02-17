@@ -32,4 +32,4 @@ I dream of a lightweight, simple web development stack that invokes a fun web ex
 
 ### Contributions
 
-I'll consider a contribution, but please [open an issue](https://github.com/astwoah/astwoah-stack/issues) if you'd like to contribute.
+I'll consider a contribution, but please [open an issue](https://github.com/cameronapak/astwoah-stack/issues) if you'd like to contribute.
