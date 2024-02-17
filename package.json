@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "install-sentry": "astro add @sentry/astro"
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.4.0",
@@ -15,11 +16,13 @@
     "@astrojs/tailwind": "^5.1.0",
     "@types/alpinejs": "^3.13.6",
     "alpinejs": "^3.13.5",
-    "astro": "^4.4.0"
+    "astro": "^4.4.0",
+    "astro-htmx": "^1.0.5",
+    "htmx.org": "^1.9.10"
   },
   "devDependencies": {
+    "daisyui": "^4.7.2",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3",
-    "daisyui": "^4.7.2"
+    "typescript": "^5.3.3"
   }
 }
