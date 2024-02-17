@@ -15,8 +15,11 @@
     "@astrojs/tailwind": "^5.1.0",
     "@types/alpinejs": "^3.13.6",
     "alpinejs": "^3.13.5",
-    "astro": "^4.4.0",
+    "astro": "^4.4.0"
+  },
+  "devDependencies": {
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "daisyui": "^4.7.2"
   }
 }
