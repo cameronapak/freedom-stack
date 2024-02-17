@@ -1,6 +1,6 @@
 # WIP: Astwoah Stack
 
-An opinionated stack that is the simplest and funnest web development experience. (Very similar to the [AHA stack](https://ahastack.dev/).)
+An approachable and simple web stack, based on Astro. (Very similar to the [AHA stack](https://ahastack.dev/).)
 
 ## Stack
 
