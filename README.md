@@ -17,5 +17,4 @@ An opinionated stack that is the simplest and funnest web development experience
 
 ### Backend Data Layer
 
-TBD. Considering Pocketbase, Supabase, and Baserow.io.
-
+TBD. Considering Pocketbase, Supabase, and Baserow.io. Or, even a local-first approach like IndexedDB.
