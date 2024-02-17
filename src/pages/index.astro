@@ -10,15 +10,23 @@ import Layout from "../layouts/Layout.astro";
   >
     <h1 class="text-3xl font-bold">Astwoah Stack</h1>
 
-    {/* AlpineJS Counter Example */}
+    <p>AlpineJS Counter</p>
     <div class="flex gap-2 items-center">
-      <button class="btn btn-neutral" type="button" x-on:click="count--"
-        >-</button
+      <button 
+        class="btn btn-neutral" 
+        type="button" 
+        x-on:click="count--"
       >
-      <p x-text="count"></p>
-      <button class="btn btn-neutral" type="button" x-on:click="count++"
-        >+</button
+        -
+      </button>
+      <p x-text="count" class="min-w-[3ch] text-center font-mono"></p>
+      <button 
+        class="btn btn-neutral"
+        type="button"
+        x-on:click="count++"
       >
+        +
+      </button>
     </div>
 
     {/* HTMX Example */}
