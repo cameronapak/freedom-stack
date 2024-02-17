@@ -27,7 +27,7 @@ I dream of a lightweight, simple web development stack that invokes a fun web ex
 ### Core Principles
 
 - **Approachable** — I want those new to web development to feel comfortable using this stack. Things like database management should feel intuitive. Remove barriers of traditional JavaScript frameworks, such as excessive boilerplate code or intense state management. Go back to the basics of web development. (_While this is not vanilla, the dev experience will feel very natural._)
-- **Flow-able** — Use an HTML-first approach, where almost all of the work is done on the DOM layer: styling, structuring, and interactivity. A simple focus helps you get in the flow of code faster. Fast setup. Fast building. Fast shipping.
+- **Flow-able** — Use an HTML-first approach, where almost all of the work is done on the DOM layer: styling, structuring, and interactivity. An opinionated stack helps you avoid analysis paralysis of trying to decide what tooling to pick or how to put things together. Instead, spend your thinking time building. This simple stack helps you focus and get in the flow of code faster. Fast setup. Fast building. Fast shipping.
 - **Pocket-friendly** — Using this stack will be financially maintainable to anyone, especially indie hackers and those creating startup sites / web apps. Any 3rd party integrations or backend as a service tooling chosen will have a generous free tier.
 
 ### Contributions
