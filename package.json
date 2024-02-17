@@ -18,7 +18,8 @@
     "alpinejs": "^3.13.5",
     "astro": "^4.4.0",
     "astro-htmx": "^1.0.5",
-    "htmx.org": "^1.9.10"
+    "htmx.org": "^1.9.10",
+    "pocketbase": "^0.21.1"
   },
   "devDependencies": {
     "daisyui": "^4.7.2",

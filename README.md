@@ -18,7 +18,7 @@ An approachable and simple web stack, based on Astro. (Very similar to the [AHA 
 
 ### Backend Data Layer
 
-TBD. Considering [Pocketbase](https://pocketbase.io/), [Supabase](https://supabase.com/), [Appwrite](https://appwrite.io/), and [Baserow](https://baserow.io/).io. Or, even a local-first approach like IndexedDB.
+After deliberation, I have chosen [Pocketbase](https://pocketbase.io/). This is immensely easy to set up using [PocketHost](https://pockethost.io/) in a few minutes.
 
 ## Vision
 
