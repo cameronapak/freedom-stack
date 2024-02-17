@@ -12,6 +12,7 @@ An opinionated stack that is the simplest and funnest web development experience
 
 ### Interactivity Layer
 
+- [TypeScript](https://www.typescriptlang.org/) - For type safety.
 - [AlpineJS](https://alpinejs.dev/) - For state management and interactivity.
 - [HTMX](https://htmx.org/) - For sending HTML partials/snippets over the wire.
 
