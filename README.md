@@ -22,7 +22,7 @@ TBD. Considering [Pocketbase](https://pocketbase.io/), [Supabase](https://supaba
 
 ## Vision
 
-I dream of a lightweight, simple web development stack that invokes a fun web experience.
+I dream of a lightweight, simple web development stack that invokes a fun web experience at the cheapest possible maintainance, backend, and server cost. As close to free as possible.
 
 ### Core Principles
 
