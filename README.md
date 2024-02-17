@@ -22,11 +22,7 @@ After deliberation, I have chosen [Pocketbase](https://pocketbase.io/). This is 
 
 ## How To Use
 
-To create your own instance of this codebase, run:
-
-```sh
-git clone --single-branch --branch main git@github.com:cameronapak/astwoah-stack.git
-```
+To create your own instance of this codebase, click the "Use this template" button on the [repo's home page](https://github.com/cameronapak/astwoah-stack).
 
 ## Vision
 
