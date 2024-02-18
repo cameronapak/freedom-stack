@@ -18,6 +18,8 @@ export const prerender = true;
 
 <Layout title={entry.data.title}>
   <article class="p-6 w-full container mx-auto max-w-[1000px]">
+    <a href="/" class="btn btn-neutral mb-6">Back</a>
+
     <h1>{entry.data.title}</h1>
 
     <p>{entry.data.description}</p>
@@ -26,7 +28,7 @@ export const prerender = true;
 
     <p>Written by {entry.data.author}</p>
 
-    <div class="divider" role="separator" />
+    <div class="divider" role="separator"></div>
 
     <Content />
   </article>

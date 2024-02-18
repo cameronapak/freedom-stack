@@ -3,3 +3,14 @@
   /* You can even apply Tailwind classes here. */
   @apply bg-red-500 text-white;
 }
+
+/* Override some of the Tailwind .prose CSS */
+.prose h1, 
+.prose h2, 
+.prose h3, 
+.prose h4, 
+.prose h5, 
+.prose h6,
+.prose p {
+  @apply m-0;
+}

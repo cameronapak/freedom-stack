@@ -8,26 +8,24 @@ import Layout from "../layouts/Layout.astro";
     class="p-6 flex flex-col justify-center items-center gap-4"
     x-data="{ count: 0 }"
   >
-    <h1 class="text-3xl font-bold">Astwoah Stack</h1>
+    <div class="flex flex-col items-center">
+      <h1 class="text-3xl font-bold">Astwoah Stack</h1>
+      <p>AlpineJS Counter</p>
+    </div>
 
-    <p>AlpineJS Counter</p>
     <div class="flex gap-2 items-center">
-      <button 
-        class="btn btn-neutral" 
-        type="button" 
-        x-on:click="count--"
-      >
+      <button class="btn btn-neutral" type="button" x-on:click="count--">
         -
       </button>
       <p x-text="count" class="min-w-[3ch] text-center font-mono"></p>
-      <button 
-        class="btn btn-neutral"
-        type="button"
-        x-on:click="count++"
-      >
+      <button class="btn btn-neutral" type="button" x-on:click="count++">
         +
       </button>
     </div>
+
+    <a href="/posts/first-post" class="btn btn-neutral">
+      Visit Blog Post
+    </a>
 
     {/* HTMX Example */}
     <button
