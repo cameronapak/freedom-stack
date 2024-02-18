@@ -11,6 +11,7 @@ const SENTRY_PROJECT = import.meta.env.SENTRY_PROJECT;
 
 const integrations = [
   tailwind(),
+  // This entrypoint file is where Alpine plugins are registered.
   alpinejs({ entrypoint: '/src/entrypoint' }),
   htmx(),
 ]
