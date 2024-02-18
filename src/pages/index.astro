@@ -6,9 +6,9 @@ import Navbar from '../components/Navbar.astro';
 <Layout title="Astwoah Stack">
   <Navbar />
 
-  <main id="main" class="container p-6" x-data="{ count: 0 }">
+  <main id="main" class="container p-6" x-data="{ count: $persist(0) }">
     <h1 class="text-3xl font-bold">Welcome to the Astwoah Stack</h1>
-    <p>A simple web starter template crafted with Astro, AlpineJS, HTMX, Daisy UI, Tailwind, and more.</p>
+    <p class="text-balance">A simple web starter template crafted with Astro, AlpineJS, HTMX, Daisy UI, Tailwind, and more.</p>
 
     <div class="flex gap-2 items-center mt-8">
       <button class="btn btn-neutral" type="button" x-on:click="count--">

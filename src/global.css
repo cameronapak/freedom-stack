@@ -12,4 +12,15 @@
 .prose h5, 
 .prose h6 {
   @apply m-0;
+  text-wrap: balance;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Daisy UI Overrides */
+.breadcrumbs > ul > li, 
+.breadcrumbs > ol > li {
+  @apply p-0;
 }
