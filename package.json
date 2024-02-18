@@ -15,6 +15,7 @@
     "@astrojs/check": "^0.5.4",
     "@astrojs/netlify": "^5.1.2",
     "@astrojs/tailwind": "^5.1.0",
+    "@sentry/astro": "^7.101.1",
     "@types/alpinejs": "^3.13.6",
     "alpinejs": "^3.13.5",
     "astro": "^4.4.0",
