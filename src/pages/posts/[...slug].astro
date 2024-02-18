@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection("posts");
+  return blogEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+export const prerender = true;
+---
+
+<Layout title={entry.data.title}>
+  <article class="p-6 w-full container mx-auto max-w-[1000px]">
+    <h1>{entry.data.title}</h1>
+
+    <p>{entry.data.description}</p>
+
+    <p>Posted on {entry.data.pubDate}</p>
+
+    <p>Written by {entry.data.author}</p>
+
+    <div class="divider" role="separator" />
+
+    <Content />
+  </article>
+</Layout>
