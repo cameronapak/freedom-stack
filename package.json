@@ -11,6 +11,8 @@
     "install-sentry": "astro add @sentry/astro"
   },
   "dependencies": {
+    "@alpinejs/intersect": "^3.13.5",
+    "@alpinejs/persist": "^3.13.5",
     "@astrojs/alpinejs": "^0.4.0",
     "@astrojs/check": "^0.5.4",
     "@astrojs/netlify": "^5.1.2",

@@ -11,7 +11,7 @@ const SENTRY_PROJECT = import.meta.env.SENTRY_PROJECT;
 
 const integrations = [
   tailwind(),
-  alpinejs(),
+  alpinejs({ entrypoint: '/src/entrypoint' }),
   htmx(),
 ]
 
@@ -23,7 +23,7 @@ if (SENTRY_DSN && SENTRY_AUTH_TOKEN && SENTRY_PROJECT) {
     auth: SENTRY_AUTH_TOKEN,
     project: SENTRY_PROJECT
   }));
-} 
+}
 
 // https://astro.build/config
 export default defineConfig({
