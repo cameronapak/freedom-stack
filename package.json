@@ -8,6 +8,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "update-collection-types": "astro sync",
     "install-sentry": "astro add @sentry/astro"
   },
   "dependencies": {
