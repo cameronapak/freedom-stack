@@ -18,7 +18,13 @@ export const prerender = true;
 
 <Layout title={entry.data.title}>
   <article class="p-6 w-full container">
-    <a href="/" class="btn btn-neutral mb-6">Back</a>
+    <div class="text-sm breadcrumbs m-0">
+      <ul class="!p-0 !m-0">
+        <li><a href="/">Home</a></li> 
+        <li><a href="/posts">My Blog</a></li> 
+        <li>Post</li>
+      </ul>
+    </div>
 
     <h1>{entry.data.title}</h1>
 
