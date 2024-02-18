@@ -1,12 +1,15 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
 
 const pageTitle = "My Blog";
 const allPosts = await getCollection("posts");
 ---
 
 <Layout title={pageTitle}>
+  <Navbar />
+  
   <main class="container p-6">
     <div class="text-sm breadcrumbs">
       <ul class="!p-0 !m-0">

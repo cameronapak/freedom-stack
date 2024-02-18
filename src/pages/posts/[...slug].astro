@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection("posts");
@@ -17,6 +18,8 @@ export const prerender = true;
 ---
 
 <Layout title={entry.data.title}>
+  <Navbar />
+
   <article class="p-6 w-full container">
     <div class="text-sm breadcrumbs m-0">
       <ul class="!p-0 !m-0">
