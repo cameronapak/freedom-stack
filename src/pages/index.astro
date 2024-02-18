@@ -1,16 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Navbar from '../components/Navbar.astro';
 ---
 
 <Layout title="Astwoah Stack">
-  <Navbar />
-
-  <main id="main" class="container p-6" x-data="{ count: $persist(0) }">
+  <main
+    id="main"
+    class="container p-6 flex flex-col gap-4 items-center"
+    x-data="{ count: $persist(0) }"
+  >
     <h1 class="text-3xl font-bold">Welcome to the Astwoah Stack</h1>
-    <p class="text-balance">A simple web starter template crafted with Astro, AlpineJS, HTMX, Daisy UI, Tailwind, and more.</p>
+    <p class="balanced max-w-[65ch] text-center">
+      A simple web starter template crafted with Astro, AlpineJS, HTMX, Daisy
+      UI, Tailwind, and more.
+    </p>
 
-    <div class="flex gap-2 items-center mt-8">
+    <div class="flex gap-2 items-center">
       <button class="btn btn-neutral" type="button" x-on:click="count--">
         -
       </button>
@@ -20,23 +24,28 @@ import Navbar from '../components/Navbar.astro';
       </button>
     </div>
 
-    {/* HTMX Example */}
-    <button
-      class="btn btn-primary mt-8 mb-8 mr-1"
-      type="button"
-      hx-get="/api/htmx-partials/rick-roll"
-      hx-target="#htmx-entry-point"
-      hx-swap="innerHTML"
-    >
-      Try HTMX
-    </button>
+    <div class="flex gap-2">
+      <a
+        href="https://github.com/cameronapak/astwoah-stack"
+        target="_blank"
+        class="btn btn-primary"
+      >
+        Get the Code
+      </a>
 
-    <a
-      href="/posts"
-      class="btn btn-ghost mt-8 mb-8"
-    >
-      Visit the Blog
-    </a>
+      <a href="/posts" class="btn btn-neutral"> Visit the Blog</a>
+
+      {/* HTMX Example */}
+      <button
+        class="btn btn-ghost"
+        type="button"
+        hx-get="/api/htmx-partials/rick-roll"
+        hx-target="#htmx-entry-point"
+        hx-swap="innerHTML"
+      >
+        Rick Roll via HTMX
+      </button>
+    </div>
 
     <section id="htmx-entry-point" class="flex flex-col gap-4"></section>
   </main>

@@ -15,7 +15,8 @@
   text-wrap: balance;
 }
 
-.text-balance {
+.balanced {
+  max-inline-size: 50ch;
   text-wrap: balance;
 }
 

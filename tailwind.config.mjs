@@ -10,5 +10,12 @@ export default {
 			},
 		},
 	},
-	plugins: [require("@tailwindcss/typography"), require("daisyui")],
+	// Change your theme at https://daisyui.com/docs/themes/.
+	daisyui: {
+		themes: ["retro"]
+	},
+	plugins: [
+		require("@tailwindcss/typography"),
+		require("daisyui")
+	],
 }
