@@ -20,6 +20,12 @@ An approachable and simple web stack, based on Astro. (Very similar to the [AHA 
 
 After deliberation, I have chosen [Pocketbase](https://pocketbase.io/). This is immensely easy to set up using [PocketHost](https://pockethost.io/) in a few minutes.
 
+If you need a database that is just one set of data for everyone, then consider using [Baserow.io](https://baserow.io/), instead.
+
+### Hosting
+
+I have included the Netlify adapter in the starter kit. You can swap it out for others, such as Vercel.
+
 ## How To Use
 
 To create your own instance of this codebase, click the "Use this template" button on the [repo's home page](https://github.com/cameronapak/astwoah-stack).

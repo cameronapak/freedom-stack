@@ -3,8 +3,11 @@ import type { Alpine } from 'alpinejs';
 import intersect from '@alpinejs/intersect';
 // @ts-ignore - Has no associated types.
 import persist from '@alpinejs/persist';
+// @ts-ignore - Has no associated types.
+import collapse from '@alpinejs/collapse';
 
 export default (Alpine: Alpine) => {
   Alpine.plugin(intersect);
   Alpine.plugin(persist);
+  Alpine.plugin(collapse);
 }
