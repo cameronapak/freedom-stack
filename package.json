@@ -4,25 +4,26 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "dev:host": "astro dev --host",
+    "update-packages": "npx npm-check-updates -u",
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "update-collection-types": "astro sync",
-    "install-sentry": "astro add @sentry/astro"
+    "update-collection-types": "astro sync"
   },
   "dependencies": {
     "@alpinejs/collapse": "^3.13.5",
     "@alpinejs/intersect": "^3.13.5",
     "@alpinejs/persist": "^3.13.5",
     "@astrojs/alpinejs": "^0.4.0",
-    "@astrojs/check": "^0.5.4",
+    "@astrojs/check": "^0.5.5",
     "@astrojs/netlify": "^5.1.2",
     "@astrojs/tailwind": "^5.1.0",
-    "@sentry/astro": "^7.101.1",
+    "@sentry/astro": "^7.102.1",
     "@types/alpinejs": "^3.13.6",
     "alpinejs": "^3.13.5",
-    "astro": "^4.4.0",
+    "astro": "^4.4.4",
     "htmx.org": "^1.9.10",
     "pocketbase": "^0.21.1"
   },
