@@ -1,4 +1,4 @@
-# WIP: Astwoah Stack - Starter Kit Template
+# WIP: Astwoah Stack - Starter Kit Template, with a blog.
 
 An approachable and simple web stack, based on Astro. (Very similar to the [AHA stack](https://ahastack.dev/).)
 
