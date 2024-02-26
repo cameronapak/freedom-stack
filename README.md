@@ -1,4 +1,6 @@
-# WIP: Astwoah Stack - Starter Kit Template, with a blog.
+# WIP: Freedom Stack - Starter Kit Template, with a blog.
+
+_Previously the Astwoah Stack_
 
 An approachable and simple web stack, based on Astro. (Very similar to the [AHA stack](https://ahastack.dev/).)
 
