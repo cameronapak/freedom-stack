@@ -22,7 +22,6 @@
     "@types/alpinejs": "^3.13.6",
     "alpinejs": "^3.13.5",
     "astro": "^4.4.0",
-    "astro-htmx": "^1.0.5",
     "htmx.org": "^1.9.10",
     "pocketbase": "^0.21.1"
   },

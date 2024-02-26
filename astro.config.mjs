@@ -1,7 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import alpinejs from "@astrojs/alpinejs";
-import htmx from "astro-htmx";
 import netlify from "@astrojs/netlify";
 import sentry from "@sentry/astro";
 
@@ -12,8 +11,7 @@ const SENTRY_PROJECT = import.meta.env.SENTRY_PROJECT;
 const integrations = [
   tailwind(),
   // This entrypoint file is where Alpine plugins are registered.
-  alpinejs({ entrypoint: '/src/entrypoint' }),
-  htmx(),
+  alpinejs({ entrypoint: '/src/entrypoint' })
 ]
 
 // To enable Sentry monitoring, add the following environment variables.

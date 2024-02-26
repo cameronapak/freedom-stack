@@ -1,8 +1,13 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
-interface Window {
-  Alpine: import('alpinejs').Alpine;
+import * as htmx from 'htmx.org';
+
+declare global {
+  interface Window {
+    Alpine: import('alpinejs').Alpine;
+    htmx: typeof htmx;
+  }
 }
 
 // https://docs.astro.build/en/guides/environment-variables/#intellisense-for-typescript

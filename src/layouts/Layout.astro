@@ -23,3 +23,9 @@ const { title } = Astro.props;
     <slot />
   </body>
 </html>
+
+<script>
+  import * as htmx from 'htmx.org';
+
+  window.htmx = htmx;
+</script>
