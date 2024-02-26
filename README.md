@@ -2,7 +2,7 @@
 
 _Previously the Astwoah Stack_
 
-An approachable and simple web stack, based on Astro. (Very similar to the [AHA stack](https://ahastack.dev/).)
+Develop on the web with freedom. Freedom is an approachable and simple web stack, based on Astro. (Very similar to the [AHA stack](https://ahastack.dev/).)
 
 ## Stack
 
