@@ -2,7 +2,7 @@
 title: 'My First Blog Post'
 pubDate: 2023-02-18
 description: 'This is the first post of my new Astro blog.'
-author: 'Astwoah Stack Learner'
+author: 'Freedom Stack Learner'
 slug: 'first-post'
 image:
     url: 'https://docs.astro.build/assets/full-logo-light.png'
