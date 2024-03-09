@@ -12,7 +12,7 @@ export default {
 	},
 	// Change your theme at https://daisyui.com/docs/themes/.
 	daisyui: {
-		themes: ["retro"]
+		themes: ["cupcake"]
 	},
 	plugins: [
 		require("@tailwindcss/typography"),
