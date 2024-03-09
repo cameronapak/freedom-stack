@@ -34,6 +34,8 @@ To create your own instance of this codebase, click the "Use this template" butt
 
 ### Blog
 
+Access your blog's CMS on the `/keystatic` path.
+
 The blog is powered by [Keystatic CMS](https://keystatic.com/), which is a git-based content management system. 
 
 - [ ] Connect your blog to GitHub mode: https://keystatic.com/docs/github-mode.
