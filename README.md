@@ -1,4 +1,4 @@
-# WIP: Freedom Stack - Starter Kit Template, with a blog.
+# WIP: freedom stack - Starter Kit Template, with a blog.
 
 _Previously the Astwoah Stack_
 
