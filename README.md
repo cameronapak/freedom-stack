@@ -1,5 +1,7 @@
 # WIP: freedom stack - a web stack that feels freeing
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/78803fc4-5d36-4efb-82cd-2daeb5684fb6/deploy-status)](https://app.netlify.com/sites/freedom-stack/deploys)
+
 _Previously the Astwoah Stack_
 
 ![freedom stack](public/og-image.png)
