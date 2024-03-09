@@ -4,6 +4,8 @@ _Previously the Astwoah Stack_
 
 ![freedom stack](public/og-image.png)
 
+[See Demo](https://freedom-stack.netlify.app/)
+
 ## Comes With
 
 - Blog & CMS
