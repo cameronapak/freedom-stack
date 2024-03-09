@@ -1,8 +1,15 @@
-# WIP: freedom stack - Starter Kit Template, with a blog.
+# WIP: freedom stack - a web stack that feels freeing
 
 _Previously the Astwoah Stack_
 
-Develop on the web with freedom. Freedom is an approachable and simple web stack, based on Astro. (Very similar to the [AHA stack](https://ahastack.dev/).)
+![freedom stack](public/og-image.png)
+
+## Comes With
+
+- Blog & CMS
+- CSS-based component library (daisyUI)
+- Database (Pocketbase)
+- Simple Web Hosting (Netlify)
 
 ## Stack
 
