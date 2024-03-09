@@ -32,6 +32,12 @@ I have included the Netlify adapter in the starter kit. You can swap it out for 
 
 To create your own instance of this codebase, click the "Use this template" button on the [repo's home page](https://github.com/cameronapak/astwoah-stack).
 
+### Blog
+
+The blog is powered by [Keystatic CMS](https://keystatic.com/), which is a git-based content management system. 
+
+- [ ] Connect your blog to GitHub mode: https://keystatic.com/docs/github-mode.
+
 ## Vision
 
 I dream of a lightweight, simple web development stack that invokes a fun web experience at the cheapest possible maintainance, backend, and server cost. As close to free as possible.

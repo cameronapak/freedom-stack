@@ -18,14 +18,22 @@
     "@alpinejs/persist": "^3.13.5",
     "@astrojs/alpinejs": "^0.4.0",
     "@astrojs/check": "^0.5.5",
+    "@astrojs/markdoc": "^0.9.1",
     "@astrojs/netlify": "^5.1.2",
+    "@astrojs/react": "^3.0.10",
     "@astrojs/tailwind": "^5.1.0",
+    "@keystatic/astro": "^5.0.0",
+    "@keystatic/core": "^0.5.2",
     "@sentry/astro": "^7.102.1",
     "@types/alpinejs": "^3.13.6",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
     "alpinejs": "^3.13.5",
     "astro": "^4.4.4",
     "htmx.org": "^1.9.10",
-    "pocketbase": "^0.21.1"
+    "pocketbase": "^0.21.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
