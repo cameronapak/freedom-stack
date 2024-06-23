@@ -1,11 +1,10 @@
 import type PocketBase from "pocketbase";
 
 export async function signIn(pocketbaseInstance: PocketBase, email: string, password: string) {
-  const { token, record } = await pocketbaseInstance.collection('users').authWithPassword(email, password);
-  return { token, record };
+  return pocketbaseInstance.collection('users').authWithPassword(email, password);
 };
 
-export async function signOut(pocketbaseInstance: PocketBase) {
+export function signOut(pocketbaseInstance: PocketBase) {
   pocketbaseInstance.authStore.clear();
 }
 
@@ -23,10 +22,14 @@ export async function sendPasswordResetEmail(pocketbaseInstance: PocketBase, ema
   return pocketbaseInstance.collection('users').requestPasswordReset(email);
 }
 
-export async function getUser(pocketbaseInstance: PocketBase, email: string) {
+export async function getUserByEmail(pocketbaseInstance: PocketBase, email: string) {
   return pocketbaseInstance.collection('users').getFullList(1, {
     filter: `email = "${email}"`
   });
+}
+
+export async function getUserById(pocketbaseInstance: PocketBase, id: string) {
+  return pocketbaseInstance.collection('users').getOne(id);
 }
 
 export async function createUser(pocketbaseInstance: PocketBase, email: string, password: string, name: string) {
