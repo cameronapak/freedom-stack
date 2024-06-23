@@ -25,3 +25,7 @@
 .breadcrumbs > ol > li {
   @apply p-0;
 }
+
+.text-muted {
+  @apply text-gray-500;
+}

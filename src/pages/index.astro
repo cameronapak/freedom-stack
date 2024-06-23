@@ -32,7 +32,7 @@ import Layout from "../layouts/Layout.astro";
     <h3>A web stack that feels freeing</h3>
     <p class="balanced max-w-[65ch] text-center">
       A simple web starter template crafted with Astro, Alpine.js, HTMX,
-      Pocketbase, daisyUI, & Tailwind.
+      Pocketbase, daisyUI, & Tailwind. Icons from Lucide Icons.
     </p>
 
     <div class="flex gap-2 items-center">
@@ -54,8 +54,6 @@ import Layout from "../layouts/Layout.astro";
         Get the Code
       </a>
 
-      <a href="/posts" class="btn btn-neutral"> Visit the Blog</a>
-
       {/* HTMX Example */}
       <button
         class="btn btn-ghost"
@@ -69,6 +67,16 @@ import Layout from "../layouts/Layout.astro";
     </div>
 
     <section id="htmx-entry-point" class="flex flex-col gap-4"></section>
+
+    <div class="max-w-lg w-full">
+      <h2>Pages</h2>
+      <ul class="w-full">
+        <li><a href="/">Home</a></li>
+        <li><a href="/posts">Blog</a></li>
+        <li><a href="/sign-up">Sign Up</a></li>
+        <li><a href="/sign-in">Sign In</a></li>
+      </ul>
+    </div>
 
     <p>
       Created by <a href="https://cameronpak.com" target="_blank">Cameron Pak</a
