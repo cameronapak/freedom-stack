@@ -13,23 +13,23 @@
     "update-collection-types": "astro sync"
   },
   "dependencies": {
-    "@alpinejs/collapse": "^3.14.0",
-    "@alpinejs/intersect": "^3.14.0",
-    "@alpinejs/persist": "^3.14.0",
+    "@alpinejs/collapse": "^3.14.1",
+    "@alpinejs/intersect": "^3.14.1",
+    "@alpinejs/persist": "^3.14.1",
     "@astrojs/alpinejs": "^0.4.0",
     "@astrojs/check": "^0.7.0",
     "@astrojs/markdoc": "^0.11.0",
-    "@astrojs/netlify": "^5.2.1",
-    "@astrojs/react": "^3.4.0",
+    "@astrojs/netlify": "^5.3.2",
+    "@astrojs/react": "^3.6.0",
     "@astrojs/tailwind": "^5.1.0",
     "@keystatic/astro": "^5.0.0",
-    "@keystatic/core": "^0.5.18",
-    "@sentry/astro": "^8.7.0",
+    "@keystatic/core": "^0.5.22",
+    "@sentry/astro": "^8.11.0",
     "@types/alpinejs": "^3.13.10",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
-    "alpinejs": "^3.14.0",
-    "astro": "^4.9.3",
+    "alpinejs": "^3.14.1",
+    "astro": "^4.11.0",
     "htmx.org": "^1.9.12",
     "pocketbase": "^0.21.3",
     "react": "^18.3.1",
@@ -39,6 +39,6 @@
     "@tailwindcss/typography": "^0.5.13",
     "daisyui": "^4.12.2",
     "tailwindcss": "^3.4.4",
-    "typescript": "^5.4.5"
+    "typescript": "^5.5.2"
   }
 }
