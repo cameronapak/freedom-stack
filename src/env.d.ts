@@ -1,12 +1,19 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
+import type PocketBase from "pocketbase";
 import * as htmx from 'htmx.org';
 
 declare global {
   interface Window {
     Alpine: import('alpinejs').Alpine;
     htmx: typeof htmx;
+  }
+
+  namespace App {
+    interface Locals {
+      pb: PocketBase;
+    }
   }
 }
 
