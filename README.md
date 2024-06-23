@@ -22,6 +22,7 @@ _Previously the Astwoah Stack_
 - [Astro](https://astro.build/) - A simple web metaframework.
 - [Tailwind CSS](https://tailwindcss.com/) - For styling.
 - [Daisy UI](https://daisyui.com/) - For a Bootstrap-like UI CSS component library, built upon Tailwind.
+- [Lucide Icons](https://lucide.dev/) - For a beautiful icon library.
 
 ### Interactivity Layer
 
