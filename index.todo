@@ -1,0 +1,41 @@
+Set up Astro DB for posts:
+  - [ ] Install Astro DB:
+    - Run: npx astro add db
+  
+  - [ ] Create database schema:
+    - Create file: db/config.ts
+    - Define Posts table with columns:
+      - id (number, primary key)
+      - title (text)
+      - pubDate (date)
+      - description (text)
+      - author (text)
+      - imageUrl (text, optional)
+      - imageAlt (text, optional)
+      - tags (json, optional)
+  
+  - [ ] Update content config:
+    - Modify or remove: src/content/config.ts
+  
+  - [ ] Create seed data:
+    - Create file: db/seed.ts
+    - Add initial post data
+  
+  - [ ] Update queries in pages/components:
+    - Use Astro DB instead of content collections
+    - Example: 
+      - Import: import { db, Posts } from 'astro:db'
+      - Query: const posts = await db.select().from(Posts).orderBy(Posts.pubDate)
+  
+  - [ ] Run development server:
+    - Use command: npx astro dev
+  
+  - [ ] Prepare for deployment:
+    - Set up Astro Studio for database hosting
+  
+  - [ ] General tasks:
+    - [ ] Update existing pages and components to use Astro DB queries
+    - [ ] Adjust data insertion logic throughout the project
+  
+  Resources:
+  - Astro DB Documentation: https://docs.astro.build/en/guides/astro-db/
