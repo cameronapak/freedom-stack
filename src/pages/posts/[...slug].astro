@@ -17,7 +17,7 @@ if (!entry) {
   return Astro.redirect("/posts");
 }
 
-const content = marked(entry?.content || "");
+const content = await marked(entry?.content || "");
 
 if (!content) {
   return Astro.redirect("/posts");
