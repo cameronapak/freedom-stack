@@ -1,5 +1,5 @@
 Set up Astro DB for posts:
-  - [ ] Install Astro DB:
+  - [x] Install Astro DB:
     - Run: npx astro add db
   
   - [ ] Create database schema:
