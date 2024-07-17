@@ -1,9 +1,9 @@
 ---
-import { getCollection } from "astro:content";
+import { db, Posts } from 'astro:db';
 import Layout from "../../layouts/Layout.astro";
 
 const pageTitle = "My Blog";
-const allPosts = await getCollection("posts");
+const allPosts = await db.select().from(Posts).orderBy(Posts.pubDate);
 ---
 
 <Layout title={pageTitle}>
@@ -21,7 +21,7 @@ const allPosts = await getCollection("posts");
       {
         allPosts.map((post) => (
           <li>
-            <a href={`/posts/${post.slug}`}>{post.data.title}</a>
+            <a href={`/posts/${post.slug}`}>{post.title}</a>
           </li>
         ))
       }

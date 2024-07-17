@@ -1,41 +1,51 @@
 ---
-import { getCollection } from "astro:content";
+import { db, Posts, eq } from "astro:db";
+import { marked } from "marked";
+import DOMPurify from "isomorphic-dompurify";
+
 import Layout from "../../layouts/Layout.astro";
 
-export async function getStaticPaths() {
-  const blogEntries = await getCollection("posts");
-  return blogEntries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+const { slug } = Astro.params;
+
+if (!slug) {
+  return Astro.redirect("/posts");
 }
 
-const { entry } = Astro.props;
-const { Content } = await entry.render();
+const entry = await db.select().from(Posts).where(eq(Posts.slug, slug)).get();
 
-export const prerender = true;
+if (!entry) {
+  return Astro.redirect("/posts");
+}
+
+const content = await marked(entry?.content || "");
+
+if (!content) {
+  return Astro.redirect("/posts");
+}
+
+const cleanHTML = DOMPurify.sanitize(content);
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={entry?.title || ""}>
   <article class="p-6 w-full container">
     <div class="text-sm breadcrumbs m-0">
       <ul class="!p-0 !m-0">
-        <li><a href="/">Home</a></li> 
-        <li><a href="/posts">My Blog</a></li> 
+        <li><a href="/">Home</a></li>
+        <li><a href="/posts">My Blog</a></li>
         <li>Post</li>
       </ul>
     </div>
 
-    <h1>{entry.data.title}</h1>
+    <h1>{entry?.title}</h1>
 
-    <p>{entry.data.description}</p>
+    <p>{entry?.description}</p>
 
-    <p>Posted on {entry.data.pubDate}</p>
+    <p>Posted on {entry?.pubDate}</p>
 
-    <p>Written by {entry.data.author}</p>
+    <p>Written by {entry?.author}</p>
 
     <div class="divider" role="separator"></div>
 
-    <Content />
+    <div set:html={cleanHTML} />
   </article>
 </Layout>

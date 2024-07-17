@@ -11,7 +11,7 @@
 .prose h4, 
 .prose h5, 
 .prose h6 {
-  @apply m-0;
+  @apply m-0 mb-2;
   text-wrap: balance;
 }
 
