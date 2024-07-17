@@ -2,7 +2,7 @@ Set up Astro DB for posts:
   - [x] Install Astro DB:
     - Run: npx astro add db
   
-  - [ ] Create database schema:
+  - [x] Create database schema:
     - Create file: db/config.ts
     - Define Posts table with columns:
       - id (number, primary key)

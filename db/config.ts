@@ -1,6 +1,18 @@
-import { defineDb } from 'astro:db';
+import { defineDb, defineTable, column } from 'astro:db';
 
-// https://astro.build/db/config
+const Posts = defineTable({
+  columns: {
+    id: column.number({ primaryKey: true }),
+    title: column.text(),
+    pubDate: column.date(),
+    description: column.text(),
+    author: column.text(),
+    imageUrl: column.text({ optional: true }),
+    imageAlt: column.text({ optional: true }),
+    tags: column.json({ optional: true }),
+  }
+});
+
 export default defineDb({
-  tables: {}
+  tables: { Posts },
 });
