@@ -7,7 +7,7 @@
     "dev:host": "astro dev --host",
     "update-packages": "npx npm-check-updates -u",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build --remote",
     "preview": "astro preview",
     "db-update-schemas": "astro db push --remote",
     "db-login": "astro login",
@@ -26,7 +26,7 @@
     "@types/alpinejs": "^3.13.10",
     "alpinejs": "^3.14.1",
     "astro": "^4.11.5",
-    "htmx.org": "^1.9.12",
+    "htmx.org": "1.9.12",
     "isomorphic-dompurify": "^2.13.0",
     "marked": "^13.0.2"
   },
