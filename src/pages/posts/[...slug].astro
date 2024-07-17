@@ -18,7 +18,6 @@ if (!entry) {
 }
 
 const content = marked(entry?.content || "");
-console.log(entry?.content);
 
 if (!content) {
   return Astro.redirect("/posts");
