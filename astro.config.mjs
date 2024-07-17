@@ -3,9 +3,6 @@ import tailwind from "@astrojs/tailwind";
 import alpinejs from "@astrojs/alpinejs";
 import netlify from "@astrojs/netlify";
 import sentry from "@sentry/astro";
-import keystatic from '@keystatic/astro';
-import react from '@astrojs/react'
-import markdoc from '@astrojs/markdoc';
 import db from '@astrojs/db';
 
 const SENTRY_DSN = import.meta.env.SENTRY_DSN;
@@ -20,9 +17,6 @@ export default defineConfig({
     tailwind(),
     // This entrypoint file is where Alpine plugins are registered.
     alpinejs({ entrypoint: '/src/entrypoint' }),
-    react(),
-    markdoc(),
-    keystatic(),
     // To enable Sentry monitoring, add the following environment variables.
     // Learn more at https://docs.sentry.io/platforms/javascript/guides/astro/#prerequisites.
     isSentryEnabled && sentry({

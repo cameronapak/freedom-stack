@@ -32,9 +32,7 @@ _Previously the Astwoah Stack_
 
 ### Backend Data Layer
 
-After deliberation, I have chosen [Pocketbase](https://pocketbase.io/). This is immensely easy to set up using [PocketHost](https://pockethost.io/) in a few minutes.
-
-If you need a database that is just one set of data for everyone, then consider using [Baserow.io](https://baserow.io/), instead.
+- [Astro db](https://astro.build/db) - A libSQL database for Astro. Requires invite.
 
 ### Hosting
 
@@ -46,11 +44,7 @@ To create your own instance of this codebase, click the "Use this template" butt
 
 ### Blog
 
-Access your blog's CMS on the `/keystatic` path.
-
-The blog is powered by [Keystatic CMS](https://keystatic.com/), which is a git-based content management system. 
-
-- [ ] Connect your blog to GitHub mode: https://keystatic.com/docs/github-mode.
+Blog is powered by Astro db.
 
 ## Vision
 
