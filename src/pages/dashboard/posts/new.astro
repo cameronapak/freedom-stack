@@ -9,6 +9,19 @@ if (!user) {
 ---
 
 <Layout title="New Post">
+  <script src="/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+    tinymce.init({
+      selector: '#content',
+      license_key: 'gpl',
+      menubar: false,
+      plugins: ["link", "emoticons", "lists", "code", "fullscreen", "codesample"],
+      toolbar: "h2 bold italic | link emoticons bullist codesample | code fullscreen",
+      content_style:
+        "body { font-family:'Inter',Arial,sans-serif; font-size:16px }",
+    });
+  </script>
+
   <div class="container mx-auto px-4 py-12 md:px-6 lg:py-16">
     <div class="mx-auto max-w-3xl space-y-6">
       <div class="space-y-2">
