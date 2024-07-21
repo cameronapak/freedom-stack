@@ -33,19 +33,13 @@ if (!user) {
         </ul>
       </div>
       <h1>New Post</h1>
-      <form class="flex flex-col gap-6" action="/api/create-post" method="post">
-        <div class="flex flex-col gap-4">
-          <label
-            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            for="content">Content</label
-          >
-          <textarea
-            class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-            id="content"
-            name="content"
-            rows="10"
-          ></textarea>
-        </div>
+      <form class="mt-6 flex flex-col gap-6" action="/api/create-post" method="post">
+        <textarea
+          class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+          id="content"
+          name="content"
+          rows="10"
+        ></textarea>
         <div class="h-0.5 my-2 w-full bg-slate-200" />
         <div class="flex flex-col gap-4 p-6 rounded-xl bg-slate-200">
           <div class="grid grid-cols-2 gap-6">
