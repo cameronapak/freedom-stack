@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Sign In">
+<Layout title="Login">
   <div
     class="container max-w-md prose !py-12 flex flex-col gap-6"
     x-data={`{
@@ -37,12 +37,15 @@ import Layout from "../layouts/Layout.astro";
     </a>
 
     <div>
-      <h1 class="!mb-2">Sign In</h1>
-      <p class="m-0 text-muted">Or, <a class="link text-inherit" href="/sign-up">create an account</a></p>
+      <h1 class="!mb-2">Login</h1>
+      <p class="m-0 text-muted">
+        Or, <a class="link text-inherit" href="/sign-up">create an account</a>
+      </p>
     </div>
 
-    <form 
-      @submit.prevent="alert('Not implemented yet!')" 
+    <form
+      method="post"
+      action="/api/login"
       class="not-prose flex flex-col gap-4"
     >
       <input
@@ -59,7 +62,7 @@ import Layout from "../layouts/Layout.astro";
       />
 
       <button class="btn mt-8 btn-primary" x-bind:disabled="!isValid">
-        Sign In
+        Login
       </button>
     </form>
   </div>

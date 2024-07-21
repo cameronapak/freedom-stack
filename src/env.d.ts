@@ -4,6 +4,7 @@
 
 import type PocketBase from "pocketbase";
 import * as htmx from 'htmx.org';
+import type { User, Session } from "astro:db";
 
 declare global {
   interface Window {
@@ -14,6 +15,8 @@ declare global {
   namespace App {
     interface Locals {
       pb: PocketBase;
+      user: User | null;
+      session: Session | null;
     }
   }
 }

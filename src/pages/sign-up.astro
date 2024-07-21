@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
 ---
 
 <Layout title="Sign Up">
@@ -49,7 +51,8 @@ import Layout from "../layouts/Layout.astro";
     </div>
 
     <form
-      @submit.prevent="alert('Not implemented yet!')" 
+      method="post"
+      action="/api/signup"
       class="not-prose flex flex-col gap-4"
     >
       <input
