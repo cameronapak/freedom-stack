@@ -6,7 +6,7 @@ A freeing full-stack web stack.
 
 ![freedom stack](public/og-image.png)
 
-[See Demo](https://freedom-stack.netlify.app/)
+[See Demo](https://freedom.faith.tools)
 
 ## Comes With
 
