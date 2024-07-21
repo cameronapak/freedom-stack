@@ -1,8 +1,8 @@
-# WIP: freedom stack - a web stack that feels freeing
+# Freedom Stack, by faith.tools
+
+A freeing full-stack web stack.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/78803fc4-5d36-4efb-82cd-2daeb5684fb6/deploy-status)](https://app.netlify.com/sites/freedom-stack/deploys)
-
-_Previously the Astwoah Stack_
 
 ![freedom stack](public/og-image.png)
 
@@ -10,9 +10,10 @@ _Previously the Astwoah Stack_
 
 ## Comes With
 
-- Blog & CMS
 - CSS-based component library (daisyUI)
-- Database (Pocketbase)
+- Blog
+- Database (Astro DB)
+- Auth (Lucia)
 - Simple Web Hosting (Netlify)
 
 ## Stack
@@ -33,7 +34,7 @@ _Previously the Astwoah Stack_
 
 ### Backend Data Layer
 
-- [Astro db](https://astro.build/db) - Astro DB is a fully managed SQL database
+- [Astro DB](https://astro.build/db) - Astro DB is a fully managed SQL database
   that is fast, lightweight, and ridiculously easy-to-use. (Can use Turso, if
   desired.)
 - [Drizzle ORM](https://orm.drizzle.team/) - A modern SQL database toolkit.
@@ -50,11 +51,7 @@ others, such as Vercel.
 ## How To Use
 
 To create your own instance of this codebase, click the "Use this template"
-button on the [repo's home page](https://github.com/cameronapak/astwoah-stack).
-
-### Blog
-
-Blog is powered by Astro db.
+button on the [repo's home page](https://github.com/cameronapak/freedom-stack).
 
 ## Vision
 
@@ -78,8 +75,6 @@ close to free as possible.
   faster. Fast setup. Fast building. Fast shipping.
 - **Pocket-friendly** — Using this stack will be financially maintainable to
   anyone, especially indie hackers and those creating startup sites / web apps.
-  Any 3rd party integrations or backend as a service tooling chosen will have a
-  generous free tier.
 
 ### Contributions
 
