@@ -18,8 +18,12 @@ if (!user) {
 
     <h1>Dashboard</h1>
     <ul>
-      <li><a href="/dashboard/posts/new">New Post</a></li>
-      <li><a href="/posts">All Posts</a></li>
+      <li>
+        <a href="/posts">All Posts</a>
+        <ul>
+          <li><a href="/dashboard/posts/new">Create</a></li>
+        </ul>
+      </li>
     </ul>
     <form method="post" action="/api/logout">
       <button>Sign out</button>
