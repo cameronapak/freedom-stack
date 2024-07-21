@@ -26,4 +26,5 @@ declare module 'lucia' {
 
 interface DatabaseUserAttributes {
   email: string;
+  username: string;
 }
