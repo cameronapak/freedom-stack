@@ -2,7 +2,7 @@
 import { db, Posts } from 'astro:db';
 import Layout from "../../layouts/Layout.astro";
 
-const pageTitle = "My Blog";
+const pageTitle = "Posts";
 const allPosts = await db.select().from(Posts).orderBy(Posts.pubDate);
 ---
 
@@ -11,11 +11,11 @@ const allPosts = await db.select().from(Posts).orderBy(Posts.pubDate);
     <div class="text-sm breadcrumbs">
       <ul class="!p-0 !m-0">
         <li><a href="/">Home</a></li> 
-        <li>My Blog</li> 
+        <li>Posts</li> 
       </ul>
     </div>
 
-    <h1>My Blog</h1>
+    <h1>Posts</h1>
 
     <ul>
       {
