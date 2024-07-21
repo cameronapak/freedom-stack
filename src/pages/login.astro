@@ -1,5 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+const user = Astro.locals.user;
+
+if (user) {
+  return Astro.redirect("/dashboard");
+}
 ---
 
 <Layout title="Login">
