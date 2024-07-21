@@ -22,6 +22,7 @@ A freeing full-stack web stack.
 
 - [Astro](https://astro.build/) - A simple web metaframework.
 - [Tailwind CSS](https://tailwindcss.com/) - For styling.
+- [Preline UI](https://preline.co/) - Tailwind-based HTML components.
 - [Daisy UI](https://daisyui.com/) - For a Bootstrap-like UI CSS component
   library, built upon Tailwind.
 - [Lucide Icons](https://lucide.dev/) - For a beautiful icon library.
