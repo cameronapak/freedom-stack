@@ -13,18 +13,27 @@ const isSentryEnabled = SENTRY_DSN && SENTRY_AUTH_TOKEN && SENTRY_PROJECT;
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [db(), tailwind(),
-  // This entrypoint file is where Alpine plugins are registered.
-  alpinejs({
-    entrypoint: '/src/entrypoint'
-  }),
-  // To enable Sentry monitoring, add the following environment variables.
-  // Learn more at https://docs.sentry.io/platforms/javascript/guides/astro/#prerequisites.
-  isSentryEnabled && sentry({
-    dsn: SENTRY_DSN,
-    auth: SENTRY_AUTH_TOKEN,
-    project: SENTRY_PROJECT
-  }), webVitals()],
+  integrations: [
+    db(),
+    tailwind(),
+    // This entrypoint file is where Alpine plugins are registered.
+    alpinejs({
+      entrypoint: '/src/entrypoint'
+    }),
+    // To enable Sentry monitoring, add the following environment variables.
+    // Learn more at https://docs.sentry.io/platforms/javascript/guides/astro/#prerequisites.
+    isSentryEnabled && sentry({
+      dsn: SENTRY_DSN,
+      auth: SENTRY_AUTH_TOKEN,
+      project: SENTRY_PROJECT
+    }),
+    webVitals()
+  ],
+  vite: {
+    optimizeDeps: {
+      exclude: ["astro:db"]
+    }
+  },
   output: "server",
   adapter: netlify()
 });

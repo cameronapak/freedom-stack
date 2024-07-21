@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
 ---
 
 <Layout title="Sign Up">
@@ -44,28 +46,37 @@ import Layout from "../layouts/Layout.astro";
     <div>
       <h1 class="!mb-2">Sign Up</h1>
       <p class="m-0 text-muted">
-        Or, <a class="link text-inherit" href="/sign-in">log in to an existing account</a>
+        Or, <a class="link text-inherit" href="/sign-in"
+          >log in to an existing account</a
+        >
       </p>
     </div>
 
     <form
-      @submit.prevent="alert('Not implemented yet!')" 
+      method="post"
+      action="/api/signup"
       class="not-prose flex flex-col gap-4"
     >
       <input
         class="input input-bordered bg-white"
         type="email"
         placeholder="Email"
+        id="email"
+        name="email"
         x-model="email"
       />
       <input
         class="input input-bordered bg-white"
         type="password"
+        id="password"
+        name="password"
         placeholder="Password"
         x-model="password"
       />
       <input
         class="input input-bordered bg-white"
+        id="confirmPassword"
+        name="confirmPassword"
         type="password"
         placeholder="Confirm Password"
         x-model="confirmPassword"

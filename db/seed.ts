@@ -1,4 +1,4 @@
-import { db, Posts } from 'astro:db';
+import { db, Posts, User } from 'astro:db';
 
 const content = `
 ## This is the first post of my new Astro blog.
@@ -29,6 +29,10 @@ export default async function seed() {
 			slug: 'my-first-blog-post',
 			content,
 		},
-		// Add more seed data as needed
+	]);
+
+	await db.insert(User).values([
+		{ id: '123456', email: 'test1@email.com', hashed_password: '' },
+		{ id: '234567', email: 'test2@email.com', hashed_password: '' },
 	]);
 }
