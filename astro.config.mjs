@@ -5,6 +5,8 @@ import netlify from "@astrojs/netlify";
 import sentry from "@sentry/astro";
 import db from '@astrojs/db';
 import webVitals from "@astrojs/web-vitals";
+import { copyTinymceToPublic } from './src/integrations.ts';
+
 const SENTRY_DSN = import.meta.env.SENTRY_DSN;
 const SENTRY_AUTH_TOKEN = import.meta.env.SENTRY_AUTH_TOKEN;
 const SENTRY_PROJECT = import.meta.env.SENTRY_PROJECT;
@@ -27,7 +29,8 @@ export default defineConfig({
       auth: SENTRY_AUTH_TOKEN,
       project: SENTRY_PROJECT
     }),
-    webVitals()
+    webVitals(),
+    copyTinymceToPublic()
   ],
   vite: {
     optimizeDeps: {
