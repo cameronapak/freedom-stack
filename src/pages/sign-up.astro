@@ -46,7 +46,9 @@ export const prerender = true;
     <div>
       <h1 class="!mb-2">Sign Up</h1>
       <p class="m-0 text-muted">
-        Or, <a class="link text-inherit" href="/sign-in">log in to an existing account</a>
+        Or, <a class="link text-inherit" href="/sign-in"
+          >log in to an existing account</a
+        >
       </p>
     </div>
 
@@ -59,16 +61,22 @@ export const prerender = true;
         class="input input-bordered bg-white"
         type="email"
         placeholder="Email"
+        id="email"
+        name="email"
         x-model="email"
       />
       <input
         class="input input-bordered bg-white"
         type="password"
+        id="password"
+        name="password"
         placeholder="Password"
         x-model="password"
       />
       <input
         class="input input-bordered bg-white"
+        id="confirmPassword"
+        name="confirmPassword"
         type="password"
         placeholder="Confirm Password"
         x-model="confirmPassword"
