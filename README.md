@@ -12,11 +12,13 @@ A freeing full-stack web stack.
 
 - CSS-based component library (daisyUI)
 - Blog
-- Database (Astro DB)
+- Database (Astro DB managed via [Astro Studio](https://studio.astro.build/))
 - Auth (Lucia)
 - Simple Web Hosting (Netlify)
 
 ## Stack
+
+> **Note:** Astro Studio is currently in closed beta. If you do not already have an account, you'll need an invitation.
 
 ### UI Layer
 
@@ -53,6 +55,27 @@ others, such as Vercel.
 
 To create your own instance of this codebase, click the "Use this template"
 button on the [repo's home page](https://github.com/cameronapak/freedom-stack).
+
+## Environment Variables
+
+This project uses the following environment variables:
+
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `SENTRY_DSN` | Sentry Data Source Name for error tracking | Optional |
+| `SENTRY_AUTH_TOKEN` | Authentication token for Sentry | Optional |
+| `SENTRY_PROJECT` | Sentry project identifier | Optional |
+| `ASTRO_STUDIO_APP_TOKEN` | Token for Astro Studio integration | Required |
+
+### Sentry Configuration (Optional)
+
+For Sentry error tracking, you can set up the following variables. For more information, refer to the [Sentry Astro integration guide](https://docs.sentry.io/platforms/javascript/guides/astro/#configure).
+
+### Astro Studio
+
+The `ASTRO_STUDIO_APP_TOKEN` is required for integrating with Astro Studio features.
+
+Make sure to set these variables in your environment or `.env` file before running the application.
 
 ## Vision
 
