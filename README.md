@@ -18,7 +18,19 @@ A freeing full-stack web stack.
 
 ## Stack
 
-> **Note:** Astro Studio is currently in closed beta. If you do not already have an account, you'll need an invitation.
+> **P.S.** Astro Studio is currently in closed beta. If you do not already have an account, you'll need an invitation.
+
+> **P.P.S.** If you don't have an Astro Studio account, you can use Turso as your database! [Learn about libSQL remotes in Astro DB.](https://docs.astro.build/en/guides/astro-db/#libsql)
+> 
+> You can now specify a libSQL server instance as the remote for @astrojs/db. This allows you to self-host your own libSQL server as an alternative to using Astro DB with Astro Studio. This option works with any supported libSQL protocol.
+> 
+> To use this feature, set the following environment variables:
+> 
+> `ASTRO_DB_REMOTE_URL`: the connection URL to your libSQL server.
+> 
+> `ASTRO_DB_APP_TOKEN`: the auth token to your libSQL server.
+>
+> And, if you do this approach, you can view/manage your database in the [libSQL Studio](https://studio.libsql.org/).
 
 ### UI Layer
 
