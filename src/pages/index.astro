@@ -10,9 +10,7 @@ import IconBlock from "../components/IconBlock.astro";
 >
   <!-- Hero -->
   <section class="relative overflow-hidden not-prose">
-    <div
-      class="container mx-auto px-4 sm:px-6 lg:px-8 py-[96px] max-sm:py-12"
-    >
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-[96px] max-sm:py-12">
       <div class="max-w-2xl text-center mx-auto">
         <h1
           class="block text-3xl font-bold text-gray-800 sm:text-4xl md:text-5xl"
@@ -80,8 +78,28 @@ import IconBlock from "../components/IconBlock.astro";
         </p>
         <p class="text-gray-500">
           A
-          <a class="link" href="https://faith.tools" target="_blank"
-            >faith.tools</a
+          <a class="link no-underline hover:underline" href="https://faith.tools" target="_blank">
+            <svg
+              class="inline-block bg-white rounded-full shadow align-top translate-y-0.5"
+              width="24"
+              height="24"
+              viewBox="0 0 512 512"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M78.1099 260.102C183.947 150.082 329.442 196.543 435.279 319.109"
+                stroke="black"
+                stroke-opacity="0.4"
+                stroke-width="36.0807"
+                stroke-linecap="round"></path>
+              <path
+                d="M77.3586 259.204C183.196 369.223 329.443 316.143 435.28 193.578"
+                stroke="black"
+                stroke-width="36.0807"
+                stroke-linecap="round"></path>
+            </svg>
+            faith.tools</a
           > product © {new Date().getFullYear()}
         </p>
       </div>
