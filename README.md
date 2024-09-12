@@ -1,12 +1,16 @@
 # Freedom Stack, by faith.tools
 
-A freeing full-stack web stack.
+An Astro full-stack web stack that feels freeing, and is free.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/78803fc4-5d36-4efb-82cd-2daeb5684fb6/deploy-status)](https://app.netlify.com/sites/freedom-stack/deploys)
 
 ![freedom stack](public/og-image.png)
 
 [See Demo](https://freedom.faith.tools)
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=cameronapak/freedom-stack&type=Date)](https://star-history.com/#cameronapak/freedom-stack&Date)
 
 ## Comes With
 
