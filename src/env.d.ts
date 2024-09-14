@@ -29,8 +29,6 @@ interface ImportMetaEnv {
   readonly SENTRY_AUTH_TOKEN: string;
   /** https://docs.sentry.io/platforms/javascript/guides/astro/#configure */
   readonly SENTRY_PROJECT: string;
-  /** https://docs.astro.build/en/guides/astro-db/#astro-studio */
-  readonly ASTRO_STUDIO_APP_TOKEN: string;
   /** https://docs.astro.build/en/guides/astro-db/#libsql */
   readonly ASTRO_DB_REMOTE_URL: string;
   /** https://docs.astro.build/en/guides/astro-db/#libsql */

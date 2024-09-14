@@ -16,25 +16,11 @@ An Astro full-stack web stack that feels freeing, and is free.
 
 - CSS-based component library (daisyUI)
 - Blog
-- Database (Astro DB managed via [Astro Studio](https://studio.astro.build/))
+- Database ([Astro DB](https://docs.astro.build/en/guides/astro-db/))
 - Auth (Lucia)
 - Simple Web Hosting (Netlify)
 
 ## Stack
-
-> **P.S.** Astro Studio is currently in closed beta. If you do not already have an account, you'll need an invitation.
-
-> **P.P.S.** If you don't have an Astro Studio account, you can use Turso as your database! [Learn about libSQL remotes in Astro DB.](https://docs.astro.build/en/guides/astro-db/#libsql)
-> 
-> You can now specify a libSQL server instance as the remote for @astrojs/db. This allows you to self-host your own libSQL server as an alternative to using Astro DB with Astro Studio. This option works with any supported libSQL protocol.
-> 
-> To use this feature, set the following environment variables:
-> 
-> `ASTRO_DB_REMOTE_URL`: the connection URL to your libSQL server.
-> 
-> `ASTRO_DB_APP_TOKEN`: the auth token to your libSQL server.
->
-> And, if you do this approach, you can view/manage your database in the [libSQL Studio](https://studio.libsql.org/).
 
 ### UI Layer
 
@@ -78,10 +64,27 @@ This project uses the following environment variables:
 
 | Variable | Description | Required |
 |----------|-------------|----------|
+| `ASTRO_DB_REMOTE_URL` | The connection URL to your libSQL server | Required |
+| `ASTRO_DB_APP_TOKEN` | The auth token to your libSQL server | Required |
 | `SENTRY_DSN` | Sentry Data Source Name for error tracking | Optional |
 | `SENTRY_AUTH_TOKEN` | Authentication token for Sentry | Optional |
 | `SENTRY_PROJECT` | Sentry project identifier | Optional |
-| `ASTRO_STUDIO_APP_TOKEN` | Token for Astro Studio integration | Required |
+
+Make sure to set these variables in your environment or `.env` file before running the application.
+
+### Astro DB Configuration (Required)
+
+I recommend using [Turso](https://turso.tech/) for your database. Here's how you can connect it to Astro DB:
+
+> You can now specify a libSQL server instance as the remote for @astrojs/db. This allows you to self-host your own libSQL server as an alternative to using Astro DB. This option works with any supported libSQL protocol.
+> 
+> To use this feature, set the following environment variables:
+> 
+> `ASTRO_DB_REMOTE_URL`: the connection URL to your libSQL server.
+> 
+> `ASTRO_DB_APP_TOKEN`: the auth token to your libSQL server.
+>
+> You can also view/manage your database in the [libSQL Studio](https://studio.libsql.org/).
 
 ### Sentry Configuration (Optional)
 
@@ -89,9 +92,7 @@ For Sentry error tracking, you can set up the following variables. For more info
 
 ### Astro Studio
 
-The `ASTRO_STUDIO_APP_TOKEN` is required for integrating with Astro Studio features.
-
-Make sure to set these variables in your environment or `.env` file before running the application.
+[Astro Studio is no longer supported.](https://astro.build/blog/goodbye-astro-studio/), but Astro DB isn't going anywhere.
 
 ## Vision
 
