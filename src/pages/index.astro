@@ -9,6 +9,17 @@ import IconBlock from "../components/IconBlock.astro";
   description="A free full-stack boilerplate that feels freeing. Astro, HTMX, Alpine.js, Astro DB, Lucia Auth, Preline UI, & daisyUI."
 >
   <!-- Hero -->
+  <header class="relative overflow-hidden not-prose">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-end gap-3 mt-6">
+        <a href="/sign-up" class="btn btn-ghost shadow-none"> Sign Up </a>
+        <a href="/login" class="btn btn-ghost shadow-none"> Login </a>
+      </div>
+    </div>
+  </header>
+  <!-- End Hero -->
+
+  <!-- Hero -->
   <section class="relative overflow-hidden not-prose">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-[96px] max-sm:py-12">
       <div class="max-w-2xl text-center mx-auto">
@@ -30,10 +41,6 @@ import IconBlock from "../components/IconBlock.astro";
             Get Code
           </a>
           <a href="/posts" class="btn btn-muted shadow-none"> Open Blog </a>
-        </div>
-        <div class="flex justify-center gap-3 mt-6">
-          <a href="/sign-up" class="btn btn-ghost shadow-none"> Sign Up </a>
-          <a href="/login" class="btn btn-ghost shadow-none"> Login </a>
         </div>
       </div>
     </div>
@@ -81,7 +88,11 @@ import IconBlock from "../components/IconBlock.astro";
         </p>
         <p class="text-gray-500">
           A
-          <a class="link no-underline hover:underline" href="https://faith.tools" target="_blank">
+          <a
+            class="link no-underline hover:underline"
+            href="https://faith.tools"
+            target="_blank"
+          >
             <svg
               class="inline-block bg-white rounded-full shadow align-top translate-y-0.5"
               width="24"
