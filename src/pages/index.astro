@@ -2,6 +2,12 @@
 import { Icon } from "astro-iconify";
 import Layout from "../layouts/Layout.astro";
 import IconBlock from "../components/IconBlock.astro";
+
+const user = Astro.locals.user;
+
+if (user) {
+  return Astro.redirect("/dashboard");
+}
 ---
 
 <Layout
