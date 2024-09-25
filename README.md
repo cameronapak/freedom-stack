@@ -84,7 +84,7 @@ I recommend using [Turso](https://turso.tech/) for your database. Here's how you
 > 
 > `ASTRO_DB_APP_TOKEN`: the auth token to your libSQL server.
 >
-> You can also view/manage your database in the [libSQL Studio](https://studio.libsql.org/).
+> You can also view/manage your database in the [libSQL Studio](https://libsqlstudio.com/).
 
 ### Sentry Configuration (Optional)
 
