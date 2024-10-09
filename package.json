@@ -11,7 +11,8 @@
     "preview": "astro preview",
     "db-update-schemas": "astro db push --remote",
     "db-login": "astro login",
-    "db-push": "astro db push"
+    "db-push": "astro db push",
+    "format": "prettier -w ."
   },
   "dependencies": {
     "@alpinejs/collapse": "^3.14.1",
@@ -26,8 +27,15 @@
     "@iconify-json/lucide": "^1.2.3",
     "@iconify-json/lucide-lab": "^1.2.0",
     "@lucia-auth/adapter-sqlite": "^3.0.2",
+    "@node-rs/argon2": "^1.8.3",
+    "@oslojs/binary": "^0.3.0",
+		"@oslojs/crypto": "^0.6.2",
+		"@oslojs/encoding": "1.1.0",
+		"@oslojs/otp": "^0.2.1",
+		"@oslojs/webauthn": "^0.6.4",
+		"@pilcrowjs/db-query": "^0.0.2",
+		"@pilcrowjs/object-parser": "^0.0.3",
     "@sentry/astro": "^8.30.0",
-    "@types/alpinejs": "^3.13.10",
     "alpinejs": "^3.14.1",
     "astro": "^4.15.4",
     "astro-iconify": "^1.2.0",
@@ -42,8 +50,11 @@
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.15",
     "@types/better-sqlite3": "^7.6.11",
+    "@types/alpinejs": "^3.13.10",
     "daisyui": "^4.12.10",
     "tailwindcss": "^3.4.10",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "prettier": "^3.3.3",
+		"prettier-plugin-astro": "^0.14.1"
   }
 }
