@@ -17,7 +17,7 @@ An Astro full-stack web stack that feels freeing, and is free.
 - CSS-based component library (daisyUI)
 - Blog
 - Database ([Astro DB](https://docs.astro.build/en/guides/astro-db/))
-- Auth (Lucia)
+- Auth via [Clerk](https://clerk.com/), using the official Astro integration
 - Simple Web Hosting (Netlify)
 
 ## Stack
@@ -43,10 +43,7 @@ An Astro full-stack web stack that feels freeing, and is free.
   that is fast, lightweight, and ridiculously easy-to-use. (Can use Turso, if
   desired.)
 - [Drizzle ORM](https://orm.drizzle.team/) - A modern SQL database toolkit.
-- [Lucia](https://lucia-auth.com/) - A modern authentication library for Astro.
-
-I owe a huge thank you to Thomas McInnis for his
-[tutorial on Astro and Lucia](https://thomasmcinnis.com/posts/lucia-auth-astro-db/).
+- [Clerk](https://clerk.com/) - For authentication.
 
 ### Hosting
 
@@ -66,6 +63,8 @@ This project uses the following environment variables:
 | --------------------- | ------------------------------------------ | -------- |
 | `ASTRO_DB_REMOTE_URL` | The connection URL to your libSQL server   | Required |
 | `ASTRO_DB_APP_TOKEN`  | The auth token to your libSQL server       | Required |
+| `CLERK_SECRET_KEY`    | Secret key for Clerk authentication        | Required |
+| `CLERK_PUBLISHABLE_KEY` | Publishable key for Clerk authentication | Required |
 | `SENTRY_DSN`          | Sentry Data Source Name for error tracking | Optional |
 | `SENTRY_AUTH_TOKEN`   | Authentication token for Sentry            | Optional |
 | `SENTRY_PROJECT`      | Sentry project identifier                  | Optional |
