@@ -1,10 +1,12 @@
 ---
+import { SignOutButton } from "@clerk/astro/components";
 import Layout from "../../layouts/Layout.astro";
-const user = Astro.locals.user;
 
-if (!user) {
+if (!Astro.locals.auth().userId) {
   return Astro.redirect("/login");
 }
+
+const user = await Astro.locals.currentUser();
 ---
 
 <Layout title="Dashboard">
@@ -17,6 +19,7 @@ if (!user) {
     </div>
 
     <h1>Dashboard</h1>
+    <p>Welcome, {user.fullName}!</p>
     <ul>
       <li>
         <a href="/posts">All Posts</a>
@@ -25,8 +28,6 @@ if (!user) {
         </ul>
       </li>
     </ul>
-    <form method="post" action="/api/logout">
-      <button>Sign out</button>
-    </form>
+    <SignOutButton class="btn btn-sm shadow-none" />
   </div>
 </Layout>

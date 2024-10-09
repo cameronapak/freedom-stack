@@ -6,7 +6,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = '' } = Astro.props;
+const { title, description = "" } = Astro.props;
 ---
 
 <!doctype html>
@@ -28,7 +28,7 @@ const { title, description = '' } = Astro.props;
 
 <script>
   // @ts-ignore
-  import * as htmx from 'htmx.org';
+  import * as htmx from "htmx.org";
 
   window.htmx = htmx;
 </script>

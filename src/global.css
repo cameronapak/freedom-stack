@@ -5,11 +5,11 @@
 }
 
 /* Override some of the Tailwind .prose CSS */
-.prose h1, 
-.prose h2, 
-.prose h3, 
-.prose h4, 
-.prose h5, 
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
 .prose h6 {
   @apply m-0 mb-2;
   text-wrap: balance;
@@ -21,7 +21,7 @@
 }
 
 /* Daisy UI Overrides */
-.breadcrumbs > ul > li, 
+.breadcrumbs > ul > li,
 .breadcrumbs > ol > li {
   @apply p-0;
 }

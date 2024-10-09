@@ -1,25 +1,24 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
 
-const user = Astro.locals.user;
-
-if (!user) {
-  return Astro.redirect("/login");
+if (!Astro.locals.auth().userId) {
+  return Astro.redirect("/");
 }
+
+const user = await Astro.locals.currentUser();
 ---
 
 <Layout title="New Post">
   <script src="/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
   <script is:inline>
     tinymce.init({
-      selector: '#content',
-      license_key: 'gpl',
+      selector: "#content",
+      license_key: "gpl",
       menubar: false,
       placeholder: "What's on your mind?",
       plugins: ["link", "emoticons", "lists", "code", "fullscreen", "codesample"],
       toolbar: "h2 bold italic | link emoticons bullist codesample | code fullscreen",
-      content_style:
-        "body { font-family:'Inter',Arial,sans-serif; font-size:16px }",
+      content_style: "body { font-family:'Inter',Arial,sans-serif; font-size:16px }"
     });
   </script>
 
@@ -38,9 +37,8 @@ if (!user) {
           class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
           id="content"
           name="content"
-          rows="10"
-        ></textarea>
-        <div class="h-0.5 my-2 w-full bg-slate-200" />
+          rows="10"></textarea>
+        <div class="h-0.5 my-2 w-full bg-slate-200"></div>
         <div class="flex flex-col gap-4 p-6 rounded-xl bg-slate-200">
           <div class="grid grid-cols-2 gap-6">
             <div class="grid gap-2">
@@ -61,6 +59,9 @@ if (!user) {
                 for="pubDate">Publication Date</label
               >
               <input
+                disabled
+                x-data="{ today: new Date().toISOString().split('T')[0] }"
+                x-bind:value="today"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 id="pubDate"
                 name="pubDate"
@@ -91,7 +92,8 @@ if (!user) {
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 id="author"
                 name="author"
-                value={user.email || user.name || ""}
+                value={user.fullName || user.email || ""}
+                disabled
                 placeholder="Enter the author's name"
               />
             </div>
@@ -127,6 +129,7 @@ if (!user) {
                 for="tags">Tags</label
               >
               <input
+                disabled
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 id="tags"
                 name="tags"
@@ -144,15 +147,16 @@ if (!user) {
               id="slug"
               name="slug"
               placeholder="blog-post-slug"
+              pattern="[a-z0-9\\-]+"
+              x-data="{ slug: '' }"
+              x-on:input="slug = $event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '').replace(/^-+|-+$/g, '').replace(/-{2,}/g, '-')"
+              x-bind:value="slug"
             />
           </div>
           <div class="flex justify-end">
-            <button
-              class="btn btn-primary btn-md"
-              type="submit">Save Post</button
-            >
+            <button class="btn btn-primary btn-md" type="submit">Save Post</button>
           </div>
-       </div>
+        </div>
       </form>
     </div>
   </div>

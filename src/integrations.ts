@@ -1,8 +1,8 @@
 import type { AstroIntegration } from "astro";
 
 async function cpPkg(sourceDir: string, destDir: string) {
-  const fs = await import('fs');
-  const path = await import('path');
+  const fs = await import("fs");
+  const path = await import("path");
 
   const sourcePath = path.resolve(sourceDir);
   const destinationPath = path.resolve(destDir);
@@ -25,11 +25,11 @@ export function copyTinymceToPublic(): AstroIntegration {
     name: "copy-tinymce-to-public",
     hooks: {
       "astro:config:setup": async () => {
-        await cpPkg('./node_modules/tinymce/', './public/tinymce/');
+        await cpPkg("./node_modules/tinymce/", "./public/tinymce/");
       },
       "astro:build:setup": async () => {
-        await cpPkg('./node_modules/tinymce/', './public/tinymce/');
+        await cpPkg("./node_modules/tinymce/", "./public/tinymce/");
       }
     }
-  }
+  };
 }
