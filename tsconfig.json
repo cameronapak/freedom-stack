@@ -1,11 +1,7 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "compilerOptions": {
-    "outDir": "dist",
-  },
-  "exclude": [
-    "node_modules",
-    "dist",
-    "public",
-  ]
+	"extends": "astro/tsconfigs/strict",
+	"compilerOptions": {
+		"outDir": "dist"
+	},
+	"exclude": ["node_modules", "dist", "public"]
 }

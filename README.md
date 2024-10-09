@@ -62,13 +62,13 @@ button on the [repo's home page](https://github.com/cameronapak/freedom-stack).
 
 This project uses the following environment variables:
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `ASTRO_DB_REMOTE_URL` | The connection URL to your libSQL server | Required |
-| `ASTRO_DB_APP_TOKEN` | The auth token to your libSQL server | Required |
-| `SENTRY_DSN` | Sentry Data Source Name for error tracking | Optional |
-| `SENTRY_AUTH_TOKEN` | Authentication token for Sentry | Optional |
-| `SENTRY_PROJECT` | Sentry project identifier | Optional |
+| Variable              | Description                                | Required |
+| --------------------- | ------------------------------------------ | -------- |
+| `ASTRO_DB_REMOTE_URL` | The connection URL to your libSQL server   | Required |
+| `ASTRO_DB_APP_TOKEN`  | The auth token to your libSQL server       | Required |
+| `SENTRY_DSN`          | Sentry Data Source Name for error tracking | Optional |
+| `SENTRY_AUTH_TOKEN`   | Authentication token for Sentry            | Optional |
+| `SENTRY_PROJECT`      | Sentry project identifier                  | Optional |
 
 Make sure to set these variables in your environment or `.env` file before running the application.
 
@@ -77,11 +77,11 @@ Make sure to set these variables in your environment or `.env` file before runni
 I recommend using [Turso](https://turso.tech/) for your database. Here's how you can connect it to Astro DB:
 
 > You can now specify a libSQL server instance as the remote for @astrojs/db. This allows you to self-host your own libSQL server as an alternative to using Astro DB. This option works with any supported libSQL protocol.
-> 
+>
 > To use this feature, set the following environment variables:
-> 
+>
 > `ASTRO_DB_REMOTE_URL`: the connection URL to your libSQL server.
-> 
+>
 > `ASTRO_DB_APP_TOKEN`: the auth token to your libSQL server.
 >
 > You can also view/manage your database in the [libSQL Studio](https://libsqlstudio.com/).

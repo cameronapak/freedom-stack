@@ -3,30 +3,30 @@ import Layout from "../../layouts/Layout.astro";
 const user = Astro.locals.user;
 
 if (!user) {
-  return Astro.redirect("/login");
+	return Astro.redirect("/login");
 }
 ---
 
 <Layout title="Dashboard">
-  <div class="p-6 container mx-auto">
-    <div class="breadcrumbs text-sm m-0">
-      <ul class="!p-0 !m-0">
-        <li><a href="/">Home</a></li>
-        <li>Dashboard</li>
-      </ul>
-    </div>
+	<div class="p-6 container mx-auto">
+		<div class="breadcrumbs text-sm m-0">
+			<ul class="!p-0 !m-0">
+				<li><a href="/">Home</a></li>
+				<li>Dashboard</li>
+			</ul>
+		</div>
 
-    <h1>Dashboard</h1>
-    <ul>
-      <li>
-        <a href="/posts">All Posts</a>
-        <ul>
-          <li><a href="/dashboard/posts/new">Create</a></li>
-        </ul>
-      </li>
-    </ul>
-    <form method="post" action="/api/logout">
-      <button>Sign out</button>
-    </form>
-  </div>
+		<h1>Dashboard</h1>
+		<ul>
+			<li>
+				<a href="/posts">All Posts</a>
+				<ul>
+					<li><a href="/dashboard/posts/new">Create</a></li>
+				</ul>
+			</li>
+		</ul>
+		<form method="post" action="/api/logout">
+			<button>Sign out</button>
+		</form>
+	</div>
 </Layout>

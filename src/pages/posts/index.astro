@@ -1,5 +1,5 @@
 ---
-import { db, Posts } from 'astro:db';
+import { db, Posts } from "astro:db";
 import Layout from "../../layouts/Layout.astro";
 
 const pageTitle = "Posts";
@@ -7,24 +7,24 @@ const allPosts = await db.select().from(Posts).orderBy(Posts.pubDate);
 ---
 
 <Layout title={pageTitle}>
-  <main class="container mx-auto p-6">
-    <div class="text-sm breadcrumbs">
-      <ul class="!p-0 !m-0">
-        <li><a href="/">Home</a></li> 
-        <li>Posts</li> 
-      </ul>
-    </div>
+	<main class="container mx-auto p-6">
+		<div class="text-sm breadcrumbs">
+			<ul class="!p-0 !m-0">
+				<li><a href="/">Home</a></li>
+				<li>Posts</li>
+			</ul>
+		</div>
 
-    <h1>Posts</h1>
+		<h1>Posts</h1>
 
-    <ul>
-      {
-        allPosts.map((post) => (
-          <li>
-            <a href={`/posts/${post.slug}`}>{post.title}</a>
-          </li>
-        ))
-      }
-    </ul>
-  </main>
+		<ul>
+			{
+				allPosts.map((post) => (
+					<li>
+						<a href={`/posts/${post.slug}`}>{post.title}</a>
+					</li>
+				))
+			}
+		</ul>
+	</main>
 </Layout>
