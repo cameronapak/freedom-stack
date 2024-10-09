@@ -4,8 +4,7 @@
 /// <reference path="../.astro/types.d.ts" />
 
 import * as htmx from "htmx.org";
-import type { User, Session } from "astro:db";
-import type { Auth } from "@clerk/types";
+import type { Auth, UserResource } from "@clerk/types";
 
 declare global {
   interface Window {
@@ -16,9 +15,7 @@ declare global {
   namespace App {
     interface Locals {
       auth: () => Auth;
-      currentUser: () => Promise<User | null>;
-      user: User | null;
-      session: Session | null;
+      currentUser: () => Promise<UserResource | null>;
     }
   }
 }

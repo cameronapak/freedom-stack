@@ -19,7 +19,7 @@ const user = await Astro.locals.currentUser();
     </div>
 
     <h1>Dashboard</h1>
-    <p>Welcome, {user.fullName}!</p>
+    <p>Welcome, {user?.firstName || user?.primaryEmailAddress?.emailAddress || "You..."}!</p>
     <ul>
       <li>
         <a href="/posts">All Posts</a>

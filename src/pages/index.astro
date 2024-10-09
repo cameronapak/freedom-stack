@@ -7,8 +7,6 @@ import IconBlock from "../components/IconBlock.astro";
 if (Astro.locals.auth().userId) {
   return Astro.redirect("/dashboard");
 }
-
-export const prerender = true;
 ---
 
 <Layout
