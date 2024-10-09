@@ -5,6 +5,7 @@ import netlify from "@astrojs/netlify";
 import sentry from "@sentry/astro";
 import db from "@astrojs/db";
 import webVitals from "@astrojs/web-vitals";
+import clerk from "@clerk/astro";
 import { copyTinymceToPublic } from "./src/integrations.ts";
 
 const SENTRY_DSN = import.meta.env.SENTRY_DSN;
@@ -16,12 +17,10 @@ const isSentryEnabled = SENTRY_DSN && SENTRY_AUTH_TOKEN && SENTRY_PROJECT;
 export default defineConfig({
 	integrations: [
 		db(),
-		tailwind(),
-		// This entrypoint file is where Alpine plugins are registered.
+		tailwind(), // This entrypoint file is where Alpine plugins are registered.
 		alpinejs({
 			entrypoint: "/src/entrypoint"
-		}),
-		// To enable Sentry monitoring, add the following environment variables.
+		}), // To enable Sentry monitoring, add the following environment variables.
 		// Learn more at https://docs.sentry.io/platforms/javascript/guides/astro/#prerequisites.
 		isSentryEnabled &&
 			sentry({
@@ -30,7 +29,8 @@ export default defineConfig({
 				project: SENTRY_PROJECT
 			}),
 		webVitals(),
-		copyTinymceToPublic()
+		copyTinymceToPublic(),
+		clerk()
 	],
 	vite: {
 		optimizeDeps: {
