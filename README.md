@@ -59,15 +59,15 @@ button on the [repo's home page](https://github.com/cameronapak/freedom-stack).
 
 This project uses the following environment variables:
 
-| Variable              | Description                                | Required |
-| --------------------- | ------------------------------------------ | -------- |
-| `ASTRO_DB_REMOTE_URL` | The connection URL to your libSQL server   | Required |
-| `ASTRO_DB_APP_TOKEN`  | The auth token to your libSQL server       | Required |
-| `CLERK_SECRET_KEY`    | Secret key for Clerk authentication        | Required |
-| `CLERK_PUBLISHABLE_KEY` | Publishable key for Clerk authentication | Required |
-| `SENTRY_DSN`          | Sentry Data Source Name for error tracking | Optional |
-| `SENTRY_AUTH_TOKEN`   | Authentication token for Sentry            | Optional |
-| `SENTRY_PROJECT`      | Sentry project identifier                  | Optional |
+| Variable                | Description                                | Required |
+| ----------------------- | ------------------------------------------ | -------- |
+| `ASTRO_DB_REMOTE_URL`   | The connection URL to your libSQL server   | Required |
+| `ASTRO_DB_APP_TOKEN`    | The auth token to your libSQL server       | Required |
+| `CLERK_SECRET_KEY`      | Secret key for Clerk authentication        | Required |
+| `CLERK_PUBLISHABLE_KEY` | Publishable key for Clerk authentication   | Required |
+| `SENTRY_DSN`            | Sentry Data Source Name for error tracking | Optional |
+| `SENTRY_AUTH_TOKEN`     | Authentication token for Sentry            | Optional |
+| `SENTRY_PROJECT`        | Sentry project identifier                  | Optional |
 
 Make sure to set these variables in your environment or `.env` file before running the application.
 

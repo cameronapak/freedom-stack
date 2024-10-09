@@ -8,45 +8,45 @@ import Layout from "../../layouts/Layout.astro";
 const { slug } = Astro.params;
 
 if (!slug) {
-	return Astro.redirect("/posts");
+  return Astro.redirect("/posts");
 }
 
 const entry = await db.select().from(Posts).where(eq(Posts.slug, slug)).get();
 
 if (!entry) {
-	return Astro.redirect("/posts");
+  return Astro.redirect("/posts");
 }
 
 const content = await marked(entry?.content || "");
 
 if (!content) {
-	return Astro.redirect("/posts");
+  return Astro.redirect("/posts");
 }
 
 const cleanHTML = DOMPurify.sanitize(content);
 ---
 
 <Layout title={entry?.title || ""}>
-	<article class="p-6 w-full container">
-		<div class="text-sm breadcrumbs m-0">
-			<ul class="!p-0 !m-0">
-				<li><a href="/">Home</a></li>
-				<li><a href="/posts">Posts</a></li>
-				<li>Post</li>
-			</ul>
-		</div>
+  <article class="p-6 w-full container">
+    <div class="text-sm breadcrumbs m-0">
+      <ul class="!p-0 !m-0">
+        <li><a href="/">Home</a></li>
+        <li><a href="/posts">Posts</a></li>
+        <li>Post</li>
+      </ul>
+    </div>
 
-		<div class="flex flex-col">
-			<h1>{entry?.title}</h1>
-			<p class="m-0">
-				Posted on {new Date(entry?.pubDate).toLocaleDateString("en-US", { month: "long", year: "numeric" })} by {
-					entry?.author
-				}
-			</p>
-		</div>
+    <div class="flex flex-col">
+      <h1>{entry?.title}</h1>
+      <p class="m-0">
+        Posted on {new Date(entry?.pubDate).toLocaleDateString("en-US", { month: "long", year: "numeric" })} by {
+          entry?.author
+        }
+      </p>
+    </div>
 
-		<div class="divider" role="separator"></div>
+    <div class="divider" role="separator"></div>
 
-		<div set:html={cleanHTML} />
-	</article>
+    <div set:html={cleanHTML} />
+  </article>
 </Layout>

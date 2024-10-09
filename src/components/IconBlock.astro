@@ -2,22 +2,22 @@
 import { Icon } from "astro-iconify";
 
 interface Props {
-	title: string;
-	description: string;
-	icon: string;
+  title: string;
+  description: string;
+  icon: string;
 }
 
 const { title, description, icon } = Astro.props as Props;
 ---
 
 <div class="flex shrink-0">
-	<Icon pack="lucide" name={icon} height={32} width={32} class="shrink-0" />
-	<div class="ms-4">
-		<h3 class="text-base sm:text-lg font-semibold text-gray-800">
-			{title}
-		</h3>
-		<p class="mt-1 text-gray-60">
-			{description}
-		</p>
-	</div>
+  <Icon pack="lucide" name={icon} height={32} width={32} class="shrink-0" />
+  <div class="ms-4">
+    <h3 class="text-base sm:text-lg font-semibold text-gray-800">
+      {title}
+    </h3>
+    <p class="mt-1 text-gray-60">
+      {description}
+    </p>
+  </div>
 </div>

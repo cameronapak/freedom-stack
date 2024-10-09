@@ -1,7 +1,7 @@
 /* Add CSS styles below. */
 .example-class {
-	/* You can even apply Tailwind classes here. */
-	@apply bg-red-500 text-white;
+  /* You can even apply Tailwind classes here. */
+  @apply bg-red-500 text-white;
 }
 
 /* Override some of the Tailwind .prose CSS */
@@ -11,25 +11,25 @@
 .prose h4,
 .prose h5,
 .prose h6 {
-	@apply m-0 mb-2;
-	text-wrap: balance;
+  @apply m-0 mb-2;
+  text-wrap: balance;
 }
 
 .balanced {
-	max-inline-size: 50ch;
-	text-wrap: balance;
+  max-inline-size: 50ch;
+  text-wrap: balance;
 }
 
 /* Daisy UI Overrides */
 .breadcrumbs > ul > li,
 .breadcrumbs > ol > li {
-	@apply p-0;
+  @apply p-0;
 }
 
 .text-muted {
-	@apply text-gray-500;
+  @apply text-gray-500;
 }
 
 .container {
-	max-width: 768px;
+  max-width: 768px;
 }

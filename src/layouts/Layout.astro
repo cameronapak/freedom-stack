@@ -2,8 +2,8 @@
 import "../global.css";
 
 interface Props {
-	title: string;
-	description?: string;
+  title: string;
+  description?: string;
 }
 
 const { title, description = "" } = Astro.props;
@@ -11,24 +11,24 @@ const { title, description = "" } = Astro.props;
 
 <!doctype html>
 <html lang="en" class="bg-slate-50">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description || title} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<meta property="og:image" content="/og-image.png" />
-		<title>{title}</title>
-	</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description || title} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <meta property="og:image" content="/og-image.png" />
+    <title>{title}</title>
+  </head>
 
-	<body class="prose !max-w-[100vw] w-full">
-		<slot />
-	</body>
+  <body class="prose !max-w-[100vw] w-full">
+    <slot />
+  </body>
 </html>
 
 <script>
-	// @ts-ignore
-	import * as htmx from "htmx.org";
+  // @ts-ignore
+  import * as htmx from "htmx.org";
 
-	window.htmx = htmx;
+  window.htmx = htmx;
 </script>

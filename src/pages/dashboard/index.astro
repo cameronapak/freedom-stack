@@ -3,31 +3,31 @@ import { SignOutButton } from "@clerk/astro/components";
 import Layout from "../../layouts/Layout.astro";
 
 if (!Astro.locals.auth().userId) {
-	return Astro.redirect("/login");
+  return Astro.redirect("/login");
 }
 
 const user = await Astro.locals.currentUser();
 ---
 
 <Layout title="Dashboard">
-	<div class="p-6 container mx-auto">
-		<div class="breadcrumbs text-sm m-0">
-			<ul class="!p-0 !m-0">
-				<li><a href="/">Home</a></li>
-				<li>Dashboard</li>
-			</ul>
-		</div>
+  <div class="p-6 container mx-auto">
+    <div class="breadcrumbs text-sm m-0">
+      <ul class="!p-0 !m-0">
+        <li><a href="/">Home</a></li>
+        <li>Dashboard</li>
+      </ul>
+    </div>
 
-		<h1>Dashboard</h1>
-		<p>Welcome, {user.fullName}!</p>
-		<ul>
-			<li>
-				<a href="/posts">All Posts</a>
-				<ul>
-					<li><a href="/dashboard/posts/new">Create</a></li>
-				</ul>
-			</li>
-		</ul>
-		<SignOutButton class="btn btn-sm shadow-none" />
-	</div>
+    <h1>Dashboard</h1>
+    <p>Welcome, {user.fullName}!</p>
+    <ul>
+      <li>
+        <a href="/posts">All Posts</a>
+        <ul>
+          <li><a href="/dashboard/posts/new">Create</a></li>
+        </ul>
+      </li>
+    </ul>
+    <SignOutButton class="btn btn-sm shadow-none" />
+  </div>
 </Layout>
