@@ -1,7 +1,7 @@
 {
 	"name": "freedom-stack",
 	"type": "module",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"scripts": {
 		"dev": "astro dev",
 		"dev:host": "astro dev --host",
@@ -27,14 +27,6 @@
 		"@iconify-json/lucide": "^1.2.3",
 		"@iconify-json/lucide-lab": "^1.2.0",
 		"@lucia-auth/adapter-sqlite": "^3.0.2",
-		"@node-rs/argon2": "^1.8.3",
-		"@oslojs/binary": "^0.3.0",
-		"@oslojs/crypto": "^0.6.2",
-		"@oslojs/encoding": "1.1.0",
-		"@oslojs/otp": "^0.2.1",
-		"@oslojs/webauthn": "^0.6.4",
-		"@pilcrowjs/db-query": "^0.0.2",
-		"@pilcrowjs/object-parser": "^0.0.3",
 		"@sentry/astro": "^8.30.0",
 		"alpinejs": "^3.14.1",
 		"astro": "^4.15.4",
