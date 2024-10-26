@@ -1,5 +1,6 @@
 import { db, Posts } from "astro:db";
 import type { APIContext } from "astro";
+import { purgeCache } from "@netlify/functions";
 
 export async function POST(context: APIContext): Promise<Response> {
   try {
@@ -23,6 +24,14 @@ export async function POST(context: APIContext): Promise<Response> {
     }
 
     await db.insert(Posts).values(post);
+
+    try {
+      await purgeCache({
+        tags: ["posts"]
+      });
+    } catch (error) {
+      console.error("Error purging cache:", error);
+    }
 
     return context.redirect("/posts");
   } catch (error) {
