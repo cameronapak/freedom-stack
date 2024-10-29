@@ -1,0 +1,5 @@
+---
+const user = await Astro.locals.currentUser();
+---
+
+{user ? <slot /> : null}
