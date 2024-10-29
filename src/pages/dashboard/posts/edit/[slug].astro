@@ -17,22 +17,22 @@ if (!slug) {
   return Astro.redirect("/dashboard/posts");
 }
 
+let post;
 // Fetch the post
-const post = await db.select().from(Posts).where(eq(Posts.slug, slug)).get();
-
-if (!post) {
-  return Astro.redirect("/404");
-}
+post = await db.select().from(Posts).where(eq(Posts.slug, slug)).get();
 
 const result = await Astro.getActionResult(actions.posts.update);
 if (result?.data?.success) {
+  post = result.data.post;
   return Astro.redirect(`/posts/${post.slug}`);
 }
 
-console.log(result);
+if (!post) {
+  return Astro.redirect("/posts");
+}
 ---
 
-<DashboardLayout title={`Edit Post: ${post.title}`}>
+<DashboardLayout title={`Edit Post: ${post?.title}`}>
   <script src="/tinymce/tinymce.min.js" referrerpolicy="origin"></script>
   <script is:inline>
     tinymce.init({

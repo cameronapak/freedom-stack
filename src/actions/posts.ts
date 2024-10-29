@@ -23,7 +23,9 @@ export const posts = {
     }),
     handler: async (input) => {
       try {
-        const post = await db.insert(Posts).values(input).returning();
+        const posts = await db.insert(Posts).values(input).returning();
+
+        const post = posts[0];
 
         try {
           await purgeCache({ tags: ["posts"] });
@@ -33,7 +35,7 @@ export const posts = {
 
         return {
           success: true as const,
-          data: { post }
+          post
         };
       } catch (error) {
         throw new ActionError({
@@ -59,7 +61,7 @@ export const posts = {
       }
       return {
         success: true as const,
-        data: { post }
+        post
       };
     }
   }),
@@ -88,17 +90,23 @@ export const posts = {
     }),
     handler: async (input) => {
       try {
-        const post = await db.update(Posts).set(input).where(eq(Posts.id, input.id)).returning();
+        const posts = await db
+          .update(Posts)
+          .set(input)
+          .where(eq(Posts.id, input.id))
+          .returning();
+
+        const post = posts[0];
 
         try {
-          await purgeCache({ tags: ["posts"] });
+          await purgeCache({ tags: [`post-${post.slug}`] });
         } catch (error) {
           console.error("Error purging cache:", error);
         }
 
         return {
           success: true as const,
-          data: { post }
+          post
         };
       } catch (error) {
         throw new ActionError({
@@ -116,8 +124,8 @@ export const posts = {
     }),
     handler: async ({ id }) => {
       try {
-        const post = await db.delete(Posts).where(eq(Posts.id, id));
-        if (!post) {
+        const posts = await db.delete(Posts).where(eq(Posts.id, id));
+        if (!posts) {
           throw new ActionError({
             code: "NOT_FOUND",
             message: "Post not found"
@@ -131,8 +139,7 @@ export const posts = {
         }
 
         return {
-          success: true as const,
-          data: { post }
+          success: true as const
         };
       } catch (error) {
         throw new ActionError({
