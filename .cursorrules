@@ -1,0 +1,69 @@
+Technology Stack:
+
+UI Layer:
+- Framework: Astro
+- Styling: TailwindCSS, Preline UI, DaisyUI
+- Icons: Lucide Icons
+- File Pattern: *.astro
+- Rich Text Editor: TinyMCE (self-hosted)
+
+Interactivity Layer:
+- Language: TypeScript
+- Frameworks: Alpine.js, HTMX
+- Alpine Plugins: Intersect, Persist, Collapse, Mask
+- File Pattern: *.ts, *.tsx
+
+Backend Layer:
+- ORM: Drizzle
+- Database: Astro DB (with libSQL/Turso)
+- Authentication: Clerk
+- Cache: Netlify
+- Error Tracking: Sentry (optional)
+- File Pattern: db/*.ts
+
+Development Guidelines:
+- Enforce strict TypeScript settings for type safety
+- Use DaisyUI and TailwindCSS with utility-first approach
+- Create modular, reusable Astro components
+- Maintain clear separation of concerns
+- Implement proper cache control headers
+- Sanitize HTML content using DOMPurify
+- Use Markdown for content formatting (marked)
+
+Commit Message Standards:
+- Use conventional commits with lowercase type and optional scope
+- Keep messages concise (max 60 characters)
+- Format: type(scope): description
+- Include full commit command in suggestions
+- Messages should be terminal-ready
+
+Code Style Requirements:
+- Indentation: 2 spaces
+- Enable format on save
+- Trim trailing whitespace
+- Ensure final newline
+- Include path/filename as first comment
+- Write purpose-focused comments
+- Follow DRY principles
+- Prioritize modularity and performance
+- Use Prettier with 120 character line length
+- Format Astro files with dedicated parser
+
+Environment Variables:
+- ASTRO_DB_REMOTE_URL: libSQL connection URL
+- ASTRO_DB_APP_TOKEN: libSQL auth token
+- CLERK_SECRET_KEY: Clerk authentication
+- CLERK_PUBLISHABLE_KEY: Clerk public key
+- SENTRY_DSN: Error tracking (optional)
+- SENTRY_AUTH_TOKEN: Sentry auth (optional)
+- SENTRY_PROJECT: Sentry project ID (optional)
+
+Documentation Resources:
+- DaisyUI: https://daisyui.com/
+- TailwindCSS: https://tailwindcss.com/
+- Preline: https://preline.co/
+- Astro DB: https://docs.astro.build/en/guides/astro-db
+- Clerk: https://clerk.com/docs
+- HTMX: https://htmx.org/
+- Alpine.js: https://alpinejs.dev/
+- Turso: https://docs.turso.tech/

@@ -19,6 +19,7 @@ An Astro full-stack web stack that feels freeing, and is free.
 - Database ([Astro DB](https://docs.astro.build/en/guides/astro-db/))
 - Auth via [Clerk](https://clerk.com/), using the official Astro integration
 - Simple Web Hosting (Netlify)
+- `.cursorrules` file for Cursor's AI IDE
 
 ## Stack
 
