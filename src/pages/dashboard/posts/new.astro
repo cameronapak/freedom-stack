@@ -1,11 +1,18 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
+import { actions } from 'astro:actions';
 
 if (!Astro.locals.auth().userId) {
   return Astro.redirect("/");
 }
 
 const user = await Astro.locals.currentUser();
+const result = Astro.getActionResult(actions.posts.create);
+
+// Redirect on successful post creation
+if (result?.data?.success) {
+  return Astro.redirect("/posts");
+}
 ---
 
 <Layout title="New Post">
@@ -32,7 +39,18 @@ const user = await Astro.locals.currentUser();
         </ul>
       </div>
       <h1>New Post</h1>
-      <form class="mt-6 flex flex-col gap-6" action="/api/create-post" method="post">
+
+      {result?.error && (
+        <div class="alert alert-error mb-4">
+          <span>{result.error.message}</span>
+        </div>
+      )}
+
+      <form 
+        class="mt-6 flex flex-col gap-6" 
+        method="POST" 
+        action={actions.posts.create}
+      >
         <textarea
           class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
           id="content"
