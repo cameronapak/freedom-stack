@@ -14,7 +14,7 @@ Interactivity Layer:
 - File Pattern: *.ts, *.tsx
 
 Backend Layer:
-- ORM: Drizzle
+- ORM: Drizzle via Astro DB (when you import things from Drizzle, it'll be via "astro:db")
 - Database: Astro DB (with libSQL/Turso)
 - Authentication: Clerk
 - Cache: Netlify
