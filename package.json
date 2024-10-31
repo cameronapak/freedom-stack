@@ -29,6 +29,7 @@
     "@iconify-json/lucide": "^1.2.10",
     "@iconify-json/lucide-lab": "^1.2.1",
     "@sentry/astro": "^8.35.0",
+    "astro-seo": "^0.8.4",
     "alpinejs": "^3.14.3",
     "astro": "^4.16.7",
     "astro-iconify": "^1.2.0",

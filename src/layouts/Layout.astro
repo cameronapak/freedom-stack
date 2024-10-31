@@ -1,27 +1,151 @@
 ---
+import { SEO } from "astro-seo";
+import Icon from "astro-iconify";
 import "../global.css";
 
 interface Props {
   title: string;
   description?: string;
+  bodyClasses?: string;
+  canonicalUrl?: string;
+  faviconUrl?: string;
+  ogImageUrl?: string;
 }
 
-const { title, description = "" } = Astro.props;
+const {
+  title,
+  description = "",
+  bodyClasses,
+  canonicalUrl,
+  faviconUrl,
+  ogImageUrl = "/og-image.png"
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="bg-slate-50">
+<html
+  lang="en"
+  x-data={`{ 
+    toastMessage: '',
+    toastErrorMessage: ''
+  }`}
+  class="bg-slate-50"
+>
+  <!-- "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life." John 3:16 NIV -->
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description || title} />
-    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
     <title>{title}</title>
+
+    <slot name="head" />
+
+    <SEO
+      charset="utf-8"
+      title={title}
+      description={description}
+      canonical={canonicalUrl || Astro.url}
+      openGraph={{
+        basic: {
+          title: title,
+          type: "website",
+          image: ogImageUrl
+        },
+        optional: {
+          description: description
+        }
+      }}
+      twitter={{
+        card: "summary_large_image",
+        title: title,
+        description: description,
+        image: ogImageUrl,
+        site: canonicalUrl || Astro.url.href,
+        imageAlt: description
+      }}
+      extend={{
+        link: [
+          {
+            rel: "icon",
+            href: faviconUrl || "/favicon.svg",
+            type: faviconUrl ? "image/png" : "image/svg+xml"
+          }
+          // {
+          //   rel: "apple-touch-icon",
+          //   href: "/apple-touch-icon.png"
+          // }
+        ]
+      }}
+    />
   </head>
 
-  <body class="prose !max-w-[100vw] w-full">
+  <body class={`max-w-screen w-full ${bodyClasses}`}>
+    <div
+      x-data={`{ 
+        backupOfToastMessage: '', 
+        init() { 
+          $watch('toastMessage', () => {
+            if (toastMessage) {
+              this.backupOfToastMessage = toastMessage
+            }
+          })
+        }
+      }`}
+      x-cloak
+      x-show="toastMessage"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0 transform -translate-y-2"
+      x-transition:enter-end="opacity-100 transform translate-y-0"
+      x-transition:leave="transition ease-in duration-300"
+      x-transition:leave-start="opacity-100 transform translate-y-0"
+      x-transition:leave-end="opacity-0 transform -translate-y-2"
+      x-init="setTimeout(() => toastMessage = '', 5000)"
+      class="z-30 toast toast-top toast-center max-w-sm w-full"
+    >
+      <div role="alert" class="max-w-sm w-full shadow-lg alert alert-info bg-cyan-100 border-cyan-200 text-cyan-900">
+        <Icon pack="lucide" name="check-circle" height={20} width={20} class="shrink-0" />
+        <span class="p-0 m-0 w-full text-wrap inline-block" x-text="toastMessage || '-'"></span>
+      </div>
+    </div>
+
+    <div
+      x-data={`{ 
+        backupOfToastErrorMessage: '', 
+        init() { 
+          $watch('toastErrorMessage', () => {
+            if (toastErrorMessage) {
+              this.backupOfToastErrorMessage = toastErrorMessage
+            }
+          })
+        } 
+      }`}
+      x-cloak
+      x-show="toastErrorMessage"
+      x-transition:enter="transition ease-out duration-300"
+      x-transition:enter-start="opacity-0 transform -translate-y-2"
+      x-transition:enter-end="opacity-100 transform translate-y-0"
+      x-transition:leave="transition ease-in duration-300"
+      x-transition:leave-start="opacity-100 transform translate-y-0"
+      x-transition:leave-end="opacity-0 transform -translate-y-2"
+      class="z-30 toast toast-top toast-center max-w-sm w-full"
+    >
+      <div
+        role="alert"
+        class="max-w-sm w-full grid grid-cols-[auto_1fr] gap-2 shadow-lg alert alert-error bg-red-100 border-red-200 text-red-900"
+      >
+        <Icon pack="lucide" name="octagon-alert" height={20} width={20} class="shrink-0" />
+        <p class="p-0 m-0 w-full text-wrap inline-block" x-text="backupOfToastErrorMessage || '-'" class="w-full"></p>
+      </div>
+    </div>
+
     <slot />
   </body>
 </html>
