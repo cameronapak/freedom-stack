@@ -4,6 +4,7 @@ import alpinejs from "@astrojs/alpinejs";
 import netlify from "@astrojs/netlify";
 import sentry from "@sentry/astro";
 import db from "@astrojs/db";
+import sitemap from "@astrojs/sitemap";
 import webVitals from "@astrojs/web-vitals";
 import clerk from "@clerk/astro";
 import { copyTinymceToPublic } from "./src/integrations.ts";
@@ -28,6 +29,10 @@ export default defineConfig({
         auth: SENTRY_AUTH_TOKEN,
         project: SENTRY_PROJECT
       }),
+    sitemap({
+      changefreq: "weekly",
+      lastmod: new Date()
+    }),
     webVitals(),
     copyTinymceToPublic(),
     clerk()
@@ -40,6 +45,6 @@ export default defineConfig({
   output: "server",
   adapter: netlify(),
   experimental: {
-    serverIslands: true,
+    serverIslands: true
   }
 });
