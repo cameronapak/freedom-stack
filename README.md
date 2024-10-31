@@ -21,6 +21,15 @@ An Astro full-stack web stack that feels freeing, and is free.
 - Simple Web Hosting (Netlify)
 - `.cursorrules` file for Cursor's AI IDE
 
+## Freedom Stack Showcase
+
+- [faith.tools](https://faith.tools)
+- [freedom](https://freedom.faith.tools)
+- [Be Still](https://ft-be-still.netlify.app)
+- [kit](https://kit.faith.tools)
+
+Have a project that uses Freedom Stack? [Open a PR](https://github.com/cameronapak/freedom-stack) to add it to the list!
+
 ## Stack
 
 ### UI Layer
