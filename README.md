@@ -24,7 +24,7 @@ An Astro full-stack web stack that feels freeing, and is free.
 ## Freedom Stack Showcase
 
 - [faith.tools](https://faith.tools)
-- [freedom](https://freedom.faith.tools)
+- [freedom](https://freedom.melos.church)
 - [Be Still](https://ft-be-still.netlify.app)
 - [kit](https://kit.faith.tools)
 
