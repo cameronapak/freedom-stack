@@ -33,3 +33,8 @@
 .container {
   max-width: 768px;
 }
+
+/* Alpine.js */
+[x-cloak] {
+  display: none;
+}
