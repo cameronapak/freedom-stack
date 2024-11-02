@@ -1,4 +1,9 @@
 {
-  "recommendations": ["astro-build.astro-vscode"],
+  "recommendations": [
+    "astro-build.astro-vscode",
+    "RisingStack.astro-alpinejs-syntax-highlight",
+    "CraigRBroughton.htmx-attributes",
+    "esbenp.prettier-vscode"
+  ],
   "unwantedRecommendations": []
 }
