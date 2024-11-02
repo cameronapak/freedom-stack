@@ -1,36 +1,16 @@
-# Freedom Stack, by faith.tools
+# Freedom Stack • Full-Stack Starter Kit
 
-An Astro full-stack web stack that feels freeing, and is free.
+An Astro-based full-stack starter kit that feels freeing, and is free. Make development fun again. [See the demo site](https://freedom.faith.tools). 
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/78803fc4-5d36-4efb-82cd-2daeb5684fb6/deploy-status)](https://app.netlify.com/sites/freedom-stack/deploys)
 
+[![Github Stars](https://img.shields.io/github/stars/cameronapak/freedom-stack?style=flat-square)](https://github.com/cameronapak/freedom-stack/stargazers)
+
 ![freedom stack](public/og-image.png)
 
-[See Demo](https://freedom.faith.tools)
+## Here's What's Included 🔋🔋🔋
 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=cameronapak/freedom-stack&type=Date)](https://star-history.com/#cameronapak/freedom-stack&Date)
-
-## Comes With
-
-- CSS-based component library (daisyUI)
-- Blog
-- Database ([Astro DB](https://docs.astro.build/en/guides/astro-db/))
-- Auth via [Clerk](https://clerk.com/), using the official Astro integration
-- Simple Web Hosting (Netlify)
-- `.cursorrules` file for Cursor's AI IDE
-
-## Freedom Stack Showcase
-
-- [faith.tools](https://faith.tools)
-- [freedom](https://freedom.melos.church)
-- [Be Still](https://ft-be-still.netlify.app)
-- [kit](https://kit.faith.tools)
-
-Have a project that uses Freedom Stack? [Open a PR](https://github.com/cameronapak/freedom-stack) to add it to the list!
-
-## Stack
+Ogres have layers. Onions have layers. Parfaits have layers. And, Freedom Stack has layers!
 
 ### UI Layer
 
@@ -50,60 +30,102 @@ Have a project that uses Freedom Stack? [Open a PR](https://github.com/cameronap
 ### Backend Data Layer
 
 - [Astro DB](https://astro.build/db) - Astro DB is a fully managed SQL database
-  that is fast, lightweight, and ridiculously easy-to-use. (Can use Turso, if
-  desired.)
-- [Drizzle ORM](https://orm.drizzle.team/) - A modern SQL database toolkit.
+  that is fast, lightweight, and ridiculously easy-to-use. 
+- [Drizzle ORM](https://orm.drizzle.team/) - Use your database without having to know or worry about SQL syntax.
 - [Clerk](https://clerk.com/) - For authentication.
 
-### Hosting
+### Bonus Layer
 
-I have included the Netlify adapter in the starter kit. You can swap it out for
-others, such as Vercel.
+- A well-prompted `.cursorrules` file for [Cursor's AI IDE](https://cursor.com/) to be a friendly guide helping you using this stack easier.
 
-## How To Use
+## Get Started 🚀
+
+### 1. Setup Your Codebase
 
 To create your own instance of this codebase, click the "Use this template"
 button on the [repo's home page](https://github.com/cameronapak/freedom-stack).
 
-## Environment Variables
+Then, clone your new repo to your local machine.
+
+### 2. Setup Your Database
+
+We use [Turso](https://turso.tech/) for the fully-managed libSQL database. [Follow these instructions to get started with Turso](https://docs.astro.build/en/guides/astro-db/#getting-started-with-turso).
+
+_[Want to visualize your data through a GUI?](https://docs.turso.tech/local-development#connecting-a-gui)_
+
+### 3. Setup Your Authentication Provider
+
+Create a new [Clerk](https://clerk.com/) project.
+
+### 4. Set Environment Variables
+
+Let's create the `.env` file by copying the `.env.example` file.
+
+```bash
+cp .env.example .env
+```
 
 This project uses the following environment variables:
 
-| Variable                | Description                                | Required |
-| ----------------------- | ------------------------------------------ | -------- |
-| `ASTRO_DB_REMOTE_URL`   | The connection URL to your libSQL server   | Required |
-| `ASTRO_DB_APP_TOKEN`    | The auth token to your libSQL server       | Required |
-| `CLERK_SECRET_KEY`      | Secret key for Clerk authentication        | Required |
-| `CLERK_PUBLISHABLE_KEY` | Publishable key for Clerk authentication   | Required |
-| `SENTRY_DSN`            | Sentry Data Source Name for error tracking | Optional |
-| `SENTRY_AUTH_TOKEN`     | Authentication token for Sentry            | Optional |
-| `SENTRY_PROJECT`        | Sentry project identifier                  | Optional |
+| Variable                | Description                                | Required | More Info                                                                                                 |
+| ----------------------- | ------------------------------------------ | -------- | --------------------------------------------------------------------------------------------------------- |
+| `ASTRO_DB_REMOTE_URL`   | The connection URL to your libSQL server   | Required | [Astro DB](https://docs.astro.build/en/guides/astro-db/)                                                  |
+| `ASTRO_DB_APP_TOKEN`    | The auth token to your libSQL server       | Required | [Astro DB](https://docs.astro.build/en/guides/astro-db/)                                                  |
+| `CLERK_SECRET_KEY`      | Secret key for Clerk authentication        | Required | [Clerk](https://clerk.com/docs/deployments/clerk-environment-variables#clerk-publishable-and-secret-keys) |
+| `CLERK_PUBLISHABLE_KEY` | Publishable key for Clerk authentication   | Required | [Clerk](https://clerk.com/docs/deployments/clerk-environment-variables#clerk-publishable-and-secret-keys) |
+| `SENTRY_DSN`            | Sentry Data Source Name for error tracking | Optional | [Sentry](https://docs.sentry.io/platforms/javascript/guides/astro/)                                       |
+| `SENTRY_AUTH_TOKEN`     | Authentication token for Sentry            | Optional | [Sentry](https://docs.sentry.io/platforms/javascript/guides/astro/)                                       |
+| `SENTRY_PROJECT`        | Sentry project identifier                  | Optional | [Sentry](https://docs.sentry.io/platforms/javascript/guides/astro/)                                       |
 
 Make sure to set these variables in your environment or `.env` file before running the application.
 
-### Astro DB Configuration (Required)
+### 5. Run the Development Server
 
-I recommend using [Turso](https://turso.tech/) for your database. Here's how you can connect it to Astro DB:
+Install the dependencies.
 
-> You can now specify a libSQL server instance as the remote for @astrojs/db. This allows you to self-host your own libSQL server as an alternative to using Astro DB. This option works with any supported libSQL protocol.
->
-> To use this feature, set the following environment variables:
->
-> `ASTRO_DB_REMOTE_URL`: the connection URL to your libSQL server.
->
-> `ASTRO_DB_APP_TOKEN`: the auth token to your libSQL server.
->
-> You can also view/manage your database in the [libSQL Studio](https://libsqlstudio.com/).
+```bash
+npm install
+```
 
-### Sentry Configuration (Optional)
+Then, run the development server.
 
-For Sentry error tracking, you can set up the following variables. For more information, refer to the [Sentry Astro integration guide](https://docs.sentry.io/platforms/javascript/guides/astro/#configure).
+```bash
+npm run dev
+```
 
-### Astro Studio
+Viola! Your development server is now running on [`localhost:4321`](http://localhost:4321).
 
-[Astro Studio is no longer supported.](https://astro.build/blog/goodbye-astro-studio/), but Astro DB isn't going anywhere.
+### 6. Have fun!
 
-## Vision
+Create because you love creating. Make development fun again!
+
+---
+
+## Host Your Project ☁️
+
+Host your site with [Netlify](https://netlify.com) in under a minute.
+
+First, you must login to Netlify:
+
+```bash
+npm run host:login
+```
+
+Then, you can deploy your site with:
+
+```bash
+npm run host:deploy
+```
+
+> [!IMPORTANT]
+> Remember to set the environment variables in Netlify so that it builds successfully.
+
+But... what if I don't want to use Netlify? You're in good hands. You can swap
+the Netlify adapter with others, such as Vercel, Cloudflare, Fly.io, etc. [Learn more about hosting](https://docs.astro.build/en/guides/deploy/).
+
+---
+
+## Vision ❤️
 
 I dream of a lightweight, simple web development stack that invokes a fun web
 experience at the cheapest possible maintainance, backend, and server cost. As
@@ -126,8 +148,33 @@ close to free as possible.
 - **Pocket-friendly** — Using this stack will be financially maintainable to
   anyone, especially indie hackers and those creating startup sites / web apps.
 
-### Contributions
+## Showcase 🏆
 
-I'll consider a contribution, but please
+- [faith.tools](https://faith.tools)
+- [freedom](https://freedom.melos.church)
+- [Be Still](https://ft-be-still.netlify.app)
+- [kit](https://kit.faith.tools)
+
+Have a project that uses Freedom Stack? [Open a PR](https://github.com/cameronapak/freedom-stack) to add it to the list!
+
+## Available Scripts ⚡
+
+| Command | Description |
+| ------- | ----------- |
+| `npm run dev` | Start the development server |
+| `npm run dev:host` | Start development server accessible from network |
+| `npm run build` | Build the production site with remote database |
+| `npm run preview` | Preview the built site locally |
+| `npm run format` | Format all files using Prettier |
+| `npm run packages:update` | Update all packages to their latest versions |
+| `npm run db:update-schemas` | Push database schema changes to remote database |
+
+## Contributions 🤝
+
+Contributions welcomed. Please
 [open an issue](https://github.com/cameronapak/astwoah-stack/issues) if you'd
 like to contribute.
+
+---
+
+Freedom Stack is made with 🕊️ by [Cameron Pak](https://cameronpak.com), brought to you by [faith.tools](https://faith.tools).
