@@ -1,6 +1,6 @@
 ---
 import Layout from "../../../layouts/Layout.astro";
-import { actions } from 'astro:actions';
+import { actions } from "astro:actions";
 
 if (!Astro.locals.auth().userId) {
   return Astro.redirect("/");
@@ -38,19 +38,18 @@ if (result?.data?.success) {
           <li>New Post</li>
         </ul>
       </div>
+
       <h1>New Post</h1>
 
-      {result?.error && (
-        <div class="alert alert-error mb-4">
-          <span>{result.error.message}</span>
-        </div>
-      )}
+      {
+        result?.error && (
+          <div class="alert alert-error mb-4">
+            <span>{result.error.message}</span>
+          </div>
+        )
+      }
 
-      <form 
-        class="mt-6 flex flex-col gap-6" 
-        method="POST" 
-        action={actions.posts.create}
-      >
+      <form class="mt-6 flex flex-col gap-6" method="POST" action={actions.posts.create}>
         <textarea
           class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
           id="content"
@@ -112,7 +111,7 @@ if (result?.data?.success) {
                 name="author"
                 value={user?.primaryEmailAddress?.emailAddress || ""}
                 placeholder="Enter the author's name"
-				readonly
+                readonly
               />
             </div>
             <div class="grid gap-2">

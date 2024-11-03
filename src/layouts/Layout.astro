@@ -12,20 +12,13 @@ interface Props {
   ogImageUrl?: string;
 }
 
-const {
-  title,
-  description = "",
-  bodyClasses,
-  canonicalUrl,
-  faviconUrl,
-  ogImageUrl = "/og-image.png"
-} = Astro.props;
+const { title, description = "", bodyClasses, canonicalUrl, faviconUrl, ogImageUrl = "/og-image.png" } = Astro.props;
 ---
 
 <!doctype html>
 <html
   lang="en"
-  x-data={`{ 
+  x-data={`{
     toastMessage: '',
     toastErrorMessage: ''
   }`}
@@ -90,9 +83,9 @@ const {
 
   <body class={`max-w-screen w-full ${bodyClasses}`}>
     <div
-      x-data={`{ 
-        backupOfToastMessage: '', 
-        init() { 
+      x-data={`{
+        backupOfToastMessage: '',
+        init() {
           $watch('toastMessage', () => {
             if (toastMessage) {
               this.backupOfToastMessage = toastMessage
@@ -118,15 +111,15 @@ const {
     </div>
 
     <div
-      x-data={`{ 
-        backupOfToastErrorMessage: '', 
-        init() { 
+      x-data={`{
+        backupOfToastErrorMessage: '',
+        init() {
           $watch('toastErrorMessage', () => {
             if (toastErrorMessage) {
               this.backupOfToastErrorMessage = toastErrorMessage
             }
           })
-        } 
+        }
       }`}
       x-cloak
       x-show="toastErrorMessage"
@@ -147,7 +140,12 @@ const {
       </div>
     </div>
 
-    <slot />
+    {
+      /* The prose class from @tailwindcss/typography plugin provides beautiful typographic defaults for HTML content like articles, blog posts, and documentation. It styles headings, lists, code blocks, tables etc. */
+    }
+    <div class="prose max-w-[unset]">
+      <slot />
+    </div>
   </body>
 </html>
 

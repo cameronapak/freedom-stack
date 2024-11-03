@@ -10,7 +10,7 @@ const user = await Astro.locals.currentUser();
 ---
 
 <Layout title="Dashboard">
-  <div class="p-6 container mx-auto">
+  <main class="container mx-auto p-6">
     <div class="breadcrumbs text-sm m-0">
       <ul class="!p-0 !m-0">
         <li><a href="/">Home</a></li>
@@ -29,5 +29,5 @@ const user = await Astro.locals.currentUser();
       </li>
     </ul>
     <SignOutButton class="btn btn-sm shadow-none" />
-  </div>
+  </main>
 </Layout>
