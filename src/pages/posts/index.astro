@@ -1,6 +1,6 @@
 ---
 import { db, Posts } from "astro:db";
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
 
 const pageTitle = "Posts";
 const allPosts = await db.select().from(Posts).orderBy(Posts.pubDate);

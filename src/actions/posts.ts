@@ -90,11 +90,7 @@ export const posts = {
     }),
     handler: async (input) => {
       try {
-        const posts = await db
-          .update(Posts)
-          .set(input)
-          .where(eq(Posts.id, input.id))
-          .returning();
+        const posts = await db.update(Posts).set(input).where(eq(Posts.id, input.id)).returning();
 
         const post = posts[0];
 

@@ -1,8 +1,8 @@
 ---
 import { Icon } from "astro-iconify";
 import { SignUpButton, SignInButton } from "@clerk/astro/components";
-import Layout from "../layouts/Layout.astro";
-import IconBlock from "../components/IconBlock.astro";
+import Layout from "@/layouts/Layout.astro";
+import IconBlock from "@/components/IconBlock.astro";
 
 if (Astro.locals.auth().userId) {
   return Astro.redirect("/dashboard");

@@ -1,6 +1,6 @@
 ---
 import { SignOutButton } from "@clerk/astro/components";
-import Layout from "../../layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
 
 if (!Astro.locals.auth().userId) {
   return Astro.redirect("/login");
