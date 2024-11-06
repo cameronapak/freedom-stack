@@ -1,0 +1,20 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[template]
+  [template.environment]
+    ASTRO_DB_REMOTE_URL = "Your Turso database URL"
+    ASTRO_DB_APP_TOKEN = "Your Turso database app token"
+    CLERK_SECRET_KEY = "Your Clerk secret key"
+    CLERK_PUBLISHABLE_KEY = "Your Clerk publishable key"
+    SENTRY_DSN = "Your Sentry DSN (optional)"
+    SENTRY_AUTH_TOKEN = "Your Sentry auth token (optional)"
+    SENTRY_PROJECT = "Your Sentry project ID (optional)"
+
+# Force HTTPS
+[[redirects]]
+  from = "http://*"
+  to = "https://:splat"
+  status = 301
+  force = true
