@@ -11,7 +11,7 @@ const Posts = defineTable({
     imageAlt: column.text({ optional: true }),
     tags: column.json({ optional: true }),
     slug: column.text({ unique: true }),
-    content: column.text(),
+    content: column.text()
   }
 });
 

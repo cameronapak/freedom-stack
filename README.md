@@ -1,6 +1,6 @@
 # Freedom Stack • Full-Stack Starter Kit
 
-An Astro-based full-stack starter kit that feels freeing, and is free. Make development fun again. [See the demo site](https://freedom.faith.tools). 
+An Astro-based full-stack starter kit that feels freeing, and is free. Make development fun again. [See the demo site](https://freedom.faith.tools).
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/78803fc4-5d36-4efb-82cd-2daeb5684fb6/deploy-status)](https://app.netlify.com/sites/freedom-stack/deploys)
 
@@ -30,7 +30,7 @@ Ogres have layers. Onions have layers. Parfaits have layers. And, Freedom Stack 
 ### Backend Data Layer
 
 - [Astro DB](https://astro.build/db) - Astro DB is a fully managed SQL database
-  that is fast, lightweight, and ridiculously easy-to-use. 
+  that is fast, lightweight, and ridiculously easy-to-use.
 - [Drizzle ORM](https://orm.drizzle.team/) - Use your database without having to know or worry about SQL syntax.
 - [Clerk](https://clerk.com/) - For authentication.
 
@@ -159,15 +159,15 @@ Have a project that uses Freedom Stack? [Open a PR](https://github.com/cameronap
 
 ## Available Scripts ⚡
 
-| Command | Description |
-| ------- | ----------- |
-| `npm run dev` | Start the development server |
-| `npm run dev:host` | Start development server accessible from network |
-| `npm run build` | Build the production site with remote database |
-| `npm run preview` | Preview the built site locally |
-| `npm run format` | Format all files using Prettier |
-| `npm run packages:update` | Update all packages to their latest versions |
-| `npm run db:update-schemas` | Push database schema changes to remote database |
+| Command                     | Description                                      |
+| --------------------------- | ------------------------------------------------ |
+| `npm run dev`               | Start the development server                     |
+| `npm run dev:host`          | Start development server accessible from network |
+| `npm run build`             | Build the production site with remote database   |
+| `npm run preview`           | Preview the built site locally                   |
+| `npm run format`            | Format all files using Prettier                  |
+| `npm run packages:update`   | Update all packages to their latest versions     |
+| `npm run db:update-schemas` | Push database schema changes to remote database  |
 
 ## Contributions 🤝
 

@@ -1,5 +1,5 @@
-import { posts } from './posts';
+import { posts } from "./posts";
 
 export const server = {
-  posts,
+  posts
 };
