@@ -4,6 +4,13 @@ An Astro-based full-stack starter kit that feels freeing, and is free. Make deve
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/78803fc4-5d36-4efb-82cd-2daeb5684fb6/deploy-status)](https://app.netlify.com/sites/freedom-stack/deploys) [![Github Stars](https://img.shields.io/github/stars/cameronapak/freedom-stack?style=flat-square)](https://github.com/cameronapak/freedom-stack/stargazers)
 
+<a href="https://www.netlify.com">
+  <img
+    src="https://www.netlify.com/v3/img/components/netlify-color-bg.svg"
+    alt="Deploys by Netlify"
+  />
+</a>
+
 ![freedom stack](public/og-image.png)
 
 ## Here's What's Included 🔋🔋🔋
