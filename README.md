@@ -2,9 +2,7 @@
 
 An Astro-based full-stack starter kit that feels freeing, and is free. Make development fun again. [See the demo site](https://freedom.faith.tools).
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/78803fc4-5d36-4efb-82cd-2daeb5684fb6/deploy-status)](https://app.netlify.com/sites/freedom-stack/deploys)
-
-[![Github Stars](https://img.shields.io/github/stars/cameronapak/freedom-stack?style=flat-square)](https://github.com/cameronapak/freedom-stack/stargazers)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/78803fc4-5d36-4efb-82cd-2daeb5684fb6/deploy-status)](https://app.netlify.com/sites/freedom-stack/deploys) [![Github Stars](https://img.shields.io/github/stars/cameronapak/freedom-stack?style=flat-square)](https://github.com/cameronapak/freedom-stack/stargazers)
 
 ![freedom stack](public/og-image.png)
 
@@ -120,8 +118,7 @@ npm run host:deploy
 > [!IMPORTANT]
 > Remember to set the environment variables in Netlify so that it builds successfully.
 
-But... what if I don't want to use Netlify? You're in good hands. You can swap
-the Netlify adapter with others, such as Vercel, Cloudflare, Fly.io, etc. [Learn more about hosting](https://docs.astro.build/en/guides/deploy/).
+[Learn more about hosting Astro sites](https://docs.astro.build/en/guides/deploy/).
 
 ---
 
