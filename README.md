@@ -2,6 +2,8 @@
 
 An Astro-based full-stack starter kit that feels freeing, and is free. Make development fun again. [See the demo site](https://freedom.faith.tools).
 
+I wanted to provide a stack that's powerful like Ruby on Rails _("The One Person Framework")_, but with the ease and "vanilla" web dev feel of Astro.
+
 [![Netlify Status](https://api.netlify.com/api/v1/badges/78803fc4-5d36-4efb-82cd-2daeb5684fb6/deploy-status)](https://app.netlify.com/sites/freedom-stack/deploys) [![Github Stars](https://img.shields.io/github/stars/cameronapak/freedom-stack?style=flat-square)](https://github.com/cameronapak/freedom-stack/stargazers)
 
 <a href="https://www.netlify.com">
