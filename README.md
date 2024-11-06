@@ -118,7 +118,7 @@ npm run host:deploy
 > [!IMPORTANT]
 > Remember to set the environment variables in Netlify so that it builds successfully.
 
-[Learn more about hosting Astro sites](https://docs.astro.build/en/guides/deploy/).
+[Learn more about hosting Astro sites on Netlify](https://docs.astro.build/en/guides/deploy/netlify/).
 
 ---
 
@@ -171,6 +171,12 @@ Have a project that uses Freedom Stack? [Open a PR](https://github.com/cameronap
 Contributions welcomed. Please
 [open an issue](https://github.com/cameronapak/astwoah-stack/issues) if you'd
 like to contribute.
+
+---
+
+## License 📜
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
