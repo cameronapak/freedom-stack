@@ -178,6 +178,10 @@ like to contribute.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## Code of Conduct 📜
+
+See the [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) file for details.
+
 ---
 
 Freedom Stack is made with 🕊️ by [Cameron Pak](https://cameronpak.com), brought to you by [faith.tools](https://faith.tools).
