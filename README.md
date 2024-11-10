@@ -12,7 +12,7 @@ I wanted to provide a stack that's powerful like Ruby on Rails _("The One Person
 
 ## Before You Start 🔥
 
-A starter kit like this can save hours, days, or even weeks of development time. However, it's not enough just to have the baseline. You will need to have a philosophy around building a site or web app, so that you can make the most of the tooling and minimize wasting time. I recommend reading Getting Real by 37signals. [It's free to read online](https://books.37signals.com/8/getting-real).
+A starter kit like this can save hours, days, or even weeks of development time. However, it's not enough just to have the baseline. You will need to have a philosophy around building a site or web app, so that you can make the most of the tooling and minimize wasting time. I recommend reading Getting Real by 37signals. [It's free to read online](https://books.37signals.com/8/getting-real). _(While the book says a few choice words, it's a great, practical resource for building great software.)_
 
 ## Here's What's Included 🔋🔋🔋
 
