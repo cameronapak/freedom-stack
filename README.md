@@ -1,14 +1,18 @@
 # Freedom Stack • Full-Stack Starter Kit
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/78803fc4-5d36-4efb-82cd-2daeb5684fb6/deploy-status)](https://app.netlify.com/sites/freedom-stack/deploys) [![Github Stars](https://img.shields.io/github/stars/cameronapak/freedom-stack?style=flat-square)](https://github.com/cameronapak/freedom-stack/stargazers)
+
 An Astro-based full-stack starter kit that feels freeing, and is free. Make development fun again. [See the demo site](https://freedom.faith.tools).
 
 I wanted to provide a stack that's powerful like Ruby on Rails _("The One Person Framework")_, but with the ease and "vanilla" web dev feel of Astro.
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/78803fc4-5d36-4efb-82cd-2daeb5684fb6/deploy-status)](https://app.netlify.com/sites/freedom-stack/deploys) [![Github Stars](https://img.shields.io/github/stars/cameronapak/freedom-stack?style=flat-square)](https://github.com/cameronapak/freedom-stack/stargazers)
-
 <a href="https://app.netlify.com/start/deploy?repository=https://github.com/cameronapak/freedom-stack"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
 
 ![freedom stack](public/og-image.png)
+
+## Before You Start 🔥
+
+A starter kit like this can save hours, days, or even weeks of development time. However, it's not enough just to have the baseline. You will need to have a philosophy around building a site or web app, so that you can make the most of the tooling and minimize wasting time. I recommend reading Getting Real by 37signals. [It's free to read online](https://books.37signals.com/8/getting-real).
 
 ## Here's What's Included 🔋🔋🔋
 
