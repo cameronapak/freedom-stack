@@ -10,7 +10,21 @@ I wanted to provide a stack that's powerful like Ruby on Rails _("The One Person
 
 ![freedom stack](public/og-image.png)
 
-## Before You Start 🔥
+## Learning Resources 📚
+
+### The Frontend Layer
+
+If you want to learn more about the frontend layer, I recommend the [Astro Web Framework Crash Course by freeCodeCamp](https://www.youtube.com/watch?v=e-hTm5VmofI).
+
+### The Interactivity Layer
+
+If you want to learn more about Alpine.js, I recommend [Learn Alpine.js on codecourse](https://codecourse.com/courses/learn-alpine-js).
+
+### The Database Layer
+
+If you want to learn more about the database layer, I recommend learning from [High Performance SQLite course](https://highperformancesqlite.com/), sponsored by [Turso](https://turso.tech/).
+
+### The Philosophy Layer
 
 A starter kit like this can save hours, days, or even weeks of development time. However, it's not enough just to have the baseline. You will need to have a philosophy around building a site or web app, so that you can make the most of the tooling and minimize wasting time. I recommend reading Getting Real by 37signals. [It's free to read online](https://books.37signals.com/8/getting-real). _(While the book says a few choice words, it's a great, practical resource for building great software.)_
 
