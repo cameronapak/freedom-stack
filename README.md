@@ -194,6 +194,12 @@ Contributions welcomed. Please
 [open an issue](https://github.com/cameronapak/astwoah-stack/issues) if you'd
 like to contribute.
 
+<a href="https://github.com/cameronapak/freedom-stack/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=cameronapak/freedom-stack" />
+</a>
+
+Made with [contrib.rocks](https://contrib.rocks).
+
 ---
 
 ## License 📜
