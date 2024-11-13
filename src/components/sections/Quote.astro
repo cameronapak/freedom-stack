@@ -9,7 +9,7 @@ interface Props {
 const { quote, author, title, image } = Astro.props as Props;
 ---
 
-<section class="h-fit container flex flex-col justify-center items-center py-12">
+<section class="h-fit container flex flex-col justify-center items-center py-16">
   <div class="flex flex-col items-center max-w-3xl mx-auto text-center">
     <div class="mb-8 flex flex-col items-center">
       {image && <img src={image} alt={author} class="w-24 h-24 rounded-full object-cover mx-auto m-0" />}
