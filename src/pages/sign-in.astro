@@ -3,13 +3,17 @@ import { SignIn as ClerkSignIn } from "@clerk/astro/components";
 import Layout from "@/layouts/Layout.astro";
 import Container from "@sections/Container.astro";
 import Navbar from "@sections/Navbar.astro";
+
+if (Astro.locals.auth().userId) {
+  return Astro.redirect("/dashboard");
+}
 ---
 
 <Layout title="Sign In">
   <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
   <Container align="center">
     <div class="not-prose w-full flex justify-center">
-      <ClerkSignIn />
+      <ClerkSignIn forceRedirectUrl="/dashboard" />
     </div>
   </Container>
 </Layout>
