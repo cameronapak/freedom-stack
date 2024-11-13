@@ -60,7 +60,13 @@ Astro.response.headers.set("netlify-cache-tag", "components");
   title="Freedom Stack Boilerplate"
   description="A free full-stack boilerplate that feels freeing. Astro, HTMX, Alpine.js, Astro DB, Clerk Auth, Preline UI, & daisyUI."
 >
-  <Navbar title="Freedom Stack" links={[{ text: "Sign In", href: "/sign-in" }]} />
+  <Navbar
+    title="Freedom Stack"
+    links={[
+      { text: "Blog", href: "/posts" },
+      { text: "Sign In", href: "/sign-in" }
+    ]}
+  />
   <Hero
     title="Freedom Stack"
     subtitle="A full-stack Astro starter kit that feels freeing and is free."
@@ -100,7 +106,8 @@ Astro.response.headers.set("netlify-cache-tag", "components");
         title: "Resources",
         items: [
           { text: "Code on GitHub", href: "https://github.com/cameronapak/freedom-stack" },
-          { text: "Buy Me a Coffee", href: "https://buymeacoffee.com/campak" }
+          { text: "Buy Me a Coffee", href: "https://buymeacoffee.com/campak" },
+          { text: "Contact Cam", href: "https://cameronpak.com/pages/contact-cam" }
         ]
       }
     ]}

@@ -1,6 +1,8 @@
 ---
 import { db, Posts } from "astro:db";
 import Layout from "@/layouts/Layout.astro";
+import Navbar from "@sections/Navbar.astro";
+import Container from "@sections/Container.astro";
 
 const pageTitle = "Posts";
 const allPosts = await db.select().from(Posts).orderBy(Posts.pubDate);
@@ -16,24 +18,26 @@ Astro.response.headers.set("netlify-cache-tag", "posts");
 ---
 
 <Layout title={pageTitle}>
-  <main class="container mx-auto p-6">
-    <div class="text-sm breadcrumbs">
-      <ul class="!p-0 !m-0">
-        <li><a href="/">Home</a></li>
-        <li>Posts</li>
-      </ul>
-    </div>
+  <Navbar title="Freedom Stack" links={[{ text: "Sign In", href: "/sign-in" }]} />
 
-    <h1>Posts</h1>
-
-    <ul>
+  <Container title="Posts" titleIsH1 align="center">
+    <ul class="w-full list-none p-0 m-0 flex flex-col gap-6">
       {
         allPosts.map((post) => (
-          <li>
-            <a href={`/posts/${post.slug}`}>{post.title}</a>
+          <li class="w-full m-0">
+            <a
+              class="block no-underline p-6 rounded-xl border-2 border-slate-200 bg-white"
+              href={`/posts/${post.slug}`}
+            >
+              <p class="m-0 mb-2 text-sm text-slate-500">
+                {post.pubDate.toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+              </p>
+              <h2 class="m-0 line-clamp-2">{post.title}</h2>
+              <p class="m-0 line-clamp-2">{post.description}</p>
+            </a>
           </li>
         ))
       }
     </ul>
-  </main>
+  </Container>
 </Layout>
