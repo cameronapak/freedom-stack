@@ -1,0 +1,63 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  links?: {
+    title: string;
+    items: {
+      text: string;
+      href: string;
+    }[];
+  }[];
+  copyright?: string;
+}
+
+const {
+  title = "Freedom Stack",
+  description = "A full-stack Astro starter kit that feels freeing and is free.",
+  links = [
+    {
+      title: "Product",
+      items: [
+        { text: "Features", href: "#" },
+        { text: "Documentation", href: "#" }
+      ]
+    },
+    {
+      title: "Company",
+      items: [
+        { text: "About", href: "#" },
+        { text: "Blog", href: "#" }
+      ]
+    }
+  ],
+  copyright = `© ${new Date().getFullYear()} Freedom Stack. All rights reserved.`
+} = Astro.props;
+---
+
+<footer class="not-prose bg-slate-100">
+  <div class="footer py-16 px-6 container">
+    <div>
+      <h2 class="text-xl font-bold">{title}</h2>
+      <p class="text-balance max-w-xs">{description}</p>
+      <p class="text-slate-500 mt-2">{copyright}</p>
+    </div>
+
+    {
+      links.map((section) => (
+        <div>
+          <h3 class="footer-title m-0 font-normal text-slate-800 opacity-100">{section.title}</h3>
+          <ul class="space-y-2">
+            {section.items.map((link) => (
+              <li>
+                <a href={link.href} class="hover:underline hover:text-primary transition-colors">
+                  {link.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</footer>

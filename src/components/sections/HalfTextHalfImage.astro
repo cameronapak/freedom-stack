@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  image: string;
+  reverse?: boolean;
+}
+
+const { title, subtitle, image, reverse = false } = Astro.props as Props;
+---
+
+<section class="h-fit container flex flex-col justify-center items-center py-16">
+  <div class={`flex flex-col md:flex-row gap-8 w-full ${reverse ? "md:flex-row-reverse" : ""}`}>
+    <div class="flex-1 flex flex-col justify-center">
+      <h2 class="m-0">{title}</h2>
+      {subtitle && <p class="text-xl m-0">{subtitle}</p>}
+    </div>
+    <div class="flex-1 flex flex-col justify-center">
+      <img src={image} alt={title} class="m-0 rounded-2xl bg-slate-100 object-cover w-full h-full aspect-square" />
+    </div>
+  </div>
+</section>

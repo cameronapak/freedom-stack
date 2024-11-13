@@ -5,7 +5,6 @@ import netlify from "@astrojs/netlify";
 import sentry from "@sentry/astro";
 import db from "@astrojs/db";
 import sitemap from "@astrojs/sitemap";
-import webVitals from "@astrojs/web-vitals";
 import clerk from "@clerk/astro";
 import { copyTinymceToPublic } from "./src/integrations.ts";
 
@@ -33,7 +32,6 @@ export default defineConfig({
       changefreq: "weekly",
       lastmod: new Date()
     }),
-    webVitals(),
     copyTinymceToPublic(),
     clerk()
   ],

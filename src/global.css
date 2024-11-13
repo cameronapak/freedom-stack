@@ -38,3 +38,11 @@
 [x-cloak] {
   display: none;
 }
+
+.btn-outline {
+  @apply border-2 border-slate-200 hover:border-slate-200 hover:bg-inherit hover:text-inherit;
+}
+
+.btn-primary {
+  @apply text-white;
+}

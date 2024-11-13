@@ -1,0 +1,25 @@
+---
+interface Props {
+  quote: string;
+  author: string;
+  title?: string;
+  image?: string;
+}
+
+const { quote, author, title, image } = Astro.props as Props;
+---
+
+<section class="h-fit container flex flex-col justify-center items-center py-16">
+  <div class="flex flex-col items-center max-w-3xl mx-auto text-center">
+    <div class="mb-8 flex flex-col items-center">
+      {image && <img src={image} alt={author} class="w-24 h-24 rounded-full object-cover mx-auto m-0" />}
+      <blockquote class="pl-0 not-italic text-2xl text-balance border-none font-medium italic mt-8 mb-4">
+        "{quote}"
+      </blockquote>
+      <div class="flex flex-col gap-1">
+        <cite class="text-xl not-italic">{author}</cite>
+        {title && <span class="text-base opacity-75">{title}</span>}
+      </div>
+    </div>
+  </div>
+</section>
