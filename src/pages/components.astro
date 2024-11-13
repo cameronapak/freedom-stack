@@ -6,6 +6,8 @@ import Quote from "@/components/sections/Quote.astro";
 import Navbar from "@/components/sections/Navbar.astro";
 import Footer from "@/components/sections/Footer.astro";
 import Features from "@/components/sections/Features/index.astro";
+import Container from "@/components/sections/Container.astro";
+import RenderMarkdown from "@/components/RenderMarkdown.astro";
 
 const greyBackgroundImageSrc =
   "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNlMmU4ZjAiLz48L3N2Zz4=";
@@ -19,6 +21,25 @@ const features = [
   { title: "Clerk Auth", description: "Clerk Auth is a library for modern authentication." },
   { title: "Astro DB", description: "Astro DB is a library for modern databases." }
 ];
+
+const letterContentMarkdown = `
+  I dream of a lightweight, simple web development stack that invokes a fun web experience at the cheapest possible
+  maintenance, backend, and server cost. As close to free as possible. I wanted to provide a stack that's powerful
+  like Ruby on Rails _("The One Person Framework")_, but with the ease and "vanilla" web dev feel of Astro. Freedom
+  Stack is built on three core principles:
+
+  - **Approachable** — Making web development feel natural and comfortable, especially for newcomers
+  - **Flow-able** — Using an HTML-first approach that helps you focus and get in the zone faster
+  - **Pocket-friendly** — Keeping it financially maintainable for everyone, from indie hackers to startups
+
+  This is only the beginning. It's a joy to work on this project and to give it freely. Long story short, I was
+  bed-ridden sick for about 7 months, not knowing if I'd make it out. [God](https://www.gotquestions.org/what-is-the-gospel.html)
+  took care of me through friends and family. He healed me on the inside before he healed me on the outside. Ever
+  since, I've had a deep desire to create digital experiences that lead to freedom. May Freedom Stack be a blessing
+  to you to create whatever dreams and visions on your heart and mind.
+
+  _— [Cam Pak](https://cameronpak.com)_
+`;
 
 // The browser should always check freshness
 Astro.response.headers.set("cache-control", "public, max-age=0, must-revalidate");
@@ -67,5 +88,11 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     image={greyBackgroundImageSrc}
   />
   <Features features={features} />
+
+  <Container title="Why Freedom Stack?" align="center">
+    <div class="bg-white p-6 rounded-xl border-2 border-slate-200 w-full text-xl leading-relaxed">
+      <RenderMarkdown content={letterContentMarkdown} />
+    </div>
+  </Container>
   <Footer />
 </Layout>
