@@ -2,6 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/sections/Hero.astro";
 import HalfTextHalfImage from "@/components/sections/HalfTextHalfImage.astro";
+import Quote from "@/components/sections/Quote.astro";
 
 const greyBackgroundImageSrc =
   "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNlMmU4ZjAiLz48L3N2Zz4=";
@@ -38,5 +39,11 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     subtitle="A collection of reusable components for the Freedom Stack."
     image={greyBackgroundImageSrc}
     reverse
+  />
+  <Quote
+    quote="enjoyed learning about Freedom Stack, Cam. Really a refreshing take on SaaS boilerplates ✨ plus I love Astro, too!"
+    title="@poppacalypse"
+    author="Carl Poppa"
+    image={greyBackgroundImageSrc}
   />
 </Layout>
