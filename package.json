@@ -24,7 +24,6 @@
     "@astrojs/db": "^0.14.3",
     "@astrojs/netlify": "^5.5.4",
     "@astrojs/tailwind": "^5.1.2",
-    "@astrojs/web-vitals": "^3.0.0",
     "@clerk/astro": "^1.4.1",
     "@iconify-json/lucide": "^1.2.10",
     "@iconify-json/lucide-lab": "^1.2.1",
