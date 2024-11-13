@@ -1,0 +1,20 @@
+---
+import DOMPurify from "isomorphic-dompurify";
+import { marked } from "marked";
+
+interface Props {
+  content: string;
+}
+
+const { content } = Astro.props;
+
+const html = await marked.parse(content);
+
+// Convert markdown to HTML and sanitize
+const purifiedHTML = DOMPurify.sanitize(html, {
+  FORBID_TAGS: ["script", "style", "iframe", "form"],
+  FORBID_ATTR: ["onerror", "onload", "onclick", "onmouseover"]
+} as DOMPurify.Config);
+---
+
+<Fragment set:html={purifiedHTML} />
