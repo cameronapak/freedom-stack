@@ -4,6 +4,7 @@ import Hero from "@/components/sections/Hero.astro";
 import HalfTextHalfImage from "@/components/sections/HalfTextHalfImage.astro";
 import Quote from "@/components/sections/Quote.astro";
 import Navbar from "@/components/sections/Navbar.astro";
+import Footer from "@/components/sections/Footer.astro";
 
 const greyBackgroundImageSrc =
   "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNlMmU4ZjAiLz48L3N2Zz4=";
@@ -55,4 +56,5 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     author="Carl Poppa"
     image={greyBackgroundImageSrc}
   />
+  <Footer />
 </Layout>
