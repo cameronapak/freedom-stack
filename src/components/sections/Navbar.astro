@@ -1,0 +1,73 @@
+---
+interface Props {
+  title: string;
+  links?: {
+    text: string;
+    href: string;
+  }[];
+  ctaText?: string;
+  ctaHref?: string;
+  sticky?: boolean;
+}
+
+const { title, links = [], ctaText, ctaHref, sticky = false } = Astro.props;
+
+const hasLinks = links.length > 0;
+---
+
+<nav class={`navbar container bg-slate-50 sm:px-6 [&:has(label)]:max-sm:pe-4 ${sticky ? "sticky top-0 z-50" : ""}`}>
+  <div class="navbar-start">
+    <div class="dropdown lg:hidden">
+      {
+        hasLinks ? (
+          <label tabindex={0} class="btn btn-ghost btn-circle">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" />
+            </svg>
+          </label>
+        ) : null
+      }
+      <ul
+        tabindex={0}
+        class="not-prose menu menu-lg bg-slate-50 dropdown-content mt-3 z-[1] p-2 shadow-md rounded-box w-52"
+      >
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.href} class="no-underline">
+                {link.text}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <a href="/" class="no-underline text-xl font-bold">{title}</a>
+  </div>
+  <div class="navbar-center hidden lg:flex">
+    <ul class="not-prose menu menu-horizontal px-1">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href}>{link.text}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div class="navbar-end">
+    {
+      ctaText && ctaHref && (
+        <a href={ctaHref} class="btn btn-primary btn-sm no-underline">
+          {ctaText}
+        </a>
+      )
+    }
+  </div>
+</nav>
