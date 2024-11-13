@@ -1,12 +1,12 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Hero from "@/components/sections/Hero.astro";
-import HalfTextHalfImage from "@/components/sections/HalfTextHalfImage.astro";
-import Quote from "@/components/sections/Quote.astro";
-import Navbar from "@/components/sections/Navbar.astro";
-import Footer from "@/components/sections/Footer.astro";
-import Features from "@/components/sections/Features/index.astro";
-import Container from "@/components/sections/Container.astro";
+import Hero from "@sections/Hero.astro";
+import HalfTextHalfImage from "@sections/HalfTextHalfImage.astro";
+import Quote from "@sections/Quote.astro";
+import Navbar from "@sections/Navbar.astro";
+import Footer from "@sections/Footer.astro";
+import Features from "@sections/Features/index.astro";
+import Container from "@sections/Container.astro";
 import RenderMarkdown from "@/components/RenderMarkdown.astro";
 
 const greyBackgroundImageSrc =
@@ -64,7 +64,7 @@ Astro.response.headers.set("netlify-cache-tag", "components");
   />
   <Hero
     title="Freedom Stack"
-    subtitle="A full-stack Astro boilerplate that feels freeing and is free."
+    subtitle="A full-stack Astro starter kit that feels freeing and is free."
     ctaText="Get Started"
     ctaHref="/"
     secondaryCtaText="View on GitHub"

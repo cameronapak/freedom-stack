@@ -8,7 +8,8 @@
     "allowJs": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "@sections/*": ["src/components/sections/*"]
     }
   },
   "exclude": ["node_modules", "dist", "public"]
