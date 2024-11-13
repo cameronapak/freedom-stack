@@ -5,7 +5,7 @@ import HalfTextHalfImage from "@/components/sections/HalfTextHalfImage.astro";
 import Quote from "@/components/sections/Quote.astro";
 import Navbar from "@/components/sections/Navbar.astro";
 import Footer from "@/components/sections/Footer.astro";
-
+import Features from "@/components/sections/Features.astro";
 const greyBackgroundImageSrc =
   "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNlMmU4ZjAiLz48L3N2Zz4=";
 
@@ -29,7 +29,6 @@ Astro.response.headers.set("netlify-cache-tag", "components");
       { text: "GitHub", href: "https://github.com/cameronapak/freedom-stack" },
       { text: "Coffee ☕", href: "https://buymeacoffee.com/campak" }
     ]}
-    sticky
   />
   <Hero
     title="Freedom Stack"
@@ -55,6 +54,27 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     title="@poppacalypse"
     author="Carl Poppa"
     image={greyBackgroundImageSrc}
+  />
+  <Features
+    title="Features"
+    subtitle="A collection of features for the Freedom Stack."
+    features={[
+      {
+        title: "Astro",
+        description: "Astro is a modern static site builder.",
+        icon: "🚀"
+      },
+      {
+        title: "HTMX",
+        description: "HTMX is a library for modern HTML.",
+        icon: "🔗"
+      },
+      {
+        title: "Alpine.js",
+        description: "Alpine.js is a library for modern JavaScript.",
+        icon: "🌐"
+      }
+    ]}
   />
   <Footer />
 </Layout>
