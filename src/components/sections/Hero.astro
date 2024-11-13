@@ -12,8 +12,8 @@ const { title, subtitle, ctaText = "Get Started", ctaHref = "#", secondaryCtaTex
 ---
 
 <section class="min-h-[70vh] h-fit container flex flex-col justify-center items-center py-16">
-  <h1 class="m-0">{title}</h1>
-  {subtitle && <p class="text-xl m-0">{subtitle}</p>}
+  <h1 class="m-0 text-center text-balance">{title}</h1>
+  {subtitle && <p class="text-xl m-0 text-center">{subtitle}</p>}
   <div class="flex gap-4 justify-center mt-8">
     <a href={ctaHref} class="btn btn-primary">{ctaText}</a>
     {
