@@ -13,6 +13,7 @@ interface Props {
 const { title, links = [], ctaText, ctaHref, sticky = false } = Astro.props;
 
 const hasLinks = links.length > 0;
+const hasCta = Boolean(ctaText && ctaHref);
 ---
 
 <nav class={`navbar container bg-slate-50 sm:px-6 [&:has(label)]:max-sm:pe-4 ${sticky ? "sticky top-0 z-50" : ""}`}>
@@ -50,24 +51,34 @@ const hasLinks = links.length > 0;
     </div>
     <a href="/" class="no-underline text-xl font-bold">{title}</a>
   </div>
-  <div class="navbar-center hidden lg:flex">
-    <ul class="not-prose menu menu-horizontal px-1">
-      {
-        links.map((link) => (
-          <li>
-            <a href={link.href}>{link.text}</a>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-  <div class="navbar-end">
-    {
-      ctaText && ctaHref && (
-        <a href={ctaHref} class="btn btn-primary btn-sm no-underline">
-          {ctaText}
-        </a>
-      )
-    }
-  </div>
+  {
+    hasCta ? (
+      <>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="not-prose menu menu-horizontal px-1">
+            {links.map((link) => (
+              <li>
+                <a href={link.href}>{link.text}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="navbar-end">
+          <a href={ctaHref} class="btn btn-primary btn-sm no-underline">
+            {ctaText}
+          </a>
+        </div>
+      </>
+    ) : (
+      <div class="navbar-end hidden lg:flex">
+        <ul class="not-prose menu menu-horizontal px-1">
+          {links.map((link) => (
+            <li>
+              <a href={link.href}>{link.text}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  }
 </nav>
