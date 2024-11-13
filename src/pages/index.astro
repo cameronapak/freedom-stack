@@ -9,6 +9,9 @@ import Features from "@sections/Features/index.astro";
 import Container from "@sections/Container.astro";
 import FAQ from "@sections/FAQ.astro";
 import RenderMarkdown from "@/components/RenderMarkdown.astro";
+import sectionsImage from "@/assets/sections.png";
+import deployToNetlifyImage from "@/assets/deploy.png";
+import fullStackImage from "@/assets/full-stack.png";
 
 const greyBackgroundImageSrc =
   "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNlMmU4ZjAiLz48L3N2Zz4=";
@@ -121,21 +124,25 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     secondaryCtaHref="https://github.com/cameronapak/freedom-stack"
   />
   <HalfTextHalfImage
-    title="Components"
-    subtitle="A collection of reusable components for the Freedom Stack."
-    image={greyBackgroundImageSrc}
+    title="Create full-stack web apps"
+    subtitle="Save time, money, and headaches by using Freedom Stack."
+    image={fullStackImage.src}
   />
   <HalfTextHalfImage
-    title="Components"
-    subtitle="A collection of reusable components for the Freedom Stack."
-    image={greyBackgroundImageSrc}
+    title="No need to reinvent the wheel"
+    subtitle="Auth? Database? Components? This starter kit has you covered."
+    image={sectionsImage.src}
     reverse
+  />
+  <HalfTextHalfImage
+    title="Focus on the fun stuff"
+    subtitle="Enjoy building apps, not configuring servers. Incredibly easy to deploy."
+    image={deployToNetlifyImage.src}
   />
   <Quote
     quote="enjoyed learning about Freedom Stack, Cam. Really a refreshing take on SaaS boilerplates ✨ plus I love Astro, too!"
     title="@poppacalypse"
     author="Carl Poppa"
-    image={greyBackgroundImageSrc}
   />
   <Features features={features} />
 
