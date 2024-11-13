@@ -1,6 +1,10 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Hero from "@/components/sections/Hero.astro";
+import HalfTextHalfImage from "@/components/sections/HalfTextHalfImage.astro";
+
+const greyBackgroundImageSrc =
+  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNlMmU4ZjAiLz48L3N2Zz4=";
 
 // The browser should always check freshness
 Astro.response.headers.set("cache-control", "public, max-age=0, must-revalidate");
@@ -23,5 +27,16 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     ctaHref="/"
     secondaryCtaText="View on GitHub"
     secondaryCtaHref="https://github.com/cameronapak/freedom-stack"
+  />
+  <HalfTextHalfImage
+    title="Components"
+    subtitle="A collection of reusable components for the Freedom Stack."
+    image={greyBackgroundImageSrc}
+  />
+  <HalfTextHalfImage
+    title="Components"
+    subtitle="A collection of reusable components for the Freedom Stack."
+    image={greyBackgroundImageSrc}
+    reverse
   />
 </Layout>
