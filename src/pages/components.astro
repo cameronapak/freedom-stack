@@ -13,12 +13,12 @@ const greyBackgroundImageSrc =
   "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNlMmU4ZjAiLz48L3N2Zz4=";
 
 const features = [
-  { title: "Astro", description: "Astro is a modern static site builder." },
-  { title: "Alpine.js", description: "Alpine.js is a library for modern JavaScript." },
-  { title: "HTMX", description: "HTMX is a library for modern HTML." },
-  { title: "daisyUI", description: "daisyUI is a library for modern UI." },
-  { title: "Clerk Auth", description: "Clerk Auth is a library for modern authentication." },
-  { title: "Astro DB", description: "Astro DB is a library for modern databases." }
+  { title: "Astro", description: "The simplest web metaframework" },
+  { title: "Alpine.js", description: "Used for client-side interactivity" },
+  { title: "HTMX", description: "Used for sending HTML partials over the wire" },
+  { title: "daisyUI", description: "Easy as Bootstrap; built upon Tailwind" },
+  { title: "Clerk Auth", description: "The simplest authentication solution" },
+  { title: "Astro DB", description: "An approachable database solution" }
 ];
 
 const letterContentMarkdown = `
@@ -36,6 +36,12 @@ const letterContentMarkdown = `
   took care of me through friends and family. He healed me on the inside before he healed me on the outside. Ever
   since, I've had a deep desire to create digital experiences that lead to freedom. May Freedom Stack be a blessing
   to you to create whatever dreams and visions on your heart and mind.
+
+  Freedom Stack:
+
+  - Feels vanilla, with the power of modern frameworks. No need for Docker. Just throw it on Netlify and you're good to go.
+  - Is built with Astro, Alpine.js, HTMX, Astro DB, Clerk Auth, Preline UI, daisyUI, & Lucide Icons. Enjoy building apps.
+  - Has a low barrier to entry, making it easy to learn and start building fast. Get in the zone and stay in it.
 
   _— [Cam Pak](https://cameronpak.com)_
 `;
@@ -58,8 +64,8 @@ Astro.response.headers.set("netlify-cache-tag", "components");
   <Hero
     title="Freedom Stack"
     subtitle="A full-stack Astro starter kit that feels freeing and is free."
-    ctaText="Get Started"
-    ctaHref="/"
+    ctaText="Deploy to Netlify"
+    ctaHref="https://app.netlify.com/start/deploy?repository=https://github.com/cameronapak/freedom-stack"
     secondaryCtaText="View on GitHub"
     secondaryCtaHref="https://github.com/cameronapak/freedom-stack"
   />
