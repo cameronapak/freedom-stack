@@ -17,4 +17,4 @@ const purifiedHTML = DOMPurify.sanitize(html, {
 } as DOMPurify.Config);
 ---
 
-<Fragment set:html={purifiedHTML} />
+<div set:html={purifiedHTML} class="[&>p]:m-0 [&>p]:text-xl [&>p]:leading-relaxed" />

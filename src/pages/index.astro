@@ -7,6 +7,7 @@ import Navbar from "@sections/Navbar.astro";
 import Footer from "@sections/Footer.astro";
 import Features from "@sections/Features/index.astro";
 import Container from "@sections/Container.astro";
+import FAQ from "@sections/FAQ.astro";
 import RenderMarkdown from "@/components/RenderMarkdown.astro";
 
 const greyBackgroundImageSrc =
@@ -19,6 +20,50 @@ const features = [
   { title: "daisyUI", description: "Easy as Bootstrap; built upon Tailwind" },
   { title: "Clerk Auth", description: "The simplest authentication solution" },
   { title: "Astro DB", description: "An approachable database solution" }
+];
+
+const faqItems = [
+  {
+    question: "What is Freedom Stack?",
+    answer: "Freedom Stack is a full-stack Astro starter kit that feels freeing and is free."
+  },
+  {
+    question: "How can I learn more about Astro?",
+    answer:
+      "If you want to learn more about the frontend layer, I recommend the [Astro Web Framework Crash Course by freeCodeCamp](https://www.youtube.com/watch?v=e-hTm5VmofI) or check out [Astro's Community Educational Content](https://docs.astro.build/en/community-resources/content/)."
+  },
+  {
+    question: "How can I learn more about Alpine.js?",
+    answer:
+      "If you want to learn more about Alpine.js, I recommend [Learn Alpine.js on codecourse](https://codecourse.com/courses/learn-alpine-js)."
+  },
+  {
+    question: "How can I learn more about the libSQL database layer?",
+    answer:
+      "If you want to learn more about the database layer, I recommend learning from [High Performance SQLite course](https://highperformancesqlite.com/), sponsored by [Turso](https://turso.tech/)."
+  },
+  {
+    question: "How can I learn more about Clerk Auth?",
+    answer: "[Learn more about the Clerk and Astro integration.](https://clerk.com/docs/references/astro/overview)"
+  },
+  {
+    question: "How do I deploy Freedom Stack?",
+    answer:
+      "You can deploy Freedom Stack to [Netlify](https://app.netlify.com/start/deploy?repository=https://github.com/cameronapak/freedom-stack)."
+  },
+  {
+    question: "How can I learn more about HTMX?",
+    answer: "[Learn more about HTMX.](https://htmx.org/)"
+  },
+  {
+    question: "How can I learn more about daisyUI?",
+    answer: "[Learn more about daisyUI.](https://daisyui.com/)"
+  },
+  {
+    question: "How can I contribute to Freedom Stack?",
+    answer:
+      "If you'd like to contribute to Freedom Stack, please [open an issue](https://github.com/cameronapak/freedom-stack/issues) or [submit a pull request](https://github.com/cameronapak/freedom-stack/pulls). Or, if you can submit financially, please consider [buying me a coffee](https://buymeacoffee.com/campak)."
+  }
 ];
 
 const letterContentMarkdown = `
@@ -99,6 +144,8 @@ Astro.response.headers.set("netlify-cache-tag", "components");
       <RenderMarkdown content={letterContentMarkdown} />
     </div>
   </Container>
+
+  <FAQ title="FAQ" items={faqItems} />
 
   <Footer
     links={[

@@ -1,0 +1,36 @@
+---
+import Container from "@sections/Container.astro";
+import RenderMarkdown from "@/components/RenderMarkdown.astro";
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  align?: "center" | "left" | "right";
+  items: {
+    question: string;
+    answer: string;
+  }[];
+}
+
+const { title, subtitle, align = "center", items } = Astro.props as Props;
+---
+
+<Container title={title} subtitle={subtitle} align={align}>
+  {
+    items.map((item, index) => (
+      <div class="collapse">
+        <input type="radio" name={title} checked={index === 0} />
+        <h3 class="collapse-title font-medium">{item.question}</h3>
+        <div class="collapse-content">
+          <RenderMarkdown content={item.answer} />
+        </div>
+      </div>
+    ))
+  }
+</Container>
+
+<style>
+  .collapse:has(input:checked) {
+    @apply bg-white rounded-xl border-2 border-slate-200;
+  }
+</style>
