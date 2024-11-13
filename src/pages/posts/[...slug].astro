@@ -1,11 +1,13 @@
 ---
 import { db, Posts, eq } from "astro:db";
-import { marked } from "marked";
-import DOMPurify from "isomorphic-dompurify";
 import { Icon } from "astro-iconify";
 
 import Layout from "@/layouts/Layout.astro";
 import ShowIfAuthenticated from "@/components/ShowIfAuthenticated.astro";
+import Footer from "@sections/Footer.astro";
+import Navbar from "@sections/Navbar.astro";
+import Container from "@sections/Container.astro";
+import RenderMarkdown from "@/components/RenderMarkdown.astro";
 
 const { slug } = Astro.params;
 
@@ -19,14 +21,6 @@ if (!entry) {
   return Astro.redirect("/posts");
 }
 
-const content = await marked(entry?.content || "");
-
-if (!content) {
-  return Astro.redirect("/posts");
-}
-
-const cleanHTML = DOMPurify.sanitize(content);
-
 // The browser should always check freshness
 Astro.response.headers.set("cache-control", "public, max-age=0, must-revalidate");
 
@@ -38,33 +32,50 @@ Astro.response.headers.set("netlify-cache-tag", `post-${slug}`);
 ---
 
 <Layout title={entry?.title || ""}>
-  <article class="container mx-auto p-6">
-    <div class="text-sm breadcrumbs m-0">
-      <ul class="!p-0 !m-0">
-        <li><a href="/">Home</a></li>
-        <li><a href="/posts">Posts</a></li>
-        <li>Post</li>
-      </ul>
-    </div>
+  <Navbar
+    title="Freedom Stack"
+    links={[
+      { text: "Blog", href: "/posts" },
+      { text: "Sign In", href: "/sign-in" }
+    ]}
+  />
 
-    <div class="flex flex-col">
-      <h1 class="flex items-center gap-3">
-        {entry?.title}
-        <ShowIfAuthenticated server:defer>
-          <a class="btn btn-sm btn-circle p-0 m-0" href={`/dashboard/posts/edit/${slug}`}>
-            <Icon pack="lucide" name="pencil" height={16} width={16} />
-          </a>
-        </ShowIfAuthenticated>
-      </h1>
-      <p class="m-0">
-        Posted on {new Date(entry?.pubDate).toLocaleDateString("en-US", { month: "long", year: "numeric" })} by {
-          entry?.author
-        }
-      </p>
-    </div>
+  <Container
+    title={entry?.title || ""}
+    align="center"
+    titleIsH1={true}
+    subtitle={` Posted on ${new Date(entry?.pubDate).toLocaleDateString("en-US", { month: "long", year: "numeric" })} by ${
+      entry?.author
+    }`}
+  >
+    <article>
+      <RenderMarkdown content={entry?.content || ""} />
+      <ShowIfAuthenticated server:defer>
+        <a class="btn btn-sm mt-4" href={`/dashboard/posts/edit/${slug}`}>
+          <Icon pack="lucide" name="pencil" height={16} width={16} />
+          Edit Post
+        </a>
+      </ShowIfAuthenticated>
+    </article>
+  </Container>
 
-    <div class="divider" role="separator"></div>
-
-    <div set:html={cleanHTML} />
-  </article>
+  <Footer
+    links={[
+      {
+        title: "Resources",
+        items: [
+          { text: "Code on GitHub", href: "https://github.com/cameronapak/freedom-stack" },
+          { text: "Buy Me a Coffee", href: "https://buymeacoffee.com/campak" },
+          { text: "Contact Cam", href: "https://cameronpak.com/pages/contact-cam" }
+        ]
+      },
+      {
+        title: "Legal",
+        items: [
+          { text: "Code of Conduct", href: "https://github.com/cameronapak/freedom-stack?tab=coc-ov-file#readme" },
+          { text: "MIT License", href: "https://github.com/cameronapak/freedom-stack?tab=mit-1-ov-file#readme" }
+        ]
+      }
+    ]}
+  />
 </Layout>

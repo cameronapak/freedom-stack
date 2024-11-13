@@ -1,12 +1,50 @@
 ---
-import { Icon } from "astro-iconify";
-import { SignUpButton, SignInButton } from "@clerk/astro/components";
 import Layout from "@/layouts/Layout.astro";
-import IconBlock from "@/components/IconBlock.astro";
+import Hero from "@sections/Hero.astro";
+import HalfTextHalfImage from "@sections/HalfTextHalfImage.astro";
+import Quote from "@sections/Quote.astro";
+import Navbar from "@sections/Navbar.astro";
+import Footer from "@sections/Footer.astro";
+import Features from "@sections/Features/index.astro";
+import Container from "@sections/Container.astro";
+import RenderMarkdown from "@/components/RenderMarkdown.astro";
 
-if (Astro.locals.auth().userId) {
-  return Astro.redirect("/dashboard");
-}
+const greyBackgroundImageSrc =
+  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNlMmU4ZjAiLz48L3N2Zz4=";
+
+const features = [
+  { title: "Astro", description: "The simplest web metaframework" },
+  { title: "Alpine.js", description: "Used for client-side interactivity" },
+  { title: "HTMX", description: "Used for sending HTML partials over the wire" },
+  { title: "daisyUI", description: "Easy as Bootstrap; built upon Tailwind" },
+  { title: "Clerk Auth", description: "The simplest authentication solution" },
+  { title: "Astro DB", description: "An approachable database solution" }
+];
+
+const letterContentMarkdown = `
+  I dream of a lightweight, simple web development stack that invokes a fun web experience at the cheapest possible
+  maintenance, backend, and server cost. As close to free as possible. I wanted to provide a stack that's powerful
+  like Ruby on Rails _("The One Person Framework")_, but with the ease and "vanilla" web dev feel of Astro. Freedom
+  Stack is built on three core principles:
+
+  - **Approachable** — Making web development feel natural and comfortable, especially for newcomers
+  - **Flow-able** — Using an HTML-first approach that helps you focus and get in the zone faster
+  - **Pocket-friendly** — Keeping it financially maintainable for everyone, from indie hackers to startups
+
+  This is only the beginning. It's a joy to work on this project and to give it freely. Long story short, I was
+  bed-ridden sick for about 7 months, not knowing if I'd make it out. [God](https://www.gotquestions.org/what-is-the-gospel.html)
+  took care of me through friends and family. He healed me on the inside before he healed me on the outside. Ever
+  since, I've had a deep desire to create digital experiences that lead to freedom. May Freedom Stack be a blessing
+  to you to create whatever dreams and visions on your heart and mind.
+
+  Freedom Stack:
+
+  - Feels vanilla, with the power of modern frameworks. No need for Docker. Just throw it on Netlify and you're good to go.
+  - Is built with Astro, Alpine.js, HTMX, Astro DB, Clerk Auth, Preline UI, daisyUI, & Lucide Icons. Enjoy building apps.
+  - Has a low barrier to entry, making it easy to learn and start building fast. Get in the zone and stay in it.
+
+  _— [Cam Pak](https://cameronpak.com)_
+`;
 
 // The browser should always check freshness
 Astro.response.headers.set("cache-control", "public, max-age=0, must-revalidate");
@@ -15,138 +53,70 @@ Astro.response.headers.set("cache-control", "public, max-age=0, must-revalidate"
 Astro.response.headers.set("netlify-cdn-cache-control", "s-maxage=31536000");
 
 // Tag the page with the project slug
-Astro.response.headers.set("netlify-cache-tag", "index");
+Astro.response.headers.set("netlify-cache-tag", "components");
 ---
 
 <Layout
   title="Freedom Stack Boilerplate"
   description="A free full-stack boilerplate that feels freeing. Astro, HTMX, Alpine.js, Astro DB, Clerk Auth, Preline UI, & daisyUI."
 >
-  <!-- Hero -->
-  <header class="relative overflow-hidden not-prose">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-end gap-3 mt-6">
-        <SignInButton class="btn btn-ghost shadow-none" />
-        <SignUpButton class="btn btn-ghost shadow-none" />
-      </div>
-    </div>
-  </header>
-  <!-- End Hero -->
+  <Navbar
+    title="Freedom Stack"
+    links={[
+      { text: "Blog", href: "/posts" },
+      { text: "Sign In", href: "/sign-in" }
+    ]}
+  />
+  <Hero
+    title="Freedom Stack"
+    subtitle="A full-stack Astro starter kit that feels freeing and is free."
+    ctaText="Deploy to Netlify"
+    ctaHref="https://app.netlify.com/start/deploy?repository=https://github.com/cameronapak/freedom-stack"
+    secondaryCtaText="View on GitHub"
+    secondaryCtaHref="https://github.com/cameronapak/freedom-stack"
+  />
+  <HalfTextHalfImage
+    title="Components"
+    subtitle="A collection of reusable components for the Freedom Stack."
+    image={greyBackgroundImageSrc}
+  />
+  <HalfTextHalfImage
+    title="Components"
+    subtitle="A collection of reusable components for the Freedom Stack."
+    image={greyBackgroundImageSrc}
+    reverse
+  />
+  <Quote
+    quote="enjoyed learning about Freedom Stack, Cam. Really a refreshing take on SaaS boilerplates ✨ plus I love Astro, too!"
+    title="@poppacalypse"
+    author="Carl Poppa"
+    image={greyBackgroundImageSrc}
+  />
+  <Features features={features} />
 
-  <!-- Hero -->
-  <section class="relative overflow-hidden not-prose">
-    <div class="container flex flex-col gap-4 mx-auto px-4 sm:px-6 lg:px-8 py-[96px] max-sm:py-12">
-      <div class="max-w-2xl text-center mx-auto">
-        <h1 class="block text-3xl font-bold text-gray-800 sm:text-4xl md:text-5xl">
-          <span class="text-blue-600">Freedom</span> Stack
-        </h1>
-        <p class="text-lg text-gray-800">A full-stack Astro starter kit that feels freeing and is free.</p>
-        <a
-          href="https://app.netlify.com/start/deploy?repository=https://github.com/cameronapak/freedom-stack"
-          class="flex justify-center mt-4"
-          title="Deploy to Netlify"
-        >
-          <img
-            src="https://www.netlify.com/img/deploy/button.svg"
-            alt="Deploy to Netlify"
-            class="w-fit h-fit m-0 aspect-[179/32]"
-          />
-        </a>
-        <div class="flex justify-center gap-3 mt-6">
-          <a class="btn btn-primary shadow-none" href="https://github.com/cameronapak/freedom-stack" target="_blank">
-            <Icon pack="lucide" name="github" height={20} width={20} />
-            Get Code
-          </a>
-          <a href="/posts" class="btn btn-muted shadow-none"> Open Blog </a>
-        </div>
-      </div>
+  <Container title="Why Freedom Stack?" align="center">
+    <div class="bg-white p-6 rounded-xl border-2 border-slate-200 w-full text-xl leading-relaxed">
+      <RenderMarkdown content={letterContentMarkdown} />
     </div>
-  </section>
-  <!-- End Hero -->
+  </Container>
 
-  <!-- Icon Blocks -->
-  <section class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-    <div class="max-w-4xl mx-auto">
-      <!-- Grid -->
-      <div class="grid max-sm:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <IconBlock
-          title="Powerful"
-          description={`Feels vanilla, with the power of modern frameworks. No need for Docker. Just throw it on Netlify and you're good to go.`}
-          icon="flame"
-        />
-        <IconBlock
-          title="Approachable"
-          description={`Built with Astro, Alpine.js, HTMX, Astro DB, Clerk Auth, Preline UI, daisyUI, & Lucide Icons. Enjoy building apps.`}
-          icon="smile"
-        />
-        <IconBlock
-          title="Kinetic"
-          description={`With a low barrier to entry, Freedom Stack is easy to learn and start building fast. Get in the zone and stay in it.`}
-          icon="zap"
-        />
-      </div>
-      <!-- End Grid -->
-    </div>
-  </section>
-  <!-- End Icon Blocks -->
-
-  <footer class="not-prose mt-auto w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
-    <!-- Grid -->
-    <div class="text-center">
-      <div class="flex flex-col items-center gap-2">
-        <ul class="flex gap-3">
-          <li>
-            <p class="text-gray-500">
-              <a
-                class="link no-underline hover:underline"
-                href="https://github.com/cameronapak/freedom-stack?tab=coc-ov-file#readme"
-                target="_blank">Code of Conduct</a
-              >
-            </p>
-          </li>
-          <li>
-            <p class="text-gray-500">
-              <a
-                class="link no-underline hover:underline"
-                href="https://github.com/cameronapak/freedom-stack?tab=MIT-1-ov-file#readme"
-                target="_blank">MIT License</a
-              >
-            </p>
-          </li>
-        </ul>
-        <p class="text-gray-500">
-          A
-          <a class="link no-underline hover:underline" href="https://faith.tools" target="_blank">
-            <svg
-              class="inline-block bg-white rounded-full shadow align-top translate-y-0.5"
-              width="24"
-              height="24"
-              viewBox="0 0 512 512"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M78.1099 260.102C183.947 150.082 329.442 196.543 435.279 319.109"
-                stroke="black"
-                stroke-opacity="0.4"
-                stroke-width="36.0807"
-                stroke-linecap="round"></path>
-              <path
-                d="M77.3586 259.204C183.196 369.223 329.443 316.143 435.28 193.578"
-                stroke="black"
-                stroke-width="36.0807"
-                stroke-linecap="round"></path>
-            </svg>
-            faith.tools</a
-          > product © {new Date().getFullYear()}
-        </p>
-        <p class="text-gray-500">
-          Created by <a class="link no-underline hover:underline" href="https://cameronpak.com" target="_blank"
-            >Cameron Pak</a
-          >
-        </p>
-      </div>
-    </div>
-    <!-- End Grid -->
-  </footer>
+  <Footer
+    links={[
+      {
+        title: "Resources",
+        items: [
+          { text: "Code on GitHub", href: "https://github.com/cameronapak/freedom-stack" },
+          { text: "Buy Me a Coffee", href: "https://buymeacoffee.com/campak" },
+          { text: "Contact Cam", href: "https://cameronpak.com/pages/contact-cam" }
+        ]
+      },
+      {
+        title: "Legal",
+        items: [
+          { text: "Code of Conduct", href: "https://github.com/cameronapak/freedom-stack?tab=coc-ov-file#readme" },
+          { text: "MIT License", href: "https://github.com/cameronapak/freedom-stack?tab=mit-1-ov-file#readme" }
+        ]
+      }
+    ]}
+  />
 </Layout>
