@@ -5,9 +5,20 @@ import HalfTextHalfImage from "@/components/sections/HalfTextHalfImage.astro";
 import Quote from "@/components/sections/Quote.astro";
 import Navbar from "@/components/sections/Navbar.astro";
 import Footer from "@/components/sections/Footer.astro";
-import Features from "@/components/sections/Features.astro";
+import Features from "@/components/sections/Features/index.astro";
+
 const greyBackgroundImageSrc =
   "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNlMmU4ZjAiLz48L3N2Zz4=";
+
+const features = [
+  { title: "Astro", description: "Astro is a modern static site builder." },
+  { title: "Alpine.js", description: "Alpine.js is a library for modern JavaScript." },
+  { title: "HTMX", description: "HTMX is a library for modern HTML." },
+  { title: "Preline UI", description: "Preline UI is a library for modern UI." },
+  { title: "daisyUI", description: "daisyUI is a library for modern UI." },
+  { title: "Clerk Auth", description: "Clerk Auth is a library for modern authentication." },
+  { title: "Astro DB", description: "Astro DB is a library for modern databases." }
+];
 
 // The browser should always check freshness
 Astro.response.headers.set("cache-control", "public, max-age=0, must-revalidate");
@@ -55,26 +66,6 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     author="Carl Poppa"
     image={greyBackgroundImageSrc}
   />
-  <Features
-    title="Features"
-    subtitle="A collection of features for the Freedom Stack."
-    features={[
-      {
-        title: "Astro",
-        description: "Astro is a modern static site builder.",
-        icon: "🚀"
-      },
-      {
-        title: "HTMX",
-        description: "HTMX is a library for modern HTML.",
-        icon: "🔗"
-      },
-      {
-        title: "Alpine.js",
-        description: "Alpine.js is a library for modern JavaScript.",
-        icon: "🌐"
-      }
-    ]}
-  />
+  <Features features={features} />
   <Footer />
 </Layout>

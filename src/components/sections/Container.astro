@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  align?: "center" | "left" | "right";
+}
+
+const { title, subtitle, align = "left" } = Astro.props;
+---
+
+<section class="h-fit container flex flex-col justify-center items-center px-6 py-16">
+  <div class={`flex flex-col items-${align} max-w-3xl mx-auto text-${align} mb-12 w-full`}>
+    <h2 class="mb-4 text-balance">{title}</h2>
+    {subtitle && <p class="text-xl mb-0 line-clamp-4">{subtitle}</p>}
+  </div>
+
+  <slot />
+</section>

@@ -9,6 +9,9 @@
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
   },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "editor.rulers": [120],

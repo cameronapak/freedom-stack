@@ -1,0 +1,17 @@
+---
+import { Icon } from "astro-iconify";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props as Props;
+---
+
+<div class="card h-full bg-slate-50 border-2 border-slate-200">
+  <div class="card-body p-6 items-center text-center">
+    <h3 class="text-balance !m-0">{title}</h3>
+    <p class="m-0">{description}</p>
+  </div>
+</div>
