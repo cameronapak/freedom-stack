@@ -16,7 +16,6 @@ const features = [
   { title: "Astro", description: "Astro is a modern static site builder." },
   { title: "Alpine.js", description: "Alpine.js is a library for modern JavaScript." },
   { title: "HTMX", description: "HTMX is a library for modern HTML." },
-  { title: "Preline UI", description: "Preline UI is a library for modern UI." },
   { title: "daisyUI", description: "daisyUI is a library for modern UI." },
   { title: "Clerk Auth", description: "Clerk Auth is a library for modern authentication." },
   { title: "Astro DB", description: "Astro DB is a library for modern databases." }
@@ -94,5 +93,16 @@ Astro.response.headers.set("netlify-cache-tag", "components");
       <RenderMarkdown content={letterContentMarkdown} />
     </div>
   </Container>
-  <Footer />
+
+  <Footer
+    links={[
+      {
+        title: "Resources",
+        items: [
+          { text: "Code on GitHub", href: "https://github.com/cameronapak/freedom-stack" },
+          { text: "Buy Me a Coffee", href: "https://buymeacoffee.com/campak" }
+        ]
+      }
+    ]}
+  />
 </Layout>
