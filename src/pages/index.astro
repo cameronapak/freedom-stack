@@ -13,9 +13,6 @@ import sectionsImage from "@/assets/sections.png";
 import deployToNetlifyImage from "@/assets/deploy.png";
 import fullStackImage from "@/assets/full-stack.png";
 
-const greyBackgroundImageSrc =
-  "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMSIgaGVpZ2h0PSIxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9IiNlMmU4ZjAiLz48L3N2Zz4=";
-
 const features = [
   { title: "Astro", description: "The simplest web metaframework" },
   { title: "Alpine.js", description: "Used for client-side interactivity" },
@@ -94,6 +91,8 @@ const letterContentMarkdown = `
   _— [Cam Pak](https://cameronpak.com)_
 `;
 
+export const prerender = true;
+
 // The browser should always check freshness
 Astro.response.headers.set("cache-control", "public, max-age=0, must-revalidate");
 
@@ -120,9 +119,18 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     subtitle="A full-stack Astro starter kit that feels freeing and is free."
     ctaText="Deploy to Netlify"
     ctaHref="https://app.netlify.com/start/deploy?repository=https://github.com/cameronapak/freedom-stack"
-    secondaryCtaText="View on GitHub"
+    secondaryCtaText="GitHub                 "
     secondaryCtaHref="https://github.com/cameronapak/freedom-stack"
   />
+  {
+    /*
+      Using HTMX to grab the GitHub stars count without reloading the page.
+      The extra spaces after secondaryCtaText are just padding to make it look better.
+      Doing this approach versus using server defer for an Astro component is to showcase
+      what's possible if you want to update a DOM element without having to mutate the Astro component.
+    */
+  }
+  <div class="hidden" hx-get="/api/htmx-partials/github-stars" hx-trigger="load" hx-swap="innerHTML"></div>
   <HalfTextHalfImage
     title="Create full-stack web apps"
     subtitle="Save time, money, and headaches by using Freedom Stack."
