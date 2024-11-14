@@ -2,7 +2,14 @@
 import { Icon } from "astro-iconify";
 
 // https://docs.astro.build/en/basics/astro-pages/#page-partials
-const repo = await fetch("https://api.github.com/repos/cameronapak/freedom-stack");
+const repo = await fetch("https://api.github.com/repos/cameronapak/freedom-stack", {
+  headers: {
+    // Cache for 4 hours
+    "Cache-Control": "public, max-age=14400",
+    // Accept JSON response
+    Accept: "application/json"
+  }
+});
 const repoData = await repo.json();
 const stars = repoData.stargazers_count;
 
