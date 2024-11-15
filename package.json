@@ -39,7 +39,6 @@
     "tinymce": "^7.4.1"
   },
   "devDependencies": {
-    "@astrojs/sitemap": "^3.2.1",
     "@tailwindcss/typography": "^0.5.15",
     "@types/alpinejs": "^3.13.10",
     "@types/better-sqlite3": "^7.6.11",
