@@ -32,13 +32,8 @@ const { title, description = "", bodyClasses, canonicalUrl, faviconUrl, ogImageU
       name="viewport"
       content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover"
     />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <meta property="og:image" content={ogImageUrl} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <link rel="sitemap" href="/sitemap-index.xml" />
-    <title>{title}</title>
+    <link rel="sitemap" href="/sitemap.xml" />
 
     <slot name="head" />
 
