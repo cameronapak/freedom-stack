@@ -1,12 +1,12 @@
 ---
-import { db, Posts } from "astro:db";
+import { db, Posts, desc } from "astro:db";
 import Layout from "@/layouts/Layout.astro";
 import Navbar from "@sections/Navbar.astro";
 import Container from "@sections/Container.astro";
 import Footer from "@sections/Footer.astro";
 
 const pageTitle = "Posts";
-const allPosts = await db.select().from(Posts).orderBy(Posts.pubDate);
+const allPosts = await db.select().from(Posts).orderBy(desc(Posts.pubDate));
 
 // The browser should always check freshness
 Astro.response.headers.set("cache-control", "public, max-age=0, must-revalidate");
