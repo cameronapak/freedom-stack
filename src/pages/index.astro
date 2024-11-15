@@ -119,13 +119,12 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     subtitle="A full-stack Astro starter kit that feels freeing and is free."
     ctaText="Deploy to Netlify"
     ctaHref="https://app.netlify.com/start/deploy?repository=https://github.com/cameronapak/freedom-stack"
-    secondaryCtaText="GitHub                 "
+    secondaryCtaText="GitHub"
     secondaryCtaHref="https://github.com/cameronapak/freedom-stack"
   />
   {
     /*
       Using HTMX to grab the GitHub stars count without reloading the page.
-      The extra spaces after secondaryCtaText are just padding to make it look better.
       Doing this approach versus using server defer for an Astro component is to showcase
       what's possible if you want to update a DOM element without having to mutate the Astro component.
     */
