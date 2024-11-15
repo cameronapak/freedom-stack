@@ -18,8 +18,6 @@ if (!slug) {
   return Astro.redirect("/posts");
 }
 
-const result = Astro.getActionResult(actions.posts.delete);
-
 const entry = await db.select().from(Posts).where(eq(Posts.slug, slug)).get();
 
 if (!entry) {
@@ -55,13 +53,7 @@ Astro.response.headers.set("netlify-cache-tag", `post-${slug}`);
   >
     <article>
       <RenderMarkdown content={entry?.content || ""} />
-      {
-        result?.error && (
-          <div class="alert alert-error mb-4">
-            <span>{result.error.message}</span>
-          </div>
-        )
-      }
+
       <ShowIfAuthenticated server:defer>
         {
           entry?.author === user?.primaryEmailAddress?.emailAddress ? (
