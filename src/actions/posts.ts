@@ -115,6 +115,7 @@ export const posts = {
 
   // Delete post
   delete: defineAction({
+    accept: "form",
     input: z.object({
       id: z.number()
     }),
