@@ -93,7 +93,6 @@ This project uses the following environment variables:
 | `ASTRO_DB_APP_TOKEN`           | The auth token to your libSQL server     | Required | [Astro DB](https://docs.astro.build/en/guides/astro-db/#connect-a-libsql-database-for-production)         |
 | `CLERK_SECRET_KEY`             | Secret key for Clerk authentication      | Required | [Clerk](https://clerk.com/docs/deployments/clerk-environment-variables#clerk-publishable-and-secret-keys) |
 | `PUBLIC_CLERK_PUBLISHABLE_KEY` | Publishable key for Clerk authentication | Required | [Clerk](https://clerk.com/docs/deployments/clerk-environment-variables#clerk-publishable-and-secret-keys) |
-| `GROQ_API_KEY`                 | API key for Groq                         | Required | [Groq](https://console.groq.com/keys)                                                                     |
 
 Make sure to set these variables in your environment or `.env` file before running the application.
 

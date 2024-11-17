@@ -30,8 +30,6 @@ interface ImportMetaEnv {
   readonly PUBLIC_CLERK_PUBLISHABLE_KEY: string;
   /** https://clerk.com/docs/deployments/clerk-environment-variables#clerk-environment-variables */
   readonly CLERK_SECRET_KEY: string;
-  /** https://groq.com/ */
-  readonly GROQ_API_KEY: string;
 }
 
 interface ImportMeta {
