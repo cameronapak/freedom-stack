@@ -3,9 +3,10 @@
   "type": "module",
   "version": "1.2.0",
   "scripts": {
-    "dev": "astro dev",
-    "dev:host": "astro dev --host",
-    "start": "astro dev",
+    "check:env": "node scripts/check-env.js",
+    "dev": "npm run check:env && astro dev",
+    "dev:host": "npm run check:env && astro dev --host",
+    "start": "npm run check:env && astro dev",
     "build": "astro check && astro build --remote",
     "preview": "astro preview",
     "format": "prettier -w .",
