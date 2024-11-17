@@ -3,27 +3,30 @@ You are an expert in JavaScript, TypeScript, and Astro framework for scalable we
 Technology Stack:
 
 UI Layer:
+
 - Framework: Astro
 - Styling: TailwindCSS, Preline UI, DaisyUI
 - Icons: Lucide Icons
-- File Pattern: *.astro
+- File Pattern: \*.astro
 - Rich Text Editor: TinyMCE (self-hosted)
 
 Interactivity Layer:
+
 - Language: TypeScript
 - Frameworks: Alpine.js, HTMX
 - Alpine Plugins: Intersect, Persist, Collapse, Mask
-- File Pattern: *.ts, *.tsx
+- File Pattern: _.ts, _.tsx
 
 Backend Layer:
+
 - ORM: Drizzle via Astro DB
 - Database: Astro DB (with libSQL/Turso)
 - Authentication: Clerk
 - Cache: Netlify
-- Error Tracking: Sentry
-- File Pattern: db/*.ts
+- File Pattern: db/\*.ts
 
 Development Guidelines:
+
 - Enforce strict TypeScript settings for type safety
 - Use DaisyUI and TailwindCSS with utility-first approach (never use @apply)
 - Create modular, reusable Astro components
@@ -36,15 +39,17 @@ Development Guidelines:
 - Use descriptive variable names and follow Astro's conventions
 
 Project Structure:
-src/
+
+- src/
   - components/
   - layouts/
   - pages/
   - styles/
-public/
-astro.config.mjs
+- public/
+- astro.config.mjs
 
 Component Development:
+
 - Create .astro files for Astro components
 - Use framework-specific components when necessary
 - Implement proper component composition
@@ -52,19 +57,22 @@ Component Development:
 - Leverage built-in components like <Markdown />
 
 Routing and Pages:
+
 - Utilize file-based routing in src/pages/
 - Implement dynamic routes using [...slug].astro
 - Use getStaticPaths() for static page generation
 - Implement proper 404 handling
 
 Content Management:
+
 - Use Markdown (.md) or MDX (.mdx) for content-heavy pages
 - Leverage frontmatter in Markdown files
 - Implement content collections
 
 Performance Optimization:
+
 - Minimize client-side JavaScript
-- Use client:* directives judiciously:
+- Use client:\* directives judiciously:
   - client:load for immediate needs
   - client:idle for non-critical
   - client:visible for viewport-based
@@ -72,6 +80,7 @@ Performance Optimization:
 - Utilize built-in asset optimization
 
 Code Style Requirements:
+
 - Indentation: 2 spaces (tabWidth: 2, useTabs: false)
 - Enable format on save
 - No trailing comma (trailingComma: "none")
@@ -86,6 +95,7 @@ Code Style Requirements:
 - Use prettier-plugin-astro for Astro file formatting
 
 Commit Message Standards:
+
 - Use conventional commits with lowercase type and optional scope
 - Keep messages concise (max 60 characters)
 - Format: type(scope): description
@@ -93,15 +103,14 @@ Commit Message Standards:
 - Messages should be terminal-ready
 
 Environment Variables:
+
 - ASTRO_DB_REMOTE_URL: libSQL connection URL
 - ASTRO_DB_APP_TOKEN: libSQL auth token
 - CLERK_SECRET_KEY: Clerk authentication
 - CLERK_PUBLISHABLE_KEY: Clerk public key
-- SENTRY_DSN: Error tracking
-- SENTRY_AUTH_TOKEN: Sentry auth
-- SENTRY_PROJECT: Sentry project ID
 
 Testing and Accessibility:
+
 - Implement unit tests for utility functions
 - Use end-to-end testing with Cypress
 - Ensure proper semantic HTML structure
@@ -109,6 +118,7 @@ Testing and Accessibility:
 - Ensure keyboard navigation support
 
 Documentation Resources:
+
 - DaisyUI: https://daisyui.com/
 - TailwindCSS: https://tailwindcss.com/
 - Preline: https://preline.co/

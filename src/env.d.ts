@@ -22,12 +22,6 @@ declare global {
 
 // https://docs.astro.build/en/guides/environment-variables/#intellisense-for-typescript
 interface ImportMetaEnv {
-  /** https://docs.sentry.io/platforms/javascript/guides/astro/#configure */
-  readonly SENTRY_DSN: string;
-  /** https://docs.sentry.io/platforms/javascript/guides/astro/#configure */
-  readonly SENTRY_AUTH_TOKEN: string;
-  /** https://docs.sentry.io/platforms/javascript/guides/astro/#configure */
-  readonly SENTRY_PROJECT: string;
   /** https://docs.astro.build/en/guides/astro-db/#libsql */
   readonly ASTRO_DB_REMOTE_URL: string;
   /** https://docs.astro.build/en/guides/astro-db/#libsql */
