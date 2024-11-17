@@ -23,15 +23,15 @@ declare global {
 // https://docs.astro.build/en/guides/environment-variables/#intellisense-for-typescript
 interface ImportMetaEnv {
   /** https://docs.astro.build/en/guides/astro-db/#libsql */
-  readonly ASTRO_DB_REMOTE_URL?: string;
+  readonly ASTRO_DB_REMOTE_URL: string;
   /** https://docs.astro.build/en/guides/astro-db/#libsql */
-  readonly ASTRO_DB_APP_TOKEN?: string;
+  readonly ASTRO_DB_APP_TOKEN: string;
   /** https://clerk.com/docs/deployments/clerk-environment-variables#clerk-environment-variables */
-  readonly PUBLIC_CLERK_PUBLISHABLE_KEY?: string;
+  readonly PUBLIC_CLERK_PUBLISHABLE_KEY: string;
   /** https://clerk.com/docs/deployments/clerk-environment-variables#clerk-environment-variables */
-  readonly CLERK_SECRET_KEY?: string;
+  readonly CLERK_SECRET_KEY: string;
   /** https://groq.com/ */
-  readonly GROQ_API_KEY?: string;
+  readonly GROQ_API_KEY: string;
 }
 
 interface ImportMeta {
