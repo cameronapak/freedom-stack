@@ -39,14 +39,14 @@ Development Guidelines:
 - Use descriptive variable names and follow Astro's conventions
 
 Project Structure:
-src/
 
-- components/
-- layouts/
-- pages/
-- styles/
-  public/
-  astro.config.mjs
+- src/
+  - components/
+  - layouts/
+  - pages/
+  - styles/
+- public/
+- astro.config.mjs
 
 Component Development:
 
