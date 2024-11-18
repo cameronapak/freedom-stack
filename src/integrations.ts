@@ -10,6 +10,8 @@ async function cpPkg(sourceDir: string, destDir: string) {
   // Ensure the public directory exists
   if (!fs.existsSync(path.dirname(destinationPath))) {
     fs.mkdirSync(path.dirname(destinationPath), { recursive: true });
+  } else {
+    return "";
   }
 
   // Copy entire directory from node_modules to public directory
