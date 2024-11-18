@@ -13,6 +13,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Package managers file
+pnpm-lock.yaml
+
 # environment variables
 .env
 .env.production
@@ -25,3 +28,5 @@ pnpm-debug.log*
 
 # TinyMCE self-hosted gets copied on build, so no need to commit.
 public/tinymce/
+# Ignore all versions of tinymce in the specified path
+node_modules/.pnpm/tinymce@*/node_modules/tinymce
