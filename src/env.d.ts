@@ -16,6 +16,8 @@ declare global {
     interface Locals {
       auth: () => Auth;
       currentUser: () => Promise<UserResource | null>;
+      user: import("better-auth").User | null;
+      session: import("better-auth").Session | null;
     }
   }
 }
@@ -30,6 +32,10 @@ interface ImportMetaEnv {
   readonly PUBLIC_CLERK_PUBLISHABLE_KEY: string;
   /** https://clerk.com/docs/deployments/clerk-environment-variables#clerk-environment-variables */
   readonly CLERK_SECRET_KEY: string;
+  /** https://better-auth.com/ */
+  readonly BETTER_AUTH_URL: string;
+  /** https://better-auth.com/ */
+  readonly BETTER_AUTH_SECRET: string;
 }
 
 interface ImportMeta {

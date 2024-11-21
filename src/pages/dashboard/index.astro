@@ -2,11 +2,15 @@
 import { SignOutButton } from "@clerk/astro/components";
 import Layout from "@/layouts/Layout.astro";
 
-if (!Astro.locals.auth().userId) {
+if (!Astro.locals.session) {
   return Astro.redirect("/login");
 }
 
-const user = await Astro.locals.currentUser();
+const user = Astro.locals.user;
+
+if (!user) {
+  return Astro.redirect("/login");
+}
 ---
 
 <Layout title="Dashboard">
@@ -19,7 +23,7 @@ const user = await Astro.locals.currentUser();
     </div>
 
     <h1>Dashboard</h1>
-    <p>Welcome, {user?.firstName || user?.primaryEmailAddress?.emailAddress || "You..."}!</p>
+    <p>Welcome, {user.name || user.email || "You..."}!</p>
     <ul>
       <li>
         <a href="/posts">All Posts</a>

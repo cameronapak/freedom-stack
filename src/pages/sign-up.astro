@@ -8,17 +8,19 @@ if (Astro.locals.session) {
   return Astro.redirect("/dashboard");
 }
 
-const result = Astro.getActionResult(actions.auth.signIn);
+const result = Astro.getActionResult(actions.auth.signUp);
 ---
 
 <Layout title="Sign In">
   <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
   {result?.error && <div>{result.error.message}</div>}
   <Container align="center">
-    <form method="POST" action={actions.auth.signIn}>
+    <form method="POST" action={actions.auth.signUp}>
+      <input type="text" name="name" placeholder="Name" />
       <input type="email" name="email" placeholder="Email" />
       <input type="password" name="password" placeholder="Password" />
-      <button type="submit">Sign In</button>
+      <input type="url" name="imageUrl" placeholder="Image URL" />
+      <button type="submit">Sign Up</button>
     </form>
   </Container>
 </Layout>

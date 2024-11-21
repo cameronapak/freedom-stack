@@ -1,13 +1,21 @@
-import { clerkMiddleware, createRouteMatcher } from "@clerk/astro/server";
+import { auth } from "@/lib/auth";
+import { defineMiddleware } from "astro:middleware";
 
-const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
+export const onRequest = defineMiddleware(async (context, next) => {
+  const isAuthed = await auth.api.getSession({
+    headers: context.request.headers
+  });
 
-export const onRequest = clerkMiddleware((auth, context) => {
-  const { redirectToSignIn, userId } = auth();
-
-  if (!userId && isProtectedRoute(context.request)) {
-    // Add custom logic to run before redirecting
-
-    return redirectToSignIn();
+  if (isAuthed) {
+    context.locals.user = isAuthed.user;
+    context.locals.session = isAuthed.session;
+  } else {
+    context.locals.user = null;
+    context.locals.session = null;
+    if (context.url.pathname === "/sign-out") {
+      return context.redirect("/");
+    }
   }
+
+  return next();
 });

@@ -1,5 +1,5 @@
 ---
-const user = await Astro.locals.currentUser();
+const session = Astro.locals.session;
 ---
 
-{user ? <slot /> : null}
+{session ? <slot /> : null}
