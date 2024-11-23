@@ -3,13 +3,13 @@ import { SignOutButton } from "@clerk/astro/components";
 import Layout from "@/layouts/Layout.astro";
 
 if (!Astro.locals.session) {
-  return Astro.redirect("/login");
+  return Astro.redirect("/sign-in");
 }
 
 const user = Astro.locals.user;
 
 if (!user) {
-  return Astro.redirect("/login");
+  return Astro.redirect("/sign-in");
 }
 ---
 
