@@ -33,7 +33,7 @@
     "astro": "^4.16.7",
     "astro-iconify": "^1.2.0",
     "astro-seo": "^0.8.4",
-    "better-auth": "^0.8.9-beta.2",
+    "better-auth": "^1.0.0",
     "better-sqlite3": "^11.5.0",
     "drizzle-orm": "^0.36.3",
     "htmx.org": "2.0.1",
