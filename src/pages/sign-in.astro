@@ -15,14 +15,39 @@ const result = Astro.getActionResult(actions.auth.signIn);
   <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
   {result?.error && <div x-init={`toastErrorMessage = '${result.error.message.toString()}'`} class="sr-only" />}
   <Container align="center">
-    <div class="flex flex-col gap-4 max-w-sm w-full">
+    <div x-data="signIn" class="flex flex-col gap-4 max-w-sm w-full">
       <h1>Sign In</h1>
-      <form class="flex flex-col gap-4 max-w-sm w-full" method="POST" action={actions.auth.signIn}>
-        <input class="input input-bordered" type="email" name="email" placeholder="Email" />
-        <input class="input input-bordered" type="password" name="password" placeholder="Password" />
+      <form class="flex flex-col gap-4 max-w-sm w-full" method="POST" x-on:submit="signIn">
+        <input x-model="email" class="input input-bordered" type="email" name="email" placeholder="Email" />
+        <input x-model="password" class="input input-bordered" type="password" name="password" placeholder="Password" />
         <button class="mt-4 btn btn-primary" type="submit">Sign In</button>
       </form>
       <p>Don't have an account? <a href="/sign-up">Create an account</a></p>
     </div>
+    <script>
+      import Alpine from "alpinejs";
+      import { client } from "@/lib/auth-client";
+
+      document.addEventListener("alpine:init", () => {
+        Alpine.data("signIn", function () {
+          return {
+            email: "",
+            password: "",
+            async signIn(event: Event) {
+              event.preventDefault();
+
+              const result = await client.signIn.email({
+                email: this.email,
+                password: this.password
+              });
+
+              if (result.data) {
+                window.location.href = "/dashboard";
+              }
+            }
+          };
+        });
+      });
+    </script>
   </Container>
 </Layout>
