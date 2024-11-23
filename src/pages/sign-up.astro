@@ -13,14 +13,17 @@ const result = Astro.getActionResult(actions.auth.signUp);
 
 <Layout title="Sign In">
   <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
-  {result?.error && <div>{result.error.message}</div>}
+  {result?.error && <div x-init={`toastErrorMessage = '${result.error.message.toString()}'`} class="sr-only" />}
   <Container align="center">
-    <form method="POST" action={actions.auth.signUp}>
-      <input type="text" name="name" placeholder="Name" />
-      <input type="email" name="email" placeholder="Email" />
-      <input type="password" name="password" placeholder="Password" />
-      <input type="url" name="imageUrl" placeholder="Image URL" />
-      <button type="submit">Sign Up</button>
-    </form>
+    <div class="flex flex-col gap-4 max-w-sm w-full">
+      <h1>Create an account</h1>
+      <form class="flex flex-col gap-4 max-w-sm w-full" method="POST" action={actions.auth.signUp}>
+        <input class="input input-bordered" type="text" name="name" placeholder="Name" />
+        <input class="input input-bordered" type="email" name="email" placeholder="Email" />
+        <input class="input input-bordered" type="password" name="password" placeholder="Password" />
+        <button class="mt-4 btn btn-primary" type="submit">Create an account</button>
+      </form>
+      <p>Already have an account? <a href="/sign-in">Sign in</a></p>
+    </div>
   </Container>
 </Layout>
