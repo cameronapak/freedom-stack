@@ -13,16 +13,19 @@ export const auth = {
       name: z.string(),
       imageUrl: z.string().optional()
     }),
-    handler: async ({ email, password, name, imageUrl }, { locals }) => {
+    handler: async ({ email, password, name, imageUrl = "" }, ctx) => {
       try {
-        await betterAuth.api.signUpEmail({
+        const response = await betterAuth.api.signUpEmail({
           body: {
             email,
             password,
             name,
             image: imageUrl
-          }
+          },
+          headers: ctx.request.headers,
+          asResponse: true
         });
+        return { cookies: response.headers.getSetCookie() };
       } catch (error) {
         throwActionAuthError("BAD_REQUEST", error);
       }
@@ -69,6 +72,7 @@ export const auth = {
 };
 
 function throwActionAuthError(code: ActionErrorCode, error: unknown): never {
+  console.error(error);
   throw new ActionError({
     code,
     message: error instanceof APIError ? `${error.body.message}.` : "Something went wrong, please try again later."
