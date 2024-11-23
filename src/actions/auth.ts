@@ -1,6 +1,8 @@
-import { defineAction, ActionError } from "astro:actions";
+// Inspired by https://github.com/HiDeoo/starlight-better-auth-example/blob/main/src/actions/index.ts
+import { defineAction, ActionError, type ActionErrorCode } from "astro:actions";
 import { z } from "astro:schema";
-import { client } from "@/lib/auth-client";
+import { APIError } from "better-auth/api";
+import { auth as betterAuth } from "@/lib/auth";
 
 export const auth = {
   signUp: defineAction({
@@ -11,23 +13,19 @@ export const auth = {
       name: z.string(),
       imageUrl: z.string().optional()
     }),
-    handler: async ({ email, password, name, imageUrl }) => {
-      const { data, error } = await client.signUp.email({
-        email,
-        password,
-        name,
-        image: imageUrl
-      });
-
-      if (error) {
-        console.error(error);
-        throw new ActionError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: error.message || "Error signing up"
+    handler: async ({ email, password, name, imageUrl }, { locals }) => {
+      try {
+        await betterAuth.api.signUpEmail({
+          body: {
+            email,
+            password,
+            name,
+            image: imageUrl
+          }
         });
+      } catch (error) {
+        throwActionAuthError("BAD_REQUEST", error);
       }
-
-      return data;
     }
   }),
 
@@ -37,23 +35,42 @@ export const auth = {
       email: z.string().email(),
       password: z.string()
     }),
-    handler: async ({ email, password }) => {
-      const { data, error } = await client.signIn.email({ email, password });
-
-      if (error) {
-        throw new ActionError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "Error signing in"
+    handler: async ({ email, password }, ctx) => {
+      try {
+        const response = await betterAuth.api.signInEmail({
+          body: {
+            email,
+            password
+          },
+          headers: ctx.request.headers,
+          asResponse: true
         });
+        return { cookies: response.headers.getSetCookie() };
+      } catch (error) {
+        throwActionAuthError("UNAUTHORIZED", error);
       }
-
-      return data;
     }
   }),
 
   signOut: defineAction({
-    handler: async () => {
-      await client.signOut();
+    accept: "form",
+    handler: async (_, ctx) => {
+      try {
+        const response = await betterAuth.api.signOut({
+          headers: ctx.request.headers,
+          asResponse: true
+        });
+        return { cookies: response.headers.getSetCookie() };
+      } catch (error) {
+        throwActionAuthError("BAD_REQUEST", error);
+      }
     }
   })
 };
+
+function throwActionAuthError(code: ActionErrorCode, error: unknown): never {
+  throw new ActionError({
+    code,
+    message: error instanceof APIError ? `${error.body.message}.` : "Something went wrong, please try again later."
+  });
+}

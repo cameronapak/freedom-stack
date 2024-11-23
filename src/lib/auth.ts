@@ -1,18 +1,24 @@
 import { betterAuth } from "better-auth";
-import { LibsqlDialect } from "@libsql/kysely-libsql";
-
-const dialect = new LibsqlDialect({
-  url: import.meta.env.ASTRO_DB_REMOTE_URL || "",
-  authToken: import.meta.env.ASTRO_DB_APP_TOKEN || ""
-});
+import { Account, db, Session, User, Verification } from "astro:db";
+import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
 export const auth = betterAuth({
   baseURL: import.meta.env.BETTER_AUTH_URL,
   secret: import.meta.env.BETTER_AUTH_SECRET,
-  database: {
-    dialect,
-    type: "sqlite"
+  account: {
+    accountLinking: {
+      enabled: true
+    }
   },
+  database: drizzleAdapter(db, {
+    schema: {
+      user: User,
+      account: Account,
+      session: Session,
+      verification: Verification
+    },
+    provider: "sqlite"
+  }),
   emailAndPassword: {
     enabled: true
   }

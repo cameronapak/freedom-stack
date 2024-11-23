@@ -91,8 +91,6 @@ const letterContentMarkdown = `
   _— [Cam Pak](https://cameronpak.com)_
 `;
 
-export const prerender = true;
-
 // The browser should always check freshness
 Astro.response.headers.set("cache-control", "public, max-age=0, must-revalidate");
 
@@ -111,14 +109,18 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     title="Freedom Stack"
     links={[
       { text: "Blog", href: "/posts" },
-      { text: "Sign In", href: "/sign-in" }
+      { text: "Sign In", href: "/sign-in" },
+      {
+        text: "🚀 Netlify",
+        href: "https://app.netlify.com/start/deploy?repository=https://github.com/cameronapak/freedom-stack"
+      }
     ]}
   />
   <Hero
     title="Freedom Stack"
     subtitle="A full-stack Astro starter kit that feels freeing and is free."
-    ctaText="Deploy to Netlify"
-    ctaHref="https://app.netlify.com/start/deploy?repository=https://github.com/cameronapak/freedom-stack"
+    ctaText="⚡ Try on Bolt.New"
+    ctaHref="https://bolt.new/~/github.com/cameronapak/freedom-stack"
     secondaryCtaText="GitHub"
     secondaryCtaHref="https://github.com/cameronapak/freedom-stack"
   />
