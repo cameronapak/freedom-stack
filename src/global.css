@@ -46,3 +46,54 @@
 .btn-primary {
   @apply text-white;
 }
+
+/* Trix Editor */
+trix-toolbar .trix-button {
+  border: none;
+}
+
+trix-toolbar {
+  .trix-button-group {
+    button.trix-button,
+    input[type="button"].trix-button {
+      &.trix-active {
+        @apply bg-slate-300;
+      }
+
+      &:hover {
+        @apply bg-slate-300;
+      }
+
+      @apply !border-0 rounded-lg;
+    }
+
+    @apply border-0 border-slate-200 rounded-lg mb-0;
+  }
+
+  [data-trix-button-group="file-tools"] {
+    @apply !hidden;
+  }
+
+  [data-trix-attribute="quote"] {
+    @apply !border-l-0;
+  }
+
+  [data-trix-dialog][data-trix-active] {
+    .trix-input {
+      @apply border-2 border-slate-200 rounded-lg;
+    }
+
+    @apply !border-0 rounded-xl p-6;
+  }
+
+  @apply mb-6 sticky top-2 left-0 right-0 z-50 border-0 bg-slate-200 px-3 py-2 rounded-full;
+}
+
+trix-editor,
+.rendered-markdown {
+  h1 {
+    @apply text-2xl font-extrabold;
+  }
+
+  @apply text-xl leading-relaxed m-0 p-0 border-0;
+}

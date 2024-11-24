@@ -1,0 +1,20 @@
+---
+interface Props {
+  id?: string;
+  name?: string;
+  content: string;
+  alpineRefName?: string;
+}
+
+const { content, id = "content", name = "content", alpineRefName = "contentInputEl" } = Astro.props as Props;
+---
+
+<div class="relative not-prose">
+  <input id={id} x-ref={alpineRefName} value={content} type="hidden" name={name} />
+  <trix-editor input={id}></trix-editor>
+</div>
+
+<script>
+  // @ts-ignore - no types available
+  import Trix from "trix";
+</script>
