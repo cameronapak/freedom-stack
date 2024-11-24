@@ -27,10 +27,12 @@ export const posts = {
 
         const post = posts[0];
 
-        try {
-          await purgeCache({ tags: ["posts"] });
-        } catch (error) {
-          console.error("Error purging cache:", error);
+        if (import.meta.env.PROD) {
+          try {
+            await purgeCache({ tags: ["posts"] });
+          } catch (error) {
+            console.error("Error purging cache:", error);
+          }
         }
 
         return {
@@ -94,10 +96,12 @@ export const posts = {
 
         const post = posts[0];
 
-        try {
-          await purgeCache({ tags: [`post-${post.slug}`] });
-        } catch (error) {
-          console.error("Error purging cache:", error);
+        if (import.meta.env.PROD) {
+          try {
+            await purgeCache({ tags: [`post-${post.slug}`] });
+          } catch (error) {
+            console.error("Error purging cache:", error);
+          }
         }
 
         return {
@@ -129,10 +133,12 @@ export const posts = {
           });
         }
 
-        try {
-          await purgeCache({ tags: ["posts"] });
-        } catch (error) {
-          console.error("Error purging cache:", error);
+        if (import.meta.env.PROD) {
+          try {
+            await purgeCache({ tags: ["posts"] });
+          } catch (error) {
+            console.error("Error purging cache:", error);
+          }
         }
 
         return {

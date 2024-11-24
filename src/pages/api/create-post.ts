@@ -25,12 +25,14 @@ export async function POST(context: APIContext): Promise<Response> {
 
     await db.insert(Posts).values(post);
 
-    try {
-      await purgeCache({
-        tags: ["posts"]
-      });
-    } catch (error) {
-      console.error("Error purging cache:", error);
+    if (import.meta.env.PROD) {
+      try {
+        await purgeCache({
+          tags: ["posts"]
+        });
+      } catch (error) {
+        console.error("Error purging cache:", error);
+      }
     }
 
     return context.redirect("/posts");
