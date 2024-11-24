@@ -1,12 +1,16 @@
 ---
-import { SignOutButton } from "@clerk/astro/components";
+import { actions } from "astro:actions";
 import Layout from "@/layouts/Layout.astro";
 
-if (!Astro.locals.auth().userId) {
-  return Astro.redirect("/login");
+if (!Astro.locals.session) {
+  return Astro.redirect("/sign-in");
 }
 
-const user = await Astro.locals.currentUser();
+const user = Astro.locals.user;
+
+if (!user) {
+  return Astro.redirect("/sign-in");
+}
 ---
 
 <Layout title="Dashboard">
@@ -19,7 +23,7 @@ const user = await Astro.locals.currentUser();
     </div>
 
     <h1>Dashboard</h1>
-    <p>Welcome, {user?.firstName || user?.primaryEmailAddress?.emailAddress || "You..."}!</p>
+    <p>Welcome, {user.name || user.email || "You..."}!</p>
     <ul>
       <li>
         <a href="/posts">All Posts</a>
@@ -28,6 +32,9 @@ const user = await Astro.locals.currentUser();
         </ul>
       </li>
     </ul>
-    <SignOutButton class="btn btn-sm shadow-none" />
+
+    <form method="post" action={actions.auth.signOut}>
+      <button type="submit" class="btn btn-sm shadow-none">Sign Out</button>
+    </form>
   </main>
 </Layout>

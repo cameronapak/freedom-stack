@@ -6,8 +6,8 @@
   [template.environment]
     ASTRO_DB_REMOTE_URL = "Your Turso database URL"
     ASTRO_DB_APP_TOKEN = "Your Turso database app token"
-    CLERK_SECRET_KEY = "Your Clerk secret key"
-    CLERK_PUBLISHABLE_KEY = "Your Clerk publishable key"
+    BETTER_AUTH_SECRET = "Your Better Auth secret (You get to choose this)"
+    BETTER_AUTH_URL = "Your Better Auth URL (Your Netlify site URL)"
 
 # Force HTTPS
 [[redirects]]

@@ -12,7 +12,7 @@ import RenderMarkdown from "@/components/RenderMarkdown.astro";
 
 const { slug } = Astro.params;
 
-const user = await Astro.locals.currentUser();
+const user = Astro.locals.user;
 
 if (!slug) {
   return Astro.redirect("/posts");
@@ -39,7 +39,7 @@ Astro.response.headers.set("netlify-cache-tag", `post-${slug}`);
     title="Freedom Stack"
     links={[
       { text: "Blog", href: "/posts" },
-      { text: "Sign In", href: "/sign-in" }
+      Astro.locals.user ? { text: "Dashboard", href: "/dashboard" } : { text: "Sign In", href: "/sign-in" }
     ]}
   />
 
@@ -56,7 +56,7 @@ Astro.response.headers.set("netlify-cache-tag", `post-${slug}`);
 
       <ShowIfAuthenticated server:defer>
         {
-          entry?.author === user?.primaryEmailAddress?.emailAddress ? (
+          entry?.author === user?.email ? (
             <div class="flex gap-5">
               <div>
                 <a class="btn btn-sm mt-4" href={`/dashboard/posts/edit/${slug}`}>

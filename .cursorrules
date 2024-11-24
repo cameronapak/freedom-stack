@@ -21,7 +21,7 @@ Backend Layer:
 
 - ORM: Drizzle via Astro DB
 - Database: Astro DB (with libSQL/Turso)
-- Authentication: Clerk
+- Authentication: Better Auth
 - Cache: Netlify
 - File Pattern: db/\*.ts
 
@@ -106,8 +106,8 @@ Environment Variables:
 
 - ASTRO_DB_REMOTE_URL: libSQL connection URL
 - ASTRO_DB_APP_TOKEN: libSQL auth token
-- CLERK_SECRET_KEY: Clerk authentication
-- CLERK_PUBLISHABLE_KEY: Clerk public key
+- BETTER_AUTH_SECRET: Better Auth secret
+- BETTER_AUTH_URL: Better Auth URL
 
 Testing and Accessibility:
 
@@ -123,7 +123,7 @@ Documentation Resources:
 - TailwindCSS: https://tailwindcss.com/
 - Preline: https://preline.co/
 - Astro DB: https://docs.astro.build/en/guides/astro-db
-- Clerk: https://clerk.com/docs
 - HTMX: https://htmx.org/
+- Better Auth: https://better-auth.com/
 - Alpine.js: https://alpinejs.dev/
 - Turso: https://docs.turso.tech/
