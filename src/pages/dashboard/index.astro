@@ -23,8 +23,9 @@ const allPosts = await db.select().from(Posts).where(eq(Posts.author, user.email
 <Layout title="Dashboard">
   <Navbar title="Freedom Stack" links={[{ text: "Sign Out", href: "/sign-out" }]} />
 
-  <Container title="My Posts" titleIsH1 align="center">
-    <div class="flex justify-end w-full">
+  <Container align="center">
+    <div class="flex justify-between items-end w-full">
+      <h1 class="m-0">My Posts</h1>
       <a href="/dashboard/posts/new" class="btn btn-primary shadow-none">
         <Icon name="lucide:plus" class="w-4 h-4" />
         Create Post
@@ -68,18 +69,4 @@ const allPosts = await db.select().from(Posts).where(eq(Posts.author, user.email
       }
     ]}
   />
-  <main class="container mx-auto p-6">
-    <div class="breadcrumbs text-sm m-0">
-      <ul class="!p-0 !m-0">
-        <li><a href="/">Home</a></li>
-        <li>Dashboard</li>
-      </ul>
-    </div>
-
-    <h1>Dashboard</h1>
-
-    <form method="post" action={actions.auth.signOut}>
-      <button type="submit" class="btn btn-sm shadow-none">Sign Out</button>
-    </form>
-  </main>
 </Layout>

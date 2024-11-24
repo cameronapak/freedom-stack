@@ -134,8 +134,11 @@ if (!post) {
             </div>
           </div>
           <input type="hidden" name="id" value={post.id} />
-          <div class="flex justify-end">
-            <button class="btn btn-primary btn-md" type="submit">Save Post</button>
+          <div class="flex items-center gap-4 justify-end">
+            <a href="/dashboard" class="btn btn-md"> Cancel </a>
+            <div class="flex justify-end">
+              <button class="btn btn-primary btn-md" type="submit">Save Post</button>
+            </div>
           </div>
         </div>
       </form>
