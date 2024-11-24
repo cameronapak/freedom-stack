@@ -1,7 +1,7 @@
 ---
 import { eq, db, Posts } from "astro:db";
 import { actions } from "astro:actions";
-import DashboardLayout from "@/layouts/Layout.astro";
+import Layout from "@/layouts/Layout.astro";
 import TrixEditor from "@/components/TrixEditor.astro";
 
 // Get the post slug from params
@@ -33,7 +33,7 @@ if (!post) {
 }
 ---
 
-<DashboardLayout title={`Edit Post: ${post?.title}`}>
+<Layout title={`Edit Post: ${post?.title}`}>
   <div class="p-6 container mx-auto">
     <div class="mx-auto">
       <div class="breadcrumbs text-sm m-0">
@@ -45,10 +45,14 @@ if (!post) {
       </div>
       <h1>Edit Post</h1>
 
-      <form class="mt-6 flex flex-col gap-6" method="POST" action={actions.posts.update}>
+      <form
+        class="p-6 rounded-xl bg-white border-2 border-slate-200 mt-6 flex flex-col gap-6"
+        method="POST"
+        action={actions.posts.update}
+      >
         <TrixEditor content={post.content || ""} />
         <div class="h-0.5 my-2 w-full bg-slate-200"></div>
-        <div class="flex flex-col gap-4 p-6 rounded-xl bg-slate-200">
+        <div class="flex flex-col gap-4">
           <div class="grid grid-cols-2 gap-6">
             <div class="grid gap-2">
               <label
@@ -56,6 +60,7 @@ if (!post) {
                 for="title">Title</label
               >
               <input
+                type="text"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 id="title"
                 name="title"
@@ -69,6 +74,7 @@ if (!post) {
                 for="pubDate">Publication Date</label
               >
               <input
+                type="text"
                 readonly
                 x-data="{ today: new Date().toISOString().split('T')[0] }"
                 x-bind:value="today"
@@ -100,6 +106,7 @@ if (!post) {
                 for="author">Author</label
               >
               <input
+                type="text"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 id="author"
                 name="author"
@@ -111,62 +118,22 @@ if (!post) {
             <div class="grid gap-2">
               <label
                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                for="imageUrl">Image URL</label
+                for="slug">Slug</label
               >
               <input
+                type="text"
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                id="imageUrl"
-                name="imageUrl"
-                value={post.imageUrl || ""}
-                placeholder="Enter the image URL"
+                id="slug"
+                name="slug"
+                placeholder="blog-post-slug"
+                pattern="[a-z0-9\\-]+"
+                x-data={`{ slug: '${post.slug || ""}' }`}
+                x-on:input="slug = $event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '').replace(/^-+|-+$/g, '').replace(/-{2,}/g, '-')"
+                x-bind:value="slug"
               />
             </div>
           </div>
           <input type="hidden" name="id" value={post.id} />
-          <div class="grid grid-cols-2 gap-6">
-            <div class="grid gap-2">
-              <label
-                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                for="imageAlt">Image Alt Text</label
-              >
-              <input
-                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                id="imageAlt"
-                name="imageAlt"
-                value={post.imageAlt || ""}
-                placeholder="Enter the image alt text"
-              />
-            </div>
-            <div class="grid gap-2">
-              <label
-                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                for="tags">Tags</label
-              >
-              <input
-                disabled
-                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                id="tags"
-                name="tags"
-                placeholder="Enter tags as a JSON array (e.g., ['tag1', 'tag2'])"
-              />
-            </div>
-          </div>
-          <div class="grid gap-2">
-            <label
-              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              for="slug">Slug</label
-            >
-            <input
-              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-              id="slug"
-              name="slug"
-              placeholder="blog-post-slug"
-              pattern="[a-z0-9\\-]+"
-              x-data={`{ slug: '${post.slug || ""}' }`}
-              x-on:input="slug = $event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '').replace(/^-+|-+$/g, '').replace(/-{2,}/g, '-')"
-              x-bind:value="slug"
-            />
-          </div>
           <div class="flex justify-end">
             <button class="btn btn-primary btn-md" type="submit">Save Post</button>
           </div>
@@ -174,4 +141,4 @@ if (!post) {
       </form>
     </div>
   </div>
-</DashboardLayout>
+</Layout>
