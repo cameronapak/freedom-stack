@@ -37,7 +37,9 @@ async function handleAuthResponse(
 ) {
   try {
     const response = await apiCall();
-    if (!response.ok) throw new Error(`Failed to ${errorCode.toLowerCase()}`);
+    if (!response.ok) {
+      throw new Error(`Failed to ${errorCode.toLowerCase()}`);
+    }
 
     setCookiesFromResponse(parseCookiesFromResponse(response.headers.getSetCookie()), context);
 
@@ -57,7 +59,7 @@ export const auth = {
       imageUrl: z.string().optional()
     }),
     handler: async (input, context) =>
-      handleAuthResponse(
+      await handleAuthResponse(
         () =>
           betterAuth.api.signUpEmail({
             body: { ...input, image: input.imageUrl || "" },
@@ -76,7 +78,7 @@ export const auth = {
       password: z.string()
     }),
     handler: async (input, context) =>
-      handleAuthResponse(
+      await handleAuthResponse(
         () =>
           betterAuth.api.signInEmail({
             body: input,
@@ -91,7 +93,7 @@ export const auth = {
   signOut: defineAction({
     accept: "form",
     handler: async (_, context) =>
-      handleAuthResponse(
+      await handleAuthResponse(
         () =>
           betterAuth.api.signOut({
             headers: context.request.headers,
