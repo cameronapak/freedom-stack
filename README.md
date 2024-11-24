@@ -52,7 +52,7 @@ Ogres have layers. Onions have layers. Parfaits have layers. And, Freedom Stack 
 - [Astro DB](https://astro.build/db) - Astro DB is a fully managed SQL database
   that is fast, lightweight, and ridiculously easy-to-use.
 - [Drizzle ORM](https://orm.drizzle.team/) - Use your database without having to know or worry about SQL syntax.
-- [Clerk](https://clerk.com/) - For authentication.
+- [Better Auth](https://better-auth.com/) - For authentication.
 
 ### Bonus Layer
 
@@ -73,11 +73,7 @@ We use [Turso](https://turso.tech/) for the fully-managed libSQL database. [Foll
 
 _[Want to visualize your data through a GUI?](https://docs.turso.tech/local-development#connecting-a-gui)_
 
-### 3. Setup Your Authentication Provider
-
-Create a new [Clerk](https://clerk.com/) project.
-
-### 4. Set Environment Variables
+### 3. Set Environment Variables
 
 Let's create the `.env` file by copying the `.env.example` file.
 
@@ -87,12 +83,12 @@ cp .env.example .env
 
 This project uses the following environment variables:
 
-| Variable                       | Description                              | Required | More Info                                                                                                 |
-| ------------------------------ | ---------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------- |
-| `ASTRO_DB_REMOTE_URL`          | The connection URL to your libSQL server | Required | [Astro DB](https://docs.astro.build/en/guides/astro-db/#connect-a-libsql-database-for-production)         |
-| `ASTRO_DB_APP_TOKEN`           | The auth token to your libSQL server     | Required | [Astro DB](https://docs.astro.build/en/guides/astro-db/#connect-a-libsql-database-for-production)         |
-| `CLERK_SECRET_KEY`             | Secret key for Clerk authentication      | Required | [Clerk](https://clerk.com/docs/deployments/clerk-environment-variables#clerk-publishable-and-secret-keys) |
-| `PUBLIC_CLERK_PUBLISHABLE_KEY` | Publishable key for Clerk authentication | Required | [Clerk](https://clerk.com/docs/deployments/clerk-environment-variables#clerk-publishable-and-secret-keys) |
+| Variable              | Description                               | Required | More Info                                                                                         |
+| --------------------- | ----------------------------------------- | -------- | ------------------------------------------------------------------------------------------------- |
+| `ASTRO_DB_REMOTE_URL` | The connection URL to your libSQL server  | Required | [Astro DB](https://docs.astro.build/en/guides/astro-db/#connect-a-libsql-database-for-production) |
+| `ASTRO_DB_APP_TOKEN`  | The auth token to your libSQL server      | Required | [Astro DB](https://docs.astro.build/en/guides/astro-db/#connect-a-libsql-database-for-production) |
+| `BETTER_AUTH_SECRET`  | The secret for Better Auth authentication | Required | [Better Auth](https://better-auth.com/docs/getting-started/environment-variables)                 |
+| `BETTER_AUTH_URL`     | The URL for Better Auth authentication    | Required | [Better Auth](https://better-auth.com/docs/getting-started/environment-variables)                 |
 
 Make sure to set these variables in your environment or `.env` file before running the application.
 

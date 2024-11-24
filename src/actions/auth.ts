@@ -25,6 +25,11 @@ export const auth = {
           headers: ctx.request.headers,
           asResponse: true
         });
+
+        response.headers.getSetCookie().forEach((cookie) => {
+          ctx.request.headers.append("Set-Cookie", cookie);
+        });
+
         return { cookies: response.headers.getSetCookie() };
       } catch (error) {
         throwActionAuthError("BAD_REQUEST", error);
@@ -48,6 +53,11 @@ export const auth = {
           headers: ctx.request.headers,
           asResponse: true
         });
+
+        response.headers.getSetCookie().forEach((cookie) => {
+          ctx.request.headers.append("Set-Cookie", cookie);
+        });
+
         return { cookies: response.headers.getSetCookie() };
       } catch (error) {
         throwActionAuthError("UNAUTHORIZED", error);
@@ -63,6 +73,11 @@ export const auth = {
           headers: ctx.request.headers,
           asResponse: true
         });
+
+        response.headers.getSetCookie().forEach((cookie) => {
+          ctx.request.headers.append("Set-Cookie", cookie);
+        });
+
         return { cookies: response.headers.getSetCookie() };
       } catch (error) {
         throwActionAuthError("BAD_REQUEST", error);
