@@ -21,5 +21,12 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true
+  },
+  // https://www.better-auth.com/docs/concepts/session-management#session-caching
+  session: {
+    cookieCache: {
+      enabled: true,
+      maxAge: 5 * 60 // Cache duration in seconds
+    }
   }
 });
