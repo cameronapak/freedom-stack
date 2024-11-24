@@ -22,11 +22,40 @@ if (result?.data?.cookiesToSet) {
   <Container align="center">
     <div class="flex flex-col gap-4 max-w-sm w-full">
       <h1>Create an account</h1>
-      <form class="flex flex-col gap-4 max-w-sm w-full" method="POST" action={actions.auth.signUp}>
-        <input class="input input-bordered" type="text" name="name" placeholder="Name" />
-        <input class="input input-bordered" type="email" name="email" placeholder="Email" />
-        <input class="input input-bordered" type="password" name="password" placeholder="Password" />
-        <button class="mt-4 btn btn-primary" type="submit">Create an account</button>
+      <form
+        x-data="{
+          name: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+          showPasswordError: false,
+          get isValid() {
+            return this.name.length > 0 &&
+              this.email.length > 0 &&
+              this.password.length > 0 &&
+              this.password === this.confirmPassword;
+          }
+        }"
+        class="flex flex-col gap-4 max-w-sm w-full"
+        method="POST"
+        action={actions.auth.signUp}
+      >
+        <input x-model="name" class="input input-bordered" type="text" name="name" placeholder="Name" />
+        <input x-model="email" class="input input-bordered" type="email" name="email" placeholder="Email" />
+        <input x-model="password" class="input input-bordered" type="password" name="password" placeholder="Password" />
+        <input
+          x-model="confirmPassword"
+          class="input input-bordered"
+          :class="showPasswordError && password !== confirmPassword ? 'input-error' : ''"
+          type="password"
+          name="confirmPassword"
+          placeholder="Confirm Password"
+          @blur="showPasswordError = true"
+        />
+        <div x-cloak x-show="showPasswordError && password !== confirmPassword" class="text-error text-sm">
+          Passwords do not match
+        </div>
+        <button class="mt-4 btn btn-primary" type="submit" :disabled="!isValid"> Create an account </button>
       </form>
       <p>Already have an account? <a href="/sign-in">Sign in</a></p>
     </div>
