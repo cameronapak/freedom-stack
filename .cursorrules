@@ -8,7 +8,7 @@ UI Layer:
 - Styling: TailwindCSS, Preline UI, DaisyUI
 - Icons: Lucide Icons
 - File Pattern: \*.astro
-- Rich Text Editor: TinyMCE (self-hosted)
+- Rich Text Editor: Trix
 
 Interactivity Layer:
 

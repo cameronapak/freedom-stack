@@ -28,5 +28,6 @@ pnpm-lock.yaml
 
 # TinyMCE self-hosted gets copied on build, so no need to commit.
 public/tinymce/
+
 # Ignore all versions of tinymce in the specified path
 node_modules/.pnpm/tinymce@*/node_modules/tinymce
