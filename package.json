@@ -34,6 +34,7 @@
     "astro-seo": "^0.8.4",
     "better-auth": "^1.0.0",
     "better-sqlite3": "^11.5.0",
+    "drizzle-orm": "^0.36.4",
     "htmx.org": "2.0.1",
     "isomorphic-dompurify": "^2.16.0",
     "marked": "^14.1.3",
