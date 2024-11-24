@@ -10,8 +10,9 @@ if (Astro.locals.session) {
 
 const result = Astro.getActionResult(actions.auth.signUp);
 
-if (result?.data) {
-  return Astro.redirect("/sign-in");
+if (result?.data?.cookiesToSet) {
+  // set cookies
+  Astro.response.headers.append("Set-Cookie", result.data.cookiesToSet);
 }
 ---
 

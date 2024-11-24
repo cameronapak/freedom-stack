@@ -21,7 +21,7 @@ export const auth = {
           asResponse: true
         });
 
-        return { cookies: response.headers.getSetCookie() };
+        return { cookiesToSet: response.headers.getSetCookie().join("; ") };
       } catch (error) {
         throwActionAuthError("BAD_REQUEST", error);
       }
@@ -42,7 +42,7 @@ export const auth = {
           asResponse: true
         });
 
-        return { cookies: response.headers.getSetCookie() };
+        return { cookiesToSet: response.headers.getSetCookie().join("; ") };
       } catch (error) {
         throwActionAuthError("UNAUTHORIZED", error);
       }
@@ -58,7 +58,7 @@ export const auth = {
           asResponse: true
         });
 
-        return { cookies: response.headers.getSetCookie() };
+        return { cookiesToSet: response.headers.getSetCookie().join("; ") };
       } catch (error) {
         throwActionAuthError("BAD_REQUEST", error);
       }

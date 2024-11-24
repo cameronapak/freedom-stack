@@ -10,9 +10,9 @@ if (Astro.locals.session) {
 
 const result = Astro.getActionResult(actions.auth.signIn);
 
-if (result?.data) {
+if (result?.data?.cookiesToSet) {
   // set cookies
-  Astro.response.headers.append("Set-Cookie", result.data.cookies.join("; "));
+  Astro.response.headers.append("Set-Cookie", result.data.cookiesToSet);
 }
 ---
 
