@@ -1,6 +1,4 @@
 ---
-import "trix/dist/trix.css";
-
 interface Props {
   id?: string;
   name?: string;
@@ -11,7 +9,7 @@ interface Props {
 const { content, id = "content", name = "content", alpineRefName = "contentInputEl" } = Astro.props as Props;
 ---
 
-<div class="relative not-prose">
+<div id="trix-editor" class="relative not-prose">
   <input id={id} x-ref={alpineRefName} value={content} type="hidden" name={name} />
   <trix-editor input={id}></trix-editor>
 </div>
