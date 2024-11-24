@@ -34,7 +34,7 @@ export default async function seed() {
       title: "My First Blog Post",
       pubDate: new Date("2022-07-01"),
       description: "This is the first post of my new Astro blog.",
-      author: "Astro Learner",
+      author: "email@example.com",
       imageUrl: "https://astro.build/assets/blog/astro-1-release-update/cover.jpeg",
       imageAlt: "The Astro logo with the word One.",
       tags: JSON.stringify(["astro", "blogging", "learning in public"]),
@@ -46,7 +46,7 @@ export default async function seed() {
       title: "Shrek: Lessons from an Ogre",
       pubDate: new Date("2022-07-15"),
       description: "Exploring the wisdom and layers of everyone's favorite ogre.",
-      author: "Astro Learner",
+      author: "cameronandrewpak@gmail.com",
       imageUrl: "https://example.com/shrek-image.jpg", // Replace with actual Shrek image URL
       imageAlt: "Shrek standing proudly in his swamp",
       tags: JSON.stringify(["shrek", "movies", "life lessons", "animation"]),

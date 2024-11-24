@@ -17,4 +17,4 @@ const purifiedHTML = DOMPurify.sanitize(html, {
 } as DOMPurify.Config);
 ---
 
-<div set:html={purifiedHTML} class="[&>p:first-child]:mt-0 [&>p:last-child]:mb-0 [&>p]:text-xl [&>p]:leading-relaxed" />
+<div set:html={purifiedHTML} class="not-prose rendered-markdown" />
