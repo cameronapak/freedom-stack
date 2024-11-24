@@ -1,7 +1,12 @@
 ---
 import { actions } from "astro:actions";
+import { setAuthCookiesFromResponse } from "@/actions/auth";
 
-await Astro.callAction(actions.auth.signOut, new FormData());
+const result = await Astro.callAction(actions.auth.signOut, new FormData());
+
+if (result?.data?.success) {
+  setAuthCookiesFromResponse(result.data.cookiesToSet, Astro.cookies);
+}
 
 return Astro.redirect("/");
 ---

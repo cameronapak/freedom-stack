@@ -1,6 +1,7 @@
 // Inspired by https://github.com/HiDeoo/starlight-better-auth-example/blob/main/src/actions/index.ts
 import { defineAction, ActionError, type ActionErrorCode } from "astro:actions";
 import { z } from "astro:schema";
+import type { AstroCookies } from "astro";
 import { APIError } from "better-auth/api";
 import { auth as betterAuth } from "@/lib/auth";
 import type { ActionAPIContext } from "astro:actions";
@@ -21,12 +22,10 @@ function parseCookiesFromResponse(cookiesArray: string[]) {
   });
 }
 
-function setCookiesFromResponse(
-  cookies: { name: string; value: string; options: Record<string, any> }[],
-  context: ActionAPIContext
-) {
-  for (const cookie of cookies) {
-    context.cookies.set(cookie.name, cookie.value, cookie.options);
+export function setAuthCookiesFromResponse(cookiesArray: string[], cookies: AstroCookies) {
+  const cookiesToSet = parseCookiesFromResponse(cookiesArray);
+  for (const cookie of cookiesToSet) {
+    cookies.set(cookie.name, cookie.value, cookie.options);
   }
 }
 
@@ -41,9 +40,7 @@ async function handleAuthResponse(
       throw new Error(`Failed to ${errorCode.toLowerCase()}`);
     }
 
-    setCookiesFromResponse(parseCookiesFromResponse(response.headers.getSetCookie()), context);
-
-    return { success: true };
+    return { success: true, cookiesToSet: response.headers.getSetCookie() };
   } catch (error) {
     throwActionAuthError(errorCode, error);
   }
