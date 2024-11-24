@@ -3,6 +3,49 @@ import { defineAction, ActionError, type ActionErrorCode } from "astro:actions";
 import { z } from "astro:schema";
 import { APIError } from "better-auth/api";
 import { auth as betterAuth } from "@/lib/auth";
+import type { ActionAPIContext } from "astro:actions";
+
+function parseCookiesFromResponse(cookiesArray: string[]) {
+  return cookiesArray.map((cookieString) => {
+    const [nameValue, ...options] = cookieString.split(";").map((s) => s.trim());
+    const [name, value] = nameValue.split("=");
+
+    const cookieOptions = Object.fromEntries(
+      options.map((opt) => {
+        const [key, val] = opt.split("=");
+        return [key.toLowerCase(), val ?? true];
+      })
+    );
+
+    return { name, value: decodeURIComponent(value), options: cookieOptions };
+  });
+}
+
+function setCookiesFromResponse(
+  cookies: { name: string; value: string; options: Record<string, any> }[],
+  context: ActionAPIContext
+) {
+  for (const cookie of cookies) {
+    context.cookies.set(cookie.name, cookie.value, cookie.options);
+  }
+}
+
+async function handleAuthResponse(
+  apiCall: () => Promise<Response>,
+  context: ActionAPIContext,
+  errorCode: ActionErrorCode
+) {
+  try {
+    const response = await apiCall();
+    if (!response.ok) throw new Error(`Failed to ${errorCode.toLowerCase()}`);
+
+    setCookiesFromResponse(parseCookiesFromResponse(response.headers.getSetCookie()), context);
+
+    return { success: true };
+  } catch (error) {
+    throwActionAuthError(errorCode, error);
+  }
+}
 
 export const auth = {
   signUp: defineAction({
@@ -13,23 +56,17 @@ export const auth = {
       name: z.string(),
       imageUrl: z.string().optional()
     }),
-    handler: async ({ email, password, name, imageUrl = "" }, ctx) => {
-      try {
-        const response = await betterAuth.api.signUpEmail({
-          body: { email, password, name, image: imageUrl },
-          headers: ctx.request.headers,
-          asResponse: true
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to sign up");
-        }
-
-        return { cookiesToSet: response.headers.getSetCookie().join("; ") };
-      } catch (error) {
-        throwActionAuthError("BAD_REQUEST", error);
-      }
-    }
+    handler: async (input, context) =>
+      handleAuthResponse(
+        () =>
+          betterAuth.api.signUpEmail({
+            body: { ...input, image: input.imageUrl || "" },
+            headers: context.request.headers,
+            asResponse: true
+          }),
+        context,
+        "BAD_REQUEST"
+      )
   }),
 
   signIn: defineAction({
@@ -38,43 +75,31 @@ export const auth = {
       email: z.string().email(),
       password: z.string()
     }),
-    handler: async ({ email, password }, ctx) => {
-      try {
-        const response = await betterAuth.api.signInEmail({
-          body: { email, password },
-          headers: ctx.request.headers,
-          asResponse: true
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to sign in");
-        }
-
-        return { cookiesToSet: response.headers.getSetCookie().join("; ") };
-      } catch (error) {
-        throwActionAuthError("UNAUTHORIZED", error);
-      }
-    }
+    handler: async (input, context) =>
+      handleAuthResponse(
+        () =>
+          betterAuth.api.signInEmail({
+            body: input,
+            headers: context.request.headers,
+            asResponse: true
+          }),
+        context,
+        "UNAUTHORIZED"
+      )
   }),
 
   signOut: defineAction({
     accept: "form",
-    handler: async (_, ctx) => {
-      try {
-        const response = await betterAuth.api.signOut({
-          headers: ctx.request.headers,
-          asResponse: true
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to sign out");
-        }
-
-        return { cookiesToSet: response.headers.getSetCookie().join("; ") };
-      } catch (error) {
-        throwActionAuthError("BAD_REQUEST", error);
-      }
-    }
+    handler: async (_, context) =>
+      handleAuthResponse(
+        () =>
+          betterAuth.api.signOut({
+            headers: context.request.headers,
+            asResponse: true
+          }),
+        context,
+        "BAD_REQUEST"
+      )
   })
 };
 

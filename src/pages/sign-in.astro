@@ -9,10 +9,8 @@ if (Astro.locals.session) {
 }
 
 const result = Astro.getActionResult(actions.auth.signIn);
-
-if (result?.data?.cookiesToSet) {
-  // set cookies
-  Astro.response.headers.append("Set-Cookie", result.data.cookiesToSet);
+if (result?.data?.success) {
+  return Astro.redirect("/dashboard");
 }
 ---
 
