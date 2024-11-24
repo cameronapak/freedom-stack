@@ -39,7 +39,7 @@ Astro.response.headers.set("netlify-cache-tag", `post-${slug}`);
     title="Freedom Stack"
     links={[
       { text: "Blog", href: "/posts" },
-      { text: "Sign In", href: "/sign-in" }
+      Astro.locals.user ? { text: "Dashboard", href: "/dashboard" } : { text: "Sign In", href: "/sign-in" }
     ]}
   />
 
