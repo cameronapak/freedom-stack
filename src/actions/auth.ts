@@ -21,6 +21,10 @@ export const auth = {
           asResponse: true
         });
 
+        if (!response.ok) {
+          throw new Error("Failed to sign up");
+        }
+
         return { cookiesToSet: response.headers.getSetCookie().join("; ") };
       } catch (error) {
         throwActionAuthError("BAD_REQUEST", error);
@@ -42,6 +46,10 @@ export const auth = {
           asResponse: true
         });
 
+        if (!response.ok) {
+          throw new Error("Failed to sign in");
+        }
+
         return { cookiesToSet: response.headers.getSetCookie().join("; ") };
       } catch (error) {
         throwActionAuthError("UNAUTHORIZED", error);
@@ -57,6 +65,10 @@ export const auth = {
           headers: ctx.request.headers,
           asResponse: true
         });
+
+        if (!response.ok) {
+          throw new Error("Failed to sign out");
+        }
 
         return { cookiesToSet: response.headers.getSetCookie().join("; ") };
       } catch (error) {
