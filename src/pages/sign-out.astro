@@ -1,0 +1,7 @@
+---
+import { actions } from "astro:actions";
+
+await Astro.callAction(actions.auth.signOut, new FormData());
+
+return Astro.redirect("/");
+---
