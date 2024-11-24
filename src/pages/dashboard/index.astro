@@ -1,19 +1,73 @@
 ---
 import { actions } from "astro:actions";
+import { Posts, db, desc, eq } from "astro:db";
+import Icon from "astro-iconify";
 import Layout from "@/layouts/Layout.astro";
+import Navbar from "@sections/Navbar.astro";
+import Container from "@sections/Container.astro";
+import Footer from "@sections/Footer.astro";
 
 if (!Astro.locals.session) {
   return Astro.redirect("/sign-in");
 }
 
-const user = Astro.locals.user;
+const user = Astro.locals.user as { email: string };
 
 if (!user) {
   return Astro.redirect("/sign-in");
 }
+
+const allPosts = await db.select().from(Posts).where(eq(Posts.author, user.email)).orderBy(desc(Posts.pubDate));
 ---
 
 <Layout title="Dashboard">
+  <Navbar title="Freedom Stack" links={[{ text: "Sign Out", href: "/sign-out" }]} />
+
+  <Container title="My Posts" titleIsH1 align="center">
+    <div class="flex justify-end w-full">
+      <a href="/dashboard/posts/new" class="btn btn-primary shadow-none">
+        <Icon name="lucide:plus" class="w-4 h-4" />
+        Create Post
+      </a>
+    </div>
+    <ul class="w-full list-none p-0 m-0 mt-6 flex flex-col gap-6">
+      {
+        allPosts.map((post) => (
+          <li class="w-full m-0">
+            <a
+              class="block no-underline p-6 rounded-xl border-2 border-slate-200 bg-white"
+              href={`/dashboard/posts/edit/${post.slug}`}
+            >
+              <p class="m-0 mb-2 text-sm text-slate-500">
+                {post.pubDate.toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+              </p>
+              <h2 class="m-0 line-clamp-2">{post.title}</h2>
+              <p class="m-0 line-clamp-2">{post.description}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </Container>
+  <Footer
+    links={[
+      {
+        title: "Resources",
+        items: [
+          { text: "Code on GitHub", href: "https://github.com/cameronapak/freedom-stack" },
+          { text: "Buy Me a Coffee", href: "https://buymeacoffee.com/campak" },
+          { text: "Contact Cam", href: "https://cameronpak.com/pages/contact-cam" }
+        ]
+      },
+      {
+        title: "Legal",
+        items: [
+          { text: "Code of Conduct", href: "https://github.com/cameronapak/freedom-stack?tab=coc-ov-file#readme" },
+          { text: "MIT License", href: "https://github.com/cameronapak/freedom-stack?tab=mit-1-ov-file#readme" }
+        ]
+      }
+    ]}
+  />
   <main class="container mx-auto p-6">
     <div class="breadcrumbs text-sm m-0">
       <ul class="!p-0 !m-0">
@@ -23,15 +77,6 @@ if (!user) {
     </div>
 
     <h1>Dashboard</h1>
-    <p>Welcome, {user.name || user.email || "You..."}!</p>
-    <ul>
-      <li>
-        <a href="/posts">All Posts</a>
-        <ul>
-          <li><a href="/dashboard/posts/new">Create</a></li>
-        </ul>
-      </li>
-    </ul>
 
     <form method="post" action={actions.auth.signOut}>
       <button type="submit" class="btn btn-sm shadow-none">Sign Out</button>
