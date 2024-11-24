@@ -95,7 +95,15 @@ trix-editor,
     @apply text-2xl font-extrabold;
   }
 
-  @apply text-xl leading-relaxed m-0 p-0 border-0;
+  :first-child {
+    @apply mt-0;
+  }
+
+  :last-child {
+    @apply mb-0;
+  }
+
+  @apply p-0 m-0 border-0 text-xl leading-relaxed;
 }
 
 input[type="text"],
