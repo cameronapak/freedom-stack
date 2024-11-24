@@ -16,18 +16,9 @@ export const auth = {
     handler: async ({ email, password, name, imageUrl = "" }, ctx) => {
       try {
         const response = await betterAuth.api.signUpEmail({
-          body: {
-            email,
-            password,
-            name,
-            image: imageUrl
-          },
+          body: { email, password, name, image: imageUrl },
           headers: ctx.request.headers,
           asResponse: true
-        });
-
-        response.headers.getSetCookie().forEach((cookie) => {
-          ctx.request.headers.append("Set-Cookie", cookie);
         });
 
         return { cookies: response.headers.getSetCookie() };
@@ -46,16 +37,9 @@ export const auth = {
     handler: async ({ email, password }, ctx) => {
       try {
         const response = await betterAuth.api.signInEmail({
-          body: {
-            email,
-            password
-          },
+          body: { email, password },
           headers: ctx.request.headers,
           asResponse: true
-        });
-
-        response.headers.getSetCookie().forEach((cookie) => {
-          ctx.request.headers.append("Set-Cookie", cookie);
         });
 
         return { cookies: response.headers.getSetCookie() };
@@ -72,10 +56,6 @@ export const auth = {
         const response = await betterAuth.api.signOut({
           headers: ctx.request.headers,
           asResponse: true
-        });
-
-        response.headers.getSetCookie().forEach((cookie) => {
-          ctx.request.headers.append("Set-Cookie", cookie);
         });
 
         return { cookies: response.headers.getSetCookie() };
