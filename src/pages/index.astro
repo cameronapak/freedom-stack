@@ -120,6 +120,7 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     secondaryCtaText="GitHub"
     secondaryCtaHref="https://github.com/cameronapak/freedom-stack"
   />
+  <div hx-get="/api/htmx-partials/uneed-launch" hx-trigger="load delay:500ms" hx-swap="innerHTML"></div>
   {
     /*
       Using HTMX to grab the GitHub stars count without reloading the page.

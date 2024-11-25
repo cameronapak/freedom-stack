@@ -1,0 +1,47 @@
+---
+import { Icon } from "astro-iconify";
+
+const launchDate = new Date("2024-11-29");
+const today = new Date();
+const isLaunchDay = today.toDateString() === launchDate.toDateString();
+const isBeforeLaunch = today < launchDate;
+
+const voteUrl = "https://www.uneed.best/tool/freedom-stack---starter-kit";
+---
+
+{
+  isBeforeLaunch && (
+    <div x-data="{ show: false }" x-init="setTimeout(() => show = true, 100)">
+      <section x-show="show" x-collapse class="bg-slate-200 p-6">
+        <div class="container sm:grid max-sm:flex max-sm:flex-col max-sm:items-center sm:grid-cols-[auto_1fr_auto] gap-4 items-center">
+          <a href={voteUrl} target="_blank">
+            <img class="h-12 m-0 shrink-0" src="https://www.uneed.best/EMBED3.png" alt="Uneed Embed Badge" />
+          </a>
+          <p class="m-0 text-base text-slate-500">Launching on Black Friday, 2024.</p>
+          <a class="btn btn-secondary" href={voteUrl} target="_blank">
+            <Icon name="bell-ring" pack="lucide" class="w-5 h-5" />
+            Get Notified
+          </a>
+        </div>
+      </section>
+    </div>
+  )
+}
+{
+  isLaunchDay && (
+    <div x-data="{ show: false }" x-init="setTimeout(() => show = true, 100)">
+      <section x-show="show" x-collapse class="bg-slate-200 p-6">
+        <div class="container sm:grid max-sm:flex max-sm:flex-col max-sm:items-center sm:grid-cols-[auto_1fr_auto] gap-4 items-center">
+          <a href={voteUrl} target="_blank">
+            <img class="h-12 m-0 shrink-0" src="https://www.uneed.best/EMBED1.png" alt="Uneed Embed Badge" />
+          </a>
+          <p class="m-0 text-base text-slate-500">Vote for Freedom Stack on Uneed (Today-Only)</p>
+          <a class="btn btn-secondary" href={voteUrl} target="_blank">
+            <Icon name="vote" pack="lucide" class="w-5 h-5" />
+            Vote Now
+          </a>
+        </div>
+      </section>
+    </div>
+  )
+}
