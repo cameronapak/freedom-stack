@@ -31,7 +31,7 @@
 }
 
 .container {
-  max-width: 768px;
+  max-width: 768px !important;
 }
 
 /* Alpine.js */
@@ -39,11 +39,11 @@
   display: none;
 }
 
-.btn-outline {
+.btn.btn-outline {
   @apply border-2 border-slate-200 hover:border-slate-200 hover:bg-inherit hover:text-inherit;
 }
 
-.btn-primary {
+.btn.btn-primary {
   @apply text-white;
 }
 
