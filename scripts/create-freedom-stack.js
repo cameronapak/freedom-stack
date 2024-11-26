@@ -109,7 +109,8 @@ pnpm-debug.log*
 To get started:
   cd ${projectName}
   cp .env.example .env
-  npm run dev
+  npm run db:setup      # Set up your Turso database
+  npm run dev          # Start the development server
 
 Visit http://localhost:4321 to see your app.
   `);

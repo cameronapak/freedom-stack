@@ -1,7 +1,7 @@
 {
   "name": "freedom-stack",
   "type": "module",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more",
   "author": "Cameron Pak",
   "license": "MIT",
@@ -43,6 +43,7 @@
     "preview": "astro preview",
     "format": "prettier -w .",
     "packages:update": "npx npm-check-updates -u",
+    "db:setup": "node scripts/setup-turso.js",
     "db:update-schemas": "astro db push --remote",
     "host:deploy": "npx netlify deploy",
     "host:login": "npx netlify login"
