@@ -2,6 +2,9 @@
 
 A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more.
 
+> [!TIP] 💡
+> [Turso](https://tur.so/freedomstack) has a generous free tier for database hosting and management. And, when it's time to scale, use the code `FREEDOMSTACK` for a discount on paid plans.
+
 ## Get Started 🚀
 
 ### 1. Create Your Project
@@ -75,7 +78,7 @@ If you want to learn more about Alpine.js, I recommend [Learn Alpine.js on codec
 
 ### The Database Layer
 
-If you want to learn more about the database layer, I recommend learning from [High Performance SQLite course](https://highperformancesqlite.com/), sponsored by [Turso](https://turso.tech/).
+If you want to learn more about the database layer, I recommend learning from [High Performance SQLite course](https://highperformancesqlite.com/), sponsored by [Turso](https://tur.so/freedomstack/).
 
 ### The Philosophy Layer
 
