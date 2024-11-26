@@ -2,23 +2,45 @@
 
 A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more.
 
-## Quick Start
+## Get Started 🚀
+
+### 1. Create Your Project
+
+You can create a new Freedom Stack project using npm:
 
 ```bash
 # Create a new project
 npx create-freedom-stack my-app
 
-# Navigate to the project
+# Navigate to the project directory
 cd my-app
 
-# Copy the environment file
-cp .env.example .env
+# Set up your database
+npm run db:setup
 
 # Start the development server
 npm run dev
 ```
 
-Visit `http://localhost:4321` to see your app.
+Your development server will be running on [`localhost:4321`](http://localhost:4321).
+
+### 2. Environment Variables
+
+The project will automatically create a `.env` file with a generated `BETTER_AUTH_SECRET`. You'll need to set these additional variables:
+
+```env
+# Astro DB - LibSQL (required) - Your database
+ASTRO_DB_REMOTE_URL=""    # Added by npm run db:setup
+ASTRO_DB_APP_TOKEN=""     # Added by npm run db:setup
+
+# Better Auth (required)
+BETTER_AUTH_SECRET=""     # Auto-generated during setup
+BETTER_AUTH_URL="http://localhost:4321"
+```
+
+### 3. Have fun!
+
+Create because you love creating. Make development fun again!
 
 ## What's Included
 
@@ -88,60 +110,6 @@ Ogres have layers. Onions have layers. Parfaits have layers. And, Freedom Stack 
 ### Bonus Layer
 
 - A well-prompted `.cursorrules` file for [Cursor's AI IDE](https://cursor.com/) to be a friendly guide helping you using this stack easier.
-
-## Get Started 🚀
-
-### 1. Setup Your Codebase
-
-To create your own instance of this codebase, click the "Use this template"
-button on the [repo's home page](https://github.com/cameronapak/freedom-stack).
-
-Then, clone your new repo to your local machine.
-
-### 2. Setup Your Database
-
-We use [Turso](https://turso.tech/) for the fully-managed libSQL database. [Follow these instructions to get started with Turso](https://docs.astro.build/en/guides/astro-db/#getting-started-with-turso).
-
-_[Want to visualize your data through a GUI?](https://docs.turso.tech/local-development#connecting-a-gui)_
-
-### 3. Set Environment Variables
-
-Let's create the `.env` file by copying the `.env.example` file.
-
-```bash
-cp .env.example .env
-```
-
-This project uses the following environment variables:
-
-| Variable              | Description                               | Required | More Info                                                                                         |
-| --------------------- | ----------------------------------------- | -------- | ------------------------------------------------------------------------------------------------- |
-| `ASTRO_DB_REMOTE_URL` | The connection URL to your libSQL server  | Required | [Astro DB](https://docs.astro.build/en/guides/astro-db/#connect-a-libsql-database-for-production) |
-| `ASTRO_DB_APP_TOKEN`  | The auth token to your libSQL server      | Required | [Astro DB](https://docs.astro.build/en/guides/astro-db/#connect-a-libsql-database-for-production) |
-| `BETTER_AUTH_SECRET`  | The secret for Better Auth authentication | Required | [Better Auth](https://better-auth.com/docs/getting-started/environment-variables)                 |
-| `BETTER_AUTH_URL`     | The URL for Better Auth authentication    | Required | [Better Auth](https://better-auth.com/docs/getting-started/environment-variables)                 |
-
-Make sure to set these variables in your environment or `.env` file before running the application.
-
-### 5. Run the Development Server
-
-Install the dependencies.
-
-```bash
-npm install
-```
-
-Then, run the development server.
-
-```bash
-npm run dev
-```
-
-Viola! Your development server is now running on [`localhost:4321`](http://localhost:4321).
-
-### 6. Have fun!
-
-Create because you love creating. Make development fun again!
 
 ---
 

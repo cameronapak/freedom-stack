@@ -134,7 +134,7 @@ const projectName = process.argv[2];
 
 if (!projectName) {
   console.error("Please specify a project name:");
-  console.error("  npx freedom-stack my-app");
+  console.error("  npx create-freedom-stack my-app");
   process.exit(1);
 }
 

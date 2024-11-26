@@ -1,8 +1,8 @@
 {
-  "name": "freedom-stack",
+  "name": "create-freedom-stack",
   "type": "module",
-  "version": "2.0.10",
-  "description": "A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more",
+  "version": "1.0.2",
+  "description": "Create a new Freedom Stack project - A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more",
   "author": "Cameron Pak",
   "license": "MIT",
   "repository": {
@@ -10,6 +10,8 @@
     "url": "git+https://github.com/cameronpak/freedom-stack.git"
   },
   "keywords": [
+    "create-freedom-stack",
+    "freedom-stack",
     "astro",
     "typescript",
     "htmx",
@@ -20,7 +22,7 @@
     "template"
   ],
   "bin": {
-    "freedom-stack": "./scripts/create-freedom-stack.js"
+    "create-freedom-stack": "./scripts/create-freedom-stack.js"
   },
   "files": [
     "src",
