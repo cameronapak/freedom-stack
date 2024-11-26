@@ -1,7 +1,41 @@
 {
-  "name": "freedom-stack",
+  "name": "create-freedom-stack",
   "type": "module",
-  "version": "2.0.0",
+  "version": "1.0.2",
+  "description": "Create a new Freedom Stack project - A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more",
+  "author": "Cameron Pak",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cameronpak/freedom-stack.git"
+  },
+  "keywords": [
+    "create-freedom-stack",
+    "freedom-stack",
+    "astro",
+    "typescript",
+    "htmx",
+    "alpinejs",
+    "tailwindcss",
+    "daisyui",
+    "starter",
+    "template"
+  ],
+  "bin": {
+    "create-freedom-stack": "./scripts/create-freedom-stack.js"
+  },
+  "files": [
+    "src",
+    "public",
+    "scripts",
+    "db",
+    ".env.example",
+    "astro.config.mjs",
+    "tailwind.config.mjs",
+    "tsconfig.json",
+    ".prettierrc",
+    ".nvmrc"
+  ],
   "scripts": {
     "check:env": "node scripts/check-env.js",
     "dev": "npm run check:env && astro dev",
@@ -11,6 +45,7 @@
     "preview": "astro preview",
     "format": "prettier -w .",
     "packages:update": "npx npm-check-updates -u",
+    "db:setup": "node scripts/setup-turso.js",
     "db:update-schemas": "astro db push --remote",
     "host:deploy": "npx netlify deploy",
     "host:login": "npx netlify login"
