@@ -18,6 +18,15 @@ async function question(query) {
   return new Promise((resolve) => rl.question(query, resolve));
 }
 
+function checkTursoAuth() {
+  try {
+    const output = execSync("turso db list", { encoding: "utf8" });
+    return !output.includes("please login with turso auth login");
+  } catch (error) {
+    return false;
+  }
+}
+
 async function setupTurso() {
   console.log("🔧 Setting up Turso database...");
 
@@ -35,20 +44,34 @@ async function setupTurso() {
     }
 
     // Check if user is authenticated with Turso
-    try {
-      execSync("turso auth status", { stdio: "ignore" });
-    } catch (error) {
-      console.log("🔑 Please authenticate with Turso...");
-      execSync("turso auth login", { stdio: "inherit" });
+    if (!checkTursoAuth()) {
+      console.log("\n❌ You need to authenticate with Turso first.");
+      console.log("\nRun these commands in order:");
+      console.log("1. turso auth login");
+      console.log("2. npm run db:setup");
+      rl.close();
+      process.exit(1);
     }
 
     // Get database name from user
     const dbName =
-      (await question("Enter a name for your database (default: freedom-stack-db): ")) || "freedom-stack-db";
+      (await question("\nEnter a name for your database (default: freedom-stack-db): ")) || "freedom-stack-db";
 
     // Create database
     console.log(`\n📚 Creating database: ${dbName}...`);
-    execSync(`turso db create ${dbName}`, { stdio: "inherit" });
+    try {
+      execSync(`turso db create ${dbName}`, { stdio: "inherit" });
+    } catch (error) {
+      if (error.message.includes("not logged in")) {
+        console.log("\n❌ Turso authentication required.");
+        console.log("\nRun these commands in order:");
+        console.log("1. turso auth login");
+        console.log("2. npm run db:setup");
+        rl.close();
+        process.exit(1);
+      }
+      throw error;
+    }
 
     // Get database URL
     console.log("\n🔗 Getting database URL...");

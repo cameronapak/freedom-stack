@@ -1,7 +1,7 @@
 {
   "name": "freedom-stack",
   "type": "module",
-  "version": "2.0.4",
+  "version": "2.0.8",
   "description": "A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more",
   "author": "Cameron Pak",
   "license": "MIT",
@@ -20,7 +20,7 @@
     "template"
   ],
   "bin": {
-    "create-freedom-stack": "./scripts/create-freedom-stack.js"
+    "freedom-stack": "./scripts/create-freedom-stack.js"
   },
   "files": [
     "src",
