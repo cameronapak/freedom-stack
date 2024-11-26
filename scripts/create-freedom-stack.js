@@ -4,6 +4,7 @@ import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import { randomUUID } from "crypto";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -22,7 +23,6 @@ function createProject(projectName) {
     "public",
     "db",
     "scripts",
-    ".env.example",
     "astro.config.mjs",
     "tailwind.config.mjs",
     "tsconfig.json",
@@ -58,6 +58,20 @@ function createProject(projectName) {
 
   // Write modified package.json
   fs.writeFileSync(path.join(projectDir, "package.json"), JSON.stringify(newPackageJson, null, 2));
+
+  // Create .env from .env.example with generated BETTER_AUTH_SECRET
+  const envExamplePath = path.join(templateDir, ".env.example");
+  const envPath = path.join(projectDir, ".env");
+  let envContent = fs.readFileSync(envExamplePath, "utf8");
+
+  // Generate and set BETTER_AUTH_SECRET
+  const authSecret = randomUUID();
+  envContent = envContent.replace('BETTER_AUTH_SECRET=""', `BETTER_AUTH_SECRET="${authSecret}"`);
+
+  fs.writeFileSync(envPath, envContent);
+
+  // Also create .env.example in the new project
+  fs.copyFileSync(envExamplePath, path.join(projectDir, ".env.example"));
 
   // Initialize git
   process.chdir(projectDir);
@@ -108,7 +122,6 @@ pnpm-debug.log*
 
 To get started:
   cd ${projectName}
-  cp .env.example .env
   npm run db:setup      # Set up your Turso database
   npm run dev          # Start the development server
 
