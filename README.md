@@ -1,3 +1,34 @@
+# Freedom Stack
+
+A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more.
+
+## Quick Start
+
+```bash
+# Create a new project
+npx create-freedom-stack my-app
+
+# Navigate to the project
+cd my-app
+
+# Copy the environment file
+cp .env.example .env
+
+# Start the development server
+npm run dev
+```
+
+Visit `http://localhost:4321` to see your app.
+
+## What's Included
+
+- 🚀 [Astro](https://astro.build) - The web framework for content-driven websites
+- 🎨 [TailwindCSS](https://tailwindcss.com) + [DaisyUI](https://daisyui.com) - Utility-first CSS
+- ⚡ [HTMX](https://htmx.org) - High power tools for HTML
+- 🗄️ [Astro DB](https://docs.astro.build/en/guides/astro-db) - Built-in database with type safety
+- 🔒 [Better Auth](https://better-auth.com) - Simple, secure authentication
+- 🏃‍♂️ [Alpine.js](https://alpinejs.dev) - Lightweight JavaScript framework
+
 # Freedom Stack • Full-Stack Starter Kit
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/78803fc4-5d36-4efb-82cd-2daeb5684fb6/deploy-status)](https://app.netlify.com/sites/freedom-stack/deploys) [![Github Stars](https://img.shields.io/github/stars/cameronapak/freedom-stack?style=flat-square)](https://github.com/cameronapak/freedom-stack/stargazers)

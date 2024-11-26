@@ -2,6 +2,38 @@
   "name": "freedom-stack",
   "type": "module",
   "version": "2.0.0",
+  "description": "A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more",
+  "author": "Cameron Pak",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cameronpak/freedom-stack.git"
+  },
+  "keywords": [
+    "astro",
+    "typescript",
+    "htmx",
+    "alpinejs",
+    "tailwindcss",
+    "daisyui",
+    "starter",
+    "template"
+  ],
+  "bin": {
+    "create-freedom-stack": "./scripts/create-freedom-stack.js"
+  },
+  "files": [
+    "src",
+    "public",
+    "scripts",
+    "db",
+    ".env.example",
+    "astro.config.mjs",
+    "tailwind.config.mjs",
+    "tsconfig.json",
+    ".prettierrc",
+    ".nvmrc"
+  ],
   "scripts": {
     "check:env": "node scripts/check-env.js",
     "dev": "npm run check:env && astro dev",
