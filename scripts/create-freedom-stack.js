@@ -191,9 +191,10 @@ const argv = cli({
   flags: {
     auth: {
       type: String,
-      description: "Auth provider to use",
+      description: `Auth provider to use ("better" or "clerk")`,
       choices: ["better", "clerk"],
-      default: "better"
+      default: "better",
+      alias: "a"
     }
   },
   help: {
