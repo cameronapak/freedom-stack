@@ -4,9 +4,11 @@ import Layout from "@/layouts/Layout.astro";
 import Navbar from "@sections/Navbar.astro";
 import Container from "@sections/Container.astro";
 import Footer from "@sections/Footer.astro";
+import { getUser } from "@/utils/auth";
 
 const pageTitle = "Posts";
 const allPosts = await db.select().from(Posts).orderBy(desc(Posts.pubDate));
+const user = getUser(Astro.locals);
 
 // The browser should always check freshness
 Astro.response.headers.set("cache-control", "public, max-age=0, must-revalidate");
@@ -21,7 +23,7 @@ Astro.response.headers.set("netlify-cache-tag", "posts");
 <Layout title={pageTitle}>
   <Navbar
     title="Freedom Stack"
-    links={[Astro.locals.user ? { text: "Dashboard", href: "/dashboard" } : { text: "Sign In", href: "/sign-in" }]}
+    links={[user ? { text: "Dashboard", href: "/dashboard" } : { text: "Sign In", href: "/sign-in" }]}
   />
 
   <Container title="Posts" titleIsH1 align="center">

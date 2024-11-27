@@ -3,6 +3,8 @@
 /// <reference path="../.astro/types.d.ts" />
 
 import * as htmx from "htmx.org";
+import type { User as BetterAuthUser, Session as BetterAuthSession } from "better-auth";
+import type { User as ClerkUser } from "@clerk/backend";
 
 declare global {
   interface Window {
@@ -12,20 +14,25 @@ declare global {
 
   namespace App {
     interface Locals {
-      user: import("better-auth").User | null;
-      session: import("better-auth").Session | null;
+      user: BetterAuthUser | ClerkUser | null;
+      session: BetterAuthSession | null;
     }
   }
 }
 
-// https://docs.astro.build/en/guides/environment-variables/#intellisense-for-typescript
+// Environment variables interface
 interface ImportMetaEnv {
-  /** https://docs.astro.build/en/guides/astro-db/#libsql */
+  /** Database configuration */
   readonly ASTRO_DB_REMOTE_URL: string;
-  /** https://docs.astro.build/en/guides/astro-db/#libsql */
   readonly ASTRO_DB_APP_TOKEN: string;
+
+  /** Better Auth configuration */
   readonly BETTER_AUTH_URL: string;
   readonly BETTER_AUTH_SECRET: string;
+
+  /** Clerk configuration (optional) */
+  readonly CLERK_SECRET_KEY?: string;
+  readonly CLERK_PUBLISHABLE_KEY?: string;
 }
 
 interface ImportMeta {

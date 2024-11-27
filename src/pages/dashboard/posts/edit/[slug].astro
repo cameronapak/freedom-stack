@@ -3,12 +3,13 @@ import { eq, db, Posts } from "astro:db";
 import { actions } from "astro:actions";
 import Layout from "@/layouts/Layout.astro";
 import TrixEditor from "@/components/TrixEditor.astro";
+import { getUser } from "@/utils/auth";
 
 // Get the post slug from params
 const { slug } = Astro.params;
 
 // Get current user
-const user = Astro.locals.user;
+const user = getUser(Astro.locals);
 
 if (!user) {
   return Astro.redirect("/login");

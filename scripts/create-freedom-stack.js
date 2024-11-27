@@ -62,14 +62,20 @@ async function createProject(projectName, flags) {
     author: "",
     dependencies: {
       ...packageJson.dependencies,
-      // Remove auth packages
+      // Remove auth packages from dependencies
       "better-auth": undefined,
       "@clerk/astro": undefined,
       "@clerk/clerk-sdk-node": undefined
+    },
+    devDependencies: {
+      ...packageJson.devDependencies,
+      // Keep type packages for both auth providers
+      "@clerk/types": "^3.0.0",
+      "@types/better-auth": "^1.0.0"
     }
   };
 
-  // Add selected auth provider dependencies
+  // Add selected auth provider runtime dependencies
   if (authProvider === "clerk") {
     newPackageJson.dependencies["@clerk/astro"] = "^1.5.0";
     newPackageJson.dependencies["@clerk/clerk-sdk-node"] = "^5.0.69";

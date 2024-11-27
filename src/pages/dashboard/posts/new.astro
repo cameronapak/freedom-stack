@@ -2,12 +2,13 @@
 import Layout from "@/layouts/Layout.astro";
 import { actions } from "astro:actions";
 import TrixEditor from "@/components/TrixEditor.astro";
+import { getUser } from "@/utils/auth";
 
 if (!Astro.locals.session) {
   return Astro.redirect("/");
 }
 
-const user = Astro.locals.user;
+const user = getUser(Astro.locals);
 const result = Astro.getActionResult(actions.posts.create);
 
 // Redirect on successful post creation

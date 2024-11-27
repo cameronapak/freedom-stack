@@ -9,10 +9,11 @@ import Footer from "@sections/Footer.astro";
 import Navbar from "@sections/Navbar.astro";
 import Container from "@sections/Container.astro";
 import RenderMarkdown from "@/components/RenderMarkdown.astro";
+import { getUser } from "@/utils/auth";
 
 const { slug } = Astro.params;
 
-const user = Astro.locals.user;
+const user = getUser(Astro.locals);
 
 if (!slug) {
   return Astro.redirect("/posts");
@@ -39,8 +40,9 @@ Astro.response.headers.set("netlify-cache-tag", `post-${slug}`);
     title="Freedom Stack"
     links={[
       { text: "Blog", href: "/posts" },
-      Astro.locals.user ? { text: "Dashboard", href: "/dashboard" } : { text: "Sign In", href: "/sign-in" }
+      user ? { text: "Dashboard", href: "/dashboard" } : { text: "Sign In", href: "/sign-in" }
     ]}
+    server:defer
   />
 
   <Container

@@ -5,12 +5,13 @@ import Layout from "@/layouts/Layout.astro";
 import Navbar from "@sections/Navbar.astro";
 import Container from "@sections/Container.astro";
 import Footer from "@sections/Footer.astro";
+import { getUser } from "@/utils/auth";
 
 if (!Astro.locals.session) {
   return Astro.redirect("/sign-in");
 }
 
-const user = Astro.locals.user as { email: string };
+const user = getUser(Astro.locals);
 
 if (!user) {
   return Astro.redirect("/sign-in");
