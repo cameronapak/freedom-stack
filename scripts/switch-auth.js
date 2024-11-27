@@ -39,6 +39,26 @@ const envVars = {
   }
 };
 
+// Helper function to copy directory recursively
+function copyDir(src, dest) {
+  if (!fs.existsSync(dest)) {
+    fs.mkdirSync(dest, { recursive: true });
+  }
+
+  const entries = fs.readdirSync(src, { withFileTypes: true });
+
+  for (const entry of entries) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+
+    if (entry.isDirectory()) {
+      copyDir(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  }
+}
+
 async function switchAuth() {
   console.log(`🔄 Switching to ${authProvider} auth...`);
 
@@ -128,6 +148,19 @@ async function switchAuth() {
     fs.copyFileSync(path.join(templateDir, "auth-client.ts"), path.join(targetDir, "auth-client.ts"));
   }
 
+  // 5. Copy components
+  console.log("\n🎨 Copying auth components...");
+  const componentsDir = path.join(process.cwd(), "src/components/auth");
+  const templateComponentsDir = path.join(templateDir, "components");
+
+  // Remove existing auth components
+  if (fs.existsSync(componentsDir)) {
+    fs.rmSync(componentsDir, { recursive: true, force: true });
+  }
+
+  // Copy new auth components
+  copyDir(templateComponentsDir, componentsDir);
+
   console.log(`
 ✅ Successfully switched to ${authProvider} auth!
 
@@ -154,6 +187,7 @@ The following files have been updated:
 - Auth implementation in src/lib/auth.ts
 - Middleware in src/middleware.ts
 ${authProvider === "better" ? "- Auth client in src/lib/auth-client.ts" : ""}
+- Auth components in src/components/auth/
 
 For more information, visit:
 ${authProvider === "clerk" ? "https://clerk.com/docs/quickstarts/astro" : "https://better-auth.com/"}

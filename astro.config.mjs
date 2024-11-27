@@ -22,5 +22,9 @@ export default defineConfig({
   adapter: netlify(),
   experimental: {
     serverIslands: true
+  },
+  // Ignore template files during build
+  build: {
+    excludeFiles: ["src/lib/auth/clerk/**/*", "src/lib/auth/better/**/*"]
   }
 });
