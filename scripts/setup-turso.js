@@ -3,10 +3,7 @@
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 import readline from "readline";
-
-const __filename = fileURLToPath(import.meta.url);
 
 const rl = readline.createInterface({
   input: process.stdin,
