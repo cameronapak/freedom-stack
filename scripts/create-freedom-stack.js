@@ -171,12 +171,12 @@ pnpm-debug.log*
 
   // Set up auth files
   console.log("\nSetting up auth files...");
-  execSync("npm run auth:setup", { stdio: "inherit" });
+  execSync("npm run _auth:setup", { stdio: "inherit" });
 
   // If using Clerk, switch to Clerk
   if (authProvider === "clerk") {
     console.log("\nSwitching to Clerk auth...");
-    execSync("npm run auth:use-clerk", { stdio: "inherit" });
+    execSync("npm run _auth:use-clerk", { stdio: "inherit" });
   }
 
   console.log(`

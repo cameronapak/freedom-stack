@@ -27,7 +27,7 @@
   "files": [
     "src",
     "public",
-    "scripts",
+    "scripts/create-freedom-stack.js",
     "db",
     ".env.example",
     "astro.config.mjs",
@@ -49,9 +49,9 @@
     "db:update-schemas": "astro db push --remote",
     "host:deploy": "npx netlify deploy",
     "host:login": "npx netlify login",
-    "auth:setup": "node scripts/setup-auth.js",
-    "auth:use-clerk": "node scripts/switch-auth.js clerk",
-    "auth:use-better": "node scripts/switch-auth.js better"
+    "_auth:setup": "node scripts/setup-auth.js",
+    "_auth:use-clerk": "node scripts/switch-auth.js clerk",
+    "_auth:use-better": "node scripts/switch-auth.js better"
   },
   "dependencies": {
     "@alpinejs/collapse": "^3.14.3",
