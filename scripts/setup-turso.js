@@ -108,10 +108,17 @@ async function setupTurso() {
 The following environment variables have been added to your .env file:
 ASTRO_DB_REMOTE_URL=${dbUrl}
 ASTRO_DB_APP_TOKEN=${authToken}
+`);
+
+    // Push database schema
+    console.log("\n📤 Pushing database schema...");
+    execSync("npx astro db push --remote", { stdio: "inherit" });
+
+    console.log(`
+✅ Database schema pushed successfully!
 
 You can now run:
-npm run db:update-schemas   # To push your schema to the database
-npm run dev                 # To start your development server
+npm run dev         # To start your development server
 `);
   } catch (error) {
     console.error("❌ Error setting up Turso:", error.message);
