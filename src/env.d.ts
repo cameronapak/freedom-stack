@@ -28,6 +28,8 @@ interface ImportMetaEnv {
   readonly BETTER_AUTH_URL: string;
   /** https://better-auth.com/ */
   readonly BETTER_AUTH_SECRET: string;
+  readonly CLERK_SECRET_KEY: string;
+  readonly CLERK_PUBLISHABLE_KEY: string;
 }
 
 interface ImportMeta {

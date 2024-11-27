@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import Container from "@sections/Container.astro";
 import Navbar from "@sections/Navbar.astro";
-import SignInForm from "@components/auth/SignInForm.astro";
+import SignInForm from "@/components/auth/SignInForm.astro";
 
 if (Astro.locals.session) {
   return Astro.redirect("/dashboard");
