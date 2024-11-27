@@ -31,7 +31,7 @@ export function setAuthCookiesFromResponse(cookiesArray: string[], cookies: Astr
 
 async function handleAuthResponse(
   apiCall: () => Promise<Response>,
-  context: ActionAPIContext,
+  _context: ActionAPIContext,
   errorCode: ActionErrorCode
 ) {
   try {

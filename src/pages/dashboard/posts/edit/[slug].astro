@@ -22,7 +22,7 @@ let post;
 // Fetch the post
 post = await db.select().from(Posts).where(eq(Posts.slug, slug)).get();
 
-const result = await Astro.getActionResult(actions.posts.update);
+const result = Astro.getActionResult(actions.posts.update);
 if (result?.data?.success) {
   post = result.data.post;
   return Astro.redirect(`/posts/${post.slug}`);
