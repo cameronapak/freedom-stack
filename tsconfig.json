@@ -12,9 +12,7 @@
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/components/layouts/*"],
       "@sections/*": ["src/components/sections/*"]
-    },
-    "types": ["@astrojs/db/env"]
+    }
   },
-  "exclude": ["node_modules", "dist", "public", "src/lib/auth/clerk/**/*.ts", "src/lib/auth/better/**/*.ts"],
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro"]
+  "exclude": ["node_modules", "dist", "public", "src/lib/auth/clerk/**/*.ts", "src/lib/auth/better/**/*.ts"]
 }

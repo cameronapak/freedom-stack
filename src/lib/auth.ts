@@ -1,5 +1,5 @@
 import { betterAuth } from "better-auth";
-import { Account, db, Session, User, Verification } from "astro:db";
+import { db, Account, Session, User, Verification } from "astro:db";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
 export const auth = betterAuth({
