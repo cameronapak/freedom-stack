@@ -36,6 +36,16 @@ const envVars = {
   }
 };
 
+// Update the path resolution to look in the freedom-stack templates directory
+const getTemplatePath = (authProvider) => {
+  return path.join(__dirname, "..", "templates", "auth", authProvider, "middleware.ts");
+};
+
+// Update the middleware path to point to the app's src directory
+const getMiddlewarePath = (appPath) => {
+  return path.join(appPath, "src", "middleware.ts");
+};
+
 async function switchAuth() {
   console.log(`🔄 Switching to ${authProvider} auth...`);
 
@@ -134,7 +144,22 @@ async function switchAuth() {
   }
 
   // Copy middleware.ts
-  fs.copyFileSync(path.join(templateDir, "middleware.ts"), path.join(process.cwd(), "src/middleware.ts"));
+  console.log("\n📋 Copying middleware file...");
+  const templatePath = getTemplatePath(authProvider);
+  const targetMiddlewarePath = getMiddlewarePath(process.cwd());
+
+  if (!fs.existsSync(templatePath)) {
+    console.error(`❌ Could not find middleware template for ${authProvider} at ${templatePath}`);
+    process.exit(1);
+  }
+
+  try {
+    await fs.promises.copyFile(templatePath, targetMiddlewarePath);
+    console.log("✅ Middleware file copied successfully");
+  } catch (error) {
+    console.error("❌ Error copying middleware file:", error.message);
+    process.exit(1);
+  }
 
   // 5. Copy pages
   console.log("\n📄 Copying auth pages...");
