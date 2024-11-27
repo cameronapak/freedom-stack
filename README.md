@@ -2,6 +2,9 @@
 
 A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more.
 
+> [!IMPORTANT]
+> Now, you can choose between Better Auth or Clerk for authentication.
+
 > [!TIP]
 > Database hosting: [Turso](https://tur.so/freedomstack) has a generous free tier for database hosting and management. And, when it's time to scale, use the code `FREEDOMSTACK` for a discount on paid plans.
 
@@ -9,11 +12,14 @@ A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.
 
 ### 1. Create Your Project
 
-You can create a new Freedom Stack project using npm:
+You can create a new Freedom Stack project using npm. By default, it uses Better Auth, but you can optionally use Clerk:
 
 ```bash
-# Create a new project
+# Create a new project with Better Auth (default)
 npx create-freedom-stack my-app
+
+# Or create a project with Clerk
+npx create-freedom-stack my-app --auth clerk
 
 # Navigate to the project directory
 cd my-app
@@ -29,7 +35,9 @@ Your development server will be running on [`localhost:4321`](http://localhost:4
 
 ### 2. Environment Variables
 
-The project will automatically create a `.env` file with a generated `BETTER_AUTH_SECRET`. You'll need to set these additional variables:
+The required environment variables depend on your chosen auth provider:
+
+#### Using Better Auth (default)
 
 ```env
 # Astro DB - LibSQL (required) - Your database
@@ -41,9 +49,43 @@ BETTER_AUTH_SECRET=""     # Auto-generated during setup
 BETTER_AUTH_URL="http://localhost:4321"
 ```
 
+#### Using Clerk
+
+```env
+# Astro DB - LibSQL (required) - Your database
+ASTRO_DB_REMOTE_URL=""    # Added by npm run db:setup
+ASTRO_DB_APP_TOKEN=""     # Added by npm run db:setup
+
+# Clerk Auth (required)
+CLERK_SECRET_KEY=""       # Get from Clerk Dashboard
+CLERK_PUBLISHABLE_KEY=""  # Get from Clerk Dashboard
+```
+
 ### 3. Have fun!
 
 Create because you love creating. Make development fun again!
+
+## Authentication Options 🔒
+
+Freedom Stack supports two authentication providers:
+
+### Better Auth (Default)
+
+- Simple, secure authentication
+- No external dependencies
+- Perfect for most applications
+- Auto-generated secret key
+- [Learn more about Better Auth](https://better-auth.com)
+
+### Clerk
+
+- Full-featured authentication and user management
+- Social login providers
+- User profiles and organization management
+- Advanced security features
+- [Learn more about Clerk](https://clerk.com)
+
+Choose the auth provider that best fits your needs when creating your project.
 
 ## What's Included
 
