@@ -12,5 +12,5 @@
       "@sections/*": ["src/components/sections/*"]
     }
   },
-  "exclude": ["node_modules", "dist", "public", "src/lib/auth/clerk/**/*.ts", "src/lib/auth/better/**/*.ts"]
+  "exclude": ["node_modules", "dist", "public", "templates"]
 }
