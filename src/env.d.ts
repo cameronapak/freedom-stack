@@ -24,12 +24,8 @@ interface ImportMetaEnv {
   readonly ASTRO_DB_REMOTE_URL: string;
   /** https://docs.astro.build/en/guides/astro-db/#libsql */
   readonly ASTRO_DB_APP_TOKEN: string;
-  /** https://better-auth.com/ */
   readonly BETTER_AUTH_URL: string;
-  /** https://better-auth.com/ */
   readonly BETTER_AUTH_SECRET: string;
-  readonly CLERK_SECRET_KEY: string;
-  readonly CLERK_PUBLISHABLE_KEY: string;
 }
 
 interface ImportMeta {

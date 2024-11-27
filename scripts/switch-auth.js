@@ -109,7 +109,7 @@ async function switchAuth() {
 
   // 4. Copy auth files
   console.log("\n📋 Copying auth files...");
-  const templateDir = path.join(process.cwd(), "src/lib/auth", authProvider);
+  const templateDir = path.join(process.cwd(), "templates/auth", authProvider);
   const targetLibDir = path.join(process.cwd(), "src/lib");
 
   // Create target directory if it doesn't exist

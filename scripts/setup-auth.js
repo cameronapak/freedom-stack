@@ -11,7 +11,7 @@ async function setupAuth() {
   console.log("🔧 Setting up auth files...");
 
   // Copy Better Auth files by default
-  const templateDir = path.join(process.cwd(), "src/lib/auth/better");
+  const templateDir = path.join(process.cwd(), "templates/auth/better");
   const targetLibDir = path.join(process.cwd(), "src/lib");
 
   // Create target directories if they don't exist
