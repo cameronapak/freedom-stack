@@ -2,7 +2,7 @@
 import Layout from "@/layouts/Layout.astro";
 import Container from "@sections/Container.astro";
 import Navbar from "@sections/Navbar.astro";
-import { SignUp } from "@clerk/astro";
+import { SignUp as ClerkSignUp } from "@clerk/astro/components";
 
 if (Astro.locals.session) {
   return Astro.redirect("/dashboard");
@@ -14,7 +14,7 @@ if (Astro.locals.session) {
   <Container align="center">
     <div class="flex flex-col gap-4 max-w-sm w-full">
       <h1>Create an account</h1>
-      <SignUp path="/sign-up" routing="path" signInUrl="/sign-in" afterSignUpUrl="/dashboard" />
+      <ClerkSignUp path="/sign-up" routing="path" signInUrl="/sign-in" afterSignUpUrl="/dashboard" />
     </div>
   </Container>
 </Layout>

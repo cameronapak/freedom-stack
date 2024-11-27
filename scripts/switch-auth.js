@@ -88,12 +88,12 @@ async function switchAuth() {
   let envDtsContent = fs.readFileSync(envDtsPath, "utf8");
 
   // Update Locals interface
-  const betterAuthLocals = `user: import("better-auth").User | null;\n      session: import("better-auth").Session | null;`;
-  const clerkLocals = `user: import("@clerk/backend").User | null;\n      session: import("@clerk/backend").Session | null;`;
+  const betterAuthPackage = "better-auth";
+  const clerkPackage = "@clerk/backend";
 
   envDtsContent = envDtsContent.replace(
-    new RegExp(`${betterAuthLocals}|${clerkLocals}`),
-    authProvider === "better" ? betterAuthLocals : clerkLocals
+    new RegExp(`${betterAuthPackage}|${clerkPackage}`, "g"),
+    authProvider === "better" ? betterAuthPackage : clerkPackage
   );
 
   // Update ImportMetaEnv interface
@@ -117,16 +117,22 @@ async function switchAuth() {
     fs.mkdirSync(targetLibDir, { recursive: true });
   }
 
-  // Copy auth.ts
-  fs.copyFileSync(path.join(templateDir, "auth.ts"), path.join(targetLibDir, "auth.ts"));
+  if (authProvider === "better") {
+    // Copy auth.ts and auth-client.ts
+    fs.copyFileSync(path.join(templateDir, "auth.ts"), path.join(targetLibDir, "auth.ts"));
+    fs.copyFileSync(path.join(templateDir, "auth-client.ts"), path.join(targetLibDir, "auth-client.ts"));
+  } else if (authProvider === "clerk") {
+    // Remove auth files if they exist when switching to Clerk
+    try {
+      fs.unlinkSync(path.join(targetLibDir, "auth.ts"));
+      fs.unlinkSync(path.join(targetLibDir, "auth-client.ts"));
+    } catch (error) {
+      // Ignore if files don't exist
+    }
+  }
 
   // Copy middleware.ts
   fs.copyFileSync(path.join(templateDir, "middleware.ts"), path.join(process.cwd(), "src/middleware.ts"));
-
-  // Copy auth-client.ts if it exists (Better Auth only)
-  if (authProvider === "better") {
-    fs.copyFileSync(path.join(templateDir, "auth-client.ts"), path.join(targetLibDir, "auth-client.ts"));
-  }
 
   // 5. Copy pages
   console.log("\n📄 Copying auth pages...");

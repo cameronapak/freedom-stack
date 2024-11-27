@@ -1,23 +1,24 @@
-import { defineMiddleware } from "astro:middleware";
-import { clerkClient } from "@clerk/clerk-sdk-node";
-import { getAuth } from "@clerk/backend";
+import { clerkMiddleware, createRouteMatcher, clerkClient } from "@clerk/astro/server";
 
-export const onRequest = defineMiddleware(async (context, next) => {
-  const auth = await getAuth(context.request);
+const isProtectedRoute = createRouteMatcher(["/dashboard(.*)"]);
 
-  if (auth.userId) {
-    const user = await clerkClient.users.getUser(auth.userId);
-    const session = await clerkClient.sessions.getSession(auth.sessionId);
+export const onRequest = clerkMiddleware((auth, context) => {
+  const userId = auth().userId;
+  const sessionId = auth().sessionId;
 
-    context.locals.user = user;
-    context.locals.session = session;
+  if (userId && sessionId) {
+    (async () => {
+      // Set the user and session in the locals
+      context.locals.user = await clerkClient(context).users.getUser(userId);
+      context.locals.session = await clerkClient(context).sessions.getSession(sessionId);
+    })();
   } else {
     context.locals.user = null;
     context.locals.session = null;
-    if (context.url.pathname === "/sign-out") {
-      return context.redirect("/");
-    }
   }
 
-  return next();
+  // Redirect to sign in if the user is not authenticated and the route is protected
+  if (!auth().userId && isProtectedRoute(context.request)) {
+    return auth().redirectToSignIn();
+  }
 });
