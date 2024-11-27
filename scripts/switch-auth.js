@@ -39,26 +39,6 @@ const envVars = {
   }
 };
 
-// Helper function to copy directory recursively
-function copyDir(src, dest) {
-  if (!fs.existsSync(dest)) {
-    fs.mkdirSync(dest, { recursive: true });
-  }
-
-  const entries = fs.readdirSync(src, { withFileTypes: true });
-
-  for (const entry of entries) {
-    const srcPath = path.join(src, entry.name);
-    const destPath = path.join(dest, entry.name);
-
-    if (entry.isDirectory()) {
-      copyDir(srcPath, destPath);
-    } else {
-      fs.copyFileSync(srcPath, destPath);
-    }
-  }
-}
-
 async function switchAuth() {
   console.log(`🔄 Switching to ${authProvider} auth...`);
 
@@ -127,8 +107,8 @@ async function switchAuth() {
 
   fs.writeFileSync(envDtsPath, envDtsContent);
 
-  // 4. Copy template files
-  console.log("\n📋 Copying auth template files...");
+  // 4. Copy auth files
+  console.log("\n📋 Copying auth files...");
   const templateDir = path.join(process.cwd(), "src/lib/auth", authProvider);
   const targetLibDir = path.join(process.cwd(), "src/lib");
 
@@ -148,7 +128,7 @@ async function switchAuth() {
     fs.copyFileSync(path.join(templateDir, "auth-client.ts"), path.join(targetLibDir, "auth-client.ts"));
   }
 
-  // Copy pages
+  // 5. Copy pages
   console.log("\n📄 Copying auth pages...");
   const templatePagesDir = path.join(templateDir, "pages");
   const targetPagesDir = path.join(process.cwd(), "src/pages");
@@ -156,22 +136,6 @@ async function switchAuth() {
   // Copy sign-in and sign-up pages
   fs.copyFileSync(path.join(templatePagesDir, "sign-in.astro"), path.join(targetPagesDir, "sign-in.astro"));
   fs.copyFileSync(path.join(templatePagesDir, "sign-up.astro"), path.join(targetPagesDir, "sign-up.astro"));
-
-  // 5. Copy components
-  console.log("\n🎨 Copying auth components...");
-  const componentsDir = path.join(process.cwd(), "src/components/auth");
-  const templateComponentsDir = path.join(templateDir, "components");
-
-  // Remove existing auth components
-  if (fs.existsSync(componentsDir)) {
-    fs.rmSync(componentsDir, { recursive: true, force: true });
-  }
-
-  // Create components directory if it doesn't exist
-  fs.mkdirSync(componentsDir, { recursive: true });
-
-  // Copy new auth components
-  copyDir(templateComponentsDir, componentsDir);
 
   console.log(`
 ✅ Successfully switched to ${authProvider} auth!
@@ -198,8 +162,8 @@ The following files have been updated:
 - TypeScript types in src/env.d.ts
 - Auth implementation in src/lib/auth.ts
 - Middleware in src/middleware.ts
-${authProvider === "better" ? "- Auth client in src/lib/auth-client.ts" : ""}
-- Auth components in src/components/auth/
+${authProvider === "better" ? "- Auth client in src/lib/auth-client.ts\n" : ""}- Sign-in page in src/pages/sign-in.astro
+- Sign-up page in src/pages/sign-up.astro
 
 For more information, visit:
 ${authProvider === "clerk" ? "https://clerk.com/docs/quickstarts/astro" : "https://better-auth.com/"}
