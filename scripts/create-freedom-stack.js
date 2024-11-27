@@ -1,39 +1,22 @@
 #!/usr/bin/env node
 
+import { cli } from "cleye";
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { randomUUID } from "crypto";
-import readline from "readline";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const { version } = JSON.parse(fs.readFileSync(path.join(__dirname, "../package.json"), "utf8"));
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
-function question(query) {
-  return new Promise((resolve) => rl.question(query, resolve));
-}
-
-async function selectAuthProvider() {
-  console.log("\nSelect your auth provider:");
-  console.log("1. Better Auth (Default)");
-  console.log("2. Clerk");
-
-  const answer = await question("\nEnter your choice (1 or 2): ");
-  return answer === "2" ? "clerk" : "better";
-}
-
-async function createProject(projectName) {
+async function createProject(projectName, flags) {
+  console.log(`\nCreating Freedom Stack project "${projectName}"...`);
   const currentDir = process.cwd();
   const projectDir = path.join(currentDir, projectName);
 
-  // Select auth provider
-  const authProvider = await selectAuthProvider();
+  const authProvider = flags.auth;
   console.log(`\n🔒 Using ${authProvider === "clerk" ? "Clerk" : "Better Auth"} as your auth provider...\n`);
 
   // Create project directory
@@ -134,8 +117,7 @@ async function createProject(projectName) {
   if (!fs.existsSync(gitignorePath)) {
     fs.writeFileSync(
       gitignorePath,
-      `
-# build output
+      `# build output
 dist/
 .output/
 
@@ -201,17 +183,24 @@ To get started:
 
 Visit http://localhost:4321 to see your app.
   `);
-
-  rl.close();
 }
 
-// Get project name from command line arguments
-const projectName = process.argv[2];
+const argv = cli({
+  name: "create-freedom-stack",
+  version,
+  flags: {
+    auth: {
+      type: String,
+      description: "Auth provider to use",
+      choices: ["better", "clerk"],
+      default: "better"
+    }
+  },
+  help: {
+    description: "Create a new Freedom Stack project",
+    examples: ["npx create-freedom-stack my-app", "npx create-freedom-stack my-app --auth clerk"]
+  },
+  parameters: ["<project name>"]
+});
 
-if (!projectName) {
-  console.error("Please specify a project name:");
-  console.error("  npx create-freedom-stack my-app");
-  process.exit(1);
-}
-
-createProject(projectName).catch(console.error);
+await createProject(argv._.projectName, argv.flags);
