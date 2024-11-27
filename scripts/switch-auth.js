@@ -3,7 +3,6 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
-import crypto from "crypto";
 
 const authProvider = process.argv[2];
 
@@ -21,18 +20,6 @@ const dependencies = {
   better: {
     add: ["better-auth"],
     remove: ["@clerk/astro", "@clerk/clerk-sdk-node"]
-  }
-};
-
-// Environment variables for each provider
-const envVars = {
-  clerk: {
-    required: ["CLERK_SECRET_KEY", "PUBLIC_CLERK_PUBLISHABLE_KEY"],
-    remove: ["BETTER_AUTH_SECRET", "BETTER_AUTH_URL"]
-  },
-  better: {
-    required: ["BETTER_AUTH_SECRET", "BETTER_AUTH_URL"],
-    remove: ["CLERK_SECRET_KEY", "PUBLIC_CLERK_PUBLISHABLE_KEY"]
   }
 };
 
@@ -65,34 +52,16 @@ async function switchAuth() {
     execSync(`npm install ${add.join(" ")}`, { stdio: "inherit" });
   }
 
-  // 2. Update environment variables
-  console.log("\n🔑 Updating environment variables...");
+  // 2. Handle .env setup
+  console.log("\n🔑 Checking environment setup...");
   const envPath = path.join(process.cwd(), ".env");
-  let envContent = "";
+  const envExamplePath = path.join(process.cwd(), ".env.example");
 
-  if (fs.existsSync(envPath)) {
-    envContent = fs.readFileSync(envPath, "utf8");
+  // Only create .env from .env.example if .env doesn't exist
+  if (!fs.existsSync(envPath) && fs.existsSync(envExamplePath)) {
+    console.log("Creating initial .env file from .env.example");
+    fs.copyFileSync(envExamplePath, envPath);
   }
-
-  // Remove old env vars
-  envVars[authProvider === "clerk" ? "better" : "clerk"].required.forEach((varName) => {
-    const regex = new RegExp(`^${varName}=.*$\\n?`, "m");
-    envContent = envContent.replace(regex, "");
-  });
-
-  // Add new env vars
-  if (authProvider === "better") {
-    const uuid = crypto.randomUUID();
-    envContent += `\nBETTER_AUTH_SECRET=${uuid}\nBETTER_AUTH_URL=http://localhost:4321\n`;
-  } else {
-    envVars[authProvider].required.forEach((varName) => {
-      if (!envContent.includes(varName)) {
-        envContent += `\n${varName}=""`;
-      }
-    });
-  }
-
-  fs.writeFileSync(envPath, envContent.trim() + "\n");
 
   // 3. Update TypeScript types
   console.log("\n📝 Updating TypeScript types...");
@@ -179,24 +148,25 @@ ${
 
 1. Sign up at https://clerk.com
 2. Create a new application
-3. Add these environment variables to your .env file:
+3. Update your .env file with these variables:
    CLERK_SECRET_KEY=your_secret_key
    PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key`
     : `To complete the setup:
 
-1. Add these environment variables to your .env file:
+1. Update your .env file with these variables:
    BETTER_AUTH_SECRET=your_secret
    BETTER_AUTH_URL=your_url`
 }
 
 The following files have been updated:
 - Dependencies in package.json
-- Environment variables in .env
 - TypeScript types in src/env.d.ts
 - Auth implementation in src/lib/auth.ts
 - Middleware in src/middleware.ts
 ${authProvider === "better" ? "- Auth client in src/lib/auth-client.ts\n" : ""}- Sign-in page in src/pages/sign-in.astro
 - Sign-up page in src/pages/sign-up.astro
+
+Note: Please update your .env file manually with the required environment variables.
 
 For more information, visit:
 ${authProvider === "clerk" ? "https://clerk.com/docs/quickstarts/astro" : "https://better-auth.com/"}
