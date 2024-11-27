@@ -5,13 +5,36 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { randomUUID } from "crypto";
+import readline from "readline";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-function createProject(projectName) {
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+function question(query) {
+  return new Promise((resolve) => rl.question(query, resolve));
+}
+
+async function selectAuthProvider() {
+  console.log("\nSelect your auth provider:");
+  console.log("1. Better Auth (Default)");
+  console.log("2. Clerk");
+
+  const answer = await question("\nEnter your choice (1 or 2): ");
+  return answer === "2" ? "clerk" : "better";
+}
+
+async function createProject(projectName) {
   const currentDir = process.cwd();
   const projectDir = path.join(currentDir, projectName);
+
+  // Select auth provider
+  const authProvider = await selectAuthProvider();
+  console.log(`\n🔒 Using ${authProvider === "clerk" ? "Clerk" : "Better Auth"} as your auth provider...\n`);
 
   // Create project directory
   fs.mkdirSync(projectDir, { recursive: true });
@@ -53,25 +76,54 @@ function createProject(projectName) {
     bin: undefined,
     files: undefined,
     keywords: undefined,
-    author: ""
+    author: "",
+    dependencies: {
+      ...packageJson.dependencies,
+      // Remove auth packages
+      "better-auth": undefined,
+      "@clerk/astro": undefined,
+      "@clerk/clerk-sdk-node": undefined
+    }
   };
+
+  // Add selected auth provider dependencies
+  if (authProvider === "clerk") {
+    newPackageJson.dependencies["@clerk/astro"] = "^1.5.0";
+    newPackageJson.dependencies["@clerk/clerk-sdk-node"] = "^5.0.69";
+  } else {
+    newPackageJson.dependencies["better-auth"] = "^1.0.0";
+  }
+
+  // Clean up undefined values
+  Object.keys(newPackageJson.dependencies).forEach((key) => {
+    if (newPackageJson.dependencies[key] === undefined) {
+      delete newPackageJson.dependencies[key];
+    }
+  });
 
   // Write modified package.json
   fs.writeFileSync(path.join(projectDir, "package.json"), JSON.stringify(newPackageJson, null, 2));
 
-  // Create .env from .env.example with generated BETTER_AUTH_SECRET
+  // Create .env from .env.example with appropriate variables
   const envExamplePath = path.join(templateDir, ".env.example");
   const envPath = path.join(projectDir, ".env");
   let envContent = fs.readFileSync(envExamplePath, "utf8");
 
-  // Generate and set BETTER_AUTH_SECRET
-  const authSecret = randomUUID();
-  envContent = envContent.replace('BETTER_AUTH_SECRET=""', `BETTER_AUTH_SECRET="${authSecret}"`);
+  if (authProvider === "clerk") {
+    // Remove Better Auth variables and add Clerk variables
+    envContent =
+      envContent.replace(/BETTER_AUTH_SECRET=".*"\n/, "").replace(/BETTER_AUTH_URL=".*"\n/, "") +
+      '\nCLERK_SECRET_KEY=""\nCLERK_PUBLISHABLE_KEY=""';
+  } else {
+    // Generate and set BETTER_AUTH_SECRET
+    const authSecret = randomUUID();
+    envContent = envContent.replace('BETTER_AUTH_SECRET=""', `BETTER_AUTH_SECRET="${authSecret}"`);
+  }
 
   fs.writeFileSync(envPath, envContent);
 
   // Also create .env.example in the new project
-  fs.copyFileSync(envExamplePath, path.join(projectDir, ".env.example"));
+  fs.writeFileSync(path.join(projectDir, ".env.example"), envContent);
 
   // Initialize git
   process.chdir(projectDir);
@@ -117,16 +169,40 @@ pnpm-debug.log*
   console.log("Installing dependencies...");
   execSync("npm install", { stdio: "inherit" });
 
+  // Set up auth files
+  console.log("\nSetting up auth files...");
+  execSync("npm run auth:setup", { stdio: "inherit" });
+
+  // If using Clerk, switch to Clerk
+  if (authProvider === "clerk") {
+    console.log("\nSwitching to Clerk auth...");
+    execSync("npm run auth:use-clerk", { stdio: "inherit" });
+  }
+
   console.log(`
-🚀 Freedom Stack project created successfully!
+🚀 Freedom Stack project created successfully with ${authProvider === "clerk" ? "Clerk" : "Better Auth"}!
 
 To get started:
   cd ${projectName}
-  npm run db:setup      # Set up your Turso database
-  npm run dev          # Start the development server
+  npm run db:setup    # Set up your Turso database
+  ${
+    authProvider === "clerk"
+      ? `
+  # Set up Clerk:
+  1. Sign up at https://clerk.com
+  2. Create a new application
+  3. Add these environment variables to your .env file:
+     CLERK_SECRET_KEY=your_secret_key
+     CLERK_PUBLISHABLE_KEY=your_publishable_key
+  `
+      : ""
+  }
+  npm run dev        # Start the development server
 
 Visit http://localhost:4321 to see your app.
   `);
+
+  rl.close();
 }
 
 // Get project name from command line arguments
@@ -138,4 +214,4 @@ if (!projectName) {
   process.exit(1);
 }
 
-createProject(projectName);
+createProject(projectName).catch(console.error);
