@@ -158,6 +158,9 @@ async function switchAuth() {
     fs.rmSync(componentsDir, { recursive: true, force: true });
   }
 
+  // Create components directory if it doesn't exist
+  fs.mkdirSync(componentsDir, { recursive: true });
+
   // Copy new auth components
   copyDir(templateComponentsDir, componentsDir);
 

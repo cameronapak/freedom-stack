@@ -1,64 +1,17 @@
 ---
-import { actions } from "astro:actions";
-import { setAuthCookiesFromResponse } from "@/actions/auth";
 import Layout from "@/layouts/Layout.astro";
 import Container from "@sections/Container.astro";
 import Navbar from "@sections/Navbar.astro";
+import SignUpForm from "@components/auth/SignUpForm.astro";
 
 if (Astro.locals.session) {
   return Astro.redirect("/dashboard");
 }
-
-const result = Astro.getActionResult(actions.auth.signUp);
-
-if (result?.data?.success) {
-  setAuthCookiesFromResponse(result.data.cookiesToSet, Astro.cookies);
-  return Astro.redirect("/dashboard");
-}
 ---
 
-<Layout title="Sign In">
+<Layout title="Sign Up">
   <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
-  {result?.error && <div x-init={`toastErrorMessage = '${result.error.message.toString()}'`} class="sr-only" />}
   <Container align="center">
-    <div class="flex flex-col gap-4 max-w-sm w-full">
-      <h1>Create an account</h1>
-      <form
-        x-data="{
-          name: '',
-          email: '',
-          password: '',
-          confirmPassword: '',
-          showPasswordError: false,
-          get isValid() {
-            return this.name.length > 0 &&
-              this.email.length > 0 &&
-              this.password.length > 0 &&
-              this.password === this.confirmPassword;
-          }
-        }"
-        class="flex flex-col gap-4 max-w-sm w-full"
-        method="POST"
-        action={actions.auth.signUp}
-      >
-        <input x-model="name" class="input input-bordered" type="text" name="name" placeholder="Name" />
-        <input x-model="email" class="input input-bordered" type="email" name="email" placeholder="Email" />
-        <input x-model="password" class="input input-bordered" type="password" name="password" placeholder="Password" />
-        <input
-          x-model="confirmPassword"
-          class="input input-bordered"
-          :class="showPasswordError && password !== confirmPassword ? 'input-error' : ''"
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          @blur="showPasswordError = true"
-        />
-        <div x-cloak x-show="showPasswordError && password !== confirmPassword" class="text-error text-sm">
-          Passwords do not match
-        </div>
-        <button class="mt-4 btn btn-primary" type="submit" :disabled="!isValid"> Create an account </button>
-      </form>
-      <p>Already have an account? <a href="/sign-in">Sign in</a></p>
-    </div>
+    <SignUpForm />
   </Container>
 </Layout>

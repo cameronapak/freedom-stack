@@ -49,6 +49,7 @@
     "db:update-schemas": "astro db push --remote",
     "host:deploy": "npx netlify deploy",
     "host:login": "npx netlify login",
+    "auth:setup": "node scripts/setup-auth.js",
     "auth:use-clerk": "node scripts/switch-auth.js clerk",
     "auth:use-better": "node scripts/switch-auth.js better"
   },
