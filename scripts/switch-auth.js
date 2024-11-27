@@ -3,6 +3,7 @@
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
+import crypto from "crypto";
 
 const authProvider = process.argv[2];
 
@@ -69,12 +70,17 @@ async function switchAuth() {
     envContent = envContent.replace(regex, "");
   });
 
-  // Add new env vars if they don't exist
-  envVars[authProvider].required.forEach((varName) => {
-    if (!envContent.includes(varName)) {
-      envContent += `\n${varName}=""`;
-    }
-  });
+  // Add new env vars
+  if (authProvider === "better") {
+    const uuid = crypto.randomUUID();
+    envContent += `\nBETTER_AUTH_SECRET=${uuid}\nBETTER_AUTH_URL=http://localhost:4321\n`;
+  } else {
+    envVars[authProvider].required.forEach((varName) => {
+      if (!envContent.includes(varName)) {
+        envContent += `\n${varName}=""`;
+      }
+    });
+  }
 
   fs.writeFileSync(envPath, envContent.trim() + "\n");
 

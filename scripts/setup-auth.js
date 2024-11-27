@@ -2,9 +2,16 @@
 
 import fs from "fs";
 import path from "path";
+import crypto from "crypto";
 
 async function setupAuth() {
   console.log("🔧 Setting up auth files...");
+
+  // Set up environment variables
+  const envPath = path.join(process.cwd(), ".env");
+  const uuid = crypto.randomUUID();
+  const envContent = `BETTER_AUTH_SECRET=${uuid}\nBETTER_AUTH_URL=http://localhost:4321\n`;
+  fs.writeFileSync(envPath, envContent, { flag: "a" });
 
   // Copy Better Auth files by default
   const templateDir = path.join(process.cwd(), "templates/auth/better");
