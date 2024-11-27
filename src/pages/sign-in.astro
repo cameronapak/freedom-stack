@@ -2,7 +2,6 @@
 import Layout from "@/layouts/Layout.astro";
 import Container from "@sections/Container.astro";
 import Navbar from "@sections/Navbar.astro";
-import SignInForm from "@/components/auth/SignInForm.astro";
 import { actions } from "astro:actions";
 import { setAuthCookiesFromResponse } from "@/actions/auth";
 
@@ -20,6 +19,15 @@ if (result?.data?.success) {
 <Layout title="Sign In">
   <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
   <Container align="center">
-    <SignInForm />
+    <div class="flex flex-col gap-4 max-w-sm w-full">
+      <h1>Sign In</h1>
+      {result?.error && <div x-init={`toastErrorMessage = '${result.error.message.toString()}'`} class="sr-only" />}
+      <form class="flex flex-col gap-4 max-w-sm w-full" method="POST" action={actions.auth.signIn}>
+        <input class="input input-bordered" type="email" name="email" placeholder="Email" />
+        <input class="input input-bordered" type="password" name="password" placeholder="Password" />
+        <button class="mt-4 btn btn-primary" type="submit">Sign In</button>
+      </form>
+      <p>Don't have an account? <a href="/sign-up">Create an account</a></p>
+    </div>
   </Container>
 </Layout>

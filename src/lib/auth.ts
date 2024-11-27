@@ -1,5 +1,5 @@
 import { betterAuth } from "better-auth";
-import { db, Account, Session, User, Verification } from "astro:db";
+import { Account, db, Session, User, Verification } from "astro:db";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
 export const auth = betterAuth({
@@ -22,7 +22,6 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true
   },
-  // https://www.better-auth.com/docs/concepts/session-management#session-caching
   session: {
     cookieCache: {
       enabled: true,
