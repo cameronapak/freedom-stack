@@ -130,23 +130,32 @@ async function switchAuth() {
   // 4. Copy template files
   console.log("\n📋 Copying auth template files...");
   const templateDir = path.join(process.cwd(), "src/lib/auth", authProvider);
-  const targetDir = path.join(process.cwd(), "src/lib");
+  const targetLibDir = path.join(process.cwd(), "src/lib");
 
   // Create target directory if it doesn't exist
-  if (!fs.existsSync(targetDir)) {
-    fs.mkdirSync(targetDir, { recursive: true });
+  if (!fs.existsSync(targetLibDir)) {
+    fs.mkdirSync(targetLibDir, { recursive: true });
   }
 
   // Copy auth.ts
-  fs.copyFileSync(path.join(templateDir, "auth.ts"), path.join(targetDir, "auth.ts"));
+  fs.copyFileSync(path.join(templateDir, "auth.ts"), path.join(targetLibDir, "auth.ts"));
 
   // Copy middleware.ts
   fs.copyFileSync(path.join(templateDir, "middleware.ts"), path.join(process.cwd(), "src/middleware.ts"));
 
   // Copy auth-client.ts if it exists (Better Auth only)
   if (authProvider === "better") {
-    fs.copyFileSync(path.join(templateDir, "auth-client.ts"), path.join(targetDir, "auth-client.ts"));
+    fs.copyFileSync(path.join(templateDir, "auth-client.ts"), path.join(targetLibDir, "auth-client.ts"));
   }
+
+  // Copy pages
+  console.log("\n📄 Copying auth pages...");
+  const templatePagesDir = path.join(templateDir, "pages");
+  const targetPagesDir = path.join(process.cwd(), "src/pages");
+
+  // Copy sign-in and sign-up pages
+  fs.copyFileSync(path.join(templatePagesDir, "sign-in.astro"), path.join(targetPagesDir, "sign-in.astro"));
+  fs.copyFileSync(path.join(templatePagesDir, "sign-up.astro"), path.join(targetPagesDir, "sign-up.astro"));
 
   // 5. Copy components
   console.log("\n🎨 Copying auth components...");

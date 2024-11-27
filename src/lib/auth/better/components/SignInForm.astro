@@ -1,12 +1,7 @@
 ---
 import { actions } from "astro:actions";
-import { setAuthCookiesFromResponse } from "@/actions/auth";
 
 const result = Astro.getActionResult(actions.auth.signIn);
-if (result?.data?.success) {
-  setAuthCookiesFromResponse(result.data.cookiesToSet, Astro.cookies);
-  return Astro.redirect("/dashboard");
-}
 ---
 
 <div class="flex flex-col gap-4 max-w-sm w-full">

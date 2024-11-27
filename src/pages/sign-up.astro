@@ -3,8 +3,16 @@ import Layout from "@/layouts/Layout.astro";
 import Container from "@sections/Container.astro";
 import Navbar from "@sections/Navbar.astro";
 import SignUpForm from "@/components/auth/SignUpForm.astro";
+import { actions } from "astro:actions";
+import { setAuthCookiesFromResponse } from "@/actions/auth";
 
 if (Astro.locals.session) {
+  return Astro.redirect("/dashboard");
+}
+
+const result = Astro.getActionResult(actions.auth.signUp);
+if (result?.data?.success) {
+  setAuthCookiesFromResponse(result.data.cookiesToSet, Astro.cookies);
   return Astro.redirect("/dashboard");
 }
 ---
