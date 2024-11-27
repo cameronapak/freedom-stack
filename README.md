@@ -58,7 +58,7 @@ ASTRO_DB_APP_TOKEN=""     # Added by npm run db:setup
 
 # Clerk Auth (required)
 CLERK_SECRET_KEY=""       # Get from Clerk Dashboard
-CLERK_PUBLISHABLE_KEY=""  # Get from Clerk Dashboard
+PUBLIC_CLERK_PUBLISHABLE_KEY=""  # Get from Clerk Dashboard
 ```
 
 ### 3. Have fun!

@@ -32,7 +32,7 @@ interface ImportMetaEnv {
 
   /** Clerk configuration (optional) */
   readonly CLERK_SECRET_KEY?: string;
-  readonly CLERK_PUBLISHABLE_KEY?: string;
+  readonly PUBLIC_CLERK_PUBLISHABLE_KEY?: string;
 }
 
 interface ImportMeta {

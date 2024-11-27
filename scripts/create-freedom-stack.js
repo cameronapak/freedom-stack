@@ -70,8 +70,7 @@ async function createProject(projectName, flags) {
     devDependencies: {
       ...packageJson.devDependencies,
       // Keep type packages for both auth providers
-      "@clerk/types": "^3.0.0",
-      "@types/better-auth": "^1.0.0"
+      "@clerk/types": "^3.0.0"
     }
   };
 
@@ -102,7 +101,7 @@ async function createProject(projectName, flags) {
     // Remove Better Auth variables and add Clerk variables
     envContent =
       envContent.replace(/BETTER_AUTH_SECRET=".*"\n/, "").replace(/BETTER_AUTH_URL=".*"\n/, "") +
-      '\nCLERK_SECRET_KEY=""\nCLERK_PUBLISHABLE_KEY=""';
+      '\nCLERK_SECRET_KEY=""\nPUBLIC_CLERK_PUBLISHABLE_KEY=""';
   } else {
     // Generate and set BETTER_AUTH_SECRET
     const authSecret = randomUUID();
@@ -181,7 +180,7 @@ To get started:
   2. Create a new application
   3. Add these environment variables to your .env file:
      CLERK_SECRET_KEY=your_secret_key
-     CLERK_PUBLISHABLE_KEY=your_publishable_key
+     PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
   `
       : ""
   }

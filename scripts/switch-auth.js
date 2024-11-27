@@ -27,12 +27,12 @@ const dependencies = {
 // Environment variables for each provider
 const envVars = {
   clerk: {
-    required: ["CLERK_SECRET_KEY", "CLERK_PUBLISHABLE_KEY"],
+    required: ["CLERK_SECRET_KEY", "PUBLIC_CLERK_PUBLISHABLE_KEY"],
     remove: ["BETTER_AUTH_SECRET", "BETTER_AUTH_URL"]
   },
   better: {
     required: ["BETTER_AUTH_SECRET", "BETTER_AUTH_URL"],
-    remove: ["CLERK_SECRET_KEY", "CLERK_PUBLISHABLE_KEY"]
+    remove: ["CLERK_SECRET_KEY", "PUBLIC_CLERK_PUBLISHABLE_KEY"]
   }
 };
 
@@ -100,7 +100,7 @@ async function switchAuth() {
 
   // Update ImportMetaEnv interface
   const betterAuthEnv = `readonly BETTER_AUTH_URL: string;\n  readonly BETTER_AUTH_SECRET: string;`;
-  const clerkEnv = `readonly CLERK_SECRET_KEY: string;\n  readonly CLERK_PUBLISHABLE_KEY: string;`;
+  const clerkEnv = `readonly CLERK_SECRET_KEY: string;\n  readonly PUBLIC_CLERK_PUBLISHABLE_KEY: string;`;
 
   envDtsContent = envDtsContent.replace(
     new RegExp(`${betterAuthEnv}|${clerkEnv}`),
@@ -156,7 +156,7 @@ ${
 2. Create a new application
 3. Add these environment variables to your .env file:
    CLERK_SECRET_KEY=your_secret_key
-   CLERK_PUBLISHABLE_KEY=your_publishable_key`
+   PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key`
     : `To complete the setup:
 
 1. Add these environment variables to your .env file:
