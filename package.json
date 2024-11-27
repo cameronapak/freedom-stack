@@ -48,7 +48,9 @@
     "db:setup": "node scripts/setup-turso.js",
     "db:update-schemas": "astro db push --remote",
     "host:deploy": "npx netlify deploy",
-    "host:login": "npx netlify login"
+    "host:login": "npx netlify login",
+    "auth:use-clerk": "node scripts/switch-auth.js clerk",
+    "auth:use-better": "node scripts/switch-auth.js better"
   },
   "dependencies": {
     "@alpinejs/collapse": "^3.14.3",
