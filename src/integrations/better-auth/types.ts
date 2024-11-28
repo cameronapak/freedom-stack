@@ -13,7 +13,7 @@ export interface BetterAuthConfig extends Omit<BetterAuthOptions, "database"> {
       session?: any;
       verification?: any;
     };
-    provider?: "sqlite" | "postgres";
+    provider?: "sqlite" | "pg" | "mysql";
   };
 }
 
