@@ -1,0 +1,23 @@
+---
+import { Icon } from "astro-iconify";
+
+// https://docs.astro.build/en/basics/astro-pages/#page-partials
+const repo = await fetch("https://api.github.com/repos/cameronapak/freedom-stack", {
+  headers: {
+    // Cache for 4 hours
+    "Cache-Control": "public, max-age=14400",
+    // Accept JSON response
+    Accept: "application/json"
+  }
+});
+const repoData = await repo.json();
+const stars = repoData.stargazers_count;
+---
+
+<a id="cta-secondary" href="https://github.com/cameronapak/freedom-stack" class="max-sm:w-full btn btn-outline btn-sm">
+  GitHub
+  <div class="badge flex items-center gap-1">
+    <Icon pack="lucide" name="star" class="w-4 h-4" />
+    <span>{stars}</span>
+  </div>
+</a>

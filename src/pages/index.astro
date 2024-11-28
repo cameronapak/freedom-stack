@@ -1,6 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import Hero from "@sections/Hero.astro";
 import HalfTextHalfImage from "@sections/HalfTextHalfImage.astro";
 import Quote from "@sections/Quote.astro";
 import Navbar from "@sections/Navbar.astro";
@@ -9,6 +8,7 @@ import Features from "@sections/Features/index.astro";
 import Container from "@sections/Container.astro";
 import FAQ from "@sections/FAQ.astro";
 import RenderMarkdown from "@/components/RenderMarkdown.astro";
+import GithubButton from "@/components/server/GithubButton.astro";
 import sectionsImage from "@/assets/sections.png";
 import deployToNetlifyImage from "@/assets/deploy.png";
 import fullStackImage from "@/assets/full-stack.png";
@@ -108,28 +108,33 @@ Astro.response.headers.set("netlify-cache-tag", "components");
   <Navbar
     title="Freedom Stack"
     links={[
-      { text: "Netlify 🚀", href: "https://www.npmjs.com/package/create-freedom-stack" },
+      {
+        text: "Netlify 🚀",
+        href: "https://app.netlify.com/start/deploy?repository=https://github.com/cameronapak/freedom-stack"
+      },
       { text: "Blog", href: "/posts" },
       { text: "Sign In", href: "/sign-in" }
     ]}
   />
-  <Hero
-    title="Freedom Stack"
-    subtitle="A full-stack Astro starter kit that feels freeing and is free."
-    ctaText="npx create-freedom-stack my-app"
-    ctaHref="https://www.npmjs.com/package/create-freedom-stack"
-    secondaryCtaText="GitHub"
-    secondaryCtaHref="https://github.com/cameronapak/freedom-stack"
-  />
+
+  <section class="min-h-[70vh] h-fit container flex flex-col justify-center items-center py-16">
+    <div class="mb-8 flex flex-wrap gap-4 justify-center">
+      <GithubButton server:defer>
+        <div slot="fallback" class="btn btn-outline btn-sm bg-slate-100 text-slate-100">---------------</div>
+      </GithubButton>
+    </div>
+    <h1 class="m-0 text-center text-balance">Freedom Stack</h1>
+    <p class="text-xl m-0 text-center">A full-stack Astro starter kit that feels freeing and is free.</p>
+    <div class="not-prose flex flex-wrap gap-4 justify-center mt-8">
+      <div class="mockup-code bg-slate-800 text-slate-50 rounded-xl p-4">
+        <pre data-prefix="$"><code class="select-all">npx create-freedom-stack my-app</code></pre>
+      </div>
+    </div>
+  </section>
+
+  {/* Here's an HTMX example */}
   <div hx-get="/api/htmx-partials/uneed-launch" hx-trigger="load delay:500ms" hx-swap="innerHTML"></div>
-  {
-    /*
-      Using HTMX to grab the GitHub stars count without reloading the page.
-      Doing this approach versus using server defer for an Astro component is to showcase
-      what's possible if you want to update a DOM element without having to mutate the Astro component.
-    */
-  }
-  <div class="hidden" hx-get="/api/htmx-partials/github-stars" hx-trigger="load" hx-swap="innerHTML"></div>
+
   <HalfTextHalfImage
     title="Create full-stack web apps"
     subtitle="Save time, money, and headaches by using Freedom Stack."
