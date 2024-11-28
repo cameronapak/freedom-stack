@@ -48,6 +48,7 @@ if (result?.data?.success) {
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 id="title"
                 name="title"
+                required
                 placeholder="Enter the post title"
               />
             </div>
@@ -78,6 +79,7 @@ if (result?.data?.success) {
               class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               id="description"
               name="description"
+              required
               placeholder="Enter a brief description of the post"
               rows="3"></textarea>
           </div>
@@ -107,6 +109,7 @@ if (result?.data?.success) {
                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                 id="slug"
                 name="slug"
+                required
                 placeholder="blog-post-slug"
                 pattern="[a-z0-9\\-]+"
                 x-data="{ slug: '' }"
