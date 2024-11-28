@@ -1,13 +1,10 @@
 #!/usr/bin/env node
 
+import { cli } from "cleye";
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
-import { fileURLToPath } from "url";
 import readline from "readline";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -27,7 +24,7 @@ function checkTursoAuth() {
   }
 }
 
-async function setupTurso() {
+async function setupTurso(argv) {
   console.log("🔧 Setting up Turso database...");
 
   try {
@@ -49,13 +46,14 @@ async function setupTurso() {
       console.log("\nRun these commands in order:");
       console.log("1. turso auth login");
       console.log("2. npm run db:setup");
-      rl.close();
       process.exit(1);
     }
 
-    // Get database name from user
+    // Use database name from CLI args or prompt
     const dbName =
-      (await question("\nEnter a name for your database (default: freedom-stack-db): ")) || "freedom-stack-db";
+      argv.flags.name ||
+      (await question("\nEnter a name for your database (default: freedom-stack-db): ")) ||
+      "freedom-stack-db";
 
     // Create database
     console.log(`\n📚 Creating database: ${dbName}...`);
@@ -67,7 +65,6 @@ async function setupTurso() {
         console.log("\nRun these commands in order:");
         console.log("1. turso auth login");
         console.log("2. npm run db:setup");
-        rl.close();
         process.exit(1);
       }
       throw error;
@@ -125,4 +122,29 @@ npm run dev                 # To start your development server
   }
 }
 
-setupTurso();
+cli(
+  {
+    name: "setup-turso",
+    version: "0.1.0",
+    description: "Set up a Turso database for your Freedom Stack project",
+    flags: {
+      name: {
+        type: String,
+        description: "Name of the database to create",
+        alias: "n"
+      },
+      force: {
+        type: Boolean,
+        description: "Override existing database if it exists",
+        alias: "f",
+        default: false
+      }
+    },
+    help: {
+      examples: ["npm run db:setup", "npm run db:setup --name my-database", "npm run db:setup -n my-database --force"]
+    }
+  },
+  async (argv) => {
+    await setupTurso(argv);
+  }
+);

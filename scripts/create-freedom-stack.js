@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
+import { cli } from "cleye";
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { randomUUID } from "crypto";
+import ora from "ora";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -113,29 +115,42 @@ pnpm-debug.log*
     );
   }
 
+  console.log("\n🕊️ Running create-freedom-stack...\n\n");
+
   // Install dependencies
-  console.log("Installing dependencies...");
-  execSync("npm install", { stdio: "inherit" });
+  const spinner = ora("Installing dependencies...").start();
+  try {
+    execSync("npm install", { stdio: ["pipe", "pipe", "pipe"] });
+    spinner.succeed("Dependencies installed successfully!");
+  } catch (error) {
+    spinner.fail("Failed to install dependencies");
+    console.error(error.message);
+    process.exit(1);
+  }
 
   console.log(`
 🚀 Freedom Stack project created successfully!
 
 To get started:
-  cd ${projectName}
-  npm run db:setup      # Set up your Turso database
-  npm run dev          # Start the development server
+  1. cd ${projectName}
+  2. npm run db:setup     # Set up your Turso database
+  3. npm run dev          # Start the development server
 
 Visit http://localhost:4321 to see your app.
   `);
 }
 
-// Get project name from command line arguments
-const projectName = process.argv[2];
+const argv = cli({
+  name: "create-freedom-stack",
+  version: "0.1.0",
+  description: "Create a new Freedom Stack project with best practices and modern tooling",
+  flags: {},
+  parameters: ["<projectName>"],
+  help: {
+    description: "Create a new Freedom Stack project",
+    examples: ["npx create-freedom-stack my-app"]
+  }
+});
 
-if (!projectName) {
-  console.error("Please specify a project name:");
-  console.error("  npx create-freedom-stack my-app");
-  process.exit(1);
-}
-
+const { projectName } = argv._;
 createProject(projectName);
