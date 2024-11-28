@@ -10,6 +10,11 @@ import readline from "readline";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
 async function question(query) {
   return new Promise((resolve) => rl.question(query, resolve));
 }
@@ -24,11 +29,6 @@ function checkTursoAuth() {
 }
 
 async function setupTurso(argv) {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
   console.log("🔧 Setting up Turso database...");
 
   try {

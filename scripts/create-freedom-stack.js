@@ -6,6 +6,7 @@ import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 import { randomUUID } from "crypto";
+import ora from "ora";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -114,9 +115,18 @@ pnpm-debug.log*
     );
   }
 
+  console.log("\n🕊️ Running create-freedom-stack...\n\n");
+
   // Install dependencies
-  console.log("Installing dependencies...");
-  execSync("npm install", { stdio: "inherit" });
+  const spinner = ora("Installing dependencies...").start();
+  try {
+    execSync("npm install", { stdio: ["pipe", "pipe", "pipe"] });
+    spinner.succeed("Dependencies installed successfully!");
+  } catch (error) {
+    spinner.fail("Failed to install dependencies");
+    console.error(error.message);
+    process.exit(1);
+  }
 
   console.log(`
 🚀 Freedom Stack project created successfully!
