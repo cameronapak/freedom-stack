@@ -152,39 +152,67 @@ pnpm-debug.log*
     );
   }
 
+  // Copy auth files from templates
+  console.log("\nSetting up auth files...");
+  const authTemplateDir = path.join(__dirname, "..", "templates", "auth", authProvider);
+  const targetSrcDir = path.join(projectDir, "src");
+  const targetLibDir = path.join(targetSrcDir, "lib");
+  const targetPagesDir = path.join(targetSrcDir, "pages");
+
+  // Ensure directories exist
+  fs.mkdirSync(targetLibDir, { recursive: true });
+  fs.mkdirSync(targetPagesDir, { recursive: true });
+
+  // Copy auth pages
+  console.log(" Copying auth pages...");
+  fs.copyFileSync(path.join(authTemplateDir, "pages", "sign-in.astro"), path.join(targetPagesDir, "sign-in.astro"));
+  fs.copyFileSync(path.join(authTemplateDir, "pages", "sign-up.astro"), path.join(targetPagesDir, "sign-up.astro"));
+
+  // Copy middleware
+  console.log("📄 Copying middleware...");
+  fs.copyFileSync(path.join(authTemplateDir, "middleware.ts"), path.join(targetSrcDir, "middleware.ts"));
+
+  // Copy auth implementation files
+  if (authProvider === "better") {
+    console.log("📄 Copying Better Auth implementation files...");
+    fs.copyFileSync(path.join(authTemplateDir, "auth.ts"), path.join(targetLibDir, "auth.ts"));
+    fs.copyFileSync(path.join(authTemplateDir, "auth-client.ts"), path.join(targetLibDir, "auth-client.ts"));
+  }
+
   // Install dependencies
-  console.log("Installing dependencies...");
+  console.log("\nInstalling dependencies...");
   execSync("npm install", { stdio: "inherit" });
 
-  // Set up auth files
-  console.log("\nSetting up auth files...");
-  execSync("npm run _auth:setup", { stdio: "inherit" });
-
+  // Remove the auth setup step since we're copying files directly
   // If using Clerk, switch to Clerk
   if (authProvider === "clerk") {
     console.log("\nSwitching to Clerk auth...");
-    execSync("npm run _auth:use-clerk", { stdio: "inherit" });
+    const switchAuthPath = path.join(__dirname, "switch-auth.js");
+    execSync(`node ${switchAuthPath} clerk`, { stdio: "inherit" });
   }
 
   console.log(`
 🚀 Freedom Stack project created successfully with ${authProvider === "clerk" ? "Clerk" : "Better Auth"}!
 
 To get started:
-  cd ${projectName}
-  npm run db:setup    # Set up your Turso database
   ${
     authProvider === "clerk"
       ? `
-  # Set up Clerk:
-  1. Sign up at https://clerk.com
-  2. Create a new application
-  3. Add these environment variables to your .env file:
-     CLERK_SECRET_KEY=your_secret_key
-     PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
+1. \`cd ${projectName}\`
+2. Set up Clerk at https://clerk.com
+3. Create a new application
+4. Add these environment variables to your .env file:
+    CLERK_SECRET_KEY=your_secret_key
+    PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
+5. \`npm run db:setup\`    # Set up your Turso database
+6. \`npm run dev\`        # Start the development server
   `
-      : ""
+      : `
+1. \`cd ${projectName}\`
+2. \`npm run db:setup\`    # Set up your Turso database
+3. \`npm run dev\`        # Start the development server
+  `
   }
-  npm run dev        # Start the development server
 
 Visit http://localhost:4321 to see your app.
   `);

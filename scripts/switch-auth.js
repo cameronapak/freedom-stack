@@ -1,15 +1,14 @@
 #!/usr/bin/env node
 
+import { cli } from "cleye";
 import fs from "fs";
 import path from "path";
 import { execSync } from "child_process";
+import { fileURLToPath } from "url";
 
-const authProvider = process.argv[2];
-
-if (!authProvider || !["clerk", "better"].includes(authProvider)) {
-  console.error("Please specify an auth provider: clerk or better");
-  process.exit(1);
-}
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const { version } = JSON.parse(fs.readFileSync(path.join(__dirname, "../package.json"), "utf8"));
 
 // Package dependencies for each provider
 const dependencies = {
@@ -33,8 +32,8 @@ const getMiddlewarePath = (appPath) => {
   return path.join(appPath, "src", "middleware.ts");
 };
 
-async function switchAuth() {
-  console.log(`🔄 Switching to ${authProvider} auth...`);
+async function switchAuth(authProvider) {
+  console.log(` Switching to ${authProvider} auth...`);
 
   // 1. Update dependencies
   console.log("\n📦 Updating dependencies...");
@@ -107,6 +106,10 @@ async function switchAuth() {
     try {
       fs.unlinkSync(path.join(targetLibDir, "auth.ts"));
       fs.unlinkSync(path.join(targetLibDir, "auth-client.ts"));
+
+      // Copy Clerk auth files
+      fs.copyFileSync(path.join(templateDir, "auth.ts"), path.join(targetLibDir, "auth.ts"));
+      fs.copyFileSync(path.join(templateDir, "auth-client.ts"), path.join(targetLibDir, "auth-client.ts"));
     } catch (error) {
       // Ignore if files don't exist
     }
@@ -173,4 +176,28 @@ ${authProvider === "clerk" ? "https://clerk.com/docs/quickstarts/astro" : "https
 `);
 }
 
-switchAuth().catch(console.error);
+const argv = cli({
+  name: "switch-auth",
+  version,
+  flags: {
+    help: {
+      type: Boolean,
+      alias: "h",
+      description: "Show help message"
+    }
+  },
+  help: {
+    description: "Switch between auth providers in a Freedom Stack project",
+    examples: ["npm run auth:use-clerk", "npm run auth:use-better"]
+  },
+  parameters: ["<provider>"]
+});
+
+const provider = argv._.provider;
+
+if (!["clerk", "better"].includes(provider)) {
+  console.error("Please specify an auth provider: clerk or better");
+  process.exit(1);
+}
+
+await switchAuth(provider).catch(console.error);
