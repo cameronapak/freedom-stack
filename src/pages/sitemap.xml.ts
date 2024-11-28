@@ -8,7 +8,7 @@ export const GET: APIRoute = async ({ url }) => {
   const allPosts = await db.select().from(Posts).orderBy(desc(Posts.pubDate));
 
   // Get all static routes from the pages directory
-  const pages = await import.meta.glob("/src/pages/**/!(*.ts|*.js|*.mdx)");
+  const pages = import.meta.glob("/src/pages/**/!(*.ts|*.js|*.mdx)");
   const staticPaths = Object.keys(pages)
     .map((path) =>
       path
