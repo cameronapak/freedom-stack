@@ -1,8 +1,7 @@
-import { defineAction, ActionError, type ActionErrorCode } from "astro:actions";
-import { z } from "astro:schema";
 import type { AstroCookies } from "astro";
 import { APIError } from "better-auth/api";
 import { getAuth } from "./core";
+import type { ActionAPIContext } from "astro:actions";
 
 function parseCookiesFromResponse(cookiesArray: string[]) {
   return cookiesArray.map((cookieString) => {
@@ -27,25 +26,36 @@ export function setAuthCookiesFromResponse(cookiesArray: string[], cookies: Astr
   }
 }
 
-async function handleAuthResponse(apiCall: () => Promise<Response>, context: any, errorCode: ActionErrorCode) {
+async function handleAuthResponse(apiCall: () => Promise<Response>, context: ActionAPIContext, errorCode: string) {
   try {
     const response = await apiCall();
     if (!response.ok) {
       throw new Error(`Failed to ${errorCode.toLowerCase()}`);
     }
 
+    // TODO - This is a temporary solution to set the cookies from the response.
+    // We need to find a better way to handle this.
+    setAuthCookiesFromResponse(response.headers.getSetCookie() ?? [], context.cookies);
+
     return { success: true, cookiesToSet: response.headers.getSetCookie() };
   } catch (error) {
     console.error(error);
+    const { ActionError } = await import("astro:actions");
     throw new ActionError({
-      code: errorCode,
+      code: errorCode as any,
       message: error instanceof APIError ? `${error.body.message}.` : "Something went wrong, please try again later."
     });
   }
 }
 
-export const createAuthActions = () => {
+export async function createAuthActions(): Promise<{
+  signUp: any;
+  signIn: any;
+  signOut: any;
+}> {
   const auth = getAuth();
+  const { defineAction } = await import("astro:actions");
+  const { z } = await import("astro:schema");
 
   return {
     signUp: defineAction({
@@ -102,4 +112,4 @@ export const createAuthActions = () => {
         )
     })
   };
-};
+}

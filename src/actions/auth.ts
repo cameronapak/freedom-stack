@@ -1,4 +1,7 @@
 // src/pages/auth.astro
 import { createAuthActions } from "@/integrations/better-auth";
+import { setAuthCookiesFromResponse } from "@/integrations/better-auth/actions";
 
-export const { signIn, signUp, signOut } = createAuthActions();
+export const auth = await createAuthActions();
+
+export { setAuthCookiesFromResponse };

@@ -32,11 +32,6 @@ export default defineConfig({
       entrypoint: "/src/entrypoint"
     })
   ],
-  vite: {
-    optimizeDeps: {
-      exclude: ["astro:db"]
-    }
-  },
   output: "server",
   adapter: netlify(),
   experimental: {

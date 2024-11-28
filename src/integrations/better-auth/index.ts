@@ -5,7 +5,18 @@ export default function betterAuthIntegration(config: BetterAuthConfig): AstroIn
   return {
     name: "better-auth",
     hooks: {
-      "astro:config:setup": ({ updateConfig, injectRoute }) => {
+      "astro:config:setup": ({ updateConfig, injectRoute, injectScript }) => {
+        // Inject virtual module imports at runtime
+        injectScript(
+          "page-ssr",
+          `
+          import "astro:db";
+          import "astro:actions";
+          import "astro:schema";
+          import "astro:middleware";
+          `
+        );
+
         // Inject the auth API route
         injectRoute({
           pattern: "/api/auth/[...all]",

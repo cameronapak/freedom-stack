@@ -1,14 +1,18 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { Account, db, Session, User, Verification } from "astro:db";
 import type { BetterAuthConfig } from "./types";
 
 let auth: ReturnType<typeof betterAuth>;
 
-export function createAuth(config: BetterAuthConfig) {
-  if (auth) return auth;
+export async function createAuth(config: BetterAuthConfig) {
+  if (auth) {
+    return auth;
+  }
 
   const { database, ...restConfig } = config;
+
+  // Dynamically import astro:db at runtime
+  const { Account, db, Session, User, Verification } = await import("astro:db");
 
   auth = betterAuth({
     ...restConfig,
