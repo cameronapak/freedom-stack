@@ -3,6 +3,10 @@ import AdminLayout from "@/components/layouts/AdminLayout.astro";
 import * as db from "astro:db";
 import config from "../../../db/config";
 
+if (!Astro.locals.user) {
+  return Astro.redirect("/");
+}
+
 const tables = Object.entries(config.tables as { [key: string]: any }).map(([name, table]) => ({
   name,
   // @ts-ignore - db tables are loaded at runtime

@@ -5,6 +5,10 @@ import type { SQLiteTable, TableConfig } from "drizzle-orm/sqlite-core";
 import config from "../../../../db/config";
 import DOMPurify from "isomorphic-dompurify";
 
+if (!Astro.locals.user) {
+  return Astro.redirect("/");
+}
+
 const { table: tableName = "" } = Astro.params as { table: string };
 // @ts-ignore - db tables are loaded at runtime
 const Table = db[tableName as string] as SQLiteTable<TableConfig>;
