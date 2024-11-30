@@ -13,6 +13,12 @@ const tables = Object.entries(config.tables as { [key: string]: any }).map(([nam
   table: db[name],
   columns: Object.entries(table.columns)
 }));
+
+async function getTableCount(table: any) {
+  const result = await db.db.select({ count: db.sql`count(*)` }).from(table);
+  console.log(result);
+  return result[0].count;
+}
 ---
 
 <AdminLayout title="Tables">
@@ -21,13 +27,13 @@ const tables = Object.entries(config.tables as { [key: string]: any }).map(([nam
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {
-        tables.map(({ name, columns }) => (
+        tables.map(({ name, columns, table }) => (
           <a
             href={`/admin/tables/${name}`}
             class="no-underline block p-6 bg-white rounded-lg border-2 border-slate-200 hover:border-primary"
           >
             <h2 class="text-xl font-semibold mb-2">{name}</h2>
-            <p class="text-sm text-slate-600">{columns.length} columns</p>
+            <p class="m-0 text-sm text-slate-600">{getTableCount(table)} rows</p>
           </a>
         ))
       }
