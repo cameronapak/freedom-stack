@@ -20,7 +20,7 @@ const tables = Object.entries(config.tables as { [key: string]: any }).map(([nam
         tables.map(({ name, columns }) => (
           <a
             href={`/admin/tables/${name}`}
-            class="block p-6 bg-white rounded-lg border-2 border-slate-200 hover:border-primary"
+            class="no-underline block p-6 bg-white rounded-lg border-2 border-slate-200 hover:border-primary"
           >
             <h2 class="text-xl font-semibold mb-2">{name}</h2>
             <p class="text-sm text-slate-600">{columns.length} columns</p>
