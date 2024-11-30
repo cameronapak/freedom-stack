@@ -93,9 +93,16 @@ const primaryKey = columns.find((col) => col.primaryKey)?.name;
     <!-- Sidebar -->
     <div
       class="fixed top-0 right-0 h-full w-96 bg-base-100 shadow-xl transform transition-transform duration-300 ease-in-out overflow-y-auto"
-      :class="sidebarOpen ? 'translate-x-0' : 'translate-x-full'"
+      x-cloak
+      x-show="sidebarOpen"
+      x-transition:enter="transition-all duration-300"
+      x-transition:enter-start="translate-x-full"
+      x-transition:enter-end="translate-x-0"
+      x-transition:leave="transition-all duration-300"
+      x-transition:leave-start="translate-x-0"
+      x-transition:leave-end="translate-x-full"
     >
-      <div class="p-6 bg-white border-2 border-base-200 rounded-xl">
+      <div class="p-6 bg-white shadow-xl min-h-screen h-fit">
         <div class="flex justify-between items-center mb-6">
           <h2 class="text-xl font-bold">Edit Record</h2>
           <button class="btn btn-ghost btn-sm" @click="sidebarOpen = false">×</button>
