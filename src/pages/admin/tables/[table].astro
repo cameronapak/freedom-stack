@@ -1,6 +1,7 @@
 ---
 import AdminLayout from "@/components/layouts/AdminLayout.astro";
 import * as db from "astro:db";
+import { Icon } from "astro-iconify";
 import type { SQLiteTable, TableConfig } from "drizzle-orm/sqlite-core";
 import config from "../../../../db/config";
 import DOMPurify from "isomorphic-dompurify";
@@ -31,20 +32,27 @@ const primaryKey = columns.find((col) => col.primaryKey)?.name;
 
 <AdminLayout title={tableName}>
   <div class="not-prose w-full relative" x-data="{ sidebarOpen: false }">
-    <!-- Main Content -->
-    <div class="flex justify-between items-center mb-6">
-      <h1 class="text-2xl font-bold">{tableName}</h1>
+    <section
+      class="bg-slate-100 mx-6 px-6 py-3 flex justify-between border-2 border-b-0 border-base-200 rounded-t-lg items-center"
+    >
+      <div class="flex gap-1 items-center">
+        <a href="/admin">
+          <p class="!m-0 text-xl hover:underline text-slate-500">Tables</p>
+        </a>
+        <Icon name="lucide:chevron-right" class="w-6 h-6 text-slate-500" />
+        <h1 class="!m-0 font-bold text-xl">{tableName}</h1>
+      </div>
       <button
-        class="btn btn-primary"
+        class="btn btn-sm btn-primary m-0"
         @click="sidebarOpen = true"
         hx-get={`/admin/tables/${tableName}/new`}
         hx-target="#sidebar-content"
       >
         Add New
       </button>
-    </div>
+    </section>
 
-    <div class="bg-white border-2 border-base-200 rounded-xl overflow-x-auto">
+    <div class="bg-white overflow-x-auto rounded-lg border-2 border-base-200">
       <table class="table w-full">
         <thead>
           <tr>
@@ -56,7 +64,7 @@ const primaryKey = columns.find((col) => col.primaryKey)?.name;
           {
             records.map((record) => (
               <tr
-                class="cursor-pointer hover:bg-base-200"
+                class="cursor-pointer hover:bg-slate-50"
                 @click="sidebarOpen = true"
                 hx-get={`/api/admin/${tableName}/edit/${record.id}`}
                 hx-target="#sidebar-content"
