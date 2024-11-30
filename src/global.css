@@ -114,3 +114,7 @@ input[type="text"],
 textarea {
   @apply !border-2 !border-slate-200;
 }
+
+input.input {
+  @apply !border-2 !border-slate-200 bg-white;
+}

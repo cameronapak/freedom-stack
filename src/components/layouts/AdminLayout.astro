@@ -1,0 +1,24 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Navbar from "@sections/Navbar.astro";
+import Container from "@sections/Container.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<Layout title={`Admin - ${title}`}>
+  <Navbar
+    title="Admin Dashboard"
+    links={[
+      { text: "Dashboard", href: "/admin" },
+      { text: "Sign Out", href: "/sign-out" }
+    ]}
+  />
+  <Container align="center">
+    <slot />
+  </Container>
+</Layout>

@@ -1,0 +1,72 @@
+---
+import * as db from "astro:db";
+import config from "../../../../../../db/config";
+import TrixEditor from "@/components/TrixEditor.astro";
+
+const { table: tableName, id } = Astro.params;
+
+console.log(tableName, id);
+
+const tableConfig = (config.tables as { [key: string]: any })[tableName as string];
+const Table = db[tableName as string];
+
+if (!tableConfig || !Table) {
+  return new Response("Not found", { status: 404 });
+}
+
+const record = await db.db
+  .select()
+  .from(Table as any)
+  .where(db.eq(Table.id, id))
+  .get();
+
+const columns = Object.entries(tableConfig.columns).map(([name, config]) => ({
+  name,
+  ...(config as any)
+}));
+---
+
+<form
+  class="flex flex-col gap-4"
+  hx-put={`/api/admin/${tableName}/${id}`}
+  hx-target="closest tr"
+  hx-swap="outerHTML"
+  @submit="sidebarOpen = false"
+>
+  {
+    columns.map(
+      (col: {
+        name: string;
+        type: "date" | "number" | "text" | "boolean" | "json";
+        schema: {
+          multiline: boolean;
+          optional: boolean;
+          unique: boolean;
+          primaryKey: boolean;
+        };
+      }) => (
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text font-medium">{col.name}</span>
+          </label>
+          {col.type === "text" && col.schema.multiline ? (
+            <TrixEditor id={col.name} content={record[col.name]} />
+          ) : (
+            <input
+              name={col.name}
+              type={col.type === "date" ? "datetime-local" : col.type === "number" ? "number" : "text"}
+              class="input rounded-md input-bordered w-full"
+              value={col.type === "date" ? new Date(record[col.name]).toISOString().slice(0, 16) : record[col.name]}
+            />
+          )}
+        </div>
+      )
+    )
+  }
+
+  <button type="submit" class="btn btn-primary mt-4">Save Changes</button>
+</form>
+
+<script>
+  import "trix";
+</script>

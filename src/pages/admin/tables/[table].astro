@@ -1,0 +1,133 @@
+---
+import AdminLayout from "@/components/layouts/AdminLayout.astro";
+import * as db from "astro:db";
+import type { SQLiteTable, TableConfig } from "drizzle-orm/sqlite-core";
+import config from "../../../../db/config";
+import DOMPurify from "isomorphic-dompurify";
+
+const { table: tableName = "" } = Astro.params as { table: string };
+// @ts-ignore - db tables are loaded at runtime
+const Table = db[tableName as string] as SQLiteTable<TableConfig>;
+const tableConfig = (config.tables as { [key: string]: any })[tableName as string];
+
+if (!tableConfig || !Table) {
+  return Astro.redirect("/admin");
+}
+
+// Get table data
+const records = await db.db.select().from(Table as any);
+const columns = Object.entries(tableConfig.columns).map(([name, config]) => ({
+  name,
+  ...(config as any)
+}));
+
+// Get primary key column
+const primaryKey = columns.find((col) => col.primaryKey)?.name;
+---
+
+<AdminLayout title={tableName}>
+  <div class="not-prose w-full relative" x-data="{ sidebarOpen: false }">
+    <!-- Main Content -->
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-2xl font-bold">{tableName}</h1>
+      <button
+        class="btn btn-primary"
+        @click="sidebarOpen = true"
+        hx-get={`/admin/tables/${tableName}/new`}
+        hx-target="#sidebar-content"
+      >
+        Add New
+      </button>
+    </div>
+
+    <div class="bg-white border-2 border-base-200 rounded-xl overflow-x-auto">
+      <table class="table w-full">
+        <thead>
+          <tr>
+            {columns.map((col) => <th class="max-w-[200px]">{col.name}</th>)}
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            records.map((record) => (
+              <tr
+                class="cursor-pointer hover:bg-base-200"
+                @click="sidebarOpen = true"
+                hx-get={`/api/admin/${tableName}/edit/${record.id}`}
+                hx-target="#sidebar-content"
+              >
+                {columns.map((col: { name: string; type: "text" | "date" | "json" | "number"; schema: any }) => (
+                  <td class="max-w-[200px]">
+                    <div class="line-clamp-3 break-words">
+                      {col.type === "date"
+                        ? new Date(record[col.name]).toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "short",
+                            day: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit"
+                          })
+                        : DOMPurify.sanitize(String(record[col.name]))}
+                    </div>
+                  </td>
+                ))}
+                <td class="flex gap-2" @click.stop>
+                  <button
+                    class="btn btn-sm btn-error"
+                    hx-delete={`/api/admin/${tableName}/${record[primaryKey]}`}
+                    hx-confirm="Are you sure?"
+                    hx-target="closest tr"
+                    hx-swap="outerHTML"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Sidebar -->
+    <div
+      class="fixed top-0 right-0 h-full w-96 bg-base-100 shadow-xl transform transition-transform duration-300 ease-in-out overflow-y-auto"
+      :class="sidebarOpen ? 'translate-x-0' : 'translate-x-full'"
+    >
+      <div class="p-6 bg-white border-2 border-base-200 rounded-xl">
+        <div class="flex justify-between items-center mb-6">
+          <h2 class="text-xl font-bold">Edit Record</h2>
+          <button class="btn btn-ghost btn-sm" @click="sidebarOpen = false">×</button>
+        </div>
+        <div id="sidebar-content"></div>
+      </div>
+    </div>
+  </div>
+</AdminLayout>
+
+<script>
+  import Alpine from "alpinejs";
+
+  document.addEventListener("alpine:init", () => {
+    Alpine.data("adminTable", () => ({
+      selectedRecord: null,
+      sidebarOpen: false,
+      submitForm() {
+        const record = this.selectedRecord;
+        const id = record["{primaryKey}"];
+
+        fetch(`/api/admin/${tableName}/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(record)
+        }).then(() => {
+          this.sidebarOpen = false;
+          window.location.reload();
+        });
+      }
+    }));
+  });
+</script>

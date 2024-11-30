@@ -1,0 +1,32 @@
+---
+import AdminLayout from "@/components/layouts/AdminLayout.astro";
+import * as db from "astro:db";
+import config from "../../../db/config";
+
+const tables = Object.entries(config.tables as { [key: string]: any }).map(([name, table]) => ({
+  name,
+  // @ts-ignore - db tables are loaded at runtime
+  table: db[name],
+  columns: Object.entries(table.columns)
+}));
+---
+
+<AdminLayout title="Tables">
+  <div class="w-full">
+    <h1 class="text-2xl font-bold mb-6">Database Tables</h1>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {
+        tables.map(({ name, columns }) => (
+          <a
+            href={`/admin/tables/${name}`}
+            class="block p-6 bg-white rounded-lg border-2 border-slate-200 hover:border-primary"
+          >
+            <h2 class="text-xl font-semibold mb-2">{name}</h2>
+            <p class="text-sm text-slate-600">{columns.length} columns</p>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</AdminLayout>
