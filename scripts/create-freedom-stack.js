@@ -64,15 +64,26 @@ function createProject(projectName) {
   // Create .env from .env.example with generated BETTER_AUTH_SECRET
   const envExamplePath = path.join(templateDir, ".env.example");
   const envPath = path.join(projectDir, ".env");
-  let envContent = fs.readFileSync(envExamplePath, "utf8");
 
-  // Generate and set BETTER_AUTH_SECRET
-  const authSecret = randomUUID();
-  envContent = envContent.replace('BETTER_AUTH_SECRET=""', `BETTER_AUTH_SECRET="${authSecret}"`);
+  // Check if .env.example exists
+  if (!fs.existsSync(envExamplePath)) {
+    console.warn("Warning: .env.example not found in template");
+    return;
+  }
 
-  fs.writeFileSync(envPath, envContent);
+  // Create .env if it doesn't exist
+  if (!fs.existsSync(envPath)) {
+    let envContent = fs.readFileSync(envExamplePath, "utf8");
 
-  // Also create .env.example in the new project
+    // Generate and set BETTER_AUTH_SECRET
+    const authSecret = randomUUID();
+    envContent = envContent.replace('BETTER_AUTH_SECRET=""', `BETTER_AUTH_SECRET="${authSecret}"`);
+
+    fs.writeFileSync(envPath, envContent);
+    console.log("Created .env file with default configuration");
+  }
+
+  // Copy .env.example to new project
   fs.copyFileSync(envExamplePath, path.join(projectDir, ".env.example"));
 
   // Initialize git
