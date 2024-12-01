@@ -35,16 +35,16 @@ const faqItems = [
   {
     question: "How can I learn more about Alpine.js?",
     answer:
-      "If you want to learn more about Alpine.js, I recommend [Learn Alpine.js on codecourse](https://codecourse.com/courses/learn-alpine-js)."
+      "If you want to learn more about Alpine.js, I recommend [Learn Alpine.js on codecourse](https://codecourse.com/courses/learn-alpine-js?ref=freedomstack)."
   },
   {
     question: "How can I learn more about the libSQL database layer?",
     answer:
-      "If you want to learn more about the database layer, I recommend first starting with Astro DB's [Getting Started Guide](https://docs.astro.build/en/guides/astro-db/), and then learning from [High Performance SQLite course](https://highperformancesqlite.com/), sponsored by [Turso](https://tur.so/freedomstack)."
+      "If you want to learn more about the database layer, I recommend first starting with Astro DB's [Getting Started Guide](https://docs.astro.build/en/guides/astro-db/?ref=freedomstack), and then learning from [High Performance SQLite course](https://highperformancesqlite.com/?ref=freedomstack), sponsored by [Turso](https://tur.so/freedomstack)."
   },
   {
     question: "How can I learn more about Better Auth?",
-    answer: "[Learn more about Better Auth.](https://www.better-auth.com/docs/integrations/astro)"
+    answer: "[Learn more about Better Auth.](https://www.better-auth.com/docs/integrations/astro?ref=freedomstack)"
   },
   {
     question: "How do I deploy Freedom Stack?",
@@ -53,11 +53,16 @@ const faqItems = [
   },
   {
     question: "How can I learn more about HTMX?",
-    answer: "[Learn more about HTMX.](https://htmx.org/)"
+    answer: "[Learn more about HTMX.](https://htmx.org/?ref=freedomstack)"
   },
   {
     question: "How can I learn more about daisyUI?",
-    answer: "[Learn more about daisyUI.](https://daisyui.com/)"
+    answer: "[Learn more about daisyUI.](https://daisyui.com/?ref=freedomstack)"
+  },
+  {
+    question: "What's an affordable way to track my website's traffic/analytics?",
+    answer:
+      "I recommend [One Dollar Stats, by Drizzle](https://onedollarstats.com/?ref=freedomstack), or try out [PostHog](https://posthog.com/?ref=freedomstack)."
   },
   {
     question: "How can I contribute to Freedom Stack?",
@@ -312,6 +317,8 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     </div>
   </Container>
 
+  <FAQ title="FAQ" items={faqItems} />
+
   <Container title="Support Freedom Stack" align="center">
     <div
       class="not-prose w-full grid max-sm:grid-cols-1 sm:grid-cols-2 gap-4 flex-wrap justify-center items-center [&_img]:border-2 [&_img]:border-slate-200 [&_img]:rounded-2xl [&_img]:w-full [&_img]:h-auto"
@@ -332,8 +339,6 @@ Astro.response.headers.set("netlify-cache-tag", "components");
       </a>
     </div>
   </Container>
-
-  <FAQ title="FAQ" items={faqItems} />
 
   <Footer
     links={[
