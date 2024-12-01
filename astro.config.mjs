@@ -3,6 +3,7 @@ import tailwind from "@astrojs/tailwind";
 import alpinejs from "@astrojs/alpinejs";
 import netlify from "@astrojs/netlify";
 import db from "@astrojs/db";
+import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,7 +12,8 @@ export default defineConfig({
     tailwind(),
     alpinejs({
       entrypoint: "/src/entrypoint"
-    })
+    }),
+    react()
   ],
   vite: {
     optimizeDeps: {
