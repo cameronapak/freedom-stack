@@ -136,10 +136,6 @@ Astro.response.headers.set("netlify-cache-tag", "components");
   <Navbar
     title="Freedom Stack"
     links={[
-      {
-        text: "Netlify 🚀",
-        href: "https://app.netlify.com/start/deploy?repository=https://github.com/cameronapak/freedom-stack"
-      },
       { text: "Blog", href: "/posts" },
       { text: "Sign In", href: "/sign-in" }
     ]}
@@ -201,14 +197,18 @@ Astro.response.headers.set("netlify-cache-tag", "components");
         items: [
           { text: "Code on GitHub", href: "https://github.com/cameronapak/freedom-stack" },
           { text: "Buy Me a Coffee", href: "https://buymeacoffee.com/campak" },
-          { text: "Contact Cam", href: "https://cameronpak.com/pages/contact-cam" }
+          {
+            text: "Deploy to Netlify 🚀",
+            href: "https://app.netlify.com/start/deploy?repository=https://github.com/cameronapak/freedom-stack"
+          }
         ]
       },
       {
         title: "Legal",
         items: [
           { text: "Code of Conduct", href: "https://github.com/cameronapak/freedom-stack?tab=coc-ov-file#readme" },
-          { text: "MIT License", href: "https://github.com/cameronapak/freedom-stack?tab=mit-1-ov-file#readme" }
+          { text: "MIT License", href: "https://github.com/cameronapak/freedom-stack?tab=mit-1-ov-file#readme" },
+          { text: "Contact Cam", href: "https://cameronpak.com/pages/contact-cam" }
         ]
       }
     ]}
