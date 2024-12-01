@@ -13,6 +13,8 @@ import sectionsImage from "@/assets/sections.png";
 import deployToNetlifyImage from "@/assets/deploy.png";
 import fullStackImage from "@/assets/full-stack.png";
 import uneedImage from "@/assets/uneed.png";
+import astroBlogImage from "@/assets/astro-blog.png";
+import startupFameImage from "@/assets/startupfame.png";
 
 const features = [
   { title: "Astro", description: "The simplest web metaframework" },
@@ -189,30 +191,63 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     </div>
   </Container>
 
+  <Container title="Featured On" align="center">
+    <div class="flex flex-wrap gap-4 justify-center">
+      <div
+        class="not-prose grid max-sm:grid-cols-1 sm:grid-cols-2 gap-4 flex-wrap justify-center items-center [&_img]:border-2 [&_img]:border-slate-200 [&_img]:rounded-2xl [&_img]:w-full [&_img]:h-auto"
+      >
+        <a
+          href="https://www.uneed.best/tool/freedom-stack---starter-kit"
+          target="_blank"
+          style={{ aspectRatio: uneedImage.width / uneedImage.height }}
+        >
+          <img
+            style={{ aspectRatio: uneedImage.width / uneedImage.height }}
+            src={uneedImage.src}
+            alt="Uneed Embed Badge"
+            class="w-full"
+          />
+        </a>
+
+        <a
+          href="https://faith.tools/app/1059-freedom-stack-full-stack-web-app-starter-kit"
+          target="_blank"
+          style={{ aspectRatio: "352 / 87" }}
+        >
+          <img
+            src="https://faith.tools/embed-badge-simple.png"
+            alt="Powered by Faith.Tools"
+            style={{ aspectRatio: "352 / 87" }}
+          />
+        </a>
+
+        <a href="https://startupfa.me/s/freedom-stack?ref=freedom.faith.tools" target="_blank">
+          <img
+            src={startupFameImage.src}
+            alt="Freedom Stack - A full-stack Astro starter kit for free. | Startup Fame"
+            style={{ aspectRatio: startupFameImage.width / startupFameImage.height }}
+          />
+        </a>
+
+        <a
+          href="https://astro.build/blog/whats-new-november-2024/?utm_source=withastro&utm_medium=email&utm_campaign=the-astro-post-november-2024"
+          target="_blank"
+        >
+          <img
+            src={astroBlogImage.src}
+            alt="Featured on Astro Blog"
+            class="h-32 m-0"
+            style={{ aspectRatio: astroBlogImage.width / astroBlogImage.height }}
+          />
+        </a>
+      </div>
+    </div>
+  </Container>
+
   <Container title="Support Freedom Stack" align="center">
     <div
-      class="not-prose grid max-sm:grid-cols-1 sm:grid-cols-2 gap-4 flex-wrap justify-center items-center [&_img]:border-2 [&_img]:border-slate-200 [&_img]:rounded-2xl [&_img]:w-full [&_img]:h-auto"
+      class="not-prose w-full grid max-sm:grid-cols-1 sm:grid-cols-2 gap-4 flex-wrap justify-center items-center [&_img]:border-2 [&_img]:border-slate-200 [&_img]:rounded-2xl [&_img]:w-full [&_img]:h-auto"
     >
-      <a
-        href="https://www.uneed.best/tool/freedom-stack---starter-kit"
-        target="_blank"
-        style={{ aspectRatio: "352 / 87" }}
-      >
-        <img style={{ aspectRatio: "352 / 87" }} src={uneedImage.src} alt="Uneed Embed Badge" class="w-full" />
-      </a>
-
-      <a
-        href="https://faith.tools/app/1059-freedom-stack-full-stack-web-app-starter-kit"
-        target="_blank"
-        style={{ aspectRatio: "352 / 87" }}
-      >
-        <img
-          src="https://faith.tools/embed-badge-simple.png"
-          alt="Powered by Faith.Tools"
-          style={{ aspectRatio: "352 / 87" }}
-        />
-      </a>
-
       <a href="https://www.buymeacoffee.com/campak" target="_blank" style={{ aspectRatio: "352 / 78" }}>
         <img
           style={{ aspectRatio: "352 / 78" }}
