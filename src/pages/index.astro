@@ -67,28 +67,56 @@ const faqItems = [
 ];
 
 const letterContentMarkdown = `
-  I dream of a lightweight, simple web development stack that invokes a fun web experience at the cheapest possible
-  maintenance, backend, and server cost. As close to free as possible. I wanted to provide a stack that's powerful
-  like Ruby on Rails _("The One Person Framework")_, but with the ease and "vanilla" web dev feel of Astro. Freedom
-  Stack is built on three core principles:
+Hey, I'm Cam, a front-end designer and developer of over 7 years.
 
-  - **Approachable** — Making web development feel natural and comfortable, especially for newcomers
-  - **Flow-able** — Using an HTML-first approach that helps you focus and get in the zone faster
-  - **Pocket-friendly** — Keeping it financially maintainable for everyone, from indie hackers to startups
+While I loved working on the UI, animations, and interactivity of web apps, I'd always felt held back by not knowing how to
+create full-stack web apps.
 
-  This is only the beginning. It's a joy to work on this project and to give it freely. Long story short, I was
-  bed-ridden sick for about 7 months, not knowing if I'd make it out. [God](https://www.gotquestions.org/what-is-the-gospel.html)
-  took care of me through friends and family. He healed me on the inside before he healed me on the outside. Ever
-  since, I've had a deep desire to create digital experiences that lead to freedom. May Freedom Stack be a blessing
-  to you to create whatever dreams and visions on your heart and mind.
+I knew how to work with API's and someone else's database, but I'd never learned how to build my own until...
 
-  Freedom Stack:
+_A wild [Astro DB](https://docs.astro.build/en/guides/astro-db/) enters the chat!_
 
-  - Feels vanilla, with the power of modern frameworks. No need for Docker. Just throw it on Netlify and you're good to go.
-  - Is built with Astro, Alpine.js, HTMX, Astro DB, Better Auth, Preline UI, daisyUI, & Lucide Icons. Enjoy building apps.
-  - Has a low barrier to entry, making it easy to learn and start building fast. Get in the zone and stay in it.
+Creating a database table was as easy as:
 
-  _— [Cam Pak](https://cameronpak.com)_
+\`\`\`javascript
+import { defineTable } from "astro:db";
+
+const Posts = defineTable({
+  columns: {
+    id: column.number({ primaryKey: true }),
+    title: column.text(),
+    pubDate: column.date(),
+    description: column.text(),
+    author: column.text(),
+    imageUrl: column.text({ optional: true }),
+    imageAlt: column.text({ optional: true }),
+    tags: column.json({ optional: true }),
+    slug: column.text({ unique: true }),
+    content: column.text()
+  }
+});
+\`\`\`
+
+And, getting all the posts from the database was as easy as:
+
+\`\`\`javascript
+import { db, Posts } from "astro:db";
+
+const posts = await db.select().from(Posts).all();
+\`\`\`
+
+I found myself building full-stack web apps without really having to think too much about databases. They just worked.
+
+Writing code felt freeing and fun again.
+
+I got this spark and reinvoration to code again after the hardest season of my life, when I was bed-ridden for around seven months. [God](https://www.gotquestions.org/what-is-the-gospel.html) sustained me through
+the support of friends and family. He healed me spiritually before physically restoring my health.
+
+After recovering, I finally felt freedom.
+
+My hope is that Freedom Stack empowers you to create the dreams and visions on your mind and heart.
+
+_— [Cam Pak](https://cameronpak.com)_
 `;
 
 // The browser should always check freshness
