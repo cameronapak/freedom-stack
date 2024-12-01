@@ -12,6 +12,7 @@ import GithubButton from "@/components/server/GithubButton.astro";
 import sectionsImage from "@/assets/sections.png";
 import deployToNetlifyImage from "@/assets/deploy.png";
 import fullStackImage from "@/assets/full-stack.png";
+import uneedImage from "@/assets/uneed.png";
 
 const features = [
   { title: "Astro", description: "The simplest web metaframework" },
@@ -189,23 +190,41 @@ Astro.response.headers.set("netlify-cache-tag", "components");
   </Container>
 
   <Container title="Support Freedom Stack" align="center">
-    <div class="not-prose flex gap-4 flex-wrap items-center">
-      <a href="https://www.uneed.best/tool/freedom-stack---starter-kit" target="_blank">
-        <img src="https://www.uneed.best/EMBED2.png" alt="Uneed Embed Badge" class="h-12 rounded-lg" />
+    <div
+      class="not-prose grid max-sm:grid-cols-1 sm:grid-cols-2 gap-4 flex-wrap justify-center items-center [&_img]:border-2 [&_img]:border-slate-200 [&_img]:rounded-2xl [&_img]:w-full [&_img]:h-auto"
+    >
+      <a
+        href="https://www.uneed.best/tool/freedom-stack---starter-kit"
+        target="_blank"
+        style={{ aspectRatio: "352 / 87" }}
+      >
+        <img style={{ aspectRatio: "352 / 87" }} src={uneedImage.src} alt="Uneed Embed Badge" class="w-full" />
       </a>
 
-      <a href="https://faith.tools/app/1059-freedom-stack-full-stack-web-app-starter-kit" target="_blank">
+      <a
+        href="https://faith.tools/app/1059-freedom-stack-full-stack-web-app-starter-kit"
+        target="_blank"
+        style={{ aspectRatio: "352 / 87" }}
+      >
         <img
           src="https://faith.tools/embed-badge-simple.png"
-          class="h-12 border-2 border-slate-200 rounded-lg"
           alt="Powered by Faith.Tools"
+          style={{ aspectRatio: "352 / 87" }}
         />
       </a>
 
-      <a href="https://www.buymeacoffee.com/campak">
+      <a href="https://www.buymeacoffee.com/campak" target="_blank" style={{ aspectRatio: "352 / 78" }}>
         <img
-          class="h-12 border-2 border-slate-200 rounded-lg"
+          style={{ aspectRatio: "352 / 78" }}
+          alt="Buy me a coffee"
           src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=☕&slug=campak&button_colour=ffffff&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00"
+        />
+      </a>
+
+      <a href="https://github.com/cameronapak/freedom-stack" target="_blank" style={{ aspectRatio: "121 / 28" }}>
+        <img
+          style={{ aspectRatio: "121 / 28" }}
+          src="https://img.shields.io/github/stars/cameronapak/freedom-stack?style=for-the-badge&logo=github&labelColor=FFFFFF&color=FFFFFF&logoColor=101010"
         />
       </a>
     </div>
