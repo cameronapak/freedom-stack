@@ -156,38 +156,6 @@ Astro.response.headers.set("netlify-cache-tag", "components");
     </div>
   </section>
 
-  {/* Here's an HTMX example */}
-  <div hx-get="/api/htmx-partials/uneed-launch" hx-trigger="load delay:500ms" hx-swap="innerHTML"></div>
-
-  <HalfTextHalfImage
-    title="Create full-stack web apps"
-    subtitle="Save time, money, and headaches by using Freedom Stack."
-    image={fullStackImage.src}
-  />
-  <HalfTextHalfImage
-    title="No need to reinvent the wheel"
-    subtitle="Auth? Database? Components? This starter kit has you covered."
-    image={sectionsImage.src}
-    reverse
-  />
-  <HalfTextHalfImage
-    title="Focus on the fun stuff"
-    subtitle="Enjoy building apps, not configuring servers. Incredibly easy to deploy."
-    image={deployToNetlifyImage.src}
-  />
-  <Quote
-    quote="enjoyed learning about Freedom Stack, Cam. Really a refreshing take on SaaS boilerplates ✨ plus I love Astro, too!"
-    title="@poppacalypse"
-    author="Carl Poppa"
-  />
-  <Features features={features} />
-
-  <Container title="Why Freedom Stack?" align="center">
-    <div class="bg-white p-6 rounded-xl border-2 border-slate-200 w-full text-xl leading-relaxed">
-      <RenderMarkdown content={letterContentMarkdown} />
-    </div>
-  </Container>
-
   <Container title="Featured On" align="center">
     <div class="flex flex-wrap gap-4 justify-center">
       <div class="not-prose flex gap-12 flex-wrap justify-center items-center image-container">
@@ -309,6 +277,38 @@ Astro.response.headers.set("netlify-cache-tag", "components");
           </svg>
         </a>
       </div>
+    </div>
+  </Container>
+
+  {/* Here's an HTMX example */}
+  <div hx-get="/api/htmx-partials/uneed-launch" hx-trigger="load delay:500ms" hx-swap="innerHTML"></div>
+
+  <HalfTextHalfImage
+    title="Create full-stack web apps"
+    subtitle="Save time, money, and headaches by using Freedom Stack."
+    image={fullStackImage.src}
+  />
+  <HalfTextHalfImage
+    title="No need to reinvent the wheel"
+    subtitle="Auth? Database? Components? This starter kit has you covered."
+    image={sectionsImage.src}
+    reverse
+  />
+  <HalfTextHalfImage
+    title="Focus on the fun stuff"
+    subtitle="Enjoy building apps, not configuring servers. Incredibly easy to deploy."
+    image={deployToNetlifyImage.src}
+  />
+  <Quote
+    quote="enjoyed learning about Freedom Stack, Cam. Really a refreshing take on SaaS boilerplates ✨ plus I love Astro, too!"
+    title="@poppacalypse"
+    author="Carl Poppa"
+  />
+  <Features features={features} />
+
+  <Container title="Why Freedom Stack?" align="center">
+    <div class="bg-white p-6 rounded-xl border-2 border-slate-200 w-full text-xl leading-relaxed">
+      <RenderMarkdown content={letterContentMarkdown} />
     </div>
   </Container>
 
