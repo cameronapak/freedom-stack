@@ -13,11 +13,21 @@ export default defineConfig({
     alpinejs({
       entrypoint: "/src/entrypoint"
     }),
-    react()
+    react({
+      experimentalReactChildren: true
+    })
   ],
   vite: {
     optimizeDeps: {
-      exclude: ["astro:db"]
+      exclude: ["astro:db"],
+      include: ["lodash-es"]
+    },
+    resolve: {
+      dedupe: ["react", "react-dom"]
+    },
+    ssr: {
+      external: ["react", "react-dom"],
+      noExternal: ["bknd", "lodash-es"]
     }
   },
   output: "server",
