@@ -1,19 +1,57 @@
 ---
 import { Admin } from "bknd/ui";
 import "bknd/dist/styles.css";
-
 import { getApi } from "bknd/adapter/astro";
 
 const api = getApi(Astro, { mode: "dynamic" });
 const user = api.getUser();
 
-console.log(user);
-
 export const prerender = false;
+
+// Configuration object
+const adminConfig = {
+  basepath: "/admin",
+  color_scheme: "dark"
+};
 ---
 
-<html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Dashboard</title>
+  </head>
   <body>
-    <Admin withProvider={{ user }} config={{ basepath: "/admin", color_scheme: "dark" }} client:load />
+    <div id="admin-root">
+      <Admin withProvider={{ user }} config={adminConfig} client:only="react" />
+    </div>
+
+    <script is:inline>
+      // Global error handler
+      window.addEventListener("error", function (event) {
+        console.error("Global error:", event.error);
+        event.preventDefault();
+      });
+
+      // Global promise rejection handler
+      window.addEventListener("unhandledrejection", function (event) {
+        console.error("Unhandled rejection:", event.reason);
+        event.preventDefault();
+      });
+
+      // Patch Promise to handle rejections
+      const originalThen = Promise.prototype.then;
+      Promise.prototype.then = function (onFulfilled, onRejected) {
+        return originalThen.call(
+          this,
+          onFulfilled,
+          onRejected ||
+            ((error) => {
+              console.error("Caught promise error:", error);
+              return Promise.reject(error);
+            })
+        );
+      };
+    </script>
   </body>
 </html>
