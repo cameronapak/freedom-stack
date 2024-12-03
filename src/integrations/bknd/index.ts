@@ -11,7 +11,7 @@ interface BkndIntegrationOptions extends CreateAppConfig {
  * @param options - Configuration options for BKND integration
  * @returns AstroIntegration
  */
-export default function createBkndIntegration(options: BkndIntegrationOptions): AstroIntegration {
+export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
   const { adminRoute = "/admin", debug = false, ...appConfig } = options;
 
   return {
