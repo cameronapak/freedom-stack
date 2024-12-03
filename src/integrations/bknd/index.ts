@@ -1,6 +1,7 @@
+import type { AstroIntegration } from "astro";
 import { App, getDefaultConfig, type CreateAppConfig } from "bknd";
 
-export default function bkndIntegration(appConfig: CreateAppConfig) {
+export default function bkndIntegration(appConfig: CreateAppConfig): AstroIntegration {
   return {
     name: "bknd-integration",
     hooks: {
@@ -25,7 +26,20 @@ export default function bkndIntegration(appConfig: CreateAppConfig) {
         // The config will be saved to the "__bknd" table
         // of the database specified in the connection
         await app.build({ sync: true, save: true });
+      },
+      "astro:config:setup": async ({ injectRoute }) => {
+        injectRoute({
+          pattern: "[...admin]",
+          entrypoint: "./src/integrations/bknd/admin.astro",
+          prerender: false
+        });
+
+        injectRoute({
+          pattern: "/api/[...api]",
+          entrypoint: "./src/integrations/bknd/api.ts",
+          prerender: false
+        });
       }
     }
-  };
+  } as AstroIntegration;
 }
