@@ -8,12 +8,6 @@ const api = getApi(Astro, { mode: "dynamic" });
 const user = api.getUser();
 
 export const prerender = false;
-
-// Configuration object
-const adminConfig = {
-  basepath: "/admin",
-  color_scheme: "dark"
-};
 ---
 
 <html lang="en">
@@ -24,7 +18,7 @@ const adminConfig = {
   </head>
   <body>
     <div id="admin-root">
-      <BkndAdmin withProvider={{ user }} config={adminConfig} client:only="react" />
+      <BkndAdmin withProvider={{ user }} client:only="react" />
     </div>
 
     <script is:inline>

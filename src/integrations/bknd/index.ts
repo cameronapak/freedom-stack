@@ -1,5 +1,6 @@
 import type { AstroIntegration } from "astro";
-import { App, getDefaultConfig, type CreateAppConfig } from "bknd";
+import { App, getDefaultConfig, type CreateAppConfig, type ModuleConfigs } from "bknd";
+import { setInitialConfig } from "./state";
 
 interface BkndIntegrationOptions extends CreateAppConfig {
   adminRoute?: string;
@@ -14,20 +15,31 @@ interface BkndIntegrationOptions extends CreateAppConfig {
 export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
   const { adminRoute = "/admin", debug = false, ...appConfig } = options;
 
+  const config = getDefaultConfig();
+  const initialConfig: { version: number } & ModuleConfigs = {
+    version: 7,
+    ...config,
+    auth: {
+      ...config.auth,
+      enabled: true
+    },
+    server: {
+      ...config.server,
+      admin: {
+        ...config.server.admin,
+        basepath: "/admin"
+      }
+    }
+  };
+
+  // Set the initial config before returning the integration
+  setInitialConfig(initialConfig);
+
   return {
     name: "bknd-integration",
     hooks: {
       "astro:server:setup": async ({ logger }) => {
         try {
-          const config = getDefaultConfig();
-
-          const initialConfig = {
-            version: 7,
-            ...config,
-            debug,
-            timestamp: new Date().toISOString()
-          };
-
           if (debug) {
             logger.info(`BKND: Initializing with config: ${JSON.stringify(initialConfig, null, 2)}`);
           }
@@ -67,8 +79,14 @@ export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
           const sanitizedRoute = adminRoute.startsWith("/") ? adminRoute.slice(1) : adminRoute;
 
           injectRoute({
-            pattern: `${sanitizedRoute}/[...path]`,
+            pattern: `${sanitizedRoute}/[...admin]`,
             entrypoint: "./src/integrations/bknd/admin.astro",
+            prerender: false
+          });
+
+          injectRoute({
+            pattern: "/api/[...api]",
+            entrypoint: "./src/integrations/bknd/api.ts",
             prerender: false
           });
 
