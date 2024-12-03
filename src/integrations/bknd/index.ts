@@ -1,10 +1,24 @@
 import type { AstroIntegration } from "astro";
 import { App, getDefaultConfig, type CreateAppConfig, type ModuleConfigs } from "bknd";
 import { setInitialConfig } from "./state";
+import path from "path";
+import fs from "fs";
 
 interface BkndIntegrationOptions extends CreateAppConfig {
   adminRoute?: string;
   debug?: boolean;
+}
+
+function generateApiFileContent(config: CreateAppConfig): string {
+  return `// Generated API route for bknd adapter
+import { serve } from "bknd/adapter/astro";
+
+export const prerender = false;
+
+export const ALL = serve(
+${JSON.stringify(config, null, 2)}
+);
+`;
 }
 
 /**
@@ -84,9 +98,26 @@ export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
             prerender: false
           });
 
+          // Create a temp file for api.ts here.
+          // Create the directory if it doesn't exist
+          const tempDir = path.join(process.cwd(), "src/integrations/bknd/temp");
+          if (!fs.existsSync(tempDir)) {
+            fs.mkdirSync(tempDir, { recursive: true });
+          }
+          const apiFile = path.join(tempDir, "api.ts");
+          fs.writeFileSync(
+            apiFile,
+            generateApiFileContent({
+              initialConfig: {
+                ...initialConfig
+              },
+              connection: appConfig.connection
+            })
+          );
+
           injectRoute({
             pattern: "/api/[...api]",
-            entrypoint: "./src/integrations/bknd/api.ts",
+            entrypoint: apiFile,
             prerender: false
           });
 
