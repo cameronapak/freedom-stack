@@ -51,6 +51,12 @@ export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
     }
   };
 
+  // This is needed to seed the db
+  // > yes haha, the problem is this: to reduce the latency I wanted to have a way to inject the config (from cache) so it just pretends everything is loaded and ready.
+  // > I will add a check that if the version is omitted, it takes this as a fallback, but only if there isn't a configuration stored in the database. So for you, everything will be the same except you omit the version property. Will add this soon, had to fix a few things and will now focus on it 🙂
+  // > — creator of bknd.io
+  delete initialConfig.version;
+
   return {
     name: "bknd-integration",
     hooks: {
@@ -59,6 +65,8 @@ export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
           if (debug) {
             logger.info(`BKND: Initializing with config: ${JSON.stringify(initialConfig, null, 2)}`);
           }
+
+          console.log(appConfig);
 
           const app = App.create({
             ...appConfig,
