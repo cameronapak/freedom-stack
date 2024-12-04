@@ -32,15 +32,7 @@ export default defineConfig({
   ],
   vite: {
     optimizeDeps: {
-      exclude: ["astro:db"],
-      include: ["lodash-es"]
-    },
-    resolve: {
-      dedupe: ["react", "react-dom"]
-    },
-    ssr: {
-      external: ["react", "react-dom"],
-      noExternal: ["bknd", "lodash-es"]
+      exclude: ["astro:db"]
     }
   },
   output: "server",
