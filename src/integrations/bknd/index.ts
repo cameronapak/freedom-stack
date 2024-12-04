@@ -31,7 +31,6 @@ export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
   const config = getDefaultConfig();
 
   const initialConfig: { version: number } & ModuleConfigs = {
-    version: 7,
     ...config,
     auth: {
       ...config.auth,
