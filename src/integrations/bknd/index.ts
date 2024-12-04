@@ -1,6 +1,5 @@
 import type { AstroIntegration } from "astro";
 import { App, getDefaultConfig, type CreateAppConfig, type ModuleConfigs } from "bknd";
-import { setInitialConfig } from "./state";
 import path from "path";
 import fs from "fs";
 
@@ -30,12 +29,19 @@ export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
   const { adminRoute = "/admin", debug = false, ...appConfig } = options;
 
   const config = getDefaultConfig();
+
   const initialConfig: { version: number } & ModuleConfigs = {
     version: 7,
     ...config,
     auth: {
       ...config.auth,
       enabled: true
+    },
+    data: {
+      ...config.data,
+      entities: {
+        ...config.data.entities
+      }
     },
     server: {
       ...config.server,
@@ -45,9 +51,6 @@ export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
       }
     }
   };
-
-  // Set the initial config before returning the integration
-  setInitialConfig(initialConfig);
 
   return {
     name: "bknd-integration",
