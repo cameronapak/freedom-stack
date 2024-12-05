@@ -1,21 +1,8 @@
-import { auth } from "@/lib/auth";
-import { defineMiddleware } from "astro:middleware";
+import { createAuthMiddleware } from "@/integrations/better-auth";
 
-export const onRequest = defineMiddleware(async (context, next) => {
-  const isAuthed = await auth.api.getSession({
-    headers: context.request.headers
-  });
-
-  if (isAuthed) {
-    context.locals.user = isAuthed.user;
-    context.locals.session = isAuthed.session;
-  } else {
-    context.locals.user = null;
-    context.locals.session = null;
-    if (context.url.pathname === "/sign-out") {
-      return context.redirect("/");
-    }
+export const onRequest = await createAuthMiddleware({
+  protectedRoutes: ["/dashboard"],
+  onAuthFailure: () => {
+    console.log("Authentication failed");
   }
-
-  return next();
 });
