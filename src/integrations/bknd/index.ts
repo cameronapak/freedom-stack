@@ -1,5 +1,5 @@
 import type { AstroIntegration } from "astro";
-import { App, getDefaultConfig, type CreateAppConfig, type ModuleConfigs } from "bknd";
+import { type CreateAppConfig } from "bknd";
 import path from "path";
 import fs from "fs";
 
@@ -27,8 +27,6 @@ ${JSON.stringify(config, null, 2)}
  */
 export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
   const { adminRoute = "/admin", debug = false, connection } = options;
-
-  const config = getDefaultConfig();
 
   return {
     name: "bknd-integration",
