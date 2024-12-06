@@ -47,6 +47,7 @@
     "packages:update": "npx npm-check-updates -u",
     "db:setup": "node scripts/setup-turso.js",
     "db:update-schemas": "astro db push --remote",
+    "bknd:seed": "node src/integrations/bknd/db-seed.js",
     "host:deploy": "npx netlify deploy",
     "host:login": "npx netlify login"
   },
@@ -87,6 +88,7 @@
     "@tailwindcss/typography": "^0.5.15",
     "@types/alpinejs": "^3.13.11",
     "@types/better-sqlite3": "^7.6.12",
+    "cross-env": "^7.0.3",
     "daisyui": "^4.12.14",
     "netlify-cli": "^17.37.2",
     "prettier": "^3.4.1",
