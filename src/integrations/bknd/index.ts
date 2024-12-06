@@ -26,77 +26,16 @@ ${JSON.stringify(config, null, 2)}
  * @returns AstroIntegration
  */
 export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
-  const { adminRoute = "/admin", debug = false, ...appConfig } = options;
+  const { adminRoute = "/admin", debug = false, connection } = options;
 
   const config = getDefaultConfig();
-
-  const initialConfig: { version: number } & ModuleConfigs = {
-    ...config,
-    auth: {
-      ...config.auth,
-      enabled: true
-    },
-    data: {
-      ...config.data,
-      entities: {
-        ...config.data.entities
-      }
-    },
-    server: {
-      ...config.server,
-      admin: {
-        ...config.server.admin,
-        basepath: "/admin"
-      }
-    }
-  };
-
-  // This is needed to seed the db
-  // > yes haha, the problem is this: to reduce the latency I wanted to have a way to inject the config (from cache) so it just pretends everything is loaded and ready.
-  // > I will add a check that if the version is omitted, it takes this as a fallback, but only if there isn't a configuration stored in the database. So for you, everything will be the same except you omit the version property. Will add this soon, had to fix a few things and will now focus on it 🙂
-  // > — creator of bknd.io
-  delete initialConfig.version;
 
   return {
     name: "bknd-integration",
     hooks: {
-      "astro:server:setup": async ({ logger }) => {
-        try {
-          if (debug) {
-            logger.info(`BKND: Initializing with config: ${JSON.stringify(initialConfig, null, 2)}`);
-          }
-
-          console.log(appConfig);
-
-          const app = App.create({
-            ...appConfig,
-            initialConfig
-          });
-
-          await app
-            .build({
-              sync: true,
-              save: true
-            })
-            .catch((error) => {
-              logger.error("BKND: Failed to build app");
-              throw error;
-            });
-
-          if (debug) {
-            logger.info("BKND: Successfully initialized");
-          }
-
-          logger.info(`Equipped with BKND.io 🚀`);
-        } catch (error) {
-          logger.error("BKND: Integration setup failed");
-          if (error instanceof Error) {
-            logger.error(error.message);
-          }
-          throw error;
-        }
+      "astro:server:start": async ({ logger }) => {
+        logger.info("Equipped with BKND.io 🚀");
       },
-
       "astro:config:setup": async ({ injectRoute, logger }) => {
         try {
           // Sanitize admin route
@@ -118,10 +57,7 @@ export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
           fs.writeFileSync(
             apiFile,
             generateApiFileContent({
-              initialConfig: {
-                ...initialConfig
-              },
-              connection: appConfig.connection
+              connection
             })
           );
 
