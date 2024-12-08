@@ -111,6 +111,8 @@ trix-editor,
 }
 
 input[type="text"],
+input[type="password"],
+input[type="email"],
 textarea {
   @apply !border-2 !border-slate-200;
 }

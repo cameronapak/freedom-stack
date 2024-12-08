@@ -56,7 +56,9 @@ if (result?.data?.success) {
         <div x-cloak x-show="showPasswordError && password !== confirmPassword" class="text-error text-sm">
           Passwords do not match
         </div>
-        <button class="mt-4 btn btn-primary" type="submit" :disabled="!isValid"> Create an account </button>
+        <button class="mt-4 btn btn-primary disabled:!text-slate-300" type="submit" :disabled="!isValid">
+          Create an account
+        </button>
       </form>
       <p>Already have an account? <a href="/sign-in">Sign in</a></p>
     </div>
