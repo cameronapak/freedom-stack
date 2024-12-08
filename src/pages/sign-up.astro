@@ -21,7 +21,7 @@ if (result?.data?.success) {
   <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
   {result?.error && <div x-init={`toastErrorMessage = '${result.error.message.toString()}'`} class="sr-only" />}
   <Container align="center">
-    <div class="bg-white p-6 rounded-xl shadow-md flex flex-col gap-4 max-w-sm w-full">
+    <div class="bg-white p-6 rounded-xl border-2 border-slate-200 flex flex-col gap-4 max-w-sm w-full">
       <h1>Create an account</h1>
       <form
         x-data="{
