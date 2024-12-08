@@ -4,6 +4,7 @@ import { setAuthCookiesFromResponse } from "@/actions/auth";
 import Layout from "@/layouts/Layout.astro";
 import Container from "@sections/Container.astro";
 import Navbar from "@sections/Navbar.astro";
+import Footer from "@sections/Footer.astro";
 
 if (Astro.locals.session) {
   return Astro.redirect("/dashboard");
@@ -97,4 +98,5 @@ if (result?.data?.success) {
       </p>
     </div>
   </Container>
+  <Footer />
 </Layout>
