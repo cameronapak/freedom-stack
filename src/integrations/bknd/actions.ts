@@ -9,16 +9,23 @@ export const bknd = {
       password: z.string(),
       name: z.string()
     }),
-    handler: async (input, _context) => {
+    handler: async (input, context) => {
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(input)
       };
 
-      const response = await fetch("/api/auth/password/register", options);
+      const response = await fetch(context.url.origin + "/api/auth/password/register", options);
+      const data = await response.json();
 
-      return response.json();
+      if (data.user) {
+        context.locals.user = data.user;
+      } else {
+        return { success: false, error: "Failed to create user" };
+      }
+
+      return { success: true, data };
     }
   }),
 
@@ -28,16 +35,23 @@ export const bknd = {
       email: z.string().email(),
       password: z.string()
     }),
-    handler: async (input, _context) => {
+    handler: async (input, context) => {
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(input)
       };
 
-      const response = await fetch("/api/auth/password/login", options);
+      const response = await fetch(context.url.origin + "/api/auth/password/login", options);
+      const data = await response.json();
 
-      return response.json();
+      if (data.user) {
+        context.locals.user = data.user;
+      } else {
+        return { success: false, error: "Failed to sign in user" };
+      }
+
+      return { success: true, data };
     }
   })
 };
