@@ -3,7 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import { actions } from "astro:actions";
 import TrixEditor from "@/components/TrixEditor.astro";
 
-if (!Astro.locals.session) {
+if (!Astro.locals.user) {
   return Astro.redirect("/");
 }
 

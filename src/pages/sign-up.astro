@@ -1,18 +1,16 @@
 ---
 import { actions } from "astro:actions";
-import { setAuthCookiesFromResponse } from "@/actions/auth";
 import Layout from "@/layouts/Layout.astro";
 import Container from "@sections/Container.astro";
 import Navbar from "@sections/Navbar.astro";
 
-if (Astro.locals.session) {
+if (Astro.locals.user) {
   return Astro.redirect("/dashboard");
 }
 
-const result = Astro.getActionResult(actions.auth.signUp);
+const result = Astro.getActionResult(actions.bknd.signUp);
 
 if (result?.data?.success) {
-  setAuthCookiesFromResponse(result.data.cookiesToSet, Astro.cookies);
   return Astro.redirect("/dashboard");
 }
 ---
@@ -39,7 +37,7 @@ if (result?.data?.success) {
         }"
         class="flex flex-col gap-4 max-w-sm w-full"
         method="POST"
-        action={actions.auth.signUp}
+        action={actions.bknd.signUp}
       >
         <input x-model="name" class="input input-bordered" type="text" name="name" placeholder="Name" />
         <input x-model="email" class="input input-bordered" type="email" name="email" placeholder="Email" />

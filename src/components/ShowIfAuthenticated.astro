@@ -1,5 +1,5 @@
 ---
-const session = Astro.locals.session;
+const session = Astro.locals.user;
 ---
 
 {session ? <slot /> : null}
