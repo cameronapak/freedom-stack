@@ -47,6 +47,10 @@
   @apply text-white;
 }
 
+.btn.btn-primary:disabled {
+  @apply bg-slate-200 text-slate-400 cursor-not-allowed shadow-none;
+}
+
 /* Trix Editor */
 #trix-editor trix-toolbar {
   .trix-button-group {
@@ -111,6 +115,8 @@ trix-editor,
 }
 
 input[type="text"],
+input[type="password"],
+input[type="email"],
 textarea {
-  @apply !border-2 !border-slate-200;
+  @apply !border-2 !border-slate-200 bg-white;
 }

@@ -4,7 +4,7 @@ import { setAuthCookiesFromResponse } from "@/actions/auth";
 import Layout from "@/layouts/Layout.astro";
 import Container from "@sections/Container.astro";
 import Navbar from "@sections/Navbar.astro";
-
+import Footer from "@sections/Footer.astro";
 if (Astro.locals.session) {
   return Astro.redirect("/dashboard");
 }
@@ -20,14 +20,34 @@ if (result?.data?.success) {
   <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
   {result?.error && <div x-init={`toastErrorMessage = '${result.error.message.toString()}'`} class="sr-only" />}
   <Container align="center">
-    <div class="flex flex-col gap-4 max-w-sm w-full">
+    <div class="bg-white p-6 rounded-xl border-2 border-slate-200 flex flex-col gap-4 max-w-sm w-full">
       <h1>Sign In</h1>
       <form class="flex flex-col gap-4 max-w-sm w-full" method="POST" action={actions.auth.signIn}>
-        <input class="input input-bordered" type="email" name="email" placeholder="Email" />
-        <input class="input input-bordered" type="password" name="password" placeholder="Password" />
+        {/* Email */}
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">Email</span>
+          </div>
+          <input type="email" placeholder="email@example.com" class="input input-bordered" name="email" />
+        </label>
+
+        {/* Password */}
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">Password</span>
+            <a href="/forgot-password" class="label-text-alt link text-slate-500 hover:!text-slate-500">
+              Forgot password?
+            </a>
+          </div>
+          <input type="password" placeholder="Password" class="input input-bordered" name="password" />
+        </label>
+
         <button class="mt-4 btn btn-primary" type="submit">Sign In</button>
       </form>
-      <p>Don't have an account? <a href="/sign-up">Create an account</a></p>
+      <p class="m-0 text-slate-500">
+        Don't have an account? <a href="/sign-up" class="link text-slate-500">Create an account</a>
+      </p>
     </div>
   </Container>
+  <Footer />
 </Layout>
