@@ -15,15 +15,21 @@ Never gonna tell a lie and hurt you.
 `.trim();
 
 const shrekContent = `
-## The Tale of Shrek: A Story of Layers
+<h1>A Story of Layers</h1>
 
+<p>
 Just like onions, this blog post has layers. Shrek taught us that true beauty lies within,
 and that the best stories often come from the most unexpected places - like a swamp.
-
+</p>
+<p></p>
+<p>
 Some people judge a book by its cover, but as our favorite ogre would say, "Better out than in!"
 This post celebrates the wisdom, humor, and heart that made Shrek a beloved character for generations.
-
-Remember: Ogres are like onions. They have layers. Onions have layers. You get it - we all have layers.
+</p>
+<p></p>
+<p>
+Remember: Ogres are like onions. They have layers. Onions have layers.
+</p>
 `.trim();
 
 // https://astro.build/db/seed
