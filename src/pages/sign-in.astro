@@ -23,8 +23,25 @@ if (result?.data?.success) {
     <div class="flex flex-col gap-4 max-w-sm w-full">
       <h1>Sign In</h1>
       <form class="flex flex-col gap-4 max-w-sm w-full" method="POST" action={actions.auth.signIn}>
-        <input class="input input-bordered" type="email" name="email" placeholder="Email" />
-        <input class="input input-bordered" type="password" name="password" placeholder="Password" />
+        {/* Email */}
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">Email</span>
+          </div>
+          <input type="text" placeholder="email@example.com" class="input input-bordered" name="email" />
+        </label>
+
+        {/* Password */}
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">Password</span>
+            <span class="label-text-alt">
+              <a href="/forgot-password">Forgot password?</a>
+            </span>
+          </div>
+          <input type="text" placeholder="Password" class="input input-bordered" name="password" />
+        </label>
+
         <button class="mt-4 btn btn-primary" type="submit">Sign In</button>
       </form>
       <p>Don't have an account? <a href="/sign-up">Create an account</a></p>
