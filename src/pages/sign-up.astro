@@ -41,18 +41,50 @@ if (result?.data?.success) {
         method="POST"
         action={actions.auth.signUp}
       >
-        <input x-model="name" class="input input-bordered" type="text" name="name" placeholder="Name" />
-        <input x-model="email" class="input input-bordered" type="email" name="email" placeholder="Email" />
-        <input x-model="password" class="input input-bordered" type="password" name="password" placeholder="Password" />
-        <input
-          x-model="confirmPassword"
-          class="input input-bordered"
-          :class="showPasswordError && password !== confirmPassword ? 'input-error' : ''"
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          @blur="showPasswordError = true"
-        />
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">Name</span>
+          </div>
+          <input x-model="name" class="input input-bordered" type="text" name="name" placeholder="John Doe" />
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">Email</span>
+          </div>
+          <input
+            x-model="email"
+            class="input input-bordered"
+            type="email"
+            name="email"
+            placeholder="email@example.com"
+          />
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">Password</span>
+          </div>
+          <input
+            x-model="password"
+            class="input input-bordered"
+            type="password"
+            name="password"
+            placeholder="Password"
+          />
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">Confirm Password</span>
+          </div>
+          <input
+            x-model="confirmPassword"
+            class="input input-bordered"
+            :class="showPasswordError && password !== confirmPassword ? 'input-error' : ''"
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            @blur="showPasswordError = true"
+          />
+        </label>
         <div x-cloak x-show="showPasswordError && password !== confirmPassword" class="text-error text-sm">
           Passwords do not match
         </div>
