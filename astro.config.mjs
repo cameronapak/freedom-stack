@@ -30,14 +30,6 @@ export default defineConfig({
       }
     })
   ],
-  vite: {
-    optimizeDeps: {
-      exclude: ["astro:db"]
-    }
-  },
   output: "server",
-  adapter: netlify(),
-  experimental: {
-    serverIslands: true
-  }
+  adapter: netlify()
 });
