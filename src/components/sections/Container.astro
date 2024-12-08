@@ -4,12 +4,13 @@ interface Props {
   subtitle?: string;
   align?: "center" | "left" | "right";
   titleIsH1?: boolean;
+  className?: string;
 }
 
-const { title, subtitle, align = "left", titleIsH1 = false } = Astro.props;
+const { title, subtitle, align = "left", titleIsH1 = false, className = "" } = Astro.props;
 ---
 
-<section class="h-fit container flex flex-col justify-center items-center px-6 py-16">
+<section class={`h-fit container flex flex-col items-center px-6 py-16 ${className}`}>
   {
     title || subtitle ? (
       <div class={`flex flex-col items-${align} max-w-3xl mx-auto text-${align} mb-12 w-full`}>
