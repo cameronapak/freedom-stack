@@ -19,8 +19,5 @@ export default defineConfig({
     }
   },
   output: "server",
-  adapter: netlify(),
-  experimental: {
-    serverIslands: true
-  }
+  adapter: netlify()
 });
