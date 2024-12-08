@@ -20,6 +20,32 @@ ${JSON.stringify(config, null, 2)}
 `;
 }
 
+function generateAstroAdminFileContent(config: CreateAppConfig = {}): string {
+  return `---
+import { Admin as BkndAdmin } from "bknd/ui";
+import "bknd/dist/styles.css";
+
+import { getApi } from "bknd/adapter/astro";
+
+const api = getApi(Astro, { mode: "dynamic" });
+const user = api.getUser();
+
+export const prerender = false;
+---
+
+
+<html>
+  <body>
+    <BkndAdmin
+      config={${JSON.stringify(config, null, 2)}}
+      withProvider={{ user }}
+      client:only="react"
+    />
+  </body>
+</html>
+`;
+}
+
 /**
  * Creates an Astro integration for BKND
  * @param options - Configuration options for BKND integration
@@ -39,12 +65,6 @@ export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
           // Sanitize admin route
           const sanitizedRoute = adminRoute.startsWith("/") ? adminRoute.slice(1) : adminRoute;
 
-          injectRoute({
-            pattern: `${sanitizedRoute}/[...admin]`,
-            entrypoint: "./src/integrations/bknd/admin.astro",
-            prerender: false
-          });
-
           // Create a temp file for api.ts here.
           // Create the directory if it doesn't exist
           const tempDir = path.join(process.cwd(), "src/integrations/bknd/temp");
@@ -62,6 +82,21 @@ export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
           injectRoute({
             pattern: "/api/[...api]",
             entrypoint: apiFile,
+            prerender: false
+          });
+
+          // Create a temp file for admin.astro here.
+          const adminFile = path.join(tempDir, "admin.astro");
+          fs.writeFileSync(
+            adminFile,
+            generateAstroAdminFileContent({
+              connection
+            })
+          );
+
+          injectRoute({
+            pattern: `${sanitizedRoute}/[...admin]`,
+            entrypoint: adminFile,
             prerender: false
           });
 
