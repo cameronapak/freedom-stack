@@ -47,6 +47,10 @@
   @apply text-white;
 }
 
+.btn.btn-primary:disabled {
+  @apply bg-slate-200 text-slate-400 cursor-not-allowed shadow-none;
+}
+
 /* Trix Editor */
 #trix-editor trix-toolbar {
   .trix-button-group {
