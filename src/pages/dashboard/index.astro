@@ -22,7 +22,7 @@ const allPosts = await db.select().from(Posts).where(eq(Posts.author, user.email
 <Layout title="Dashboard">
   <Navbar title="Freedom Stack" links={[{ text: "Sign Out", href: "/sign-out" }]} />
 
-  <Container align="center">
+  <Container align="center" className="min-h-[60vh]">
     <div class="flex justify-between items-end w-full">
       <h1 class="m-0">My Posts</h1>
       <a href="/dashboard/posts/new" class="btn btn-primary shadow-none">
