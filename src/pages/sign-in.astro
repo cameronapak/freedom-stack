@@ -28,23 +28,21 @@ if (result?.data?.success) {
           <div class="label">
             <span class="label-text">Email</span>
           </div>
-          <input type="text" placeholder="email@example.com" class="input input-bordered" name="email" />
+          <input tabindex="1" type="email" placeholder="email@example.com" class="input input-bordered" name="email" />
         </label>
 
         {/* Password */}
         <label class="form-control w-full">
           <div class="label">
             <span class="label-text">Password</span>
-            <div class="tooltip flex justify-end" data-tip="Needs to be implemented">
-              <span class="label-text-alt opacity-20 pointer-events-none">
-                <a href="/forgot-password" class="link">Forgot password?</a>
-              </span>
+            <div class="tooltip" data-tip="Needs to be implemented">
+              <a href="/forgot-password" tabindex="4" class="label-text-alt link opacity-20">Forgot password?</a>
             </div>
           </div>
-          <input type="text" placeholder="Password" class="input input-bordered" name="password" />
+          <input tabindex="2" type="password" placeholder="Password" class="input input-bordered" name="password" />
         </label>
 
-        <button class="mt-4 btn btn-primary" type="submit">Sign In</button>
+        <button tabindex="3" class="mt-4 btn btn-primary" type="submit">Sign In</button>
       </form>
       <p>Don't have an account? <a href="/sign-up">Create an account</a></p>
     </div>
