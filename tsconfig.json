@@ -12,5 +12,6 @@
       "@sections/*": ["src/components/sections/*"]
     }
   },
-  "exclude": ["node_modules", "dist", "public"]
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
 }
