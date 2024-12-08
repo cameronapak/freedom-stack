@@ -20,7 +20,7 @@ ${JSON.stringify(config, null, 2)}
 `;
 }
 
-function generateAstroAdminFileContent(config: CreateAppConfig = {}): string {
+function generateAstroAdminFileContent(sanitizedRoute: string): string {
   return `---
 import { Admin as BkndAdmin } from "bknd/ui";
 import "bknd/dist/styles.css";
@@ -37,7 +37,9 @@ export const prerender = false;
 <html>
   <body>
     <BkndAdmin
-      config={${JSON.stringify(config, null, 2)}}
+      config={{
+        basepath: "/${sanitizedRoute}"
+      }}
       withProvider={{ user }}
       client:only="react"
     />
@@ -87,15 +89,10 @@ export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
 
           // Create a temp file for admin.astro here.
           const adminFile = path.join(tempDir, "admin.astro");
-          fs.writeFileSync(
-            adminFile,
-            generateAstroAdminFileContent({
-              connection
-            })
-          );
+          fs.writeFileSync(adminFile, generateAstroAdminFileContent(sanitizedRoute));
 
           injectRoute({
-            pattern: `${sanitizedRoute}/[...admin]`,
+            pattern: `/${sanitizedRoute}/[...admin]`,
             entrypoint: adminFile,
             prerender: false
           });
