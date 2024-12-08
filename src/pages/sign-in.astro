@@ -35,9 +35,11 @@ if (result?.data?.success) {
         <label class="form-control w-full">
           <div class="label">
             <span class="label-text">Password</span>
-            <span class="label-text-alt">
-              <a href="/forgot-password">Forgot password?</a>
-            </span>
+            <div class="tooltip flex justify-end" data-tip="Needs to be implemented">
+              <span class="label-text-alt opacity-20 pointer-events-none">
+                <a href="/forgot-password" class="link">Forgot password?</a>
+              </span>
+            </div>
           </div>
           <input type="text" placeholder="Password" class="input input-bordered" name="password" />
         </label>
