@@ -63,7 +63,7 @@
     "@iconify-json/lucide": "^1.2.18",
     "@iconify-json/lucide-lab": "^1.2.2",
     "alpinejs": "^3.14.7",
-    "astro": "^5.0.3",
+    "astro": "^5.0.4",
     "astro-iconify": "^1.2.0",
     "astro-seo": "^0.8.4",
     "better-auth": "^1.0.13",
