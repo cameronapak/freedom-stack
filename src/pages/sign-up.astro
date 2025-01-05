@@ -1,10 +1,17 @@
 ---
+import { actions } from "astro:actions";
 import Layout from "@/layouts/Layout.astro";
 import Container from "@sections/Container.astro";
 import Navbar from "@sections/Navbar.astro";
 import Footer from "@sections/Footer.astro";
 
 if (Astro.locals.session) {
+  return Astro.redirect("/dashboard");
+}
+
+const result = Astro.getActionResult(actions.bknd.createUser);
+
+if (result?.data?.success) {
   return Astro.redirect("/dashboard");
 }
 ---
@@ -31,7 +38,7 @@ if (Astro.locals.session) {
         }"
         class="flex flex-col gap-4 max-w-sm w-full"
         method="POST"
-        action=""
+        action={actions.bknd.createUser}
       >
         <label class="form-control w-full">
           <div class="label">
