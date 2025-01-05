@@ -1,13 +1,14 @@
 ---
 import { Admin } from "bknd/ui";
-import "bknd/dist/styles.css";
-
 import { getApi } from "bknd/adapter/astro";
+import "bknd/dist/styles.css";
 
 const api = getApi(Astro, { mode: "dynamic" });
 const user = api.getUser();
 
-export const prerender = false;
+if (!user) {
+  return Astro.redirect("/sign-in");
+}
 ---
 
 <html>
