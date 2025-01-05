@@ -12,10 +12,15 @@ const user = api.getUser();
 if (!user) {
   return Astro.redirect("/sign-in");
 }
+
+const links = [
+  { text: "Admin", href: "/admin" },
+  { text: "Sign Out", href: "/sign-out" }
+];
 ---
 
 <Layout title="Dashboard">
-  <Navbar title="Freedom Stack" links={[{ text: "Sign Out", href: "/sign-out" }]} />
+  <Navbar title="Freedom Stack" links={links} />
 
   <Container align="center" className="min-h-[60vh]">
     <div class="flex justify-between items-end w-full">
