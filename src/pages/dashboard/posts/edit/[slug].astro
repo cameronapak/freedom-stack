@@ -1,6 +1,4 @@
 ---
-import { eq, db, Posts } from "astro:db";
-import { actions } from "astro:actions";
 import Layout from "@/layouts/Layout.astro";
 import TrixEditor from "@/components/TrixEditor.astro";
 
@@ -17,23 +15,9 @@ if (!user) {
 if (!slug) {
   return Astro.redirect("/dashboard/posts");
 }
-
-let post;
-// Fetch the post
-post = await db.select().from(Posts).where(eq(Posts.slug, slug)).get();
-
-const result = Astro.getActionResult(actions.posts.update);
-if (result?.data?.success) {
-  post = result.data.post;
-  return Astro.redirect(`/posts/${post.slug}`);
-}
-
-if (!post) {
-  return Astro.redirect("/posts");
-}
 ---
 
-<Layout title={`Edit Post: ${post?.title}`}>
+<Layout title="Edit Post">
   <div class="p-6 container mx-auto">
     <div class="mx-auto">
       <div class="breadcrumbs text-sm m-0">
@@ -45,12 +29,8 @@ if (!post) {
       </div>
       <h1>Edit Post</h1>
 
-      <form
-        class="p-6 rounded-xl bg-white border-2 border-slate-200 mt-6 flex flex-col gap-6"
-        method="POST"
-        action={actions.posts.update}
-      >
-        <TrixEditor content={post.content || ""} />
+      <form class="p-6 rounded-xl bg-white border-2 border-slate-200 mt-6 flex flex-col gap-6" method="POST">
+        <TrixEditor content={""} />
         <div class="h-0.5 my-2 w-full bg-slate-200"></div>
         <div class="flex flex-col gap-4">
           <div class="grid grid-cols-2 gap-6">
@@ -99,7 +79,7 @@ if (!post) {
               name="description"
               placeholder="Enter a brief description of the post"
               rows="3"
-              required>{post.description || ""}</textarea
+              required>{""}</textarea
             >
           </div>
           <div class="grid grid-cols-2 gap-6">
@@ -131,13 +111,13 @@ if (!post) {
                 name="slug"
                 placeholder="blog-post-slug"
                 pattern="[a-z0-9\\-]+"
-                x-data={`{ slug: '${post.slug || ""}' }`}
+                x-data={`{ slug: '${""}' }`}
                 x-on:input="slug = $event.target.value.toLowerCase().replace(/[^a-z0-9-]/g, '').replace(/^-+|-+$/g, '').replace(/-{2,}/g, '-')"
                 x-bind:value="slug"
               />
             </div>
           </div>
-          <input type="hidden" name="id" value={post.id} />
+          <input type="hidden" name="id" value={""} />
           <div class="flex items-center gap-4 justify-end">
             <a href="/dashboard" class="btn btn-md"> Cancel </a>
             <div class="flex justify-end">

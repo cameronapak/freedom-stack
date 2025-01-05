@@ -1,7 +1,5 @@
 ---
-import { db, Posts, eq } from "astro:db";
 import { Icon } from "astro-iconify";
-import { actions } from "astro:actions";
 
 import Layout from "@/layouts/Layout.astro";
 import ShowIfAuthenticated from "@/components/ShowIfAuthenticated.astro";
@@ -18,12 +16,6 @@ if (!slug) {
   return Astro.redirect("/posts");
 }
 
-const entry = await db.select().from(Posts).where(eq(Posts.slug, slug)).get();
-
-if (!entry) {
-  return Astro.redirect("/posts");
-}
-
 // The browser should always check freshness
 Astro.response.headers.set("cache-control", "public, max-age=0, must-revalidate");
 
@@ -34,7 +26,9 @@ Astro.response.headers.set("netlify-cdn-cache-control", "s-maxage=31536000");
 Astro.response.headers.set("netlify-cache-tag", `post-${slug}`);
 ---
 
-<Layout title={entry?.title || ""}>
+<Layout title="Post"> TBD </Layout>
+
+<!-- <Layout title={entry?.title || ""}>
   <Navbar
     title="Freedom Stack"
     links={[
@@ -83,8 +77,8 @@ Astro.response.headers.set("netlify-cache-tag", `post-${slug}`);
                       <button @click="open = false" class="btn btn-sm mr-2">
                         Cancel
                       </button>
-                      <form method="POST" action={actions.posts.delete}>
-                        <input type="hidden" name="id" value={entry?.id} />
+                      <form method="POST" action="">
+                        <input type="hidden" name="id" value={""} />
                         <button type="submit" class="btn btn-sm hover:bg-red-300">
                           Delete
                         </button>
@@ -119,4 +113,4 @@ Astro.response.headers.set("netlify-cache-tag", `post-${slug}`);
       }
     ]}
   />
-</Layout>
+</Layout> -->

@@ -1,12 +1,10 @@
 ---
-import { db, Posts, desc } from "astro:db";
 import Layout from "@/layouts/Layout.astro";
 import Navbar from "@sections/Navbar.astro";
 import Container from "@sections/Container.astro";
 import Footer from "@sections/Footer.astro";
 
 const pageTitle = "Posts";
-const allPosts = await db.select().from(Posts).orderBy(desc(Posts.pubDate));
 
 // The browser should always check freshness
 Astro.response.headers.set("cache-control", "public, max-age=0, must-revalidate");
@@ -26,7 +24,7 @@ Astro.response.headers.set("netlify-cache-tag", "posts");
 
   <Container title="Posts" titleIsH1 align="center">
     <ul class="w-full list-none p-0 m-0 flex flex-col gap-6">
-      {
+      <!-- {
         allPosts.map((post) => (
           <li class="w-full m-0">
             <a
@@ -41,7 +39,7 @@ Astro.response.headers.set("netlify-cache-tag", "posts");
             </a>
           </li>
         ))
-      }
+      } -->
     </ul>
   </Container>
   <Footer

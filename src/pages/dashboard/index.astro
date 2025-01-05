@@ -1,5 +1,4 @@
 ---
-import { Posts, db, desc, eq } from "astro:db";
 import Icon from "astro-iconify";
 import Layout from "@/layouts/Layout.astro";
 import Navbar from "@sections/Navbar.astro";
@@ -15,8 +14,6 @@ const user = Astro.locals.user as { email: string };
 if (!user) {
   return Astro.redirect("/sign-in");
 }
-
-const allPosts = await db.select().from(Posts).where(eq(Posts.author, user.email)).orderBy(desc(Posts.pubDate));
 ---
 
 <Layout title="Dashboard">
@@ -31,7 +28,7 @@ const allPosts = await db.select().from(Posts).where(eq(Posts.author, user.email
       </a>
     </div>
     <ul class="w-full list-none p-0 m-0 mt-6 flex flex-col gap-6">
-      {
+      <!-- {
         allPosts.map((post) => (
           <li class="w-full m-0">
             <a
@@ -46,7 +43,7 @@ const allPosts = await db.select().from(Posts).where(eq(Posts.author, user.email
             </a>
           </li>
         ))
-      }
+      } -->
     </ul>
   </Container>
   <Footer

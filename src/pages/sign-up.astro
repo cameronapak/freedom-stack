@@ -1,6 +1,4 @@
 ---
-import { actions } from "astro:actions";
-import { setAuthCookiesFromResponse } from "@/actions/auth";
 import Layout from "@/layouts/Layout.astro";
 import Container from "@sections/Container.astro";
 import Navbar from "@sections/Navbar.astro";
@@ -9,18 +7,11 @@ import Footer from "@sections/Footer.astro";
 if (Astro.locals.session) {
   return Astro.redirect("/dashboard");
 }
-
-const result = Astro.getActionResult(actions.auth.signUp);
-
-if (result?.data?.success) {
-  setAuthCookiesFromResponse(result.data.cookiesToSet, Astro.cookies);
-  return Astro.redirect("/dashboard");
-}
 ---
 
 <Layout title="Sign In">
   <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
-  {result?.error && <div x-init={`toastErrorMessage = '${result.error.message.toString()}'`} class="sr-only" />}
+  <!-- {result?.error && <div x-init={`toastErrorMessage = '${result.error.message.toString()}'`} class="sr-only" />} -->
   <Container align="center">
     <div class="bg-white p-6 rounded-xl border-2 border-slate-200 flex flex-col gap-4 max-w-sm w-full">
       <h1>Create an account</h1>
@@ -40,7 +31,7 @@ if (result?.data?.success) {
         }"
         class="flex flex-col gap-4 max-w-sm w-full"
         method="POST"
-        action={actions.auth.signUp}
+        action=""
       >
         <label class="form-control w-full">
           <div class="label">

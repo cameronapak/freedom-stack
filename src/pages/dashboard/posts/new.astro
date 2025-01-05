@@ -1,6 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { actions } from "astro:actions";
 import TrixEditor from "@/components/TrixEditor.astro";
 
 if (!Astro.locals.session) {
@@ -8,12 +7,6 @@ if (!Astro.locals.session) {
 }
 
 const user = Astro.locals.user;
-const result = Astro.getActionResult(actions.posts.create);
-
-// Redirect on successful post creation
-if (result?.data?.success) {
-  return Astro.redirect("/posts");
-}
 ---
 
 <Layout title="Create Post">
@@ -29,11 +22,7 @@ if (result?.data?.success) {
 
       <h1>Create Post</h1>
 
-      <form
-        class="p-6 rounded-xl bg-white border-2 border-slate-200 mt-6 flex flex-col gap-6"
-        method="POST"
-        action={actions.posts.create}
-      >
+      <form class="p-6 rounded-xl bg-white border-2 border-slate-200 mt-6 flex flex-col gap-6" method="POST">
         <TrixEditor content={""} />
         <div class="h-0.5 my-2 w-full bg-slate-200"></div>
         <div class="flex flex-col gap-4">
