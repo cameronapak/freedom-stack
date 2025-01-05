@@ -1,11 +1,16 @@
 ---
 import { actions } from "astro:actions";
+import { getApi } from "bknd/adapter/astro";
+
 import Layout from "@/layouts/Layout.astro";
 import Container from "@sections/Container.astro";
 import Navbar from "@sections/Navbar.astro";
 import Footer from "@sections/Footer.astro";
 
-if (Astro.locals.user) {
+const api = getApi(Astro, { mode: "dynamic" });
+const user = api.getUser();
+
+if (user) {
   return Astro.redirect("/dashboard");
 }
 

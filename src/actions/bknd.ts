@@ -45,10 +45,17 @@ export const bknd = {
       const response = await fetch(context.url.origin + "/api/auth/password/login", options);
       const data = await response.json();
 
+      context.cookies.set("auth", data.token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+        maxAge: 60 * 60 * 24 * 7 // 7 days
+      });
+
       if (data.user) {
         context.locals.user = data.user;
       } else {
-        return { success: false, error: "Failed to sign in user" };
+        return { success: false, error: data.error || "Failed to sign in user" };
       }
 
       return { success: true, data };

@@ -5,8 +5,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const api = getApi(context, { mode: "dynamic" });
   const user = await api.getUser();
 
-  console.log(user);
-
   if (user) {
     context.locals.user = user;
   } else {
