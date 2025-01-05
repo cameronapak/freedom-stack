@@ -12,22 +12,14 @@ declare global {
 
   namespace App {
     interface Locals {
-      user: import("better-auth").User | null;
-      session: import("better-auth").Session | null;
+      // TODO: Add locals
     }
   }
 }
 
 // https://docs.astro.build/en/guides/environment-variables/#intellisense-for-typescript
 interface ImportMetaEnv {
-  /** https://docs.astro.build/en/guides/astro-db/#libsql */
-  readonly ASTRO_DB_REMOTE_URL: string;
-  /** https://docs.astro.build/en/guides/astro-db/#libsql */
-  readonly ASTRO_DB_APP_TOKEN: string;
-  /** https://better-auth.com/ */
-  readonly BETTER_AUTH_URL: string;
-  /** https://better-auth.com/ */
-  readonly BETTER_AUTH_SECRET: string;
+  // TODO: Add env
 }
 
 interface ImportMeta {
