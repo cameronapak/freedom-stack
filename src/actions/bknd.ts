@@ -22,7 +22,7 @@ export const bknd = {
       if (data.user) {
         context.locals.user = data.user;
       } else {
-        return { success: false, error: "Failed to create user" };
+        return { success: false, error: data.error || "Failed to create user" };
       }
 
       return { success: true, data };
