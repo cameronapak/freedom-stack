@@ -1,33 +1,57 @@
-// https://docs.astro.build/en/guides/actions/
 import { defineAction } from "astro:actions";
 import { z } from "astro:schema";
 
 export const bknd = {
-  createUser: defineAction({
+  signUp: defineAction({
     accept: "form",
     input: z.object({
       email: z.string().email(),
-      password: z.string().min(8),
-      name: z.string().min(3).optional()
+      password: z.string(),
+      name: z.string()
     }),
-    handler: async ({ email, password, name }) => {
+    handler: async (input, context) => {
       const options = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          password,
-          name: name || undefined
-        })
+        body: JSON.stringify(input)
       };
 
-      const response = await fetch("/api/auth/password/register", options);
+      const response = await fetch(context.url.origin + "/api/auth/password/register", options);
       const data = await response.json();
 
-      return {
-        success: true,
-        data
+      if (data.user) {
+        context.locals.user = data.user;
+      } else {
+        return { success: false, error: "Failed to create user" };
+      }
+
+      return { success: true, data };
+    }
+  }),
+
+  signIn: defineAction({
+    accept: "form",
+    input: z.object({
+      email: z.string().email(),
+      password: z.string()
+    }),
+    handler: async (input, context) => {
+      const options = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(input)
       };
+
+      const response = await fetch(context.url.origin + "/api/auth/password/login", options);
+      const data = await response.json();
+
+      if (data.user) {
+        context.locals.user = data.user;
+      } else {
+        return { success: false, error: "Failed to sign in user" };
+      }
+
+      return { success: true, data };
     }
   })
 };

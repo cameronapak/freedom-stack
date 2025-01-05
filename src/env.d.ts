@@ -12,7 +12,7 @@ declare global {
 
   namespace App {
     interface Locals {
-      // TODO: Add locals
+      user: import("bknd").User | null;
     }
   }
 }
