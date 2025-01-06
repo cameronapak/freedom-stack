@@ -72,12 +72,13 @@ export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
             fs.mkdirSync(tempDir, { recursive: true });
           }
           const apiFile = path.join(tempDir, "api.ts");
-          fs.writeFileSync(
-            apiFile,
-            generateApiFileContent({
-              ...options
-            })
-          );
+          const apiConfig = {
+            connection: options.connection,
+            initialConfig: options.initialConfig,
+            plugins: options.plugins,
+            options: options.options
+          };
+          fs.writeFileSync(apiFile, generateApiFileContent(apiConfig));
 
           injectRoute({
             pattern: "/api/[...api]",
