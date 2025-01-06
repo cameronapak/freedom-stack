@@ -16,16 +16,29 @@ export const bknd = {
         body: JSON.stringify(input)
       };
 
-      const response = await fetch(context.url.origin + "/api/auth/password/register", options);
-      const data = await response.json();
+      try {
+        const response = await fetch(context.url.origin + "/api/auth/password/register", options);
+        const data = await response.json();
 
-      if (data.user) {
-        context.locals.user = data.user;
-      } else {
-        return { success: false, error: data.error || "Failed to create user" };
+        if (data.token) {
+          context.cookies.set("auth", data.token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "strict",
+            maxAge: 60 * 60 * 24 * 7 // 7 days
+          });
+        }
+
+        if (data.user) {
+          context.locals.user = data.user;
+        } else {
+          return { success: false, error: data.error || "Failed to create user" };
+        }
+
+        return { success: true, data };
+      } catch (error: any) {
+        return { success: false, error: error?.message || "Failed to create user" };
       }
-
-      return { success: true, data };
     }
   }),
 
@@ -42,23 +55,29 @@ export const bknd = {
         body: JSON.stringify(input)
       };
 
-      const response = await fetch(context.url.origin + "/api/auth/password/login", options);
-      const data = await response.json();
+      try {
+        const response = await fetch(context.url.origin + "/api/auth/password/login", options);
+        const data = await response.json();
 
-      context.cookies.set("auth", data.token, {
-        httpOnly: true,
-        secure: true,
-        sameSite: "strict",
-        maxAge: 60 * 60 * 24 * 7 // 7 days
-      });
+        if (data.token) {
+          context.cookies.set("auth", data.token, {
+            httpOnly: true,
+            secure: true,
+            sameSite: "strict",
+            maxAge: 60 * 60 * 24 * 7 // 7 days
+          });
+        }
 
-      if (data.user) {
-        context.locals.user = data.user;
-      } else {
-        return { success: false, error: data.error || "Failed to sign in user" };
+        if (data.user) {
+          context.locals.user = data.user;
+        } else {
+          return { success: false, error: data.error || "Failed to sign in user" };
+        }
+
+        return { success: true, data };
+      } catch (error: any) {
+        return { success: false, error: error?.message || "Failed to sign in user" };
       }
-
-      return { success: true, data };
     }
   })
 };
