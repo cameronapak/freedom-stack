@@ -5,6 +5,7 @@
 - [ ] Remove the Dashboard
 - [ ] Make sure auth is guarded after initial start
 - [ ] Add ability to target Turso db URL for PROD
+- [ ] Figure out how to remove the anchor underlines in the admin
 
 ### Secondary
 
