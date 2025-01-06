@@ -1,11 +1,14 @@
 import type { APIRoute } from "astro";
-import { db, desc, Posts } from "astro:db";
+import { getApi } from "bknd/adapter/astro";
 
 const PATHS_TO_EXCLUDE = ["/api", "/dashboard", "/sitemap.xml"];
 
-export const GET: APIRoute = async ({ url }) => {
+export const GET: APIRoute = async (context) => {
+  const url = new URL(context.request.url);
+
   // Get all published posts
-  const allPosts = await db.select().from(Posts).orderBy(desc(Posts.pubDate));
+  const api = getApi(context, { mode: "static" });
+  const allPosts = await api.data.readMany("posts", {});
 
   // Get all static routes from the pages directory
   const pages = import.meta.glob("/src/pages/**/!(*.ts|*.js|*.mdx)");
