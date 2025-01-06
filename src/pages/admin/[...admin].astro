@@ -5,10 +5,6 @@ import "bknd/dist/styles.css";
 
 const api = getApi(Astro, { mode: "dynamic" });
 const user = api.getUser();
-
-if (!user) {
-  return Astro.redirect("/sign-in");
-}
 ---
 
 <html>
