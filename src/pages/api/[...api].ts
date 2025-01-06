@@ -1,6 +1,6 @@
 import type { ModuleBuildContext } from "bknd";
 import { serve } from "bknd/adapter/astro";
-import { em, entity, text, number } from "bknd/data";
+import { em, entity, text, number, date } from "bknd/data";
 import { randomString } from "bknd/utils";
 
 const schema = em(
@@ -9,6 +9,7 @@ const schema = em(
       // "id" is automatically added
       title: text().required(),
       slug: text().required(),
+      publishDate: date().required(),
       content: text(),
       views: number()
     }),
@@ -47,8 +48,8 @@ export const ALL = serve({
   options: {
     seed: async (ctx: ModuleBuildContext) => {
       await ctx.em.mutator("posts").insertMany([
-        { title: "First post", slug: "first-post", content: "..." },
-        { title: "Second post", slug: "second-post", content: "..." }
+        { title: "First post", slug: "first-post", content: "...", publishDate: new Date() },
+        { title: "Second post", slug: "second-post", content: "...", publishDate: new Date() }
       ]);
     }
   }
