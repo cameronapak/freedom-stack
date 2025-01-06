@@ -23,7 +23,7 @@ Astro.response.headers.set("netlify-cache-tag", "posts");
 <Layout title={pageTitle}>
   <Navbar
     title="Freedom Stack"
-    links={[Astro.locals.user ? { text: "Dashboard", href: "/dashboard" } : { text: "Sign In", href: "/sign-in" }]}
+    links={[Astro.locals.user ? { text: "Admin", href: "/admin" } : { text: "Sign In", href: "/sign-in" }]}
   />
 
   <Container title="Posts" titleIsH1 align="center">
