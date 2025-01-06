@@ -11,12 +11,12 @@ const api = getApi(Astro, { mode: "dynamic" });
 const user = api.getUser();
 
 if (user) {
-  return Astro.redirect("/dashboard");
+  return Astro.redirect("/admin");
 }
 
 const result = Astro.getActionResult(actions.bknd.signIn);
 if (result?.data?.success) {
-  return Astro.redirect("/dashboard");
+  return Astro.redirect("/admin");
 }
 ---
 

@@ -1,18 +1,22 @@
 ---
+import { getApi } from "bknd/adapter/astro";
 import { actions } from "astro:actions";
 import Layout from "@/layouts/Layout.astro";
 import Container from "@sections/Container.astro";
 import Navbar from "@sections/Navbar.astro";
 import Footer from "@sections/Footer.astro";
 
-if (Astro.locals.session) {
-  return Astro.redirect("/dashboard");
+const api = getApi(Astro, { mode: "dynamic" });
+const user = api.getUser();
+
+if (user) {
+  return Astro.redirect("/admin");
 }
 
 const result = Astro.getActionResult(actions.bknd.signUp);
 
 if (result?.data?.success) {
-  return Astro.redirect("/dashboard");
+  return Astro.redirect("/admin");
 }
 ---
 
