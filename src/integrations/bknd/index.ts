@@ -75,7 +75,7 @@ export function addBknd(options: BkndIntegrationOptions): AstroIntegration {
           fs.writeFileSync(
             apiFile,
             generateApiFileContent({
-              connection
+              ...options
             })
           );
 
