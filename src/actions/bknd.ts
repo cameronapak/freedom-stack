@@ -21,11 +21,11 @@ export const bknd = {
         const data = await response.json();
 
         if (data.token) {
-          context.cookies.set("auth", encodeURIComponent(data.token), {
+          context.cookies.set("auth", data.token, {
             httpOnly: true,
             secure: true,
-            sameSite: "lax",
-            maxAge: 60 * 60 * 24 * 7 // 7 days
+            expires: new Date(Date.now() + 60 * 60 * 24 * 7 * 1000),
+            sameSite: "lax"
           });
         }
 
@@ -60,11 +60,11 @@ export const bknd = {
         const data = await response.json();
 
         if (data.token) {
-          context.cookies.set("auth", encodeURIComponent(data.token), {
+          context.cookies.set("auth", data.token, {
             httpOnly: true,
             secure: true,
-            sameSite: "lax",
-            maxAge: 60 * 60 * 24 * 7 // 7 days
+            expires: new Date(Date.now() + 60 * 60 * 24 * 7 * 1000),
+            sameSite: "lax"
           });
         }
 
