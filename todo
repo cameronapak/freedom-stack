@@ -1,0 +1,12 @@
+# Tasks for BKND integration
+
+### Primary
+
+- [ ] Remove the Dashboard
+- [ ] Make sure auth is guarded after initial start
+- [ ] Add ability to target Turso db URL for PROD
+
+### Secondary
+
+- [ ] (optional) is there an Astro adapter for BKND?
+- [ ] (nitpick) Given I tab when signing in from email to password, make it go to password and not forgot password
