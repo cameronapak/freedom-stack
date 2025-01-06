@@ -10,13 +10,13 @@ const api = getApi(Astro, { mode: "dynamic" });
 const user = api.getUser();
 
 if (user) {
-  return Astro.redirect("/admin");
+  return Astro.redirect("/sign-in");
 }
 
 const result = Astro.getActionResult(actions.bknd.signUp);
 
 if (result?.data?.success) {
-  return Astro.redirect("/admin");
+  return Astro.redirect("/sign-in");
 }
 ---
 

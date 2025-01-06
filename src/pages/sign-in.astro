@@ -1,5 +1,4 @@
 ---
-import { actions } from "astro:actions";
 import { getApi } from "bknd/adapter/astro";
 
 import Layout from "@/layouts/Layout.astro";
@@ -13,20 +12,19 @@ const user = api.getUser();
 if (user) {
   return Astro.redirect("/admin");
 }
-
-const result = Astro.getActionResult(actions.bknd.signIn);
-if (result?.data?.success) {
-  return Astro.redirect("/admin");
-}
 ---
 
 <Layout title="Sign In">
   <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
-  {result?.data?.error && <div x-init={`toastErrorMessage = '${result.data.error.toString()}'`} class="sr-only" />}
+  <!-- {result?.data?.error && <div x-init={`toastErrorMessage = '${result.data.error.toString()}'`} class="sr-only" />} -->
   <Container align="center">
     <div class="bg-white p-6 rounded-xl border-2 border-slate-200 flex flex-col gap-4 max-w-sm w-full">
       <h1>Sign In</h1>
-      <form class="flex flex-col gap-4 max-w-sm w-full" method="POST" action={actions.bknd.signIn}>
+      <form
+        class="flex flex-col gap-4 max-w-sm w-full"
+        method="POST"
+        action={Astro.url.origin + "/api/auth/password/login"}
+      >
         {/* Email */}
         <label class="form-control w-full">
           <div class="label">
