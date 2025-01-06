@@ -1,5 +1,5 @@
 ---
-import { Admin } from "bknd/ui";
+import { Admin as AdminUI } from "bknd/ui";
 import { getApi } from "bknd/adapter/astro";
 
 const api = getApi(Astro, { mode: "dynamic" });
@@ -8,7 +8,7 @@ const user = api.getUser();
 
 <html>
   <body>
-    <Admin
+    <AdminUI
       withProvider={{ user }}
       config={{
         basepath: "/admin",
