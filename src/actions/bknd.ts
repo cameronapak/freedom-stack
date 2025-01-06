@@ -21,10 +21,10 @@ export const bknd = {
         const data = await response.json();
 
         if (data.token) {
-          context.cookies.set("auth", data.token, {
+          context.cookies.set("auth", encodeURIComponent(data.token), {
             httpOnly: true,
             secure: true,
-            sameSite: "strict",
+            sameSite: "lax",
             maxAge: 60 * 60 * 24 * 7 // 7 days
           });
         }
@@ -60,10 +60,10 @@ export const bknd = {
         const data = await response.json();
 
         if (data.token) {
-          context.cookies.set("auth", data.token, {
+          context.cookies.set("auth", encodeURIComponent(data.token), {
             httpOnly: true,
             secure: true,
-            sameSite: "strict",
+            sameSite: "lax",
             maxAge: 60 * 60 * 24 * 7 // 7 days
           });
         }
