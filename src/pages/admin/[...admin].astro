@@ -1,7 +1,6 @@
 ---
 import { Admin } from "bknd/ui";
 import { getApi } from "bknd/adapter/astro";
-import "bknd/dist/styles.css";
 
 const api = getApi(Astro, { mode: "dynamic" });
 const user = api.getUser();
@@ -19,3 +18,7 @@ const user = api.getUser();
     />
   </body>
 </html>
+
+<script>
+  import "bknd/dist/styles.css";
+</script>
