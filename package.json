@@ -59,7 +59,6 @@
     "@alpinejs/intersect": "^3.14.8",
     "@alpinejs/mask": "^3.14.8",
     "@alpinejs/persist": "^3.14.8",
-    "@astrojs/alpinejs": "^0.4.1",
     "@astrojs/check": "^0.9.4",
     "@astrojs/netlify": "^6.0.1",
     "@astrojs/react": "^4.1.2",
