@@ -66,8 +66,8 @@
     "@astrojs/tailwind": "^5.1.4",
     "@iconify-json/lucide": "^1.2.20",
     "@iconify-json/lucide-lab": "^1.2.3",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
     "alpinejs": "^3.14.8",
     "astro": "^5.1.1",
     "astro-iconify": "^1.2.0",
@@ -80,8 +80,8 @@
     "isomorphic-dompurify": "^2.19.0",
     "marked": "^15.0.4",
     "ora": "^8.1.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "trix": "^2.1.12"
   },
   "devDependencies": {
