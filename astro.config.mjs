@@ -1,6 +1,5 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import alpinejs from "@astrojs/alpinejs";
 import netlify from "@astrojs/netlify";
 import react from "@astrojs/react";
 import { em, entity, text, number, date } from "bknd/data";
@@ -63,14 +62,7 @@ const bkndConfig = {
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [
-    tailwind(),
-    alpinejs({
-      entrypoint: "/src/entrypoint"
-    }),
-    react(),
-    addBknd(bkndConfig)
-  ],
+  integrations: [tailwind(), react(), addBknd(bkndConfig)],
   output: "server",
   adapter: netlify()
 });

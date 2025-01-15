@@ -152,6 +152,21 @@ const { title, description = "", bodyClasses, canonicalUrl, faviconUrl, ogImageU
 <script>
   // @ts-ignore
   import * as htmx from "htmx.org";
+  import Alpine from "alpinejs";
+  // @ts-ignore - Has no associated types.
+  import intersect from "@alpinejs/intersect";
+  // @ts-ignore - Has no associated types.
+  import persist from "@alpinejs/persist";
+  // @ts-ignore - Has no associated types.
+  import collapse from "@alpinejs/collapse";
+  // @ts-ignore - Has no associated types.
+  import mask from "@alpinejs/mask";
 
+  Alpine.plugin(intersect);
+  Alpine.plugin(persist);
+  Alpine.plugin(collapse);
+  Alpine.plugin(mask);
+
+  window.Alpine = Alpine;
   window.htmx = htmx;
 </script>
