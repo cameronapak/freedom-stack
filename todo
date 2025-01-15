@@ -6,7 +6,7 @@
 - [ ] Make sure auth is guarded after initial start
 - [ ] Add ability to target Turso db URL for PROD
 - [ ] Figure out how to remove the anchor underlines in the admin
-- [ ] After I sign in, redirect to the /admin page.
+- [x] After I sign in, redirect to the /admin page.
 - [ ] Get Types working for BKND entities
 - [ ] Update README.md about the switch to BKND from Better Auth and Astro DB
 - [ ] Bump a major version
