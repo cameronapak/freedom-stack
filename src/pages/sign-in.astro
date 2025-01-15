@@ -18,13 +18,25 @@ if (user) {
   <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
   <!-- {result?.data?.error && <div x-init={`toastErrorMessage = '${result.data.error.toString()}'`} class="sr-only" />} -->
   <Container align="center">
-    <div class="bg-white p-6 rounded-xl border-2 border-slate-200 flex flex-col gap-4 max-w-sm w-full">
+    <div
+      x-data={`{
+        async post() {
+          const formData = new FormData($refs.form);
+          const response = await fetch(window.location.origin + "/api/auth/password/login", {
+            method: "POST",
+            body: formData
+          });
+
+          // if 302, redirect to the url
+          if (response.redirected) {
+            window.location.href = '/admin';
+          }
+        }
+      }`}
+      class="bg-white p-6 rounded-xl border-2 border-slate-200 flex flex-col gap-4 max-w-sm w-full"
+    >
       <h1>Sign In</h1>
-      <form
-        class="flex flex-col gap-4 max-w-sm w-full"
-        method="POST"
-        action={Astro.url.origin + "/api/auth/password/login"}
-      >
+      <form x-ref="form" class="flex flex-col gap-4 max-w-sm w-full" method="POST" x-on:submit.prevent="post">
         {/* Email */}
         <label class="form-control w-full">
           <div class="label">
