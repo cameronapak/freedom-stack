@@ -16,11 +16,6 @@ type SendEmailOptions = {
 let transporter: Transporter | null = null;
 
 async function getEmailTransporter(): Promise<Transporter> {
-  // Return existing transporter if already initialized
-  if (transporter) {
-    return transporter;
-  }
-
   const requiredEnvVars = ["MAIL_HOST", "MAIL_PORT", "MAIL_SECURE", "MAIL_AUTH_USER", "MAIL_AUTH_PASS", "MAIL_FROM"];
 
   const missingEnvVars = requiredEnvVars.filter((envVar) => !import.meta.env[envVar]);
