@@ -54,9 +54,17 @@ export const auth = {
       email: z.string().email(),
       password: z.string(),
       name: z.string(),
-      imageUrl: z.string().optional()
+      imageUrl: z.string().optional(),
+      middleware: z.string().optional()
     }),
     handler: async (input, context) => {
+      if (input.middleware) {
+        throw new ActionError({
+          code: "BAD_REQUEST",
+          message: "Bots are not allowed to sign up"
+        });
+      }
+
       await sendEmail({
         to: input.email,
         subject: "Welcome to Freedom Stack",
