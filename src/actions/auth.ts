@@ -4,6 +4,7 @@ import { z } from "astro:schema";
 import type { AstroCookies } from "astro";
 import { APIError } from "better-auth/api";
 import { auth as betterAuth } from "@/lib/auth";
+import { sendEmail } from "@/lib/email";
 import type { ActionAPIContext } from "astro:actions";
 
 function parseCookiesFromResponse(cookiesArray: string[]) {
@@ -55,8 +56,14 @@ export const auth = {
       name: z.string(),
       imageUrl: z.string().optional()
     }),
-    handler: async (input, context) =>
-      await handleAuthResponse(
+    handler: async (input, context) => {
+      await sendEmail({
+        to: input.email,
+        subject: "Welcome to Freedom Stack",
+        html: `<p>Welcome to Freedom Stack! You can now sign in with your email and password.</p>`
+      });
+
+      return await handleAuthResponse(
         () =>
           betterAuth.api.signUpEmail({
             body: { ...input, image: input.imageUrl || "" },
@@ -65,7 +72,8 @@ export const auth = {
           }),
         context,
         "BAD_REQUEST"
-      )
+      );
+    }
   }),
 
   signIn: defineAction({
