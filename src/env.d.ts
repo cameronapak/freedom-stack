@@ -28,6 +28,20 @@ interface ImportMetaEnv {
   readonly BETTER_AUTH_URL: string;
   /** https://better-auth.com/ */
   readonly BETTER_AUTH_SECRET: string;
+  /** Toggle on email verification */
+  readonly BETTER_AUTH_EMAIL_VERIFICATION: "true" | "false";
+  /** Mail server host */
+  readonly MAIL_HOST: string;
+  /** Mail server port */
+  readonly MAIL_PORT: string;
+  /** Mail server secure setting */
+  readonly MAIL_SECURE: string;
+  /** Mail server auth user */
+  readonly MAIL_AUTH_USER: string;
+  /** Mail server auth password */
+  readonly MAIL_AUTH_PASS: string;
+  /** Email address to send from */
+  readonly MAIL_FROM: string;
 }
 
 interface ImportMeta {

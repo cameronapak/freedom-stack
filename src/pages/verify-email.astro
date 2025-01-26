@@ -1,0 +1,25 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@sections/Container.astro";
+import Navbar from "@sections/Navbar.astro";
+import Footer from "@sections/Footer.astro";
+
+const user = Astro.locals.user;
+
+if (!user) {
+  return Astro.redirect("/sign-in");
+}
+
+const email = user?.email;
+---
+
+<Layout title="Verify Email">
+  <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
+  <Container align="center">
+    <div class="bg-white p-6 rounded-xl border-2 border-slate-200 flex flex-col gap-4 max-w-sm w-full">
+      <h1>Verify Your Email</h1>
+      <p class="text-slate-600">Please click the link in your email ({email}) to verify your account.</p>
+    </div>
+  </Container>
+  <Footer />
+</Layout>

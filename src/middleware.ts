@@ -12,9 +12,6 @@ export const onRequest = defineMiddleware(async (context, next) => {
   } else {
     context.locals.user = null;
     context.locals.session = null;
-    if (context.url.pathname === "/sign-out") {
-      return context.redirect("/");
-    }
   }
 
   return next();

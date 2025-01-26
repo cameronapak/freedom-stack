@@ -1,7 +1,7 @@
 {
   "name": "create-freedom-stack",
   "type": "module",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Create a new Freedom Stack project - A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more",
   "author": "Cameron Pak",
   "license": "MIT",
@@ -66,6 +66,7 @@
     "@astrojs/tailwind": "^5.1.5",
     "@iconify-json/lucide": "^1.2.24",
     "@iconify-json/lucide-lab": "^1.2.3",
+    "@types/nodemailer": "^6.4.17",
     "alpinejs": "^3.14.8",
     "astro": "^5.1.9",
     "astro-iconify": "^1.2.0",
@@ -77,6 +78,7 @@
     "htmx.org": "2.0.1",
     "isomorphic-dompurify": "^2.20.0",
     "marked": "^15.0.6",
+    "nodemailer": "^6.10.0",
     "ora": "^8.1.1",
     "trix": "^2.1.12"
   },

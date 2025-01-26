@@ -2,7 +2,7 @@
 
 A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more.
 
-> [!TIP] 💡
+> [!TIP]
 > [Turso](https://tur.so/freedomstack) has a generous free tier for database hosting and management. And, when it's time to scale, use the code `FREEDOMSTACK` for a discount on paid plans.
 
 ## Get Started 🚀
@@ -39,6 +39,14 @@ ASTRO_DB_APP_TOKEN=""     # Added by npm run db:setup
 # Better Auth (required)
 BETTER_AUTH_SECRET=""     # Auto-generated during setup
 BETTER_AUTH_URL="http://localhost:4321"
+
+# Email Configuration (optional) - For sending emails
+MAIL_HOST=""             # SMTP host (e.g., smtp.resend.com)
+MAIL_PORT=""             # SMTP port (e.g., 465)
+MAIL_SECURE=""          # Use TLS/SSL (true/false)
+MAIL_AUTH_USER=""       # SMTP username
+MAIL_AUTH_PASS=""       # SMTP password or API key
+MAIL_FROM=""            # Sender email address
 ```
 
 ### 3. Have fun!
@@ -136,6 +144,42 @@ npm run host:deploy
 > Remember to set the environment variables in Netlify so that it builds successfully.
 
 [Learn more about hosting Astro sites on Netlify](https://docs.astro.build/en/guides/deploy/netlify/).
+
+---
+
+## Send Emails
+
+## Email Configuration 📧
+
+Freedom Stack includes a pre-configured email service using Nodemailer. This allows you to:
+
+- Send transactional emails
+- Use any SMTP provider
+- Handle email templates
+- Maintain type safety
+
+### Setting up Email
+
+1. Configure your environment variables as shown above
+
+Send emails programmatically:
+
+```typescript
+import { sendEmail } from "@/lib/email";
+
+await sendEmail({
+  to: "recipient@example.com",
+  subject: "Hello!",
+  html: "<h1>Welcome!</h1>"
+});
+```
+
+### Email Providers
+
+While you can use any SMTP provider, we recommend [Resend](https://resend.com) - Modern email API with generous free tier.
+
+> [!TIP]
+> Resend offers 100 emails/day free and has excellent developer experience.
 
 ---
 

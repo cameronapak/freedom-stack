@@ -60,6 +60,8 @@ if (result?.data?.success) {
             placeholder="email@example.com"
           />
         </label>
+        {/* Honeypot field to prevent bots from signing up */}
+        <input type="hidden" name="middleware" />
         <label class="form-control w-full">
           <div class="label">
             <span class="label-text">Password</span>
