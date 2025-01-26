@@ -16,11 +16,6 @@ type SendEmailOptions = {
 let transporter: Transporter | null = null;
 
 async function getEmailTransporter(): Promise<Transporter> {
-  // Return existing transporter if already initialized
-  if (transporter) {
-    return transporter;
-  }
-
   const requiredEnvVars = ["MAIL_HOST", "MAIL_PORT", "MAIL_SECURE", "MAIL_AUTH_USER", "MAIL_AUTH_PASS", "MAIL_FROM"];
 
   const missingEnvVars = requiredEnvVars.filter((envVar) => !import.meta.env[envVar]);
@@ -52,7 +47,8 @@ export async function sendEmail(options: SendEmailOptions): Promise<Transporter>
     const message = { to, subject, html, from };
 
     // Send the email
-    emailTransporter.sendMail(message, (err, info) => {
+    // `await` added because of this bug: https://community.redwoodjs.com/t/sending-smtp-emails-via-netlify/4551/5
+    await emailTransporter.sendMail(message, (err, info) => {
       if (err) {
         console.error(err);
         reject(err);
