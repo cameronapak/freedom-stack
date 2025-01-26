@@ -33,7 +33,8 @@ export const auth = betterAuth({
     }
   },
   emailAndPassword: {
-    enabled: true
+    enabled: true,
+    requireEmailVerification: Boolean(import.meta.env.BETTER_AUTH_EMAIL_VERIFICATION === "true")
   },
   // https://www.better-auth.com/docs/concepts/session-management#session-caching
   session: {
