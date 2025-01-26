@@ -2,7 +2,7 @@
 
 A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more.
 
-> [!TIP] 💡
+> [!TIP]
 > [Turso](https://tur.so/freedomstack) has a generous free tier for database hosting and management. And, when it's time to scale, use the code `FREEDOMSTACK` for a discount on paid plans.
 
 ## Get Started 🚀
