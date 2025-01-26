@@ -63,7 +63,7 @@ const Verification = defineTable({
     value: column.text(),
     expiresAt: column.date(),
     createdAt: column.date(),
-    updatedAt: column.date()
+    updatedAt: column.date({ optional: true })
   }
 });
 
