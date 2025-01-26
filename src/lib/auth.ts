@@ -21,7 +21,7 @@ export const auth = betterAuth({
     provider: "sqlite"
   }),
   emailVerification: {
-    sendOnSignUp: true,
+    sendOnSignUp: import.meta.env.BETTER_AUTH_EMAIL_VERIFICATION === "true",
     sendVerificationEmail: async ({ user, url, token }, request) => {
       const updatedUrl = new URL(url);
       updatedUrl.searchParams.set("callbackURL", "/sign-out");

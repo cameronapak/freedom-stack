@@ -14,7 +14,7 @@ const user = Astro.locals.user;
 
 if (!user) {
   return Astro.redirect("/sign-in");
-} else if (!user.emailVerified) {
+} else if (!user.emailVerified && import.meta.env.BETTER_AUTH_EMAIL_VERIFICATION === "true") {
   return Astro.redirect("/verify-email");
 }
 

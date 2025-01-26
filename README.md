@@ -186,11 +186,7 @@ await sendEmail({
 
 ### Email Providers
 
-While you can use any SMTP provider, we recommend:
-
-- [Resend](https://resend.com) - Modern email API with generous free tier
-- [SendGrid](https://sendgrid.com) - Reliable delivery and analytics
-- [Postmark](https://postmarkapp.com) - Excellent delivery rates for transactional email
+While you can use any SMTP provider, we recommend [Resend](https://resend.com) - Modern email API with generous free tier.
 
 > [!TIP]
 > Resend offers 100 emails/day free and has excellent developer experience.
