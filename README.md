@@ -161,18 +161,8 @@ Freedom Stack includes a pre-configured email service using Nodemailer. This all
 ### Setting up Email
 
 1. Configure your environment variables as shown above
-2. Use the email action in your forms:
 
-```astro
-<form method="POST" action={actions.email}>
-  <input type="email" name="recipient" />
-  <input type="text" name="subject" />
-  <textarea name="message"></textarea>
-  <button type="submit">Send Email</button>
-</form>
-```
-
-Or send emails programmatically:
+Send emails programmatically:
 
 ```typescript
 import { sendEmail } from "@/lib/email";
