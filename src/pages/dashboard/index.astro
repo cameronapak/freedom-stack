@@ -10,10 +10,12 @@ if (!Astro.locals.session) {
   return Astro.redirect("/sign-in");
 }
 
-const user = Astro.locals.user as { email: string };
+const user = Astro.locals.user;
 
 if (!user) {
   return Astro.redirect("/sign-in");
+} else if (!user.emailVerified) {
+  return Astro.redirect("/verify-email");
 }
 
 const allPosts = await db.select().from(Posts).where(eq(Posts.author, user.email)).orderBy(desc(Posts.pubDate));

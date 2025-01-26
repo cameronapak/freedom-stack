@@ -1,6 +1,7 @@
 import { betterAuth } from "better-auth";
 import { Account, db, Session, User, Verification } from "astro:db";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { sendEmail } from "@/lib/email";
 
 export const auth = betterAuth({
   baseURL: import.meta.env.BETTER_AUTH_URL,
@@ -19,6 +20,18 @@ export const auth = betterAuth({
     },
     provider: "sqlite"
   }),
+  emailVerification: {
+    sendOnSignUp: true,
+    sendVerificationEmail: async ({ user, url, token }, request) => {
+      const updatedUrl = new URL(url);
+      updatedUrl.searchParams.set("callbackURL", "/sign-out");
+      await sendEmail({
+        to: user.email,
+        subject: "Verify your email address",
+        html: `<a href="${updatedUrl}">Click the link to verify your email</a>`
+      });
+    }
+  },
   emailAndPassword: {
     enabled: true
   },
