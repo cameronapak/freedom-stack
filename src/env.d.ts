@@ -1,5 +1,4 @@
 /// <reference types="astro/client" />
-/// <reference path="../.astro/db-types.d.ts" />
 /// <reference path="../.astro/types.d.ts" />
 
 import * as htmx from "htmx.org";
