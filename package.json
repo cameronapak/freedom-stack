@@ -66,7 +66,6 @@
     "@astrojs/tailwind": "^6.0.0",
     "@iconify-json/lucide": "^1.2.27",
     "@iconify-json/lucide-lab": "^1.2.3",
-    "@types/nodemailer": "^6.4.17",
     "alpinejs": "^3.14.8",
     "astro": "^5.4.1",
     "astro-iconify": "^1.2.0",
@@ -83,6 +82,7 @@
     "trix": "^2.1.12"
   },
   "devDependencies": {
+    "@types/nodemailer": "^6.4.17",
     "@tailwindcss/typography": "^0.5.16",
     "@types/alpinejs": "^3.13.11",
     "@types/better-sqlite3": "^7.6.12",
