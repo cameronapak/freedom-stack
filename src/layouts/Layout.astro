@@ -2,7 +2,6 @@
 import "trix/dist/trix.css";
 import { SEO } from "astro-seo";
 import Icon from "astro-iconify";
-import "@/global.css";
 
 interface Props {
   title: string;
@@ -155,3 +154,7 @@ const { title, description = "", bodyClasses, canonicalUrl, faviconUrl, ogImageU
 
   window.htmx = htmx;
 </script>
+
+<style is:global>
+  @import "../global.css";
+</style>
