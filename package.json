@@ -63,7 +63,6 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/db": "^0.14.7",
     "@astrojs/netlify": "^6.2.2",
-    "@astrojs/tailwind": "^6.0.0",
     "@iconify-json/lucide": "^1.2.27",
     "@iconify-json/lucide-lab": "^1.2.3",
     "alpinejs": "^3.14.8",
@@ -82,15 +81,16 @@
     "trix": "^2.1.12"
   },
   "devDependencies": {
-    "@types/nodemailer": "^6.4.17",
     "@tailwindcss/typography": "^0.5.16",
+    "@tailwindcss/vite": "^4.0.9",
     "@types/alpinejs": "^3.13.11",
     "@types/better-sqlite3": "^7.6.12",
+    "@types/nodemailer": "^6.4.17",
     "daisyui": "^5.0.0",
     "netlify-cli": "^19.0.0",
     "prettier": "^3.5.2",
     "prettier-plugin-astro": "^0.14.1",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^4.0.9",
     "typescript": "^5.8.2"
   }
 }

@@ -38,56 +38,57 @@ if (result?.data?.success) {
               this.password === this.confirmPassword;
           }
         }"
-        class="flex flex-col gap-4 max-w-sm w-full"
+        class="space-y-6"
         method="POST"
         action={actions.auth.signUp}
       >
-        <label class="form-control w-full">
-          <div class="label">
-            <span class="label-text">Name</span>
-          </div>
-          <input x-model="name" class="input input-bordered" type="text" name="name" placeholder="John Doe" />
-        </label>
-        <label class="form-control w-full">
-          <div class="label">
-            <span class="label-text">Email</span>
-          </div>
+        <fieldset class="fieldset w-full">
+          <label class="label" for="name">Name</label>
+          <input id="name" x-model="name" class="input" type="text" name="name" placeholder="John Doe" />
+        </fieldset>
+
+        <fieldset class="fieldset w-full">
+          <label class="label" for="email">Email</label>
           <input
+            id="email"
             x-model="email"
-            class="input input-bordered"
+            class="input"
             type="email"
             name="email"
             placeholder="email@example.com"
+            required
           />
-        </label>
+        </fieldset>
+
         {/* Honeypot field to prevent bots from signing up */}
         <input type="hidden" name="middleware" />
-        <label class="form-control w-full">
-          <div class="label">
-            <span class="label-text">Password</span>
-          </div>
+
+        <fieldset class="fieldset w-full">
+          <label class="label" for="password">Password</label>
           <input
+            id="password"
             x-model="password"
-            class="input input-bordered"
+            class="input"
             type="password"
             name="password"
             placeholder="Password"
+            required
           />
-        </label>
-        <label class="form-control w-full">
-          <div class="label">
-            <span class="label-text">Confirm Password</span>
-          </div>
+        </fieldset>
+
+        <fieldset class="fieldset w-full">
+          <label class="label" for="confirmPassword">Confirm Password</label>
           <input
+            id="confirmPassword"
             x-model="confirmPassword"
-            class="input input-bordered"
-            :class="showPasswordError && password !== confirmPassword ? 'input-error' : ''"
+            class="input"
             type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
-            @blur="showPasswordError = true"
+            required
           />
-        </label>
+        </fieldset>
+
         <div x-cloak x-show="showPasswordError && password !== confirmPassword" class="text-error text-sm">
           Passwords do not match
         </div>

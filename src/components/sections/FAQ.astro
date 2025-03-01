@@ -30,6 +30,7 @@ const { title, subtitle, align = "center", items } = Astro.props as Props;
 </Container>
 
 <style>
+  @reference "../../global.css";
   .collapse:has(input:checked) {
     @apply bg-white rounded-xl border-2 border-slate-200;
   }

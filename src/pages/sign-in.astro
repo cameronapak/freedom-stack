@@ -22,25 +22,21 @@ if (result?.data?.success) {
   <Container align="center">
     <div class="bg-white p-6 rounded-xl border-2 border-slate-200 flex flex-col gap-4 max-w-sm w-full">
       <h1>Sign In</h1>
-      <form class="flex flex-col gap-4 max-w-sm w-full" method="POST" action={actions.auth.signIn}>
-        {/* Email */}
-        <label class="form-control w-full">
-          <div class="label">
-            <span class="label-text">Email</span>
-          </div>
-          <input type="email" placeholder="email@example.com" class="input input-bordered" name="email" />
-        </label>
+      <form method="post" action="/api/auth/sign-in" class="space-y-6">
+        <fieldset class="fieldset w-full">
+          <label class="label flex justify-between" for="email">
+            <span>Email</span>
+          </label>
+          <input id="email" type="email" placeholder="email@example.com" class="input" name="email" />
+        </fieldset>
 
-        {/* Password */}
-        <label class="form-control w-full">
-          <div class="label">
-            <span class="label-text">Password</span>
-            <a href="/forgot-password" class="label-text-alt link text-slate-500 hover:!text-slate-500">
-              Forgot password?
-            </a>
-          </div>
-          <input type="password" placeholder="Password" class="input input-bordered" name="password" />
-        </label>
+        <fieldset class="fieldset w-full">
+          <label class="label flex justify-between" for="password">
+            <span>Password</span>
+            <a href="/forgot-password" class="link text-slate-500 hover:!text-slate-500"> Forgot password? </a>
+          </label>
+          <input id="password" type="password" placeholder="Password" class="input" name="password" />
+        </fieldset>
 
         <button class="mt-4 btn btn-primary" type="submit">Sign In</button>
       </form>
