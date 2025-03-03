@@ -75,10 +75,16 @@
   --noise: 0;
 }
 
-.container {
-  max-width: 768px !important;
-  padding-inline: 24px;
-  margin: 0 auto;
+@layer components {
+  .container {
+    max-width: 768px !important;
+    padding-inline: 24px;
+    margin: 0 auto;
+  }
+}
+
+a.btn {
+  @apply no-underline;
 }
 
 /* Add CSS styles below. */
