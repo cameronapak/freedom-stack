@@ -76,8 +76,9 @@
 }
 
 .container {
-  max-width: 1000px !important;
-  margin: 24px;
+  max-width: 768px !important;
+  padding: 24px;
+  margin: 0 auto;
 }
 
 /* Add CSS styles below. */
@@ -110,10 +111,6 @@
 
 .text-muted {
   @apply text-gray-500;
-}
-
-.container {
-  max-width: 768px !important;
 }
 
 /* Alpine.js */
