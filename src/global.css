@@ -70,14 +70,14 @@
   --radius-box: 1rem;
   --size-selector: 0.3125rem;
   --size-field: 0.3125rem;
-  --border: 1.5px;
+  --border: 2px;
   --depth: 1;
   --noise: 0;
 }
 
 .container {
   max-width: 768px !important;
-  padding: 24px;
+  padding-inline: 24px;
   margin: 0 auto;
 }
 
