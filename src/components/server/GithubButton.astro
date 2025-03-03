@@ -14,9 +14,13 @@ const repoData = await repo.json();
 const stars = repoData.stargazers_count;
 ---
 
-<a id="cta-secondary" href="https://github.com/cameronapak/freedom-stack" class="max-sm:w-full btn btn-outline btn-sm">
+<a
+  id="cta-secondary"
+  href="https://github.com/cameronapak/freedom-stack"
+  class="no-underline ps-3 pe-1 max-sm:w-full rounded-full btn btn-outline btn-sm"
+>
   GitHub
-  <div class="badge flex items-center gap-1">
+  <div class="badge bg-slate-200 flex items-center gap-1">
     <Icon pack="lucide" name="star" class="w-4 h-4" />
     <span>{stars}</span>
   </div>
