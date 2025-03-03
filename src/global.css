@@ -1,3 +1,92 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@plugin "daisyui";
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(98% 0.003 247.858);
+  --color-base-300: oklch(96% 0.007 247.896);
+  --color-base-content: oklch(21% 0.006 285.885);
+  --color-primary: oklch(14% 0.005 285.823);
+  --color-primary-content: oklch(93% 0.034 272.788);
+  --color-secondary: oklch(92% 0.013 255.508);
+  --color-secondary-content: oklch(21% 0.006 285.885);
+  --color-accent: oklch(93% 0.034 272.788);
+  --color-accent-content: oklch(38% 0.063 188.416);
+  --color-neutral: oklch(14% 0.005 285.823);
+  --color-neutral-content: oklch(92% 0.004 286.32);
+  --color-info: oklch(95% 0.045 203.388);
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(95% 0.052 163.051);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(96% 0.059 95.617);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: oklch(94% 0.03 12.58);
+  --color-error-content: oklch(27% 0.105 12.094);
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.3125rem;
+  --size-field: 0.3125rem;
+  --border: 2px;
+  --depth: 0;
+  --noise: 0;
+}
+
+/**
+ * I could not figure out how to get the theme above to work for both light and dark mode,
+ * so I copied and pasted the light theme and changed the values to dark.
+ */
+@plugin "daisyui/theme" {
+  name: "dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(98% 0.003 247.858);
+  --color-base-300: oklch(96% 0.007 247.896);
+  --color-base-content: oklch(21% 0.006 285.885);
+  --color-primary: oklch(14% 0.005 285.823);
+  --color-primary-content: oklch(93% 0.034 272.788);
+  --color-secondary: oklch(92% 0.013 255.508);
+  --color-secondary-content: oklch(21% 0.006 285.885);
+  --color-accent: oklch(93% 0.034 272.788);
+  --color-accent-content: oklch(38% 0.063 188.416);
+  --color-neutral: oklch(14% 0.005 285.823);
+  --color-neutral-content: oklch(92% 0.004 286.32);
+  --color-info: oklch(95% 0.045 203.388);
+  --color-info-content: oklch(29% 0.066 243.157);
+  --color-success: oklch(95% 0.052 163.051);
+  --color-success-content: oklch(37% 0.077 168.94);
+  --color-warning: oklch(96% 0.059 95.617);
+  --color-warning-content: oklch(41% 0.112 45.904);
+  --color-error: oklch(94% 0.03 12.58);
+  --color-error-content: oklch(27% 0.105 12.094);
+  --radius-selector: 1rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.3125rem;
+  --size-field: 0.3125rem;
+  --border: 2px;
+  --depth: 0;
+  --noise: 0;
+}
+
+@layer components {
+  .container {
+    max-width: 768px !important;
+    padding-inline: 24px;
+    margin: 0 auto;
+  }
+}
+
+a.btn {
+  @apply no-underline;
+}
+
 /* Add CSS styles below. */
 .example-class {
   /* You can even apply Tailwind classes here. */
@@ -28,10 +117,6 @@
 
 .text-muted {
   @apply text-gray-500;
-}
-
-.container {
-  max-width: 768px !important;
 }
 
 /* Alpine.js */
@@ -126,5 +211,9 @@ input[type="text"],
 input[type="password"],
 input[type="email"],
 textarea {
-  @apply !border-2 !border-slate-200 bg-white;
+  &:-internal-autofill-selected {
+    @apply !border-2 !border-slate-200 !bg-white;
+  }
+
+  @apply !border-2 !border-slate-200 !bg-white;
 }
