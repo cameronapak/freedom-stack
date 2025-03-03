@@ -111,10 +111,17 @@ export const auth = {
   })
 };
 
-function throwActionAuthError(code: ActionErrorCode, error: unknown): never {
-  console.error(error);
+function throwActionAuthError(code: ActionErrorCode, error: any): never {
+  console.log(error.message);
+  if (error?.message?.toLowerCase().includes("unauthorized")) {
+    throw new ActionError({
+      code,
+      message: "Check your credentials and try again, or make sure you've verified your email."
+    });
+  }
+
   throw new ActionError({
     code,
-    message: error instanceof APIError ? `${error.body.message}.` : "Something went wrong, please try again later."
+    message: "Something went wrong, please try again later."
   });
 }

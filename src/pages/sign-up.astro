@@ -20,7 +20,7 @@ if (result?.data?.success) {
 
 <Layout title="Sign In">
   <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
-  {result?.error && <div x-init={`toastErrorMessage = '${result.error.message.toString()}'`} class="sr-only" />}
+  {result?.error && <div x-init={`toastErrorMessage = \`${result.error.message.toString()}\``} class="sr-only" />}
   <Container align="center">
     <div class="bg-white p-6 rounded-xl border-2 border-slate-200 flex flex-col gap-4 max-w-sm w-full">
       <h1>Create an account</h1>
@@ -38,57 +38,56 @@ if (result?.data?.success) {
               this.password === this.confirmPassword;
           }
         }"
-        class="space-y-6"
+        class="flex flex-col gap-4 max-w-sm w-full"
         method="POST"
         action={actions.auth.signUp}
       >
-        <fieldset class="fieldset w-full">
-          <label class="label" for="name">Name</label>
-          <input id="name" x-model="name" class="input" type="text" name="name" placeholder="John Doe" />
-        </fieldset>
-
-        <fieldset class="fieldset w-full">
-          <label class="label" for="email">Email</label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">Name</span>
+          </div>
+          <input x-model="name" class="input input-bordered" type="text" name="name" placeholder="John Doe" />
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">Email</span>
+          </div>
           <input
-            id="email"
             x-model="email"
-            class="input"
+            class="input input-bordered"
             type="email"
             name="email"
             placeholder="email@example.com"
-            required
           />
-        </fieldset>
-
+        </label>
         {/* Honeypot field to prevent bots from signing up */}
         <input type="hidden" name="middleware" />
-
-        <fieldset class="fieldset w-full">
-          <label class="label" for="password">Password</label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">Password</span>
+          </div>
           <input
-            id="password"
             x-model="password"
-            class="input"
+            class="input input-bordered"
             type="password"
             name="password"
             placeholder="Password"
-            required
           />
-        </fieldset>
-
-        <fieldset class="fieldset w-full">
-          <label class="label" for="confirmPassword">Confirm Password</label>
+        </label>
+        <label class="form-control w-full">
+          <div class="label">
+            <span class="label-text">Confirm Password</span>
+          </div>
           <input
-            id="confirmPassword"
             x-model="confirmPassword"
-            class="input"
+            class="input input-bordered"
+            :class="showPasswordError && password !== confirmPassword ? 'input-error' : ''"
             type="password"
             name="confirmPassword"
             placeholder="Confirm Password"
-            required
+            @blur="showPasswordError = true"
           />
-        </fieldset>
-
+        </label>
         <div x-cloak x-show="showPasswordError && password !== confirmPassword" class="text-error text-sm">
           Passwords do not match
         </div>
