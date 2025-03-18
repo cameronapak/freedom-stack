@@ -18,7 +18,7 @@ if (result?.data?.success) {
 }
 ---
 
-<Layout title="Sign In">
+<Layout title="Sign Up">
   <Navbar title="Freedom Stack" sticky links={[{ text: "Home", href: "/" }]} />
   {result?.error && <div x-init={`toastErrorMessage = \`${result.error.message.toString()}\``} class="sr-only" />}
   <Container align="center">
