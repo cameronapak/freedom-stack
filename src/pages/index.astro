@@ -82,34 +82,7 @@ I knew how to work with API's and someone else's database, but I'd never learned
 
 _A wild [Astro DB](https://docs.astro.build/en/guides/astro-db/) enters the chat!_
 
-Creating a database table was as easy as:
-
-\`\`\`javascript
-import { defineTable } from "astro:db";
-
-const Posts = defineTable({
-  columns: {
-    id: column.number({ primaryKey: true }),
-    title: column.text(),
-    pubDate: column.date(),
-    description: column.text(),
-    author: column.text(),
-    imageUrl: column.text({ optional: true }),
-    imageAlt: column.text({ optional: true }),
-    tags: column.json({ optional: true }),
-    slug: column.text({ unique: true }),
-    content: column.text()
-  }
-});
-\`\`\`
-
-And, getting all the posts from the database was as easy as:
-
-\`\`\`javascript
-import { db, Posts } from "astro:db";
-
-const posts = await db.select().from(Posts).all();
-\`\`\`
+Astro combined one of the easiest to use database layers and made it even easier with [Drizzle ORM](https://orm.drizzle.team/).
 
 I found myself building full-stack web apps without really having to think too much about databases. They just worked.
 
