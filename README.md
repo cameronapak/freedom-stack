@@ -3,6 +3,9 @@
 > [!WARNING]
 > Freedom Stack is no longer in active development and needs maintainers/contributors! If you want to be part of this, [email me](mailto:cameronandrewpak@gmail.com?subject=I%20want%20to%20contribute to%20Freedom%20Stack)
 
+> [!IMPORTANT]
+> I'd recommend checking out [Better T Stack](https://better-t-stack.amanv.dev/new) to piece together your preferred app stack.
+
 A modern, type-safe web development stack using Astro, TypeScript, HTMX, Alpine.js, and more.
 
 > [!TIP]
