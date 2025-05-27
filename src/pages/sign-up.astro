@@ -33,9 +33,9 @@ if (result?.data?.success) {
           showPasswordError: false,
           get isValid() {
             return this.name.length > 0 &&
-              this.email.length > 0 &&
-              this.password.length > 0 &&
-              this.password === this.confirmPassword;
+            this.email.length > 0 &&
+            this.password.length > 8 &&
+            this.password === this.confirmPassword;
           }
         }"
         class="flex flex-col gap-4 max-w-sm w-full"
