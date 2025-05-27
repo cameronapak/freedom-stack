@@ -1,4 +1,5 @@
 import { defineConfig } from "astro/config";
+import franken from "franken-ui/plugin-vite";
 import tailwindcss from "@tailwindcss/vite";
 import alpinejs from "@astrojs/alpinejs";
 import netlify from "@astrojs/netlify";
@@ -15,6 +16,13 @@ export default defineConfig({
   output: "server",
   adapter: netlify(),
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [
+      tailwindcss(),
+      franken({
+        preflight: false,
+        layer: true,
+        layerExceptions: ["chart"]
+      })
+    ]
   }
 });
