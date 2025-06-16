@@ -1,7 +1,8 @@
 # Freedom Stack
 
 > [!WARNING]
-> Freedom Stack is no longer in active development and needs maintainers/contributors! If you want to be part of this, [email me](mailto:cameronandrewpak@gmail.com?subject=I%20want%20to%20contribute%20to%20Freedom%20Stack)
+> Freedom Stack v1 is no longer in active development...
+> However, [v2 is cooking 👨‍🍳](https://github.com/cameronapak/freedom-stack-v2)
 
 > [!IMPORTANT]
 > I'd recommend checking out [Better T Stack](https://better-t-stack.amanv.dev/new) to piece together your preferred app stack.
