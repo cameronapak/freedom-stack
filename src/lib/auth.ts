@@ -22,7 +22,7 @@ export const auth = betterAuth({
   }),
   emailVerification: {
     sendOnSignUp: Boolean(import.meta.env.BETTER_AUTH_EMAIL_VERIFICATION === "true"),
-    sendVerificationEmail: async ({ user, url, token }, request) => {
+    sendVerificationEmail: async ({ user, url, token: _token }, _request) => {
       const updatedUrl = new URL(url);
       updatedUrl.searchParams.set("callbackURL", "/sign-out");
       await sendEmail({
@@ -44,3 +44,5 @@ export const auth = betterAuth({
     }
   }
 });
+
+export type Session = typeof auth.$Infer.Session

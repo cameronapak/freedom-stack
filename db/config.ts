@@ -12,7 +12,10 @@ const Posts = defineTable({
     tags: column.json({ optional: true }),
     slug: column.text({ unique: true }),
     content: column.text()
-  }
+  },
+  indexes: [
+    { on: ["title", "author"], unique: true },
+  ]
 });
 
 const User = defineTable({

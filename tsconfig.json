@@ -10,7 +10,8 @@
     "paths": {
       "@/*": ["src/*"],
       "@sections/*": ["src/components/sections/*"]
-    }
+    },
+    "strict": true
   },
   "include": [".astro/types.d.ts", "**/*"],
   "exclude": ["dist"]
