@@ -47,7 +47,7 @@ export async function sendEmail(options: SendEmailOptions): Promise<Transporter>
     const message = { to, subject, html, from };
 
     // Send the email
-    // `await` added because of this bug: https://community.redwoodjs.com/t/sending-smtp-emails-via-netlify/4551/5
+    // @ts-ignore `await` added because of this bug: https://community.redwoodjs.com/t/sending-smtp-emails-via-netlify/4551/5
     await emailTransporter.sendMail(message, (err, info) => {
       if (err) {
         console.error(err);

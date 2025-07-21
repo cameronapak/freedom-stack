@@ -2,7 +2,6 @@
 import { defineAction, ActionError, type ActionErrorCode } from "astro:actions";
 import { z } from "astro:schema";
 import type { AstroCookies } from "astro";
-import { APIError } from "better-auth/api";
 import { auth as betterAuth } from "@/lib/auth";
 import type { ActionAPIContext } from "astro:actions";
 
@@ -67,7 +66,7 @@ export const auth = {
       return await handleAuthResponse(
         () =>
           betterAuth.api.signUpEmail({
-            body: { ...input, image: input.imageUrl || "" },
+            body: { ...input, ...(input.imageUrl ? { imageUrl: input.imageUrl } : {}) },
             headers: context.request.headers,
             asResponse: true
           }),
