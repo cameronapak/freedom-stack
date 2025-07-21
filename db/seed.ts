@@ -34,6 +34,7 @@ Remember: Ogres are like onions. They have layers. Onions have layers.
 
 // https://astro.build/db/seed
 export default async function seed() {
+  // @ts-ignore - https://github.com/withastro/astro/issues/13886
   await db.insert(Posts).values([
     {
       id: 1,
