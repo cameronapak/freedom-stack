@@ -159,7 +159,7 @@ const argv = cli({
   parameters: ["<projectName>"],
   help: {
     description: "Create a new Freedom Stack project",
-    examples: ["npx degit https://github.com/cameronapak/freedom-stack my-project"]
+    examples: ["npx create-freedom-stack my-app"]
   }
 });
 
