@@ -21,7 +21,7 @@ You can create a new Freedom Stack project using npm:
 
 ```bash
 # Create a new project
-npx create-freedom-stack my-app
+npx degit https://github.com/cameronapak/freedom-stack my-app
 
 # Navigate to the project directory
 cd my-app
