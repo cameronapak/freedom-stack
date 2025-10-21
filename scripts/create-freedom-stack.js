@@ -131,7 +131,7 @@ pnpm-debug.log*
   // Install dependencies
   const spinner = ora("Installing dependencies...").start();
   try {
-    execSync("npm install", { stdio: ["pipe", "pipe", "pipe"] });
+    execSync("bun install", { stdio: ["pipe", "pipe", "pipe"] });
     spinner.succeed("Dependencies installed successfully!");
   } catch (error) {
     spinner.fail("Failed to install dependencies");
@@ -144,8 +144,8 @@ pnpm-debug.log*
 
 To get started:
   1. cd ${projectName}
-  2. npm run db:setup     # Set up your Turso database
-  3. npm run dev          # Start the development server
+  2. bun run db:setup     # Set up your Turso database
+  3. bun run dev          # Start the development server
 
 Visit http://localhost:4321 to see your app.
   `);

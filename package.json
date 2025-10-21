@@ -41,18 +41,18 @@
     ".nvmrc"
   ],
   "scripts": {
-    "check:env": "node scripts/check-env.js",
-    "dev": "npm run check:env && astro dev",
-    "dev:host": "npm run check:env && astro dev --host",
-    "start": "npm run check:env && astro dev",
+    "check:env": "bun ./scripts/check-env.js",
+    "dev": "bun run check:env && astro dev",
+    "dev:host": "bun run check:env && astro dev --host",
+    "start": "bun run check:env && astro dev",
     "build": "astro check && astro build --remote",
     "preview": "astro preview",
     "format": "prettier -w .",
-    "packages:update": "npx npm-check-updates -u",
-    "db:setup": "node scripts/setup-turso.js",
+    "packages:update": "bun update --interactive",
+    "db:setup": "bun run scripts/setup-turso.js",
     "db:update-schemas": "astro db push --remote",
-    "host:deploy": "npx netlify deploy",
-    "host:login": "npx netlify login"
+    "host:deploy": "netlify deploy",
+    "host:login": "netlify login"
   },
   "dependencies": {
     "@alpinejs/collapse": "^3.15.0",

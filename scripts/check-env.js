@@ -5,6 +5,8 @@ import { dirname, join } from "path";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+console.log("Checking environment variables...")
+
 // Read .env.example to get required variables
 const envExample = readFileSync(join(__dirname, "../.env.example"), "utf8");
 const requiredVars = envExample
@@ -73,3 +75,5 @@ if (missingVars.length > 0) {
   console.error("\n\x1b[37m%s\x1b[0m", "Please set these variables in your .env file before running the dev server.");
   process.exit(1);
 }
+
+console.log("Environment variables are set correctly!");
