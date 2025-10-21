@@ -21,16 +21,16 @@ You can create a new Freedom Stack project using npm:
 
 ```bash
 # Create a new project
-npx create-freedom-stack my-app
+bunx create-freedom-stack my-app
 
 # Navigate to the project directory
 cd my-app
 
 # Set up your database
-npm run db:setup
+bun run db:setup
 
 # Start the development server
-npm run dev
+bun run dev
 ```
 
 Your development server will be running on [`localhost:4321`](http://localhost:4321).
@@ -41,8 +41,8 @@ The project will automatically create a `.env` file with a generated `BETTER_AUT
 
 ```env
 # Astro DB - LibSQL (required) - Your database
-ASTRO_DB_REMOTE_URL=""    # Added by npm run db:setup
-ASTRO_DB_APP_TOKEN=""     # Added by npm run db:setup
+ASTRO_DB_REMOTE_URL=""    # Added by bun run db:setup
+ASTRO_DB_APP_TOKEN=""     # Added by bun run db:setup
 
 # Better Auth (required)
 BETTER_AUTH_SECRET=""     # Auto-generated during setup
@@ -139,13 +139,13 @@ Host your site with [Netlify](https://netlify.com) in under a minute.
 First, you must login to Netlify:
 
 ```bash
-npm run host:login
+bun run host:login
 ```
 
 Then, you can deploy your site with:
 
 ```bash
-npm run host:deploy
+bun run host:deploy
 ```
 
 > [!IMPORTANT]
@@ -227,13 +227,13 @@ Have a project that uses Freedom Stack? [Open a PR](https://github.com/cameronap
 
 | Command                     | Description                                      |
 | --------------------------- | ------------------------------------------------ |
-| `npm run dev`               | Start the development server                     |
-| `npm run dev:host`          | Start development server accessible from network |
-| `npm run build`             | Build the production site with remote database   |
-| `npm run preview`           | Preview the built site locally                   |
-| `npm run format`            | Format all files using Prettier                  |
-| `npm run packages:update`   | Update all packages to their latest versions     |
-| `npm run db:update-schemas` | Push database schema changes to remote database  |
+| `bun run dev`               | Start the development server                     |
+| `bun run dev:host`          | Start development server accessible from network |
+| `bun run build`             | Build the production site with remote database   |
+| `bun run preview`           | Preview the built site locally                   |
+| `bun run format`            | Format all files using Prettier                  |
+| `bun run packages:update`   | Update all packages to their latest versions     |
+| `bun run db:update-schemas` | Push database schema changes to remote database  |
 
 ## Contributions 🤝
 

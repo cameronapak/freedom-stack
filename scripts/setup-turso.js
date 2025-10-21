@@ -45,7 +45,7 @@ async function setupTurso(argv) {
       console.log("\n❌ You need to authenticate with Turso first.");
       console.log("\nRun these commands in order:");
       console.log("1. turso auth login");
-      console.log("2. npm run db:setup");
+      console.log("2. bun run db:setup");
       process.exit(1);
     }
 
@@ -64,7 +64,7 @@ async function setupTurso(argv) {
         console.log("\n❌ Turso authentication required.");
         console.log("\nRun these commands in order:");
         console.log("1. turso auth login");
-        console.log("2. npm run db:setup");
+        console.log("2. bun run db:setup");
         process.exit(1);
       }
       throw error;
@@ -111,8 +111,8 @@ ASTRO_DB_REMOTE_URL=${dbUrl}
 ASTRO_DB_APP_TOKEN=${authToken}
 
 You can now run:
-npm run db:update-schemas   # To push your schema to the database
-npm run dev                 # To start your development server
+bun run db:update-schemas   # To push your schema to the database
+bun run dev                 # To start your development server
 `);
   } catch (error) {
     console.error("❌ Error setting up Turso:", error.message);
@@ -141,7 +141,7 @@ cli(
       }
     },
     help: {
-      examples: ["npm run db:setup", "npm run db:setup --name my-database", "npm run db:setup -n my-database --force"]
+      examples: ["bun run db:setup", "bun run db:setup --name my-database", "bun run db:setup -n my-database --force"]
     }
   },
   async (argv) => {

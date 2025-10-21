@@ -1,7 +1,7 @@
 [build]
-  command = "npm run build"
+  command = "bun run build"
   publish = "dist"
-  environment = { NODE_VERSION = "20" }
+  environment = { NODE_VERSION = "22.21.0" }
 
 [template]
   [template.environment]
