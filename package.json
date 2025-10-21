@@ -81,7 +81,8 @@
     "trix": "^2.1.15"
   },
   "overrides": {
-    "parse5": "6.0.1"
+    "jsdom": "^23.2.0",
+    "parse5": "^7.1.2"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
