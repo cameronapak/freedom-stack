@@ -9,12 +9,18 @@
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
   },
+  "css.customData": [
+    // https://gist.github.com/pqoqubbw/6c5b09e58cd44bd89b4d8c16a2a0bc18
+    ".vscode/tailwind.json"
+  ],
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "editor.rulers": [120],
+  "editor.rulers": [
+    120
+  ],
   "files.associations": {
     "*.mdx": "markdown"
   }
