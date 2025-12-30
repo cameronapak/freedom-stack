@@ -121,6 +121,27 @@ Astro.response.headers.set("netlify-cache-tag", "components");
   />
 
   <section class="min-h-[70vh] h-fit container flex flex-col justify-center items-center py-16">
+    <div role="alert" class="mb-8 alert bg-primary w-full text-white">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-archive-icon lucide-archive"
+        ><rect width="20" height="5" x="2" y="3" rx="1"></rect><path d="M4 8v11a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8"
+        ></path><path d="M10 12h4"></path></svg
+      >
+      <span>Freedom Stack (FS) v1 is archived, but the legacy continues with v3!</span>
+      <div>
+        <a target="_blank" href="https://github.com/cameronapak/freedom-stack-v3" class="btn btn-sm">See FS v3</a>
+      </div>
+    </div>
+
     <div class="mb-8 flex flex-wrap gap-4 justify-center">
       <GithubButton server:defer>
         <div slot="fallback" class="btn btn-outline btn-sm bg-slate-100 text-slate-100">---------------</div>

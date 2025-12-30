@@ -1,8 +1,8 @@
 # Freedom Stack
 
 > [!WARNING]
-> Freedom Stack v1 is no longer in active development...
-> However, [v2 is cooking 👨‍🍳](https://github.com/cameronapak/freedom-stack-v2)
+> Freedom Stack (FS) v1 is no longer in active development...
+> However, [FS v2](https://github.com/cameronapak/freedom-stack-v2) walked so [FS v3](https://github.com/cameronapak/freedom-stack-v3) could fly.
 
 > [!IMPORTANT]
 > I'd recommend checking out [Better T Stack](https://better-t-stack.amanv.dev/new) to piece together your preferred app stack.
